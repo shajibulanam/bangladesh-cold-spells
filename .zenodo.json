@@ -1,0 +1,12 @@
+{
+  "title": "Code and derived data for: Do stratospheric and recurrent Rossby-wave precursors control persistent cold spells over Bangladesh? Evidence from 40 winters, 1985/86-2024/25",
+  "upload_type": "software",
+  "description": "Analysis code, frozen analysis policies, cold-night and cold-day spell catalogues, ERA5-derived daily series, and all result tables and figures of the article. BMD station observations are not included; they were obtained from the Bangladesh Meteorological Department on request and may not be redistributed.",
+  "creators": [
+    {"name": "Anam, Shajibul", "affiliation": "Department of Meteorology, University of Dhaka", "orcid": "0009-0009-9681-9339"},
+    {"name": "Yildiz, Shabista", "affiliation": "Department of Meteorology, University of Dhaka", "orcid": "0009-0007-4131-5542"},
+    {"name": "Singha, Shipa Rani", "affiliation": "Department of Meteorology, University of Dhaka", "orcid": "0009-0001-0209-1490"}
+  ],
+  "license": "mit",
+  "keywords": ["cold spell", "Bangladesh", "persistence", "discrete-time hazard model", "sudden stratospheric warming", "ERA5", "fog"]
+}
