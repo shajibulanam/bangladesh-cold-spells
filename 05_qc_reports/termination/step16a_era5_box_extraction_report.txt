@@ -1,0 +1,12 @@
+Step 16A - Daily ERA5 box-mean extraction
+============================================
+Completed (UTC): 2026-09-23T16:59:42.234110+00:00
+Output: 03_intermediate/era5_box_daily/era5_box_daily_oct_mar.csv
+Rows: 7290 (expected 7290)
+Period: 1985-10-01 to 2025-03-31
+Columns (38): bd_geopotential_height_m_1000, bd_geopotential_height_m_850, bd_geopotential_height_m_500, bd_geopotential_height_m_200, bd_air_temperature_k_1000, bd_air_temperature_k_850, bd_air_temperature_k_700, bd_air_temperature_k_500, bd_u_wind_ms_850, bd_u_wind_ms_500, bd_u_wind_ms_200, bd_v_wind_ms_850, bd_v_wind_ms_500, bd_v_wind_ms_200, bd_t2m_c, bd_msl_hpa, bd_u10_ms, bd_v10_ms, bd_wspd10_ms, sa_geopotential_height_m_1000, sa_geopotential_height_m_850, sa_geopotential_height_m_500, sa_geopotential_height_m_200, sa_air_temperature_k_1000, sa_air_temperature_k_850, sa_air_temperature_k_700, sa_air_temperature_k_500, sa_u_wind_ms_850, sa_u_wind_ms_500, sa_u_wind_ms_200, sa_v_wind_ms_850, sa_v_wind_ms_500, sa_v_wind_ms_200, sa_t2m_c, sa_msl_hpa, sa_u10_ms, sa_v10_ms, sa_wspd10_ms
+Missing months: 0
+Bangladesh-box T2m range (degC): (9.319861169031874, 28.205137335959417)
+SHA-256: 3a05672f47ef04abb11d81ee030b2079be012835c0295cb0aecf7ecf2baf8823
+
+Validation: PASS - no issues found.

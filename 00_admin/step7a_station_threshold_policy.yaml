@@ -1,0 +1,45 @@
+stage: step7a_station_specific_cold_thresholds
+
+reference_period:
+  start_date: 1991-01-01
+  end_date: 2020-12-31
+  expected_calendar_years: 30
+
+temperature:
+  source_column: tmin_cleaned_stage2
+  analysis_column: analysis_tmin_unadjusted
+  interpolation_allowed: false
+  adjustment_allowed: false
+
+calendar_percentiles:
+  primary_percentile: 0.10
+  additional_percentiles: [0.05, 0.20]
+  window_half_width_days: 2
+  total_window_days: 5
+  quantile_method: median_unbiased
+
+baseline_selection:
+  fixed_network_only: true
+  complete_station_winter_required: true
+  minimum_full_sample_observations: 100
+  minimum_full_sample_years: 25
+  minimum_leave_one_out_observations: 96
+  minimum_leave_one_out_years: 24
+
+baseline_bias_treatment:
+  baseline_dates: leave_one_calendar_year_out
+  outside_baseline_dates: full_1991_2020_threshold
+
+cold_day_definition:
+  comparison: strictly_less_than
+  threshold: station_calendar_day_p10
+  require_complete_station_winter: true
+
+important:
+  - The five-day window is circular across the calendar-year boundary.
+  - November and March observations may enter windows near DJF boundaries.
+  - February 29 receives its own five-day-window threshold.
+  - Full-reference p05 and p20 are retained for sensitivity analysis.
+  - Primary event detection uses the p10 analysis threshold.
+  - No missing temperature is filled.
+  - No temperature observation is modified.

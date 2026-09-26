@@ -1,0 +1,9 @@
+Step 16J - advection and jet daily diagnostics
+Rows: 7290 (expected 7290)
+Missing files: none
+
+                             mean     std     min     max
+bd_adv850_k_day            -0.058   1.809  -5.773  18.469
+nigp_adv850_k_day          -0.079   0.966  -7.085   4.784
+jet200_core_lat_70_100e    30.272   4.513  15.000  45.000
+jet200_core_speed_70_100e  52.581  11.110  26.011  95.412

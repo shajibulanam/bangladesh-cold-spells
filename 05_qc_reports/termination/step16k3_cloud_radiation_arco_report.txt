@@ -1,0 +1,21 @@
+Step 16K3 - ARCO cloud/radiation daily series
+Rows: 7290 (expected 7290)
+Days with fewer than 24 hours: 0
+Period: 1985-10-01 to 2025-03-31
+
+                            mean      std      min       max
+tcc_mean                   0.289    0.237    0.001     1.000
+lowcloud1000_frac_mean     0.207    0.236    0.000     0.986
+fog300_frac_mean           0.055    0.074    0.000     0.616
+td2m_mean                 17.130    3.831    6.892    26.481
+blh_mean                 398.948   88.118  189.265   809.025
+ssrd_wm2                 194.189   37.479   32.152   298.372
+strd_wm2                 358.988   31.828  286.295   439.378
+hours_present             24.000    0.000   24.000    24.000
+tcc_00utc                  0.349    0.250    0.000     1.000
+tcc_06utc                  0.291    0.249    0.000     1.000
+lowcloud1000_frac_00utc    0.283    0.266    0.000     1.000
+lowcloud1000_frac_06utc    0.226    0.282    0.000     1.000
+fog300_frac_00utc          0.141    0.148    0.000     0.818
+dpd_00utc                  2.435    0.784    0.741     8.196
+blh_06utc                956.925  218.496  317.256  1976.664

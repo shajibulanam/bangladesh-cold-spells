@@ -1,0 +1,34 @@
+qc_stage: step5a_climatological_temporal_screening
+
+reference_climatology:
+  start_date: 1991-01-01
+  end_date: 2020-12-31
+  calendar_window_half_width_days: 15
+  minimum_baseline_years: 10
+  minimum_window_observations: 150
+  minimum_robust_scale_celsius: 0.75
+
+climatological_outlier:
+  robust_z_threshold: 6.0
+  tmin_minimum_absolute_anomaly_celsius: 8.0
+  tmax_minimum_absolute_anomaly_celsius: 10.0
+
+temporal_consistency:
+  tmin_large_daily_change_celsius: 12.0
+  tmax_large_daily_change_celsius: 15.0
+
+  tmin_isolated_spike_difference_celsius: 10.0
+  tmax_isolated_spike_difference_celsius: 12.0
+
+  neighbour_day_consistency_celsius: 4.0
+
+persistence:
+  rounding_decimals: 1
+  minimum_identical_run_days: 7
+
+important:
+  - Flags identify candidates for additional QC; they do not prove error.
+  - No observation may be altered in Step 5A.
+  - Genuine cold-wave onset may produce a large daily Tmin change.
+  - Spatial neighbour checks will be performed in Step 5B.
+  - Stations lacking adequate 1991-2020 data remain in the dataset.

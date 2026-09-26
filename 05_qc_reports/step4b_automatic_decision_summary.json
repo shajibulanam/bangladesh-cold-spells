@@ -1,0 +1,18 @@
+{
+  "review_date": "2026-06-22",
+  "value_decision_rows": 310,
+  "invalid_date_rows": 54,
+  "value_decision_counts": {
+    "keep": 131,
+    "set_both_missing": 127,
+    "set_tmin_missing": 16,
+    "select_new_tmin": 35,
+    "set_tmax_missing": 1
+  },
+  "invalid_date_decision_counts": {
+    "insert_corrected_date": 0,
+    "reject_source_row": 54
+  },
+  "pending_value_decisions": 0,
+  "pending_invalid_date_decisions": 0
+}

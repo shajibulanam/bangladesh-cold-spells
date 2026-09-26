@@ -1,0 +1,36 @@
+{
+  "step": "Step 9G",
+  "title": "ERA5 bootstrap significance, event agreement and robustness testing",
+  "event_count": 85,
+  "primary_resampling_unit": "winter",
+  "reason_for_winter_block_bootstrap": "Multiple cold-spell events can occur within one winter and may not be statistically independent.",
+  "bootstrap_repetitions_grid": 1000,
+  "bootstrap_repetitions_box_summary": 5000,
+  "random_seed": 20260711,
+  "selected_lags": [-10, -5, 0, 5],
+  "significance_level": 0.05,
+  "multiple_testing": "Benjamini-Hochberg false-discovery-rate correction applied separately to each field and lag",
+  "event_agreement_thresholds": [0.55, 0.60, 0.67],
+  "primary_robust_mask": "FDR q < 0.05 and event agreement >= 0.60",
+  "bootstrap_grid": "ERA5 fields coarsened from 0.25 degree to approximately 1 degree before grid-cell bootstrap",
+  "reason_for_coarsening": [
+    "Reduces computation and memory pressure",
+    "Focuses inference on regional-scale circulation rather than grid-scale noise",
+    "Reduces excessive spatial dependence among adjacent 0.25 degree cells"
+  ],
+  "diagnostics": {
+    "t2m": "2-m temperature anomaly",
+    "mslp": "mean sea-level-pressure anomaly",
+    "z500": "500 hPa geopotential-height anomaly",
+    "t850": "850 hPa air-temperature anomaly",
+    "u200": "200 hPa zonal-wind anomaly"
+  },
+  "robustness_tests": [
+    "winter-block bootstrap",
+    "FDR-corrected grid-cell significance",
+    "event sign agreement",
+    "event-weighted versus winter-equal-weighted mean",
+    "leave-one-winter-out sign stability"
+  ],
+  "interpretation_rule": "Composite anomalies indicate statistical association and do not alone prove causality, Rossby-wave forcing, stratospheric forcing or polar-vortex influence."
+}

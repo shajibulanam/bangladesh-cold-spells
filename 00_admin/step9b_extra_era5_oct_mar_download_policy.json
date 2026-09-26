@@ -1,0 +1,51 @@
+{
+  "step": "Step 9B-extra",
+  "title": "Download ERA5 October and March extension months",
+  "purpose": "Complete extended event-centred ERA5 windows for Bangladesh cold-spell analysis",
+  "reason": "November-February ERA5 data are complete, but some -45 to +10 event windows require October or March.",
+  "download_period": {
+    "october_months": "October 1985 to October 2024",
+    "march_months": "March 1986 to March 2025"
+  },
+  "pressure_level_dataset": "reanalysis-era5-pressure-levels",
+  "single_level_dataset": "reanalysis-era5-single-levels",
+  "pressure_level_variables": [
+    "geopotential",
+    "temperature",
+    "u_component_of_wind",
+    "v_component_of_wind",
+    "vorticity",
+    "potential_vorticity"
+  ],
+  "pressure_levels_hpa": [
+    "1000",
+    "850",
+    "700",
+    "500",
+    "300",
+    "250",
+    "200",
+    "100",
+    "70",
+    "50",
+    "30",
+    "10"
+  ],
+  "single_level_variables": [
+    "2m_temperature",
+    "mean_sea_level_pressure",
+    "10m_u_component_of_wind",
+    "10m_v_component_of_wind",
+    "surface_pressure",
+    "toa_incident_solar_radiation"
+  ],
+  "time": "00:00",
+  "area": {
+    "north": 70,
+    "west": 30,
+    "south": 10,
+    "east": 120
+  },
+  "format": "netcdf",
+  "important_note": "Single-level CDS downloads may be ZIP archives because variables may come from different ERA5 stream/step types. This is expected and will be extracted after download."
+}

@@ -1,0 +1,27 @@
+{
+  "step": "Step 16F",
+  "title": "Cold-day (Tmax) spell catalogue",
+  "station_threshold": {
+    "percentile": 0.1,
+    "window_half_width_days": 2,
+    "circular_window": true,
+    "calendar": "366-day (29 Feb has its own window)",
+    "quantile_method": "median_unbiased",
+    "baseline": "1991-2020",
+    "baseline_bias": "leave_one_calendar_year_out inside baseline",
+    "comparison": "strictly_less_than"
+  },
+  "national_day": {
+    "minimum_observed_area": 0.8,
+    "minimum_observed_stations": 15,
+    "minimum_cold_area_full_denominator": 0.2
+  },
+  "spell": {
+    "minimum_consecutive_days": 3,
+    "merge_gaps": false,
+    "cross_winter": false
+  },
+  "period": "1985/86-2023/24",
+  "comparison": "pure cold-day vs pure cold-night events; event-level means; winter-block bootstrap; BH FDR",
+  "created_utc": "2026-09-23T19:18:19.985966+00:00"
+}

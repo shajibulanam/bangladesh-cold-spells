@@ -1,0 +1,40 @@
+{
+  "step": "Step 9C",
+  "title": "ERA5 calendar-day climatology preparation",
+  "purpose": "Prepare 1991-2020 calendar-day climatology fields for ERA5 anomaly and composite analysis",
+  "input_data": "Step 9B standardized ERA5 daily 00 UTC files",
+  "baseline_period": "1991-01-01 to 2020-12-31",
+  "calendar_day_method": "Mean for each MM-DD calendar day using available 1991-2020 samples",
+  "temporal_resolution": "daily 00 UTC fields, not daily means",
+  "months_in_archive": "October to March",
+  "spatial_domain": {
+    "north": 70,
+    "west": 30,
+    "south": 10,
+    "east": 120
+  },
+  "pressure_level_variables": [
+    "geopotential_height_m",
+    "air_temperature_k",
+    "u_wind_ms",
+    "v_wind_ms",
+    "relative_vorticity_s-1",
+    "potential_vorticity_pvu"
+  ],
+  "single_level_instant_variables": [
+    "t2m_c",
+    "msl_hpa",
+    "surface_pressure_hpa",
+    "u10_ms",
+    "v10_ms"
+  ],
+  "single_level_accum_variables": [
+    "tisr_j_m2"
+  ],
+  "important_notes": [
+    "This step creates climatology files only; full anomaly files are not written to save storage.",
+    "Anomalies will be computed during event-composite extraction by subtracting the matching MM-DD climatology.",
+    "Leap day, 02-29, is retained using available leap-year samples from 1991-2020.",
+    "The same 1991-2020 baseline is consistent with the BMD percentile baseline used in the station analysis."
+  ]
+}

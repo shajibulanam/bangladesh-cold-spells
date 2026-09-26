@@ -1,0 +1,19 @@
+{
+  "created_utc": "2026-06-24T17:36:15.509701+00:00",
+  "input_file": "/home/shajibul/Bangladesh_Cold_Wave/04_clean_data/temperature_daily_djf_with_compound_cold_indicators.parquet",
+  "network_station_count": 26,
+  "daily_rows": 3610,
+  "station_day_rows": 93860,
+  "primary_event_count": 39,
+  "primary_event_day_count": 168,
+  "winters_with_events": 27,
+  "longest_event_days": 11,
+  "maximum_event_spatial_fraction": 0.8846153846153846,
+  "minimum_cold_station_fraction": 0.2,
+  "minimum_cold_station_count": 5,
+  "minimum_consecutive_days": 3,
+  "validation_issue_count": 0,
+  "temperature_adjusted": false,
+  "interpolation_applied": false,
+  "event_catalogue_file": "/home/shajibul/Bangladesh_Cold_Wave/06_events/step7c_primary_cold_spell_event_catalogue.csv"
+}

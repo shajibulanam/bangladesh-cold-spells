@@ -1,0 +1,22 @@
+{
+  "step": "Step 16I",
+  "title": "Journal-quality onset-pathway maps (redraw only)",
+  "sources": {
+    "z500": "03_intermediate/era5_significance/netcdf/ERA5_SIG_z500_selected_lags.nc",
+    "waf": "03_intermediate/tn_waf/netcdf/ERA5_TN_WAF_250hPa_selected_lags.nc"
+  },
+  "z500_lags": [
+    -10,
+    -5,
+    0
+  ],
+  "waf_lags": [
+    -5,
+    -3,
+    0
+  ],
+  "z500_stippling": "robust_fdr_agreement060 == 1, every 3rd grid point",
+  "waf_vectors": "only where waf_all_event_robust_vector == 1 and |WAF| >= 0.15 x reference vector, every 4rd grid point",
+  "coastlines": "cartopy Natural Earth 50m",
+  "created_utc": "2026-09-23T19:58:56.807640+00:00"
+}

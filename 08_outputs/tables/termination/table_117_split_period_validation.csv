@@ -1,0 +1,3 @@
+train,test,n_train_rows,n_test_rows,test_terminations,auc_adjustment_only,auc_plus_synoptic,auc_difference,auc_diff_ci_low,auc_diff_ci_high,brier_adjustment_only,brier_plus_synoptic,brier_climatology,synoptic_predictors
+1985/86-2004/05,2005/06-2024/25,166,93,37,0.7804,0.8726,0.0922,0.0220,0.1861,0.1938,0.1507,0.2396,nat_tmax_anom;era5_bd_wspd10_anom;era5_bd_stab_t2m_minus_t850_tend;era5_sa_z500_tend
+2005/06-2024/25,1985/86-2004/05,93,166,47,0.7595,0.8343,0.0747,0.0025,0.1664,0.3718,0.2358,0.2030,nat_tmax_anom;era5_bd_wspd10_anom;era5_bd_stab_t2m_minus_t850_tend;era5_sa_z500_tend

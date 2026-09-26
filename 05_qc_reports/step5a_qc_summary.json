@@ -1,0 +1,46 @@
+{
+  "created_utc": "2026-06-23T17:55:26.141455+00:00",
+  "input_file": "/home/shajibul/Bangladesh_Cold_Wave/04_clean_data/temperature_daily_cleaned_stage1.parquet",
+  "output_file": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/temperature_daily_qc_stage2_temporal.parquet",
+  "reference_file": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/step5a_station_calendar_climatology.parquet",
+  "input_rows": 570353,
+  "output_rows": 570353,
+  "unique_stations": 48,
+  "minimum_date": "1981-01-01",
+  "maximum_date": "2025-12-31",
+  "baseline_start": "1991-01-01",
+  "baseline_end": "2020-12-31",
+  "tmin_baseline_eligible_stations": 34,
+  "tmax_baseline_eligible_stations": 34,
+  "reference_rows": 12444,
+  "candidate_records": 327,
+  "climatological_candidate_records": 157,
+  "temporal_candidate_records": 34,
+  "persistence_candidate_records": 144,
+  "flag_counts": {
+    "qc_tmin_climatological_outlier": 75,
+    "qc_tmax_climatological_outlier": 82,
+    "qc_tmin_large_daily_change": 19,
+    "qc_tmax_large_daily_change": 0,
+    "qc_tmin_isolated_spike": 21,
+    "qc_tmax_isolated_spike": 0,
+    "qc_tmin_persistence": 66,
+    "qc_tmax_persistence": 87,
+    "qc_step4b_screen_carryover": 0,
+    "qc_tmin_climatology_unavailable": 27944,
+    "qc_tmax_climatology_unavailable": 17393
+  },
+  "priority_counts": {
+    "baseline_unavailable": 27987,
+    "high": 8,
+    "none": 542039,
+    "review": 319
+  },
+  "status_counts": {
+    "candidate_for_spatial_qc": 327,
+    "pass_step5a": 542039,
+    "pass_temporal_baseline_unavailable": 27987
+  },
+  "values_changed": false,
+  "output_size_bytes": 18893022
+}

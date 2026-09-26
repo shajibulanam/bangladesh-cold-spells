@@ -1,0 +1,55 @@
+{
+  "created_utc": "2026-08-03T17:12:34.231275+00:00",
+  "figure_count": 7,
+  "figures": [
+    {
+      "figure": "figure_48_rrwp_all_event_hovmoller",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/rrwp/figure_48_rrwp_all_event_hovmoller.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/rrwp/figure_48_rrwp_all_event_hovmoller.pdf",
+      "png_size_kb": 234.5,
+      "pdf_size_kb": 191.9
+    },
+    {
+      "figure": "figure_49_rrwp_persistence_difference",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/rrwp/figure_49_rrwp_persistence_difference.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/rrwp/figure_49_rrwp_persistence_difference.pdf",
+      "png_size_kb": 1078.4,
+      "pdf_size_kb": 182.8
+    },
+    {
+      "figure": "figure_50_rrwp_sector_lag_curves",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/rrwp/figure_50_rrwp_sector_lag_curves.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/rrwp/figure_50_rrwp_sector_lag_curves.pdf",
+      "png_size_kb": 569.2,
+      "pdf_size_kb": 22.3
+    },
+    {
+      "figure": "figure_51_rrwp_metrics_vs_duration",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/rrwp/figure_51_rrwp_metrics_vs_duration.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/rrwp/figure_51_rrwp_metrics_vs_duration.pdf",
+      "png_size_kb": 240.5,
+      "pdf_size_kb": 22.1
+    },
+    {
+      "figure": "figure_52_rrwp_group_distributions",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/rrwp/figure_52_rrwp_group_distributions.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/rrwp/figure_52_rrwp_group_distributions.pdf",
+      "png_size_kb": 129.8,
+      "pdf_size_kb": 17.0
+    },
+    {
+      "figure": "figure_53_rrwp_longitude_climatology",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/rrwp/figure_53_rrwp_longitude_climatology.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/rrwp/figure_53_rrwp_longitude_climatology.pdf",
+      "png_size_kb": 228.5,
+      "pdf_size_kb": 20.3
+    },
+    {
+      "figure": "figure_54_top_persistent_rrwp_cases",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/rrwp/figure_54_top_persistent_rrwp_cases.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/rrwp/figure_54_top_persistent_rrwp_cases.pdf",
+      "png_size_kb": 1175.2,
+      "pdf_size_kb": 735.1
+    }
+  ]
+}

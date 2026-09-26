@@ -1,0 +1,15 @@
+{
+  "created_utc": "2026-07-05T19:46:15.740435+00:00",
+  "pressure_folder": "/home/shajibul/Bangladesh_Cold_Wave/01_raw_data/era5/pressure_level",
+  "single_folder": "/home/shajibul/Bangladesh_Cold_Wave/01_raw_data/era5/single_level",
+  "total_files": 320,
+  "pressure_level_files": 160,
+  "single_level_files": 160,
+  "zip_files": 160,
+  "normal_netcdf_files": 160,
+  "missing_expected_month_records": 0,
+  "issue_count": 160,
+  "inventory_csv": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/era5_inventory/era5_file_inventory.csv",
+  "coverage_csv": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/era5_inventory/era5_month_coverage.csv",
+  "issues_csv": "/home/shajibul/Bangladesh_Cold_Wave/05_qc_reports/era5/era5_inventory_issues.csv"
+}

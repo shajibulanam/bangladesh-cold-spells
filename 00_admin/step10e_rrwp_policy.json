@@ -1,0 +1,84 @@
+{
+  "step": "Step 10E",
+  "title": "Recurrent Rossby-wave-pattern detection and recurrence metrics",
+  "scientific_basis": [
+    "Röthlisberger et al. (2019), Journal of Climate, recurrent Rossby-wave metric R",
+    "Zimin et al. (2003), Monthly Weather Review, Hilbert-transform wave-packet envelope",
+    "Ali et al. (2021), Geophysical Research Letters, recurrent Rossby waves and spell persistence"
+  ],
+  "required_additional_data": {
+    "reason": "The published zonal-wavenumber filter requires complete 0-360 degree longitude coverage; the earlier 30-120E ERA5 archive is insufficient.",
+    "dataset": "ERA5 pressure-level reanalysis",
+    "variable": "250-hPa meridional wind",
+    "time": "00 UTC daily snapshots",
+    "grid": "1 degree",
+    "domain": "20-80N, 0-359E",
+    "months": "September-April for winters 1985/86-2024/25",
+    "monthly_file_count": 320
+  },
+  "canonical_r_metric": {
+    "latitude_average": "Cosine-latitude-weighted V250 average from 35N to 65N",
+    "time_filter": "15-day centred running mean, used as the daily-data approximation to the published 14.25-day filter",
+    "zonal_wavenumber_filter": "Positive zonal wavenumbers 4-15",
+    "definition": "Modulus of the analytic signal reconstructed from the positive wavenumber-4-15 Fourier coefficients",
+    "units": "m s-1",
+    "phase_property": "Phase independent"
+  },
+  "climatology": {
+    "baseline": "1991-2020",
+    "method": "Calendar-day mean, standard deviation, 75th percentile and 90th percentile",
+    "high_r_definition": "Sector-mean R at or above its calendar-day 90th percentile"
+  },
+  "sectors": {
+    "eurasian_upstream": "30-60E",
+    "central_asia": "55-80E",
+    "bangladesh_sector": "60-120E, a 60-degree sector centred on 90E",
+    "asian_corridor": "30-120E",
+    "east_asia": "90-150E"
+  },
+  "rrwp_episode": {
+    "primary_definition": "At least 3 consecutive sector high-R days",
+    "metrics": [
+      "episode duration",
+      "peak R",
+      "mean R",
+      "integrated R excess above the calendar-day p90 threshold"
+    ]
+  },
+  "supplementary_distinct_recurrence_metric": {
+    "purpose": "Reduce the risk that one stationary amplified system is interpreted as recurrence of distinct packets",
+    "field": "Instantaneous wavenumber-4-15 V250 envelope before time smoothing",
+    "peak_threshold": "Calendar-day 75th percentile",
+    "minimum_peak_separation": "3 days",
+    "distinct_recurrence_flag": "At least 2 envelope peaks and at least one high-R day in the analysis window",
+    "status": "Operational sensitivity diagnostic, not a replacement for the published R metric"
+  },
+  "event_windows": {
+    "pre15": "-15 to -1 days",
+    "pre10": "-10 to -1 days",
+    "pre5": "-5 to -1 days",
+    "first5": "0 to +4 days",
+    "extended": "-15 to +10 days",
+    "event": "Cold-spell onset through event end; secondary"
+  },
+  "persistence_groups": {
+    "short": "3 days",
+    "intermediate": "4-5 days",
+    "persistent": "6 days or longer"
+  },
+  "statistics": {
+    "continuous_outcome": "duration_days for all 85 events",
+    "group_contrast": "persistent minus short",
+    "bootstrap_unit": "winter",
+    "bootstrap_repetitions": 5000,
+    "multiple_testing": "Benjamini-Hochberg FDR within primary and secondary metric families",
+    "robust_group_result": "FDR q < 0.05 and leave-one-winter-out sign stability >= 0.90"
+  },
+  "interpretation_cautions": [
+    "R identifies recurrent or quasi-stationary synoptic-wave amplitude but does not identify ridge or trough phase over Bangladesh.",
+    "High R can occasionally arise from one stationary amplified system; distinct-envelope-peak counts are therefore reported as a sensitivity diagnostic.",
+    "Daily 00 UTC data approximate the original 6-hourly 14.25-day filter with a 15-day centred daily filter.",
+    "The R metric and Takaya-Nakamura wave-activity flux diagnose different properties and should be interpreted together.",
+    "Statistical association does not independently establish causality."
+  ]
+}

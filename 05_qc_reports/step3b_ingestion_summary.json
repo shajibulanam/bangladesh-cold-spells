@@ -1,0 +1,34 @@
+{
+  "created_utc": "2026-06-21T17:35:49.312698+00:00",
+  "source_file": "/home/shajibul/Bangladesh_Cold_Wave/01_raw_data/Daily_Minimum_Temperature_2022_2025_raw.csv",
+  "header_line": 11,
+  "monthly_rows": 2242,
+  "daily_rows_written": 68243,
+  "parquet_rows": 68243,
+  "blank_csv_rows_skipped": 0,
+  "unique_station_names": 48,
+  "unique_station_uids": 48,
+  "official_metadata_stations": 43,
+  "pending_metadata_stations": 5,
+  "observed_station_months": 2242,
+  "missing_station_months": 62,
+  "duplicate_station_month_rows": 0,
+  "invalid_station_month_rows": 0,
+  "unmatched_station_rows": 0,
+  "noncalendar_cells_checked": 1259,
+  "noncalendar_nonmissing_cells": 0,
+  "tmin_parse_status_counts": {
+    "numeric": 67009,
+    "missing_cell": 1234
+  },
+  "numeric_tmin_values": 67009,
+  "missing_tmin_values": 1234,
+  "zero_tmin_values": 15,
+  "nonnumeric_tmin_values": 0,
+  "structural_status_counts": {
+    "ready_for_qc": 62398,
+    "ready_for_qc_metadata_pending": 5845
+  },
+  "output_file": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/new_tmin_2022_2025_daily_standardized.parquet",
+  "output_size_bytes": 425964
+}

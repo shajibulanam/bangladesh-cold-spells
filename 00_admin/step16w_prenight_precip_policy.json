@@ -1,0 +1,39 @@
+{
+  "step": "Step 16W",
+  "prenight_family": [
+    "win_strd_day_anom",
+    "win_ssrd_day_anom",
+    "win_tcc_day_anom",
+    "win_td2m_day_anom",
+    "win_low1000_day_anom",
+    "win_fog300_day_anom",
+    "win_blh_day_anom",
+    "dly_tcc_00utc_anom",
+    "dly_lowcloud1000_frac_00utc_anom",
+    "dly_fog300_frac_00utc_anom",
+    "dly_dpd_00utc_anom",
+    "win_strd_day_tend",
+    "win_td2m_day_tend",
+    "win_tcc_day_tend"
+  ],
+  "night_family_comparison_only": [
+    "win_strd_night_anom",
+    "win_tcc_night_anom",
+    "win_td2m_night_anom",
+    "win_low1000_night_anom",
+    "win_fog300_night_anom"
+  ],
+  "hazard_adjustment": [
+    "log_event_age",
+    "winter_day_index",
+    "nat_tmin_anom",
+    "winter_start_year"
+  ],
+  "hazard_bootstrap": 2000,
+  "bootstrap": 5000,
+  "seed": 20260923,
+  "wet_day_threshold_mm": 1.0,
+  "dry_cold_day_spell": "event-mean UTC-day precipitation < 1.0 mm",
+  "cold_day_period": "1985/86-2023/24",
+  "created_utc": "2026-09-25T08:51:30.527554+00:00"
+}

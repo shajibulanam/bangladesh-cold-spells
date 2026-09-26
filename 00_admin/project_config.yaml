@@ -1,0 +1,42 @@
+project:
+  name: Bangladesh Cold Wave Research
+  timezone: Asia/Dhaka
+files:
+  temperature_raw: 01_raw_data/MaxT_MinT_1981_2024_raw.xlsx
+  station_metadata_raw: 01_raw_data/All_station_BMD_raw.xlsx
+  minimum_temperature_update_raw: 01_raw_data/Daily_Minimum_Temperature_2022_2025_raw.csv
+study:
+  available_start_date: '1981-01-01'
+  available_end_date: '2024-12-31'
+  primary_first_winter: 1985/86
+  primary_last_complete_winter: 2024/25
+  climatology_start: 1991
+  climatology_end: 2020
+  primary_season_months:
+  - 12
+  - 1
+  - 2
+  extended_season_months:
+  - 11
+  - 12
+  - 1
+  - 2
+  - 3
+quality_control:
+  missing_codes:
+  - '****'
+  - ''
+  minimum_winter_completeness_percent: 95
+  minimum_valid_area_percent: 80
+source_priority:
+  tmin_1981_2021: MaxT_MinT_1981_2024_raw.xlsx
+  tmin_2022_2025: Daily_Minimum_Temperature_2022_2025_raw.csv
+  tmax_1981_2024: MaxT_MinT_1981_2024_raw.xlsx
+  overlap_rule: Use the new BMD Tmin CSV as primary for 2022-2024; preserve old and
+    new values and their comparison status.
+pending_station_metadata:
+- Ambagan(CTG)
+- Bagabari
+- Koyra
+- Manikganj
+- Narayanganj

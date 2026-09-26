@@ -1,0 +1,13 @@
+{
+  "step": "Step 16N",
+  "title": "SSW test with power analysis and NAM background tests",
+  "ssw_source": "08_outputs/tables/stratosphere/table_60_major_ssw_catalogue.csv",
+  "horizon_days": 45,
+  "control_exclusion_days": 45,
+  "monte_carlo": 10000,
+  "bootstrap": 5000,
+  "seed": 20260923,
+  "power_model": "negative binomial with null dispersion index, mean = rate ratio x null mean",
+  "quiet_day_gap": 10,
+  "created_utc": "2026-09-23T20:47:22.993560+00:00"
+}

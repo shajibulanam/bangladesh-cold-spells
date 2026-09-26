@@ -1,0 +1,17 @@
+{
+  "step": "Step 16K3",
+  "source": "https://arco.datastores.ecmwf.int/cadl-arco-geo-002/arco/reanalysis_era5_single_levels/sfc/geoChunked.zarr",
+  "box": [
+    20.5,
+    26.8,
+    88.0,
+    93.0
+  ],
+  "weights": "cosine latitude",
+  "period": "Oct-Mar 1985/86-2024/25, hourly",
+  "day": "UTC day (06 local to 06 local)",
+  "low_cloud_proxy": "fraction of box area with cloud base height < 1000 m; fog proxy < 300 m",
+  "radiation": "sum of 24 hourly accumulations / 86400 s",
+  "replaces": "Steps 16K and 16K2",
+  "created_utc": "2026-09-24T13:43:36.239670+00:00"
+}

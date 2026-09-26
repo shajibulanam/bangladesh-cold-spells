@@ -1,0 +1,76 @@
+{
+  "step": "Step 16D",
+  "title": "Discrete-time hazard model of cold-spell termination",
+  "risk_set": "event days k >= 3; outcome = day k is the final event day",
+  "adjustment": [
+    "log_event_age",
+    "winter_day_index",
+    "nat_tmin_anom",
+    "winter_start_year"
+  ],
+  "predictor_families": {
+    "station_temperature": [
+      "nat_tmax_anom",
+      "nat_dtr_anom",
+      "p10_cold_national_area_fraction"
+    ],
+    "era5_state": [
+      "era5_bd_t850_anom",
+      "era5_bd_stab_t2m_minus_t850_anom",
+      "era5_bd_thick_1000_500_anom",
+      "era5_bd_z500_anom",
+      "era5_bd_mslp_anom",
+      "era5_bd_u850_anom",
+      "era5_bd_v850_anom",
+      "era5_bd_wspd10_anom",
+      "era5_sa_t850_anom",
+      "era5_sa_z500_anom",
+      "era5_sa_mslp_anom",
+      "era5_sa_u850_anom",
+      "era5_sa_v850_anom"
+    ],
+    "era5_tendency": [
+      "era5_bd_t850_tend",
+      "era5_bd_stab_t2m_minus_t850_tend",
+      "era5_bd_z500_tend",
+      "era5_bd_mslp_tend",
+      "era5_bd_u850_tend",
+      "era5_bd_v850_tend",
+      "era5_bd_wspd10_tend",
+      "era5_sa_t850_tend",
+      "era5_sa_z500_tend",
+      "era5_sa_mslp_tend",
+      "era5_sa_v850_tend"
+    ],
+    "remote_causal": [
+      "siberian_high_std_anom",
+      "ural_blocking_fraction",
+      "nam_proxy_10",
+      "nam_proxy_100",
+      "rrwp_eurasian_upstream_R_lag7",
+      "rrwp_central_asia_R_lag7",
+      "rrwp_bangladesh_sector_R_lag7",
+      "rrwp_asian_corridor_R_lag7",
+      "rrwp_eurasian_upstream_envelope_z_trailing3",
+      "rrwp_central_asia_envelope_z_trailing3",
+      "rrwp_bangladesh_sector_envelope_z_trailing3",
+      "rrwp_asian_corridor_envelope_z_trailing3"
+    ],
+    "noncausal_diagnostic": [
+      "rrwp_eurasian_upstream_R_centred_noncausal",
+      "rrwp_central_asia_R_centred_noncausal",
+      "rrwp_bangladesh_sector_R_centred_noncausal",
+      "rrwp_asian_corridor_R_centred_noncausal"
+    ]
+  },
+  "standardization": "predictors and adjustment covariates z-scored on the full risk set",
+  "bootstrap": {
+    "unit": "winter",
+    "repetitions": 2000,
+    "seed": 20260923,
+    "implementation": "integer sample weights = number of times each winter is drawn"
+  },
+  "multiple_testing": "Benjamini-Hochberg across all causal predictors (families except noncausal_diagnostic)",
+  "input": "Step 16B daily covariate dataset",
+  "created_utc": "2026-09-23T17:36:09.788128+00:00"
+}

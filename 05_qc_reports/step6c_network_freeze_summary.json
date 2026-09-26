@@ -1,0 +1,29 @@
+{
+  "created_utc": "2026-06-24T15:25:06.577099+00:00",
+  "input_daily_file": "/home/shajibul/Bangladesh_Cold_Wave/04_clean_data/temperature_daily_cleaned_stage2.parquet",
+  "fixed_network_file": "/home/shajibul/Bangladesh_Cold_Wave/02_metadata/step6a_fixed_station_network.csv",
+  "homogeneity_file": "/home/shajibul/Bangladesh_Cold_Wave/02_metadata/step6b_station_homogeneity_status.csv",
+  "analysis_output": "/home/shajibul/Bangladesh_Cold_Wave/04_clean_data/temperature_daily_djf_analysis_unadjusted.parquet",
+  "first_winter": "1985/86",
+  "last_winter": "2024/25",
+  "study_winter_count": 40,
+  "fixed_station_count": 26,
+  "djf_calendar_day_count": 3610,
+  "analysis_row_count": 93860,
+  "primary_network_id": "primary_all_fixed_unadjusted",
+  "primary_station_count": 26,
+  "primary_eligible_winter_count": 40,
+  "homogeneity_status_counts": {
+    "moderate_priority_homogeneity_review": 1,
+    "no_major_inhomogeneity_signal": 25
+  },
+  "network_sizes": {
+    "primary_all_fixed_unadjusted": 26,
+    "sensitivity_exclude_high": 26,
+    "sensitivity_stable_only": 25,
+    "sensitivity_no_source_transition": 25
+  },
+  "temperature_column": "analysis_tmin_unadjusted",
+  "temperature_adjustment_applied": false,
+  "interpolation_applied": false
+}

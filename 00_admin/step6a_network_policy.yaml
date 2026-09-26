@@ -1,0 +1,28 @@
+study_period:
+  first_winter_start_year: 1985
+  last_winter_start_year: 2024
+  winter_months: [12, 1, 2]
+
+station_winter_completeness:
+  minimum_percent: 95.0
+  temperature_variable: tmin_cleaned_stage2
+  interpolation_allowed: false
+
+fixed_network:
+  minimum_complete_winters: 38
+  minimum_complete_winter_fraction: 0.95
+  official_metadata_required: true
+  coordinates_required: true
+
+individual_winter_network:
+  minimum_fixed_station_fraction: 0.80
+  minimum_fixed_station_count: 15
+
+important:
+  - A represented row with missing Tmin counts as a missing day.
+  - An absent station-date row also counts as a missing day.
+  - Leap-year DJF seasons contain 91 expected days.
+  - Other DJF seasons contain 90 expected days.
+  - Fixed-network stations may still be unavailable in individual winters.
+  - Only stations meeting the winter completeness rule are used in that winter.
+  - Missing Tmin values are not interpolated.

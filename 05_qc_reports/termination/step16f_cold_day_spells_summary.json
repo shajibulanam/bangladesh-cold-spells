@@ -1,0 +1,46 @@
+{
+  "step": "Step 16F",
+  "completed_utc": "2026-09-23T19:19:01.812202+00:00",
+  "cold_day_spells": 71,
+  "cold_night_spells_same_period": 84,
+  "cold_day_spells_overlapping_cold_night": 32,
+  "cold_night_spells_overlapping_cold_day": 34,
+  "shared_days": 109,
+  "cold_night_days": 427,
+  "cold_day_days": 375,
+  "trends_per_winter": {
+    "cold_night_spells": {
+      "spearman_rho": -0.18759508023294202,
+      "p_value": 0.25278833310342463,
+      "ols_slope_per_decade": -0.269230769230765
+    },
+    "cold_day_spells": {
+      "spearman_rho": 0.2983972863208795,
+      "p_value": 0.06501591164311486,
+      "ols_slope_per_decade": 0.28542510121457765
+    },
+    "cold_night_days": {
+      "spearman_rho": -0.24217009692007407,
+      "p_value": 0.13744910881007066,
+      "ols_slope_per_decade": -2.3643724696355943
+    },
+    "cold_day_days": {
+      "spearman_rho": 0.3006564599498278,
+      "p_value": 0.06291379178425577,
+      "ols_slope_per_decade": 1.139676113360341
+    }
+  },
+  "january_2024_cold_day_spells": [
+    {
+      "start_date": "2024-01-12",
+      "end_date": "2024-01-18",
+      "duration_days": "7"
+    },
+    {
+      "start_date": "2024-01-21",
+      "end_date": "2024-01-25",
+      "duration_days": "5"
+    }
+  ],
+  "invalid_national_days": 0
+}

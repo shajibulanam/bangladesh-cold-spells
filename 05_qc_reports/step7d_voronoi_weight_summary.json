@@ -1,0 +1,19 @@
+{
+  "created_utc": "2026-06-24T18:13:29.401644+00:00",
+  "boundary_id": "BGD-ADM0-71232402",
+  "boundary_year_represented": "2015",
+  "boundary_source": "geoBoundaries, Wikimedia Commons",
+  "boundary_license": "CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
+  "area_projection": "+proj=aea +lat_1=21 +lat_2=26 +lat_0=23.5 +lon_0=90 +datum=WGS84 +units=m +no_defs",
+  "primary_station_count": 26,
+  "national_boundary_area_km2": 140222.2464249397,
+  "weight_sum": 0.9999999999999981,
+  "minimum_station_weight": 0.00446141183134947,
+  "maximum_station_weight": 0.09248441125441006,
+  "median_station_weight": 0.03616148097397889,
+  "coverage_gap_km2": 0.0,
+  "overlap_km2": 3.0517578125e-11,
+  "maximum_station_distance_outside_km": 3.766454474167023,
+  "latitude_column": "latitude",
+  "longitude_column": "longitude"
+}

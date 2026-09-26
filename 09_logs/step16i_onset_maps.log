@@ -1,0 +1,7 @@
+WAF robust-vector mask covers 79.8% of grid points at day -5
+WAF robust-vector mask covers 79.6% of grid points at day -3
+WAF robust-vector mask covers 79.8% of grid points at day +0
+Saved:
+  08_outputs/figures/termination/fig_m3_onset_pathway_maps.png
+  08_outputs/figures/termination/fig_m3_onset_pathway_maps.pdf
+Reference vector: 5 m2 s-2; Z250 colour limit: +/-80 m

@@ -1,0 +1,25 @@
+{
+  "created_utc": "2026-07-10T13:29:47.346480+00:00",
+  "event_count": 85,
+  "lag_min": -45,
+  "lag_max": 10,
+  "lag_count": 56,
+  "variables": [
+    "MSLP anomaly (hPa)",
+    "T2m anomaly (\u00b0C)",
+    "U200 anomaly (m/s)",
+    "Z500 anomaly (m)"
+  ],
+  "boxes": [
+    "Bangladesh box",
+    "South Asia box"
+  ],
+  "figure_count_interpreted": 5,
+  "selected_lag_table": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/tables/era5/table_09_era5_selected_lag_anomalies.csv",
+  "extrema_table": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/tables/era5/table_10_era5_anomaly_extrema_and_timing.csv",
+  "phase_table": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/tables/era5/table_11_era5_phase_mean_anomalies.csv",
+  "onset_table": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/tables/era5/table_12_era5_onset_day_comparison.csv",
+  "supervisor_notes_markdown": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/reports/era5/step9f_era5_supervisor_result_notes.md",
+  "supervisor_notes_text": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/reports/era5/step9f_era5_supervisor_result_notes.txt",
+  "statistical_significance_tested": false
+}

@@ -1,0 +1,91 @@
+stage: step7e_sensitivity_analysis_and_event_freeze
+
+primary_scenario_id: primary_p10_area20_duration3
+
+daily_availability:
+  eligibility_column: daily_area_coverage_usable
+
+event_matching:
+  reproduced_primary_event_minimum_overlap_fraction: 0.50
+  high_robustness_fraction: 0.75
+  moderate_robustness_fraction: 0.50
+
+scenarios:
+  primary_p10_area20_duration3:
+    label: Primary p10, 20 percent area, 3 days
+    area_column: p10_cold_national_area_fraction
+    station_condition: station calendar-day p10
+    minimum_area_fraction: 0.20
+    minimum_consecutive_days: 3
+    merge_one_day_gap: false
+    primary: true
+
+  p10_area10_duration3:
+    label: p10, 10 percent area, 3 days
+    area_column: p10_cold_national_area_fraction
+    station_condition: station calendar-day p10
+    minimum_area_fraction: 0.10
+    minimum_consecutive_days: 3
+    merge_one_day_gap: false
+    primary: false
+
+  p10_area30_duration3:
+    label: p10, 30 percent area, 3 days
+    area_column: p10_cold_national_area_fraction
+    station_condition: station calendar-day p10
+    minimum_area_fraction: 0.30
+    minimum_consecutive_days: 3
+    merge_one_day_gap: false
+    primary: false
+
+  p10_area20_duration4:
+    label: p10, 20 percent area, 4 days
+    area_column: p10_cold_national_area_fraction
+    station_condition: station calendar-day p10
+    minimum_area_fraction: 0.20
+    minimum_consecutive_days: 4
+    merge_one_day_gap: false
+    primary: false
+
+  p05_area20_duration3:
+    label: p05, 20 percent area, 3 days
+    area_column: p05_severe_national_area_fraction
+    station_condition: station calendar-day p05
+    minimum_area_fraction: 0.20
+    minimum_consecutive_days: 3
+    merge_one_day_gap: false
+    primary: false
+
+  bmd_area20_duration3:
+    label: BMD Tmin at or below 10 C, 20 percent area, 3 days
+    area_column: bmd_total_cold_area_fraction
+    station_condition: BMD operational cold-wave threshold
+    minimum_area_fraction: 0.20
+    minimum_consecutive_days: 3
+    merge_one_day_gap: false
+    primary: false
+
+  p10_area20_duration3_gap1:
+    label: p10, 20 percent area, 3 days, one marginal gap allowed
+    area_column: p10_cold_national_area_fraction
+    station_condition: station calendar-day p10
+    minimum_area_fraction: 0.20
+    minimum_consecutive_days: 3
+    merge_one_day_gap: true
+    marginal_gap_minimum_area_fraction: 0.15
+    primary: false
+
+final_event_freeze:
+  retain_all_step7d_primary_events: true
+  remove_events_based_on_sensitivity: false
+  tropospheric_window_days_before_onset: 10
+  tropospheric_window_days_after_onset: 10
+  stratospheric_window_days_before_onset: 45
+  stratospheric_window_days_after_onset: 5
+
+important:
+  - Step 7D is the authoritative primary catalogue.
+  - Sensitivity scenarios describe robustness only.
+  - Primary events are not deleted because they fail a sensitivity test.
+  - The Step 7C compound station-count catalogue is retained as an additional comparison.
+  - No temperature observation is changed.

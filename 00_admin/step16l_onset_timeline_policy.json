@@ -1,0 +1,32 @@
+{
+  "step": "Step 16L",
+  "title": "Onset timeline of drivers",
+  "events": "all 85 primary cold-night spells",
+  "lags": [
+    -15,
+    5
+  ],
+  "anomalies": "1991-2020 calendar-day mean, +/-7-day window (blocking fraction converted to anomaly here)",
+  "bootstrap": {
+    "unit": "winter",
+    "repetitions": 5000,
+    "seed": 20260923
+  },
+  "sustained_lead": "earliest lag L<=0 such that the 95% CI excludes zero with the same sign on every day L..0",
+  "note": "descriptive; no multiple-testing correction across lags",
+  "drivers": [
+    "nat_tmin_anom",
+    "siberian_high_std_anom",
+    "ural_blocking_fraction_anom",
+    "mech_nigp_adv850_k_day_anom",
+    "mech_bd_adv850_k_day_anom",
+    "era5_bd_v850_anom",
+    "era5_sa_z500_anom",
+    "mech_jet200_core_lat_70_100e_anom",
+    "mech_jet200_core_speed_70_100e_anom",
+    "rrwp_asian_corridor_envelope_z_trailing3",
+    "nam_proxy_100",
+    "nam_proxy_10"
+  ],
+  "created_utc": "2026-09-23T20:45:46.536175+00:00"
+}

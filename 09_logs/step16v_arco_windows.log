@@ -1,0 +1,69 @@
+Using variables: {'t2m': 't2m', 'd2m': 'd2m', 'tcc': 'tcc', 'blh': 'blh', 'cbh': 'cbh', 'ssrd': 'ssrd', 'strd': 'strd', 'tp': 'tp'}
+winter 1985/86: 182 days in 3.4 min
+winter 1986/87: 182 days in 3.2 min
+winter 1987/88: 183 days in 3.2 min
+winter 1988/89: 182 days in 3.1 min
+winter 1989/90: 182 days in 3.1 min
+winter 1990/91: 182 days in 3.2 min
+winter 1991/92: 183 days in 3.2 min
+winter 1992/93: 182 days in 3.3 min
+winter 1993/94: 182 days in 6.2 min
+winter 1994/95: 182 days in 3.1 min
+winter 1995/96: 183 days in 3.1 min
+winter 1996/97: 182 days in 3.0 min
+winter 1997/98: 182 days in 3.0 min
+winter 1998/99: 182 days in 3.0 min
+winter 1999/00: 183 days in 2.9 min
+winter 2000/01: 182 days in 3.2 min
+winter 2001/02: 182 days in 3.1 min
+winter 2002/03: 182 days in 3.0 min
+winter 2003/04: 183 days in 2.9 min
+winter 2004/05: 182 days in 2.9 min
+winter 2005/06: 182 days in 2.9 min
+winter 2006/07: 182 days in 2.8 min
+winter 2007/08: 183 days in 2.9 min
+winter 2008/09: 182 days in 2.8 min
+winter 2009/10: 182 days in 2.9 min
+winter 2010/11: 182 days in 2.8 min
+winter 2011/12: 183 days in 2.9 min
+winter 2012/13: 182 days in 3.0 min
+winter 2013/14: 182 days in 2.8 min
+winter 2014/15: 182 days in 2.8 min
+winter 2015/16: 183 days in 2.8 min
+winter 2016/17: 182 days in 5.6 min
+winter 2017/18: 182 days in 2.9 min
+winter 2018/19: 182 days in 2.9 min
+winter 2019/20: 183 days in 2.9 min
+winter 2020/21: 182 days in 2.8 min
+winter 2021/22: 182 days in 2.8 min
+winter 2022/23: 182 days in 2.8 min
+winter 2023/24: 183 days in 2.9 min
+winter 2024/25: 182 days in 3.6 min
+Step 16V - ARCO windowed series
+Rows: 7290 (expected 7290)
+Days with incomplete windows: 0
+Period: 1985-10-01 to 2025-03-31
+
+                  mean      std      min       max
+t2m_day         23.768    3.186   14.191    31.166
+td2m_day        17.011    3.914    6.755    26.526
+tcc_day          0.303    0.240    0.001     1.000
+blh_day        634.932  152.033  251.516  1291.705
+ssrd_day       386.363   73.291   64.228   587.938
+strd_day       363.110   32.262  288.114   443.031
+tp_day_mm        0.965    2.659    0.000    33.489
+low1000_day      0.225    0.254    0.000     0.993
+fog300_day       0.058    0.078    0.000     0.642
+hours_day       12.000    0.000   12.000    12.000
+t2m_night       20.818    3.354   11.755    28.320
+td2m_night      17.249    3.775    7.029    26.435
+tcc_night        0.275    0.250    0.000     1.000
+blh_night      162.965   65.698   50.462   742.779
+ssrd_night       2.016    2.273    0.014     8.807
+strd_night     354.866   31.692  283.045   435.725
+tp_night_mm      0.750    2.356    0.000    34.118
+low1000_night    0.188    0.225    0.000     0.986
+fog300_night     0.053    0.077    0.000     0.591
+hours_night     12.000    0.000   12.000    12.000
+tp_utcday_mm     1.716    4.832    0.000    65.427
+

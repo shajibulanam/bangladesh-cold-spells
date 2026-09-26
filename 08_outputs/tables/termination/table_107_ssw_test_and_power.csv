@@ -1,0 +1,15 @@
+statistic,value
+ssw_count,25.0000
+observed_unique_onsets_day0_45,6.0000
+null_mean,15.0068
+null_2.5pct,9.0000
+null_97.5pct,21.0000
+observed_to_null_rate_ratio,0.3998
+p_upper_one_sided,0.9995
+p_lower_one_sided,0.0016
+null_dispersion_index,0.6506
+critical_count_5pct_upper,21.0000
+power_rate_ratio_1.5,0.6533
+power_rate_ratio_2,0.9649
+power_rate_ratio_3,1.0000
+minimum_detectable_rate_ratio_80pct,1.6500

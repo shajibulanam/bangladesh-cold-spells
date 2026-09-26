@@ -1,0 +1,22 @@
+{
+  "step": "Step 16E",
+  "completed_utc": "2026-09-23T17:56:48.760616+00:00",
+  "robustness_predictors": [
+    "nat_tmax_anom",
+    "nat_dtr_anom",
+    "era5_bd_wspd10_anom",
+    "era5_bd_t850_tend",
+    "era5_bd_stab_t2m_minus_t850_tend",
+    "era5_bd_z500_tend",
+    "era5_bd_mslp_tend",
+    "era5_bd_v850_tend",
+    "era5_sa_z500_tend"
+  ],
+  "multivariable_predictors": [
+    "nat_tmax_anom",
+    "era5_bd_wspd10_anom",
+    "era5_bd_stab_t2m_minus_t850_tend",
+    "era5_sa_z500_tend"
+  ],
+  "robust_rows_same_direction_fraction": 0.8271604938271605
+}

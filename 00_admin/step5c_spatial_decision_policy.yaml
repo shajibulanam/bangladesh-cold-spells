@@ -1,0 +1,26 @@
+policy_name: step5c_conservative_spatial_cleaning_v1
+
+primary_dataset:
+  interpolation_allowed: false
+  replacement_with_neighbour_average_allowed: false
+  unresolved_values_remain_observed_or_missing: true
+
+automatic_actions:
+  isolated_tmin_spatial_outlier: set_tmin_missing
+  isolated_tmax_spatial_outlier: set_tmax_missing
+  isolated_both_spatial_outliers: set_both_missing
+
+retention_actions:
+  regional_signal_supported: keep
+  regional_cold_signal_supported: keep
+  insufficient_same_day_neighbours: keep
+  spatial_metadata_unavailable: keep
+  spatial_baseline_unavailable: keep
+  spatially_inconclusive: keep
+
+important:
+  - Only isolated spatial outliers are removed.
+  - Regionally supported cold anomalies must not be removed.
+  - No missing value is interpolated.
+  - Step 5B values remain preserved in the audit columns.
+  - Cleaned values are written to new stage-2 columns.

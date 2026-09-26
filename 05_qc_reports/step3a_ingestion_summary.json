@@ -1,0 +1,32 @@
+{
+  "created_utc": "2026-06-20T19:36:53.540434+00:00",
+  "source_file": "/home/shajibul/Bangladesh_Cold_Wave/01_raw_data/MaxT_MinT_1981_2024_raw.xlsx",
+  "source_sheet": "MaxT & MinT",
+  "source_rows_examined": 548213,
+  "blank_rows_skipped": 0,
+  "records_written": 548213,
+  "parquet_rows": 548213,
+  "unique_raw_station_names": 42,
+  "unique_matched_station_uids": 42,
+  "unmatched_station_rows": 0,
+  "invalid_date_rows": 54,
+  "unparsed_temperature_rows": 0,
+  "date_parse_status_counts": {
+    "valid": 548159,
+    "invalid_calendar_date": 54
+  },
+  "tmax_parse_status_counts": {
+    "numeric": 535065,
+    "missing_code": 13148
+  },
+  "tmin_parse_status_counts": {
+    "numeric": 533745,
+    "missing_code": 14468
+  },
+  "structural_status_counts": {
+    "ready_for_qc": 548159,
+    "review_required": 54
+  },
+  "output_file": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/old_xlsx_daily_standardized.parquet",
+  "output_size_bytes": 6075690
+}

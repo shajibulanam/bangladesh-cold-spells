@@ -1,0 +1,57 @@
+{
+  "step": "Step 9B",
+  "title": "ERA5 preprocessing to analysis-ready daily fields",
+  "raw_data_policy": "Raw ERA5 NetCDF files are never modified.",
+  "validated_input_step": "Step 9A",
+  "temporal_resolution": "daily 00 UTC fields, not daily means",
+  "spatial_domain": {
+    "north": 70,
+    "west": 30,
+    "south": 10,
+    "east": 120
+  },
+  "period": "November-February winters 1985/86-2024/25",
+  "pressure_level_inputs": {
+    "directory": "01_raw_data/era5/pressure_level",
+    "file_pattern": "ERA5_PL_YYYY_MM.nc",
+    "variables": {
+      "z": "geopotential",
+      "t": "air temperature",
+      "u": "u wind",
+      "v": "v wind",
+      "vo": "relative vorticity",
+      "pv": "potential vorticity"
+    }
+  },
+  "single_level_instant_inputs": {
+    "directory": "01_raw_data/era5/single_level_extracted/instant",
+    "file_pattern": "ERA5_SL_instant_YYYY_MM.nc",
+    "variables": {
+      "t2m": "2 metre temperature",
+      "msl": "mean sea-level pressure",
+      "u10": "10 metre u wind",
+      "v10": "10 metre v wind",
+      "sp": "surface pressure"
+    }
+  },
+  "single_level_accum_inputs": {
+    "directory": "01_raw_data/era5/single_level_extracted/accum",
+    "file_pattern": "ERA5_SL_accum_YYYY_MM.nc",
+    "variables": {
+      "tisr": "TOA incident solar radiation"
+    }
+  },
+  "unit_conversions": {
+    "z_to_geopotential_height_m": "z / 9.80665",
+    "pv_to_pvu": "pv * 1000000",
+    "t2m_to_celsius": "t2m - 273.15",
+    "msl_to_hpa": "msl / 100",
+    "sp_to_hpa": "sp / 100"
+  },
+  "important_limitations": [
+    "ERA5 files are daily 00 UTC snapshots, not daily means.",
+    "The validated regional domain is suitable for Bangladesh/South Asia/Eurasian regional composite analysis.",
+    "The dataset is not sufficient for full hemispheric NAM, polar-vortex, or zonal-mean diagnostics.",
+    "Because only November-February is downloaded, some -45 to +10 event windows may be partly unavailable for early-December or late-February events."
+  ]
+}

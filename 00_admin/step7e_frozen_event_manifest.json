@@ -1,0 +1,12 @@
+{
+  "created_utc": "2026-06-24T18:32:06.313319+00:00",
+  "authoritative_primary_source": "/home/shajibul/Bangladesh_Cold_Wave/06_events/step7d_primary_area_weighted_cold_spell_catalogue.csv",
+  "final_definition_id": "p10_area20_duration3",
+  "final_definition": "Station calendar-day p10, at least 20 percent Bangladesh area, at least 3 consecutive days",
+  "primary_event_count": 85,
+  "primary_event_day_count": 430,
+  "primary_events_removed_by_sensitivity": 0,
+  "frozen_catalogue": "/home/shajibul/Bangladesh_Cold_Wave/06_events/step7e_frozen_primary_event_catalogue.csv",
+  "frozen_event_days": "/home/shajibul/Bangladesh_Cold_Wave/06_events/step7e_frozen_primary_event_days.csv",
+  "atmospheric_analysis_windows": "/home/shajibul/Bangladesh_Cold_Wave/06_events/step7e_frozen_event_onsets_and_windows.csv"
+}

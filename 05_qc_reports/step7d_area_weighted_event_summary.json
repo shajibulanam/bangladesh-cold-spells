@@ -1,0 +1,15 @@
+{
+  "created_utc": "2026-06-24T18:18:37.357094+00:00",
+  "primary_definition": "Station p10, at least 20 percent of Bangladesh area, at least 3 consecutive days",
+  "event_count": 85,
+  "event_day_count": 430,
+  "winters_with_events": 34,
+  "longest_event_days": 17,
+  "maximum_event_cold_area_fraction": 0.999999999999997,
+  "minimum_observed_area_fraction": 0.8,
+  "minimum_cold_area_fraction": 0.2,
+  "minimum_duration_days": 3,
+  "validation_issue_count": 0,
+  "temperature_adjusted": false,
+  "interpolation_applied": false
+}

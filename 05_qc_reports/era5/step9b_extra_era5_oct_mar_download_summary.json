@@ -1,0 +1,12 @@
+{
+  "created_utc": "2026-07-08T04:50:05.982627+00:00",
+  "extension_month_count": 80,
+  "expected_pressure_level_files": 80,
+  "expected_single_level_files": 80,
+  "status_counts": {
+    "downloaded": 160
+  },
+  "manifest_csv": "/home/shajibul/Bangladesh_Cold_Wave/05_qc_reports/era5/step9b_extra_era5_oct_mar_download_manifest.csv",
+  "pressure_level_folder": "/home/shajibul/Bangladesh_Cold_Wave/01_raw_data/era5/pressure_level",
+  "single_level_folder": "/home/shajibul/Bangladesh_Cold_Wave/01_raw_data/era5/single_level"
+}

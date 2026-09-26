@@ -1,0 +1,7 @@
+test,index,estimate,ci_low,ci_high,p_two_sided,n_events,n_winters
+across_winters_onset_vs_calendar_matched,nam_proxy_10,0.3130,0.1020,0.5301,0.0040,,
+within_winter_onset_minus_quiet_days,nam_proxy_10,0.2328,0.0118,0.4469,0.0360,85.0000,
+winter_mean_nam_vs_cold_spell_days_spearman,nam_proxy_10,0.3612,,,0.0220,,40.0000
+across_winters_onset_vs_calendar_matched,nam_proxy_100,0.3759,0.1667,0.5922,0.0002,,
+within_winter_onset_minus_quiet_days,nam_proxy_100,0.3591,0.1004,0.6101,0.0056,85.0000,
+winter_mean_nam_vs_cold_spell_days_spearman,nam_proxy_100,0.4336,,,0.0052,,40.0000

@@ -1,0 +1,25 @@
+{
+  "created_utc": "2026-06-21T19:40:25.923314+00:00",
+  "input_rows": 570353,
+  "output_rows": 570353,
+  "inserted_corrected_date_rows": 0,
+  "value_decisions_applied": 310,
+  "invalid_date_decisions_applied": 54,
+  "rows_with_changed_values": 54,
+  "remaining_post_decision_screen_flags": 0,
+  "duplicate_final_keys": 0,
+  "minimum_date": "1981-01-01",
+  "maximum_date": "2025-12-31",
+  "value_decision_counts": {
+    "keep": 131,
+    "select_new_tmin": 35,
+    "set_both_missing": 127,
+    "set_tmax_missing": 1,
+    "set_tmin_missing": 16
+  },
+  "invalid_date_decision_counts": {
+    "reject_source_row": 54
+  },
+  "output_file": "/home/shajibul/Bangladesh_Cold_Wave/04_clean_data/temperature_daily_cleaned_stage1.parquet",
+  "output_size_bytes": 9046703
+}

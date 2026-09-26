@@ -1,0 +1,38 @@
+{
+  "created_utc": "2026-07-08T13:47:57.124751+00:00",
+  "analysis_ready_oct_mar_extended": true,
+  "expected_files_per_group": 240,
+  "issue_count": 0,
+  "groups": [
+    {
+      "group": "pressure_level",
+      "file_count": 240,
+      "readable_count": 240,
+      "unique_months": 240,
+      "time_count_all_ok": true,
+      "all_times_00utc": true,
+      "domain_all_ok": true
+    },
+    {
+      "group": "single_level_accum",
+      "file_count": 240,
+      "readable_count": 240,
+      "unique_months": 240,
+      "time_count_all_ok": true,
+      "all_times_00utc": true,
+      "domain_all_ok": true
+    },
+    {
+      "group": "single_level_instant",
+      "file_count": 240,
+      "readable_count": 240,
+      "unique_months": 240,
+      "time_count_all_ok": true,
+      "all_times_00utc": true,
+      "domain_all_ok": true
+    }
+  ],
+  "validation_csv": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/era5_inventory/era5_oct_mar_extended_file_validation.csv",
+  "month_matrix_csv": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/era5_inventory/era5_oct_mar_extended_month_matrix.csv",
+  "issues_csv": "/home/shajibul/Bangladesh_Cold_Wave/05_qc_reports/era5/era5_oct_mar_extended_validation_issues.csv"
+}

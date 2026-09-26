@@ -1,0 +1,61 @@
+{
+  "step": "Step 10A",
+  "title": "Siberian High and Ural-Siberian blocking diagnostics",
+  "period": "October-March for winters 1985/86-2024/25",
+  "time": "00 UTC daily fields",
+  "grid": "1 degree latitude-longitude",
+  "download_domain": {
+    "north": 90,
+    "west": 20,
+    "south": 20,
+    "east": 140
+  },
+  "variables": {
+    "mean_sea_level_pressure": "single-level ERA5",
+    "geopotential_500_hpa": "pressure-level ERA5"
+  },
+  "siberian_high": {
+    "primary_region": "40-60N, 80-120E",
+    "primary_index": "cosine-latitude-weighted area-mean MSLP",
+    "secondary_index": "maximum MSLP over 40-65N, 80-120E",
+    "anomaly_baseline": "1991-2020 calendar-day climatology"
+  },
+  "blocking": {
+    "method": "Tibaldi-Molteni-type 500 hPa gradient reversal",
+    "latitude_offsets_degrees": [-5, 0, 5],
+    "southern_latitude": "40N plus offset",
+    "central_latitude": "60N plus offset",
+    "northern_latitude": "80N plus offset",
+    "conditions": [
+      "GHGS greater than 0 metres per degree latitude",
+      "GHGN less than -10 metres per degree latitude"
+    ],
+    "ural_siberian_sector": "40-90E",
+    "minimum_contiguous_longitude_width": "15 degrees",
+    "primary_episode_duration": "at least 3 consecutive days",
+    "sensitivity_episode_duration": "at least 5 consecutive days"
+  },
+  "event_windows": {
+    "pre10": "-10 to -1 days",
+    "pre5": "-5 to -1 days",
+    "first3": "0 to +2 days",
+    "full_event": "event onset through event end"
+  },
+  "primary_predictor_windows": [
+    "pre10",
+    "pre5",
+    "first3"
+  ],
+  "secondary_window": "full_event",
+  "primary_comparison": "persistent events of at least 6 days minus short 3-day events",
+  "continuous_outcome": "event duration in days for all 85 events",
+  "resampling_unit": "winter",
+  "bootstrap_repetitions": 5000,
+  "multiple_testing": "Benjamini-Hochberg FDR",
+  "cautions": [
+    "Blocking and Siberian High indices indicate association, not direct causation.",
+    "Full-event metrics are secondary because their windows depend on event duration.",
+    "All 85 frozen events remain in continuous-duration analysis.",
+    "Intermediate events remain excluded only from the primary short-versus-persistent contrast."
+  ]
+}

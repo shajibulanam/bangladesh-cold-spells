@@ -1,0 +1,15 @@
+{
+  "step": "Step 16O",
+  "title": "ENSO controls for stratospheric results",
+  "oni_source": "https://www.cpc.ncep.noaa.gov/data/indices/oni.ascii.txt",
+  "winter_enso": "DJF ONI (SEAS=DJF, YR=winter_start+1)",
+  "phases": {
+    "el_nino": ">= 0.5",
+    "la_nina": "<= -0.5",
+    "neutral": "otherwise"
+  },
+  "permutations": 10000,
+  "monte_carlo": 10000,
+  "seed": 20260923,
+  "created_utc": "2026-09-23T21:04:37.076957+00:00"
+}

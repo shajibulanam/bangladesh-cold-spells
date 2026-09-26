@@ -1,0 +1,54 @@
+policy_name: step4b_automatic_decision_v1
+
+primary_dataset:
+  interpolate_missing_daily_temperature: false
+  retain_unresolved_values_as_missing: true
+
+source_priority:
+  overlapping_tmin_2022_2024:
+    first: new_csv
+    second: old_xlsx
+
+screening_limits:
+  tmin_minimum: -5.0
+  tmin_maximum: 45.0
+  tmax_minimum: 0.0
+  tmax_maximum: 50.0
+  minimum_positive_dtr: 0.1
+  high_dtr_threshold: 30.0
+
+automatic_rules:
+  source_conflict:
+    - select plausible new CSV Tmin
+    - otherwise select plausible old XLSX Tmin
+    - otherwise set Tmin missing
+
+  zero_tmin:
+    - select plausible nonzero alternate source
+    - otherwise set Tmin missing
+
+  tmax_below_tmin:
+    - select plausible alternate Tmin if it resolves inconsistency
+    - otherwise set both temperatures missing
+
+  physical_range:
+    - select plausible alternate Tmin where available
+    - otherwise set affected variable missing
+
+  conflicting_duplicate:
+    - use independent updated Tmin where available
+    - otherwise set affected variable missing
+    - never average conflicting duplicates
+
+  high_dtr_only:
+    - retain observation
+    - preserve flag for Step 5 temporal and spatial QC
+
+  invalid_date:
+    - infer only when previous and next valid source rows define exactly one missing date
+    - insert only when that station-date does not already exist
+    - otherwise reject source row
+
+audit:
+  reviewer: automated_rule_v1
+  verification_source: official BMD datasets and deterministic QC rules

@@ -1,0 +1,35 @@
+{
+  "created_utc": "2026-06-21T18:18:18.186519+00:00",
+  "pre2022_rows": 502080,
+  "common_overlap_rows": 46032,
+  "additional_station_overlap_rows": 4751,
+  "new_2025_rows": 17490,
+  "unified_rows": 570353,
+  "unique_stations": 48,
+  "common_overlap_stations": 42,
+  "pending_metadata_stations": 5,
+  "minimum_date": "1981-01-01",
+  "maximum_date": "2025-12-31",
+  "duplicate_final_keys": 0,
+  "invalid_old_date_rows_excluded": 54,
+  "old_duplicate_keys": 148,
+  "pre2022_duplicate_review_keys": 90,
+  "value_review_required_records": 300,
+  "numeric_tmin_records": 562369,
+  "missing_tmin_records": 7984,
+  "numeric_tmax_records": 534794,
+  "zero_tmin_records": 15,
+  "record_origin_counts": {
+    "old_xlsx_pre2022": 502080,
+    "reconciled_common_2022_2024": 46032,
+    "new_csv_2025": 17490,
+    "new_additional_station_2022_2024": 4751
+  },
+  "tmin_source_counts": {
+    "old_xlsx": 495360,
+    "new_csv": 67009,
+    "none": 7984
+  },
+  "output_file": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/temperature_daily_unified_preliminary.parquet",
+  "output_size_bytes": 5188750
+}

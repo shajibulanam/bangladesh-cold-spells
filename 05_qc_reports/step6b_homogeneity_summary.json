@@ -1,0 +1,32 @@
+{
+  "created_utc": "2026-06-24T14:20:56.005532+00:00",
+  "input_file": "/home/shajibul/Bangladesh_Cold_Wave/04_clean_data/temperature_daily_cleaned_stage2.parquet",
+  "fixed_network_file": "/home/shajibul/Bangladesh_Cold_Wave/02_metadata/step6a_fixed_station_network.csv",
+  "fixed_station_count": 26,
+  "monthly_station_rows": 13980,
+  "valid_monthly_station_rows": 13810,
+  "network_residual_available_rows": 13810,
+  "annual_station_rows": 1170,
+  "source_transition_date": "2022-01-01",
+  "pre_period_start": "2018-01-01",
+  "pre_period_end": "2021-12-01",
+  "post_period_start": "2022-01-01",
+  "post_period_end": "2025-12-01",
+  "transition_status_counts": {
+    "moderate_source_transition_signal": 1,
+    "no_major_source_transition_signal": 25
+  },
+  "breakpoint_status_counts": {
+    "no_major_shift_signal": 26
+  },
+  "combined_status_counts": {
+    "moderate_priority_homogeneity_review": 1,
+    "no_major_inhomogeneity_signal": 25
+  },
+  "flagged_station_count": 1,
+  "automatic_adjustment_applied": false,
+  "automatic_station_exclusion_applied": false,
+  "monthly_output": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/step6b_monthly_station_network_residuals.parquet",
+  "annual_output": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/step6b_annual_station_network_residuals.parquet",
+  "homogeneity_status_file": "/home/shajibul/Bangladesh_Cold_Wave/02_metadata/step6b_station_homogeneity_status.csv"
+}

@@ -1,0 +1,9 @@
+term,odds_ratio_per_sd,ci_low,ci_high,vif
+nat_tmax_anom,2.1001,1.6739,3.4948,1.3282
+era5_bd_wspd10_anom,0.3769,0.1691,0.6546,1.3585
+era5_bd_stab_t2m_minus_t850_tend,0.4167,0.2370,0.5991,1.1521
+era5_sa_z500_tend,0.6656,0.4127,0.9564,1.2732
+log_event_age,0.9778,0.7452,1.4304,1.2240
+winter_day_index,2.3525,1.5913,4.1259,1.1596
+nat_tmin_anom,4.4272,3.0383,8.8370,1.3753
+winter_start_year,1.1731,0.8543,1.7531,1.1401

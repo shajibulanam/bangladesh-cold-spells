@@ -1,0 +1,37 @@
+{
+  "created_utc": "2026-06-24T13:33:27.959343+00:00",
+  "input_file": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/temperature_daily_qc_stage3_spatial.parquet",
+  "output_file": "/home/shajibul/Bangladesh_Cold_Wave/04_clean_data/temperature_daily_cleaned_stage2.parquet",
+  "input_rows": 570353,
+  "output_rows": 570353,
+  "unique_stations": 48,
+  "minimum_date": "1981-01-01",
+  "maximum_date": "2025-12-31",
+  "tmin_spatial_outliers_set_missing": 31,
+  "tmax_spatial_outliers_set_missing": 7,
+  "records_with_any_value_changed": 38,
+  "regional_signal_records_retained": 70,
+  "regional_cold_records_retained": 1,
+  "insufficient_or_unavailable_records_retained": 79,
+  "remaining_hard_flags": 0,
+  "remaining_soft_flags": 0,
+  "interpolation_applied": false,
+  "decision_counts": {
+    "keep_insufficient_neighbours": 79,
+    "keep_regional_cold_signal": 1,
+    "keep_regional_signal": 69,
+    "keep_spatially_inconclusive": 140,
+    "no_spatial_action_required": 570026,
+    "set_tmax_missing_spatial_outlier": 7,
+    "set_tmin_missing_spatial_outlier": 31
+  },
+  "status_counts": {
+    "candidate_retained_after_spatial_qc": 140,
+    "isolated_spatial_outlier_removed": 38,
+    "qc_complete_no_spatial_action": 570026,
+    "regional_cold_extreme_retained": 1,
+    "regional_signal_retained": 69,
+    "retained_insufficient_spatial_evidence": 79
+  },
+  "output_size_bytes": 20947738
+}

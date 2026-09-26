@@ -1,0 +1,55 @@
+{
+  "created_utc": "2026-08-01T11:36:01.098152+00:00",
+  "figure_count": 7,
+  "figures": [
+    {
+      "figure": "figure_41_tn_waf_all_event_wave_train",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/tn_waf/figure_41_tn_waf_all_event_wave_train.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/tn_waf/figure_41_tn_waf_all_event_wave_train.pdf",
+      "png_size_kb": 3529.3,
+      "pdf_size_kb": 1054.6
+    },
+    {
+      "figure": "figure_42_tn_waf_persistence_difference",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/tn_waf/figure_42_tn_waf_persistence_difference.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/tn_waf/figure_42_tn_waf_persistence_difference.pdf",
+      "png_size_kb": 2283.5,
+      "pdf_size_kb": 1071.8
+    },
+    {
+      "figure": "figure_43_tn_waf_divergence_evolution",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/tn_waf/figure_43_tn_waf_divergence_evolution.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/tn_waf/figure_43_tn_waf_divergence_evolution.pdf",
+      "png_size_kb": 1956.0,
+      "pdf_size_kb": 1062.6
+    },
+    {
+      "figure": "figure_44_tn_waf_regional_lag_curves",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/tn_waf/figure_44_tn_waf_regional_lag_curves.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/tn_waf/figure_44_tn_waf_regional_lag_curves.pdf",
+      "png_size_kb": 777.9,
+      "pdf_size_kb": 34.6
+    },
+    {
+      "figure": "figure_45_tn_waf_longitude_profiles",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/tn_waf/figure_45_tn_waf_longitude_profiles.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/tn_waf/figure_45_tn_waf_longitude_profiles.pdf",
+      "png_size_kb": 761.3,
+      "pdf_size_kb": 37.2
+    },
+    {
+      "figure": "figure_46_tn_waf_vs_duration",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/tn_waf/figure_46_tn_waf_vs_duration.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/tn_waf/figure_46_tn_waf_vs_duration.pdf",
+      "png_size_kb": 534.4,
+      "pdf_size_kb": 38.2
+    },
+    {
+      "figure": "figure_47_tn_waf_vertical_sensitivity",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/tn_waf/figure_47_tn_waf_vertical_sensitivity.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/tn_waf/figure_47_tn_waf_vertical_sensitivity.pdf",
+      "png_size_kb": 207.9,
+      "pdf_size_kb": 27.7
+    }
+  ]
+}

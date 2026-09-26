@@ -1,0 +1,23 @@
+{
+  "created_utc": "2026-06-24T13:49:48.446469+00:00",
+  "input_file": "/home/shajibul/Bangladesh_Cold_Wave/04_clean_data/temperature_daily_cleaned_stage2.parquet",
+  "temperature_column": "tmin_cleaned_stage2",
+  "first_winter": "1985/86",
+  "last_winter": "2024/25",
+  "study_winter_count": 40,
+  "total_station_count": 48,
+  "station_winter_rows": 1920,
+  "winter_completeness_threshold_percent": 95.0,
+  "minimum_complete_winters": 38,
+  "minimum_complete_winter_fraction": 0.95,
+  "fixed_network_station_count": 26,
+  "excluded_station_count": 22,
+  "minimum_complete_fixed_stations_per_winter": 21,
+  "eligible_study_winters": 40,
+  "ineligible_study_winters": 0,
+  "incomplete_fixed_station_winters": 14,
+  "fixed_network_missing_djf_dates": 519,
+  "interpolation_applied": false,
+  "completeness_file": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/step6a_djf_station_winter_completeness.parquet",
+  "fixed_network_file": "/home/shajibul/Bangladesh_Cold_Wave/02_metadata/step6a_fixed_station_network.csv"
+}

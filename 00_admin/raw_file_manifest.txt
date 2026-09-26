@@ -1,0 +1,3 @@
+01_raw_data/All_station_BMD_raw.xlsx|8083 bytes|modified=2026-06-20 20:28:41.414398943 +0600
+01_raw_data/Daily_Minimum_Temperature_2022_2025_raw.csv|372877 bytes|modified=2026-06-21 01:11:31.368478720 +0600
+01_raw_data/MaxT_MinT_1981_2024_raw.xlsx|15590356 bytes|modified=2026-06-20 20:28:23.607315422 +0600

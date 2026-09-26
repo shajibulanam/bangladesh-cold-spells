@@ -1,0 +1,60 @@
+stage: step7d_area_weighted_primary_cold_spell_catalogue
+
+boundary:
+  provider: geoBoundaries
+  api_endpoint: https://www.geoboundaries.org/api/current/gbOpen/BGD/ADM0/
+  release_type: gbOpen
+  country_iso3: BGD
+  administrative_level: ADM0
+  expected_boundary_id: BGD-ADM0-71232402
+  allow_boundary_id_change: false
+
+spatial_projection:
+  name: Bangladesh-centred Albers Equal Area
+  proj_string: >-
+    +proj=aea +lat_1=21 +lat_2=26
+    +lat_0=23.5 +lon_0=90
+    +datum=WGS84 +units=m +no_defs
+
+network:
+  membership_column: member_primary_all_fixed_unadjusted
+  station_winter_usable_column: station_winter_usable_primary_all_fixed_unadjusted
+  percentile_eligibility_column: eligible_for_station_percentile_test_primary
+
+primary_station_condition:
+  column: station_percentile_cold_day_p10
+  definition: Tmin strictly below station calendar-day p10
+
+severe_station_condition:
+  temperature_column: analysis_tmin_unadjusted
+  threshold_column: station_p05_threshold_full
+  definition: Tmin strictly below station calendar-day p05
+  catalogue_role: descriptive_and_sensitivity
+
+daily_data_availability:
+  minimum_observed_national_area_fraction: 0.80
+  minimum_observed_station_count: 15
+
+regional_cold_day:
+  minimum_cold_national_area_fraction: 0.20
+  use_full_national_area_denominator: true
+  minimum_cold_station_count: null
+
+cold_spell_event:
+  minimum_consecutive_days: 3
+  merge_one_day_gaps: false
+  allow_cross_winter_events: false
+
+bmd_categories:
+  role: complementary_operational_severity
+  retain_area_coverage: true
+
+important:
+  - Voronoi polygons are clipped to the Bangladesh ADM0 boundary.
+  - All station polygon weights must sum to one.
+  - Missing station area is not reassigned to observed stations.
+  - Cold-area fraction uses the complete Bangladesh-area denominator.
+  - A day is usable only when at least 80 percent of national area is observed.
+  - Primary cold days use station-specific p10, not the compound Step 7C flag.
+  - BMD categories are retained as secondary impact-oriented information.
+  - No temperature value is changed or interpolated.

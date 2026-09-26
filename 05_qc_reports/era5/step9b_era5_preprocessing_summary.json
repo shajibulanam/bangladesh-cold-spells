@@ -1,0 +1,33 @@
+{
+  "created_utc": "2026-07-08T15:37:00.473731+00:00",
+  "analysis_note": "Standardized ERA5 daily 00 UTC files created for regional analysis.",
+  "pressure_level_output": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/era5_preprocessed/pressure_level_standardized",
+  "single_level_instant_output": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/era5_preprocessed/single_level_instant_standardized",
+  "single_level_accum_output": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/era5_preprocessed/single_level_accum_standardized",
+  "total_files_written": 720,
+  "total_files_failed": 0,
+  "group_summary": [
+    {
+      "group": "pressure_level",
+      "input_files": 240,
+      "written_files": 240,
+      "failed_files": 0,
+      "total_output_size_mb": 87146.32
+    },
+    {
+      "group": "single_level_accum",
+      "input_files": 240,
+      "written_files": 240,
+      "failed_files": 0,
+      "total_output_size_mb": 153.13
+    },
+    {
+      "group": "single_level_instant",
+      "input_files": 240,
+      "written_files": 240,
+      "failed_files": 0,
+      "total_output_size_mb": 5973.395
+    }
+  ],
+  "preprocessing_log": "/home/shajibul/Bangladesh_Cold_Wave/05_qc_reports/era5/step9b_era5_preprocessing_log.csv"
+}

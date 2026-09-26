@@ -1,0 +1,46 @@
+{
+  "created_utc": "2026-06-21T18:37:44.434355+00:00",
+  "input_file": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/temperature_daily_unified_preliminary.parquet",
+  "output_file": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/temperature_daily_qc_stage1.parquet",
+  "input_rows": 570353,
+  "output_rows": 570353,
+  "unique_stations": 48,
+  "minimum_date": "1981-01-01",
+  "maximum_date": "2025-12-31",
+  "invalid_date_rows_outside_daily_table": 54,
+  "value_review_records": 310,
+  "priority_counts": {
+    "critical": 125,
+    "high": 41,
+    "metadata_pending": 5845,
+    "none": 564198,
+    "review": 144
+  },
+  "status_counts": {
+    "metadata_pending": 5845,
+    "pass_stage1": 531691,
+    "pass_with_missing_data": 32507,
+    "review_required": 310
+  },
+  "flag_counts": {
+    "qc_tmin_zero": 15,
+    "qc_tmin_zero_winter_priority": 7,
+    "qc_tmin_physical_range": 0,
+    "qc_tmax_physical_range": 0,
+    "qc_tmax_lt_tmin": 5,
+    "qc_dtr_zero": 5,
+    "qc_dtr_high": 2,
+    "qc_old_duplicate": 148,
+    "qc_old_duplicate_conflict": 120,
+    "qc_source_numeric_conflict": 34,
+    "qc_source_duplicate_conflict": 30,
+    "qc_tmax_missing_unexpected": 18069,
+    "qc_metadata_pending": 5845
+  },
+  "numeric_tmin": 562369,
+  "missing_tmin": 7984,
+  "numeric_tmax": 534794,
+  "missing_tmax": 35559,
+  "output_size_bytes": 7126933,
+  "values_changed": false
+}

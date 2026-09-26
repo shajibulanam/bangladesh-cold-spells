@@ -1,0 +1,27 @@
+Step 16N - Stratosphere
+=======================
+A. SSW test and power
+                          statistic   value
+                          ssw_count 25.0000
+     observed_unique_onsets_day0_45  6.0000
+                          null_mean 15.0068
+                        null_2.5pct  9.0000
+                       null_97.5pct 21.0000
+        observed_to_null_rate_ratio  0.3998
+                  p_upper_one_sided  0.9995
+                  p_lower_one_sided  0.0016
+              null_dispersion_index  0.6506
+          critical_count_5pct_upper 21.0000
+               power_rate_ratio_1.5  0.6533
+                 power_rate_ratio_2  0.9649
+                 power_rate_ratio_3  1.0000
+minimum_detectable_rate_ratio_80pct  1.6500
+
+B. NAM background tests
+                                       test         index  estimate  ci_low  ci_high  p_two_sided  n_events  n_winters
+   across_winters_onset_vs_calendar_matched  nam_proxy_10    0.3130  0.1020   0.5301       0.0040       NaN        NaN
+       within_winter_onset_minus_quiet_days  nam_proxy_10    0.2328  0.0118   0.4469       0.0360      85.0        NaN
+winter_mean_nam_vs_cold_spell_days_spearman  nam_proxy_10    0.3612     NaN      NaN       0.0220       NaN       40.0
+   across_winters_onset_vs_calendar_matched nam_proxy_100    0.3759  0.1667   0.5922       0.0002       NaN        NaN
+       within_winter_onset_minus_quiet_days nam_proxy_100    0.3591  0.1004   0.6101       0.0056      85.0        NaN
+winter_mean_nam_vs_cold_spell_days_spearman nam_proxy_100    0.4336     NaN      NaN       0.0052       NaN       40.0

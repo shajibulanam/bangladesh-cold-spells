@@ -1,0 +1,9 @@
+{
+  "created_utc": "2026-08-01T10:50:36.128981+00:00",
+  "event_count": 85,
+  "primary_metric_count": 12,
+  "secondary_metric_count": 8,
+  "bootstrap_repetitions": 5000,
+  "robust_primary_group_difference_count": 0,
+  "fdr_significant_primary_duration_correlation_count": 0
+}

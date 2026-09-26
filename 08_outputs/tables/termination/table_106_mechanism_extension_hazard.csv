@@ -1,0 +1,9 @@
+predictor,odds_ratio_per_sd,ci_low,ci_high,p_bootstrap,n_rows,n_terminations,q_fdr_family
+mech_bd_adv850_k_day_anom,1.5291,1.1845,2.1127,0.0080,260,85,0.0160
+mech_nigp_adv850_k_day_anom,0.8750,0.6010,1.1996,0.3490,260,85,0.4653
+mech_jet200_core_lat_70_100e_anom,0.8053,0.5390,1.1197,0.1610,260,85,0.2576
+mech_jet200_core_speed_70_100e_anom,0.6131,0.4075,0.8375,0.0040,260,85,0.0107
+mech_bd_adv850_k_day_tend,1.8671,1.3411,3.0091,0.0000,260,85,0.0000
+mech_nigp_adv850_k_day_tend,0.6385,0.4166,0.8187,0.0010,260,85,0.0040
+mech_jet200_core_lat_70_100e_tend,0.9611,0.6977,1.3696,0.7870,260,85,0.7870
+mech_jet200_core_speed_70_100e_tend,1.0539,0.7956,1.3636,0.6790,260,85,0.7760

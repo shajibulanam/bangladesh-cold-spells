@@ -1,0 +1,46 @@
+{
+  "created_utc": "2026-07-09T22:17:44.321510+00:00",
+  "figure_count": 5,
+  "figures": [
+    {
+      "figure": "figure_11_era5_surface_lag0_composite",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/era5/figure_11_era5_surface_lag0_composite.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/era5/figure_11_era5_surface_lag0_composite.pdf",
+      "png_size_kb": 611.8,
+      "pdf_size_kb": 4694.1
+    },
+    {
+      "figure": "figure_12_era5_z500_lag_evolution",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/era5/figure_12_era5_z500_lag_evolution.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/era5/figure_12_era5_z500_lag_evolution.pdf",
+      "png_size_kb": 632.2,
+      "pdf_size_kb": 7628.3
+    },
+    {
+      "figure": "figure_13_era5_t850_wind_lag_evolution",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/era5/figure_13_era5_t850_wind_lag_evolution.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/era5/figure_13_era5_t850_wind_lag_evolution.pdf",
+      "png_size_kb": 1173.3,
+      "pdf_size_kb": 8082.1
+    },
+    {
+      "figure": "figure_14_era5_u200_wind_lag_evolution",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/era5/figure_14_era5_u200_wind_lag_evolution.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/era5/figure_14_era5_u200_wind_lag_evolution.pdf",
+      "png_size_kb": 1372.0,
+      "pdf_size_kb": 7499.1
+    },
+    {
+      "figure": "figure_15_era5_regional_lag_series",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/era5/figure_15_era5_regional_lag_series.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/era5/figure_15_era5_regional_lag_series.pdf",
+      "png_size_kb": 574.7,
+      "pdf_size_kb": 41.1
+    }
+  ],
+  "input_composite_folder": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/era5_event_composites/composite_netcdf",
+  "figure_folder": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/era5",
+  "figure_data_folder": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figure_data/era5",
+  "event_count": 85,
+  "lag_window": "-45 to +10"
+}

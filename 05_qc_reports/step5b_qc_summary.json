@@ -1,0 +1,26 @@
+{
+  "created_utc": "2026-06-23T18:38:47.375649+00:00",
+  "input_file": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/temperature_daily_qc_stage2_temporal.parquet",
+  "output_file": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/temperature_daily_qc_stage3_spatial.parquet",
+  "neighbour_file": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/step5b_fixed_station_neighbours.parquet",
+  "input_rows": 570353,
+  "output_rows": 570353,
+  "unique_stations": 48,
+  "spatially_eligible_stations": 43,
+  "fixed_neighbour_pairs": 215,
+  "stations_below_fixed_neighbour_minimum": 0,
+  "step5a_candidate_records": 327,
+  "isolated_spatial_outliers": 38,
+  "regional_signal_supported_records": 70,
+  "regional_cold_supported_records": 1,
+  "unavailable_or_insufficient_records": 79,
+  "status_counts": {
+    "insufficient_same_day_neighbours": 79,
+    "isolated_spatial_outlier": 38,
+    "not_evaluated_not_step5a_candidate": 570026,
+    "regional_signal_supported": 70,
+    "spatially_inconclusive": 140
+  },
+  "values_changed": false,
+  "output_size_bytes": 19022840
+}

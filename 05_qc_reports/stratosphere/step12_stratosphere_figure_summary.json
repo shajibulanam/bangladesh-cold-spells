@@ -1,0 +1,41 @@
+{
+  "created_utc": "2026-08-16T13:05:30.265183+00:00",
+  "figure_count": 7,
+  "figures": [
+    {
+      "figure": "figure_61_nam_all_event_lag_height",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/stratosphere/figure_61_nam_all_event_lag_height.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/stratosphere/figure_61_nam_all_event_lag_height.pdf"
+    },
+    {
+      "figure": "figure_62_nam_persistence_difference",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/stratosphere/figure_62_nam_persistence_difference.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/stratosphere/figure_62_nam_persistence_difference.pdf"
+    },
+    {
+      "figure": "figure_63_nam_group_lag_curves",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/stratosphere/figure_63_nam_group_lag_curves.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/stratosphere/figure_63_nam_group_lag_curves.pdf"
+    },
+    {
+      "figure": "figure_64_stratosphere_vs_duration",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/stratosphere/figure_64_stratosphere_vs_duration.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/stratosphere/figure_64_stratosphere_vs_duration.pdf"
+    },
+    {
+      "figure": "figure_65_ssw_cold_spell_timeline",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/stratosphere/figure_65_ssw_cold_spell_timeline.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/stratosphere/figure_65_ssw_cold_spell_timeline.pdf"
+    },
+    {
+      "figure": "figure_66_ssw_centred_occurrence",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/stratosphere/figure_66_ssw_centred_occurrence.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/stratosphere/figure_66_ssw_centred_occurrence.pdf"
+    },
+    {
+      "figure": "figure_67_long_persistent_nam_cases",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/stratosphere/figure_67_long_persistent_nam_cases.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/stratosphere/figure_67_long_persistent_nam_cases.pdf"
+    }
+  ]
+}

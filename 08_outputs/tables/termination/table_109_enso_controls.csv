@@ -1,0 +1,9 @@
+test,estimate,p,ci_low,ci_high,observed,null_mean
+winter_cold_spell_days_vs_djf_oni_spearman,-0.1261,0.4382,,,,
+winter_mean_nam_proxy_10_vs_djf_oni_spearman,-0.1554,0.3384,,,,
+partial_spearman_cold_spell_days_vs_nam_proxy_10_given_oni,0.3486,0.0286,,,,
+winter_mean_nam_proxy_100_vs_djf_oni_spearman,-0.0448,0.7835,,,,
+partial_spearman_cold_spell_days_vs_nam_proxy_100_given_oni,0.4318,0.0060,,,,
+onset_nam_proxy_10_vs_calendar_and_enso_phase_matched,0.3272,0.0026,0.1144,0.5430,,
+onset_nam_proxy_100_vs_calendar_and_enso_phase_matched,0.3490,0.0016,0.1325,0.5633,,
+ssw_onsets_day0_45_enso_phase_matched_null,0.3782,0.0002,11.0000,21.0000,6.0000,15.8632

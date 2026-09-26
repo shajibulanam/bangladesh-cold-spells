@@ -1,0 +1,61 @@
+stage: step7b_bmd_absolute_and_compound_cold_indicators
+
+temperature:
+  column: analysis_tmin_unadjusted
+  interpolation_allowed: false
+  adjustment_allowed: false
+
+bmd_absolute_categories:
+  mild:
+    lower_exclusive_celsius: 8.0
+    upper_inclusive_celsius: 10.0
+    severity_rank: 1
+
+  moderate:
+    lower_exclusive_celsius: 6.0
+    upper_inclusive_celsius: 8.0
+    severity_rank: 2
+
+  severe:
+    lower_exclusive_celsius: 4.0
+    upper_inclusive_celsius: 6.0
+    severity_rank: 3
+
+  very_severe:
+    upper_inclusive_celsius: 4.0
+    severity_rank: 4
+
+  no_bmd_cold_wave:
+    lower_exclusive_celsius: 10.0
+    severity_rank: 0
+
+station_day_definitions:
+  percentile_relative:
+    condition: analysis_tmin_unadjusted < station_p10_threshold_analysis
+
+  bmd_absolute:
+    condition: analysis_tmin_unadjusted <= 10.0
+
+  primary_compound:
+    condition: percentile_relative AND bmd_absolute
+
+  sensitivity_union:
+    condition: percentile_relative OR bmd_absolute
+
+eligibility:
+  complete_station_winter_required: true
+  numeric_tmin_required: true
+  station_p10_threshold_required_for_percentile_tests: true
+
+deficit_metrics:
+  bmd_reference_temperature_celsius: 10.0
+  retain_station_p10_deficit: true
+
+important:
+  - BMD category labels are assigned from unadjusted Tmin.
+  - The primary compound indicator requires both p10 and BMD conditions.
+  - Percentile-only and BMD-only indicators remain available.
+  - No event duration is imposed in Step 7B.
+  - No spatial-coverage criterion is imposed in Step 7B.
+  - No temperature value is modified.
+  - No missing temperature is interpolated.

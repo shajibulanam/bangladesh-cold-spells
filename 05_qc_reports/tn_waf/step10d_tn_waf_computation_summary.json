@@ -1,0 +1,28 @@
+{
+  "created_utc": "2026-08-01T09:10:10.999523+00:00",
+  "event_count": 85,
+  "short_event_count": 30,
+  "persistent_event_count": 26,
+  "levels_hpa": [
+    200,
+    250,
+    300
+  ],
+  "primary_level_hpa": 250,
+  "selected_lags": [
+    -10,
+    -7,
+    -5,
+    -3,
+    0,
+    3,
+    5
+  ],
+  "unique_dates_processed": 1201,
+  "long_table_rows": 51000,
+  "wide_table_rows": 85,
+  "selected_lag_rows": 29750,
+  "significance_rows": 35,
+  "profile_rows": 1890,
+  "netcdf_file": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/tn_waf/netcdf/ERA5_TN_WAF_250hPa_selected_lags.nc"
+}

@@ -1,0 +1,76 @@
+{
+  "era5_pressure_level": {
+    "directory": "/home/shajibul/Bangladesh_Cold_Wave/01_raw_data/era5/pressure_level",
+    "file_pattern": "ERA5_PL_YYYY_MM.nc",
+    "variables": [
+      "pv",
+      "t",
+      "u",
+      "v",
+      "vo",
+      "z"
+    ],
+    "pressure_levels_hpa": [
+      1000,
+      850,
+      700,
+      500,
+      300,
+      250,
+      200,
+      100,
+      70,
+      50,
+      30,
+      10
+    ],
+    "domain": {
+      "north": 70.0,
+      "west": 30.0,
+      "south": 10.0,
+      "east": 120.0
+    },
+    "temporal_resolution": "daily 00 UTC",
+    "period": "November-February winters 1985/86-2024/25"
+  },
+  "era5_single_level_instant": {
+    "directory": "/home/shajibul/Bangladesh_Cold_Wave/01_raw_data/era5/single_level_extracted/instant",
+    "file_pattern": "ERA5_SL_instant_YYYY_MM.nc",
+    "variables": [
+      "msl",
+      "sp",
+      "t2m",
+      "u10",
+      "v10"
+    ],
+    "domain": {
+      "north": 70.0,
+      "west": 30.0,
+      "south": 10.0,
+      "east": 120.0
+    },
+    "temporal_resolution": "daily 00 UTC",
+    "period": "November-February winters 1985/86-2024/25"
+  },
+  "era5_single_level_accum": {
+    "directory": "/home/shajibul/Bangladesh_Cold_Wave/01_raw_data/era5/single_level_extracted/accum",
+    "file_pattern": "ERA5_SL_accum_YYYY_MM.nc",
+    "variables": [
+      "tisr"
+    ],
+    "domain": {
+      "north": 70.0,
+      "west": 30.0,
+      "south": 10.0,
+      "east": 120.0
+    },
+    "temporal_resolution": "daily 00 UTC",
+    "period": "November-February winters 1985/86-2024/25"
+  },
+  "important_limitations": [
+    "The files are daily 00 UTC fields, not daily means.",
+    "The domain is regional, not full hemispheric/global.",
+    "November-February coverage is complete; October/March are not included in this validation.",
+    "Full NAM/polar-vortex/zonal-mean diagnostics require a hemispheric or global dataset."
+  ]
+}

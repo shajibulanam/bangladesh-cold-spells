@@ -1,0 +1,10 @@
+predictor,primary_or,lowo_min_or,lowo_max_or,sign_stability,winters
+nat_tmax_anom,1.6834,1.6028,1.8536,1.0000,33
+nat_dtr_anom,1.6450,1.5688,1.8039,1.0000,33
+era5_bd_wspd10_anom,0.5280,0.4749,0.5808,1.0000,34
+era5_bd_t850_tend,1.5015,1.4433,1.6490,1.0000,34
+era5_bd_stab_t2m_minus_t850_tend,0.6235,0.5899,0.6569,1.0000,34
+era5_bd_z500_tend,0.7420,0.7091,0.7800,1.0000,34
+era5_bd_mslp_tend,0.6555,0.5949,0.7019,1.0000,34
+era5_bd_v850_tend,1.3868,1.3210,1.4561,1.0000,34
+era5_sa_z500_tend,0.5802,0.5436,0.6176,1.0000,34

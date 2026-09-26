@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+# BMD station data must never be committed
+01_raw_data/*.xlsx
+01_raw_data/*_raw.csv
+03_intermediate/*.parquet
+04_clean_data/

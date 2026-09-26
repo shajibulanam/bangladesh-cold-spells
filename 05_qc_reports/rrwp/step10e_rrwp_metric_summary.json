@@ -1,0 +1,17 @@
+{
+  "created_utc": "2026-08-03T16:47:59.515488+00:00",
+  "monthly_file_count": 320,
+  "daily_record_count": 9690,
+  "first_date": "1985-09-01",
+  "last_date": "2025-04-30",
+  "longitude_count": 360,
+  "event_count": 85,
+  "short_event_count": 30,
+  "persistent_event_count": 26,
+  "episode_count": 554,
+  "event_metric_rows_long": 28050,
+  "event_predictor_rows_wide": 85,
+  "selected_lag_rows": 19125,
+  "daily_netcdf": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/rrwp/netcdf/ERA5_RRWP_R_metric_daily_1985_2025.nc",
+  "event_composite_netcdf": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/rrwp/netcdf/ERA5_RRWP_event_composites_lag20_to10.nc"
+}

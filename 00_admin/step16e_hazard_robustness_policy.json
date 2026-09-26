@@ -1,0 +1,23 @@
+{
+  "step": "Step 16E",
+  "title": "Hazard robustness, one-day lead, multivariable model and duration trend",
+  "robustness_predictors": "causal predictors with q_fdr_causal < 0.1 in Step 16D table_91",
+  "multivariable_predictors": "causal predictors with q_fdr_causal < 0.05, excluding nat_dtr_anom",
+  "adjustment": [
+    "log_event_age",
+    "winter_day_index",
+    "nat_tmin_anom",
+    "winter_start_year"
+  ],
+  "sensitivity_catalogues": "all non-primary scenarios in 06_events/step7e_sensitivity_event_catalogue.csv",
+  "risk_set_start": "event day k >= minimum duration of the scenario",
+  "detrending": "ordinary least-squares linear trend in time removed from each covariate over all DJF days",
+  "lead": "predictors on day k-1",
+  "bootstrap": {
+    "unit": "winter",
+    "repetitions": 1000,
+    "seed": 20260923
+  },
+  "cross_validation": "leave-one-winter-out; AUC and Brier score on held-out risk-set rows",
+  "created_utc": "2026-09-23T17:53:21.642988+00:00"
+}

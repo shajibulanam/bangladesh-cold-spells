@@ -1,0 +1,16 @@
+{
+  "created_utc": "2026-07-31T14:05:16.114147+00:00",
+  "figure_count": 2,
+  "figures": [
+    {
+      "figure": "figure_27_shi_blocking_lag_evolution",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/tropospheric_indices/figure_27_shi_blocking_lag_evolution.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/tropospheric_indices/figure_27_shi_blocking_lag_evolution.pdf"
+    },
+    {
+      "figure": "figure_28_indices_vs_duration",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/tropospheric_indices/figure_28_indices_vs_duration.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/tropospheric_indices/figure_28_indices_vs_duration.pdf"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "created_utc": "2026-06-24T18:32:06.313319+00:00",
+  "scenario_count": 7,
+  "primary_event_count": 85,
+  "primary_event_day_count": 430,
+  "primary_events_high_robustness": 39,
+  "primary_events_moderate_robustness": 36,
+  "primary_events_low_robustness": 10,
+  "step7c_events_reproducing_primary_events": 34,
+  "validation_issue_count": 0,
+  "primary_step7d_exactly_reproduced": true,
+  "primary_events_removed": 0
+}

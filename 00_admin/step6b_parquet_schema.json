@@ -1,0 +1,38 @@
+{
+  "monthly_schema": {
+    "station_uid": "large_string",
+    "month_start": "timestamp[us]",
+    "year": "int16",
+    "month": "int8",
+    "represented_days": "int64",
+    "numeric_tmin_days": "int64",
+    "anomaly_days": "int64",
+    "station_month_anomaly": "double",
+    "expected_calendar_days": "int16",
+    "minimum_required_daily_values": "int16",
+    "monthly_tmin_completeness_percent": "float",
+    "monthly_anomaly_completeness_percent": "float",
+    "monthly_valid": "bool",
+    "dominant_tmin_source": "large_string",
+    "dominant_source_day_count": "int16",
+    "network_neighbour_count": "int16",
+    "leave_one_out_network_median_anomaly": "double",
+    "leave_one_out_network_mean_anomaly": "double",
+    "network_minimum_anomaly": "double",
+    "network_maximum_anomaly": "double",
+    "network_residual_available": "bool",
+    "station_network_residual": "float",
+    "period_relative_to_source_transition": "large_string",
+    "is_djf_month": "bool"
+  },
+  "annual_schema": {
+    "station_uid": "large_string",
+    "year": "int64",
+    "valid_month_count": "int16",
+    "annual_median_network_residual": "float",
+    "annual_mean_network_residual": "float",
+    "annual_minimum_network_residual": "float",
+    "annual_maximum_network_residual": "float",
+    "annual_residual_valid": "bool"
+  }
+}

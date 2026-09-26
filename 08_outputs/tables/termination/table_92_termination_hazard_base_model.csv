@@ -1,0 +1,5 @@
+term,odds_ratio_per_sd,ci_low,ci_high,n_rows
+log_event_age,1.0377,0.8666,1.4691,260
+winter_day_index,2.2077,1.6029,3.6366,260
+nat_tmin_anom,3.8306,2.7489,6.3064,260
+winter_start_year,1.1628,0.8465,1.7130,260

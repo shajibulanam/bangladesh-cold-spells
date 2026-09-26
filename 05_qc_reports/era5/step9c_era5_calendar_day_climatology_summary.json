@@ -1,0 +1,36 @@
+{
+  "created_utc": "2026-07-09T21:18:16.822603+00:00",
+  "method": "low_memory_streaming",
+  "baseline_start": "1991-01-01",
+  "baseline_end": "2020-12-31",
+  "calendar_day_count": 183,
+  "minimum_calendar_day_sample_count": 8,
+  "maximum_calendar_day_sample_count": 30,
+  "climatology_files_written": 12,
+  "climatology_files_failed": 0,
+  "group_summary": [
+    {
+      "group": "pressure_level",
+      "variables": 6,
+      "written": 6,
+      "failed": 0,
+      "total_size_mb": 2605.834
+    },
+    {
+      "group": "single_level_accum",
+      "variables": 1,
+      "written": 1,
+      "failed": 0,
+      "total_size_mb": 7.329
+    },
+    {
+      "group": "single_level_instant",
+      "variables": 5,
+      "written": 5,
+      "failed": 0,
+      "total_size_mb": 195.388
+    }
+  ],
+  "log_csv": "/home/shajibul/Bangladesh_Cold_Wave/05_qc_reports/era5/step9c_era5_calendar_day_climatology_log.csv",
+  "sample_count_csv": "/home/shajibul/Bangladesh_Cold_Wave/05_qc_reports/era5/step9c_era5_calendar_day_sample_counts.csv"
+}

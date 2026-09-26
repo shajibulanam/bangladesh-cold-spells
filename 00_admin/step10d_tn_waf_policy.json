@@ -1,0 +1,79 @@
+{
+  "step": "Step 10D",
+  "title": "Takaya-Nakamura horizontal wave-activity-flux diagnostics",
+  "scientific_basis": [
+    "Takaya and Nakamura (1997), Geophysical Research Letters, 24, 2985-2988",
+    "Takaya and Nakamura (2001), Journal of the Atmospheric Sciences, 58, 608-627"
+  ],
+  "temporal_resolution": "Daily 00 UTC ERA5 snapshots",
+  "primary_pressure_level_hpa": 250,
+  "vertical_sensitivity_levels_hpa": [200, 300],
+  "analysis_domain": "20-70N, 30-120E",
+  "input_variables": {
+    "geopotential_height_m": "daily and 1991-2020 calendar-day climatological geopotential height",
+    "u_wind_ms": "1991-2020 calendar-day climatological zonal wind",
+    "v_wind_ms": "1991-2020 calendar-day climatological meridional wind"
+  },
+  "perturbation_streamfunction": "psi_prime = gravity * geopotential_height_anomaly / Coriolis_parameter",
+  "basic_state": "1991-2020 calendar-day climatological horizontal wind for each event date",
+  "flux_formulation": "Horizontal stationary Takaya-Nakamura wave-activity flux on pressure surfaces",
+  "pressure_scaling": "pressure_hpa / 1000",
+  "output_units": {
+    "waf_components": "m2 s-2",
+    "waf_divergence": "m s-2, additionally reported as 1e-6 m s-2",
+    "geopotential_height_anomaly": "m"
+  },
+  "preprocessing": {
+    "input_grid": "0.25 degree",
+    "analysis_grid": "approximately 1 degree after factor-4 coarsening",
+    "gaussian_smoothing_sigma_gridcells": 1.0,
+    "minimum_basic_flow_speed_ms": 5.0,
+    "minimum_latitude_deg": 20.0,
+    "maximum_latitude_deg": 70.0
+  },
+  "selected_lags": [-10, -7, -5, -3, 0, 3, 5],
+  "event_windows": {
+    "pre10": "-10 to -1 days",
+    "pre5": "-5 to -1 days",
+    "first3": "0 to +2 days",
+    "event": "onset through event end"
+  },
+  "regions": {
+    "eurasian_upstream": "35-60N, 30-60E",
+    "central_asia": "30-55N, 55-80E",
+    "south_asian_pathway": "20-45N, 70-100E",
+    "bangladesh_approach": "20-35N, 80-100E",
+    "asian_corridor": "20-60N, 30-110E"
+  },
+  "persistence_groups": {
+    "short": "3 days",
+    "intermediate": "4-5 days",
+    "persistent": "6 days or longer"
+  },
+  "display_and_inference": {
+    "composite_field_flux": "Flux calculated from the composite geopotential-height anomaly and composite basic state; used for coherent wave-train visualization",
+    "event_mean_flux": "Mean of event-wise fluxes; used for event-level inference",
+    "bootstrap_unit": "winter",
+    "bootstrap_repetitions_grid": 1000,
+    "bootstrap_repetitions_scalar": 5000,
+    "component_multiple_testing": "Benjamini-Hochberg FDR applied separately to zonal and meridional components for each lag",
+    "all_event_vector_robust_mask": "at least one flux component has FDR q < 0.05 and event-vector directional agreement >= 0.60",
+    "persistent_difference_robust_mask": "at least one component has FDR q < 0.05 and leave-one-winter-out vector-direction stability >= 0.90",
+    "divergence_robust_mask": "FDR q < 0.05 and event-sign agreement >= 0.60"
+  },
+  "event_statistics": {
+    "continuous_outcome": "duration_days for all 85 events",
+    "short_persistent_comparison": "persistent minus short",
+    "resampling_unit": "winter",
+    "bootstrap_repetitions": 5000,
+    "multiple_testing": "Benjamini-Hochberg FDR within primary and secondary metric families"
+  },
+  "interpretation_cautions": [
+    "Takaya-Nakamura vectors diagnose the direction of quasi-stationary Rossby-wave activity under quasigeostrophic and slowly varying basic-flow assumptions.",
+    "The vectors are not air-parcel trajectories and do not measure cold-air transport directly.",
+    "Flux convergence or divergence is not automatically equivalent to local wave growth or decay because forcing and dissipation are not explicitly diagnosed.",
+    "The analysis uses daily 00 UTC snapshots rather than daily means.",
+    "Composite-field flux and event-mean flux answer different questions and should not be treated as interchangeable.",
+    "Statistical association does not by itself establish causality."
+  ]
+}

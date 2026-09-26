@@ -1,0 +1,28 @@
+{
+  "step": "Step 12",
+  "title": "Polar-stratospheric precursors, NAM and major SSW modulation",
+  "study_winters": "1985/86-2024/25",
+  "era5_product": "derived-era5-pressure-levels-daily-statistics",
+  "temporal_statistic": "daily_mean from 1-hourly ERA5",
+  "domain": {"north": 90, "south": 20, "west": -180, "east": 180},
+  "grid_degrees": 2.5,
+  "pressure_levels_hpa": [10, 30, 50, 100, 250, 500, 1000],
+  "variables": ["geopotential", "u_component_of_wind", "temperature"],
+  "months": "October-April for every winter",
+  "climatology": "1991-2020 calendar-day",
+  "nam_primary_proxy": "negative standardized area-weighted polar-cap geopotential-height anomaly north of 65N",
+  "nam_orientation": "positive=strong vortex; negative=weak vortex",
+  "ssw_definition": {
+    "central_date": "first daily-mean zonal-mean u at 60N, 10 hPa reversal from westerly to easterly in November-March",
+    "between_events": "20 consecutive westerly days required between accepted central dates",
+    "final_warming_exclusion": "at least 10 consecutive westerly days must return before 30 April"
+  },
+  "cold_spell_lag_window": [-45, 5],
+  "primary_windows": {"pre45": [-45,-1], "pre30": [-30,-1], "pre20": [-20,-1], "pre10": [-10,-1], "pre5": [-5,-1]},
+  "map_bootstrap_repetitions": 1000,
+  "scalar_bootstrap_repetitions": 5000,
+  "ssw_calendar_matched_monte_carlo_repetitions": 10000,
+  "all_event_robustness": "BH-FDR q<0.05 and sign agreement >=0.60",
+  "persistent_minus_short_robustness": "BH-FDR q<0.05, 95% winter-block bootstrap CI excludes zero, and leave-one-winter-out sign stability >=0.90",
+  "interpretation": "continuous vortex/NAM measures are primary; major SSW analyses are secondary because of small sample size"
+}

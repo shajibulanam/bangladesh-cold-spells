@@ -1,0 +1,42 @@
+{
+  "created_utc": "2026-07-31T12:06:47.770103+00:00",
+  "expected_files": 240,
+  "valid_before": 236,
+  "requested_for_recovery": 4,
+  "valid_after": 240,
+  "remaining_invalid": 0,
+  "recovery_results": [
+    {
+      "year": 2024,
+      "month": 12,
+      "original_status": "missing",
+      "recovery_method": "complete-month nocache request",
+      "status": "recovered",
+      "error": null
+    },
+    {
+      "year": 2025,
+      "month": 1,
+      "original_status": "missing",
+      "recovery_method": "complete-month nocache request",
+      "status": "recovered",
+      "error": null
+    },
+    {
+      "year": 2025,
+      "month": 2,
+      "original_status": "missing",
+      "recovery_method": "complete-month nocache request",
+      "status": "recovered",
+      "error": null
+    },
+    {
+      "year": 2025,
+      "month": 3,
+      "original_status": "missing",
+      "recovery_method": "complete-month nocache request",
+      "status": "recovered",
+      "error": null
+    }
+  ]
+}

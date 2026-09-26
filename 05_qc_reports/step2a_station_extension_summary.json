@@ -1,0 +1,21 @@
+{
+  "created_utc": "2026-06-20T19:20:12.279033+00:00",
+  "new_tmin_unique_stations": 48,
+  "new_tmin_matched_to_metadata": 43,
+  "new_tmin_missing_metadata": 5,
+  "missing_metadata_names": [
+    "Ambagan(CTG)",
+    "Bagabari",
+    "Koyra",
+    "Manikganj",
+    "Narayanganj"
+  ],
+  "station_master_v2_rows": 51,
+  "stations_with_any_temperature_data": 48,
+  "official_metadata_only_stations": 3,
+  "official_metadata_only_names": [
+    "Dighinala",
+    "Saint Martin",
+    "Bandarban"
+  ]
+}

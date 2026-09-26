@@ -1,0 +1,35 @@
+{
+  "created_utc": "2026-07-10T19:54:21.484358+00:00",
+  "figure_count": 4,
+  "robust_mask": "winter-block bootstrap FDR q < 0.05 and event agreement >= 0.60",
+  "figures": [
+    {
+      "figure": "figure_16_era5_lag0_significance_summary",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/era5_significance/figure_16_era5_lag0_significance_summary.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/era5_significance/figure_16_era5_lag0_significance_summary.pdf",
+      "png_size_kb": 1721.2,
+      "pdf_size_kb": 10892.9
+    },
+    {
+      "figure": "figure_17_era5_z500_significance_evolution",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/era5_significance/figure_17_era5_z500_significance_evolution.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/era5_significance/figure_17_era5_z500_significance_evolution.pdf",
+      "png_size_kb": 1057.0,
+      "pdf_size_kb": 8512.9
+    },
+    {
+      "figure": "figure_18_era5_t850_significance_evolution",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/era5_significance/figure_18_era5_t850_significance_evolution.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/era5_significance/figure_18_era5_t850_significance_evolution.pdf",
+      "png_size_kb": 1346.4,
+      "pdf_size_kb": 8846.3
+    },
+    {
+      "figure": "figure_19_era5_u200_significance_evolution",
+      "png": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/era5_significance/figure_19_era5_u200_significance_evolution.png",
+      "pdf": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/figures/era5_significance/figure_19_era5_u200_significance_evolution.pdf",
+      "png_size_kb": 1038.3,
+      "pdf_size_kb": 8268.7
+    }
+  ]
+}

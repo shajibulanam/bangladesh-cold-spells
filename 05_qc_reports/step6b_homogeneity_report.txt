@@ -1,0 +1,29 @@
+STEP 6B: SOURCE TRANSITION AND HOMOGENEITY
+==================================================
+Fixed-network stations assessed: 26
+Monthly station records: 13,980
+Valid monthly records: 13,810
+Network residual records: 13,810
+Source transition tested at: 2022-01-01
+Pre-transition window: 2018-01-01 to 2021-12-01
+Post-transition window: 2022-01-01 to 2025-12-01
+
+Source-transition classifications:
+- moderate_source_transition_signal: 1
+- no_major_source_transition_signal: 25
+
+General-break classifications:
+- no_major_shift_signal: 26
+
+Combined homogeneity classifications:
+- moderate_priority_homogeneity_review: 1
+- no_major_inhomogeneity_signal: 25
+
+Stations requiring additional attention: 1
+
+Automatic temperature adjustment applied: No
+Automatic station exclusion applied: No
+
+Monthly output: /home/shajibul/Bangladesh_Cold_Wave/03_intermediate/step6b_monthly_station_network_residuals.parquet
+Annual output: /home/shajibul/Bangladesh_Cold_Wave/03_intermediate/step6b_annual_station_network_residuals.parquet
+Station status output: /home/shajibul/Bangladesh_Cold_Wave/02_metadata/step6b_station_homogeneity_status.csv

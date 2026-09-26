@@ -1,0 +1,20 @@
+{
+  "step": "Step 16B",
+  "title": "Tmax quality control and daily DJF covariate dataset",
+  "tmin_source": "analysis_tmin_unadjusted from the Step 6C/7D cleaned DJF dataset",
+  "tmax_source": "raw BMD Max.T (MaxT_MinT_1981_2024_raw.xlsx); ends June 2024, so 2024/25 has no Tmax",
+  "tmax_qc": {
+    "physical_range_degC": [
+      0.0,
+      40.0
+    ],
+    "reject_if_below_cleaned_tmin": true,
+    "climatological_outlier_sd": 5.0,
+    "spatial_departure_flag_only_degC": 10.0
+  },
+  "anomalies": "calendar-day mean 1991-2020, +/-7-day window; station temperature climatologies use DJF data only, so windows are truncated at 1 Dec and 28 Feb",
+  "national_mean": "area-weighted with Step 7D Voronoi weights; missing if observed area < 0.8",
+  "era5": "Step 16A 00 UTC box means; anomalies as above; tendency = anomaly(day) - anomaly(day-1)",
+  "rrwp_causality": "same-day R is centred (+/-7 days) and flagged non-causal; causal versions are R(t-7) and the trailing 3-day mean of the standardized instantaneous envelope",
+  "created_utc": "2026-09-23T17:35:44.095882+00:00"
+}

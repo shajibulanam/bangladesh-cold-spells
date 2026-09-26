@@ -1,0 +1,62 @@
+{
+  "step": "Step 16M",
+  "title": "Remote-driver duration tests and mechanism-extended hazard",
+  "windows": {
+    "pre10": [
+      -10,
+      -1
+    ],
+    "pre5": [
+      -5,
+      -1
+    ],
+    "onset_0_2": [
+      0,
+      2
+    ]
+  },
+  "drivers": [
+    "siberian_high_std_anom",
+    "ural_blocking_fraction_anom",
+    "mech_nigp_adv850_k_day_anom",
+    "mech_bd_adv850_k_day_anom",
+    "era5_bd_v850_anom",
+    "era5_sa_z500_anom",
+    "mech_jet200_core_lat_70_100e_anom",
+    "mech_jet200_core_speed_70_100e_anom",
+    "rrwp_asian_corridor_R_lag7",
+    "rrwp_central_asia_R_lag7",
+    "rrwp_eurasian_upstream_R_lag7",
+    "rrwp_asian_corridor_envelope_z_trailing3",
+    "nam_proxy_100",
+    "nam_proxy_10"
+  ],
+  "mechanism_family": [
+    "mech_bd_adv850_k_day_anom",
+    "mech_nigp_adv850_k_day_anom",
+    "mech_jet200_core_lat_70_100e_anom",
+    "mech_jet200_core_speed_70_100e_anom",
+    "mech_bd_adv850_k_day_tend",
+    "mech_nigp_adv850_k_day_tend",
+    "mech_jet200_core_lat_70_100e_tend",
+    "mech_jet200_core_speed_70_100e_tend"
+  ],
+  "duration_statistics": [
+    "persistent minus short difference",
+    "Spearman rho with duration (all 85)"
+  ],
+  "bootstrap": {
+    "unit": "winter",
+    "repetitions": 5000,
+    "hazard_repetitions": 2000,
+    "seed": 20260923
+  },
+  "multiple_testing": "BH within window x statistic (Part A); within the mechanism family (Part B)",
+  "hazard_adjustment": [
+    "log_event_age",
+    "winter_day_index",
+    "nat_tmin_anom",
+    "winter_start_year"
+  ],
+  "created_utc": "2026-09-23T20:45:49.229445+00:00"
+}

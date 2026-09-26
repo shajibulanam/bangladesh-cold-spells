@@ -1,0 +1,59 @@
+qc_stage: step6b_source_transition_and_homogeneity_screening
+
+temperature_variable:
+  value_column: tmin_cleaned_stage2
+  climatology_column: tmin_clim_median
+
+monthly_series:
+  minimum_daily_completeness_percent: 80.0
+  network_reference_method: leave_one_station_out_median
+  minimum_network_neighbours: 8
+
+source_transition:
+  transition_date: 2022-01-01
+
+  pre_period:
+    start_date: 2018-01-01
+    end_date: 2021-12-31
+
+  post_period:
+    start_date: 2022-01-01
+    end_date: 2025-12-31
+
+  minimum_all_months_per_period: 30
+  minimum_djf_months_per_period: 8
+
+  bootstrap_repetitions: 5000
+  bootstrap_seed: 20260624
+
+  minimum_robust_scale_celsius: 0.50
+
+  moderate_shift:
+    minimum_absolute_shift_celsius: 1.0
+    minimum_standardized_shift: 1.5
+
+  high_shift:
+    minimum_absolute_shift_celsius: 1.5
+    minimum_standardized_shift: 2.5
+
+  variance_ratio_threshold: 2.0
+
+general_breakpoint_scan:
+  minimum_valid_months_per_year: 8
+  minimum_years_each_side: 10
+
+  moderate_break:
+    minimum_absolute_shift_celsius: 1.0
+    minimum_standardized_shift: 1.5
+
+  high_break:
+    minimum_absolute_shift_celsius: 1.5
+    minimum_standardized_shift: 2.5
+
+important:
+  - All tests use station residuals relative to the fixed-network median.
+  - The leave-one-out reference reduces contamination by regional climate variability.
+  - A flagged discontinuity is diagnostic evidence, not proof of a metadata break.
+  - No station is removed in Step 6B.
+  - No temperature observation is adjusted in Step 6B.
+  - Homogeneity adjustments require a separate documented decision.

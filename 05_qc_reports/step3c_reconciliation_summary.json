@@ -1,0 +1,38 @@
+{
+  "created_utc": "2026-06-21T17:52:19.718827+00:00",
+  "overlap_start": "2022-01-01",
+  "overlap_end": "2024-12-31",
+  "common_stations": 42,
+  "old_filtered_source_rows": 45989,
+  "new_filtered_daily_rows": 46002,
+  "old_unique_station_date_keys": 45931,
+  "new_unique_station_date_keys": 46002,
+  "reconciliation_rows": 46032,
+  "minimum_reconciled_date": "2022-01-01",
+  "maximum_reconciled_date": "2024-12-31",
+  "old_duplicate_source_rows": 116,
+  "old_duplicate_keys": 58,
+  "new_duplicate_keys": 0,
+  "numeric_conflicts": 34,
+  "new_zero_records": 9,
+  "source_coverage_gaps": 131,
+  "review_required_records": 204,
+  "reconciliation_status_counts": {
+    "both_missing": 69,
+    "exact_agreement": 38079,
+    "new_fills_old_missing": 7680,
+    "new_only_record": 101,
+    "new_zero_requires_review": 9,
+    "numeric_conflict_new_selected": 34,
+    "old_conflicting_duplicate_new_selected": 30,
+    "old_only_record": 30
+  },
+  "old_duplicate_status_counts": {
+    "conflicting_duplicate": 30,
+    "exact_duplicate_same_value": 28,
+    "old_record_absent": 101,
+    "unique": 45873
+  },
+  "output_file": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/tmin_overlap_2022_2024_reconciliation.parquet",
+  "output_size_bytes": 537441
+}

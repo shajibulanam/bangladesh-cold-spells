@@ -1,0 +1,13 @@
+{
+  "created_utc": "2026-07-08T16:01:40.494927+00:00",
+  "available_date_count_pressure_level": 7290,
+  "available_date_count_single_level_instant": 7290,
+  "available_date_count_single_level_accum": 7290,
+  "common_available_date_count": 7290,
+  "event_count": 85,
+  "events_complete_minus10_to_plus10": 85,
+  "events_complete_minus45_to_plus10": 85,
+  "event_window_csv": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/era5_preprocessed/event_windows/era5_event_window_availability.csv",
+  "summary_csv": "/home/shajibul/Bangladesh_Cold_Wave/05_qc_reports/era5/step9b_era5_event_window_availability_summary.csv",
+  "important_note": "Because only November-February ERA5 data are downloaded, some -45 to +10 windows may be incomplete."
+}

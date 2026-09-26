@@ -1,0 +1,15 @@
+{
+  "created_utc": "2026-06-20T15:27:56.190447+00:00",
+  "temperature_unique_station_names": 42,
+  "metadata_station_records": 46,
+  "matched_temperature_stations": 42,
+  "unmatched_temperature_stations": 0,
+  "metadata_only_stations": 4,
+  "duplicate_station_id_matches": 0,
+  "metadata_only_station_names": [
+    "Nikli",
+    "Dighinala",
+    "Saint Martin",
+    "Bandarban"
+  ]
+}

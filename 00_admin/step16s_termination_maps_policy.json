@@ -1,0 +1,23 @@
+{
+  "step": "Step 16S",
+  "lags_from_last_event_day": [
+    -2,
+    0,
+    1
+  ],
+  "domain_lat_lon": [
+    10.0,
+    45.0,
+    60.0,
+    110.0
+  ],
+  "coarsening": "4x4 block mean (0.25 -> 1 degree)",
+  "climatology": "Step 9C calendar-day",
+  "significance": {
+    "bootstrap": "winter-block",
+    "resamples": 1000,
+    "fdr_q": 0.05,
+    "seed": 20260923
+  },
+  "created_utc": "2026-09-24T18:01:17.523946+00:00"
+}

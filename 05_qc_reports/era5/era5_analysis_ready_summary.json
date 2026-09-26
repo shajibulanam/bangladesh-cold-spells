@@ -1,0 +1,47 @@
+{
+  "created_utc": "2026-07-05T19:53:33.623397+00:00",
+  "analysis_ready": true,
+  "month_matrix_ok": true,
+  "pressure_levels_all_ok": true,
+  "issue_count": 0,
+  "expected_months_per_group": 160,
+  "groups": [
+    {
+      "data_group": "pressure_level",
+      "file_count": 160,
+      "readable_count": 160,
+      "unique_months": 160,
+      "expected_variables_all_present": true,
+      "time_count_all_ok": true,
+      "all_times_00utc": true,
+      "domain_all_ok": true
+    },
+    {
+      "data_group": "single_level_accum",
+      "file_count": 160,
+      "readable_count": 160,
+      "unique_months": 160,
+      "expected_variables_all_present": true,
+      "time_count_all_ok": true,
+      "all_times_00utc": true,
+      "domain_all_ok": true
+    },
+    {
+      "data_group": "single_level_instant",
+      "file_count": 160,
+      "readable_count": 160,
+      "unique_months": 160,
+      "expected_variables_all_present": true,
+      "time_count_all_ok": true,
+      "all_times_00utc": true,
+      "domain_all_ok": true
+    }
+  ],
+  "pressure_level_directory": "/home/shajibul/Bangladesh_Cold_Wave/01_raw_data/era5/pressure_level",
+  "single_level_instant_directory": "/home/shajibul/Bangladesh_Cold_Wave/01_raw_data/era5/single_level_extracted/instant",
+  "single_level_accum_directory": "/home/shajibul/Bangladesh_Cold_Wave/01_raw_data/era5/single_level_extracted/accum",
+  "validation_csv": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/era5_inventory/era5_analysis_ready_file_validation.csv",
+  "month_matrix_csv": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/era5_inventory/era5_analysis_ready_month_matrix.csv",
+  "issues_csv": "/home/shajibul/Bangladesh_Cold_Wave/05_qc_reports/era5/era5_analysis_ready_issues.csv",
+  "note": "ERA5 files are daily 00 UTC fields, not daily means. The validated domain is 10N-70N and 30E-120E."
+}

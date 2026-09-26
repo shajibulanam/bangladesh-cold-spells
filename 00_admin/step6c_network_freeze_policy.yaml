@@ -1,0 +1,56 @@
+stage: step6c_analytical_network_freeze
+
+study_period:
+  first_winter_start_year: 1985
+  last_winter_start_year: 2024
+  winter_months: [12, 1, 2]
+
+temperature:
+  input_column: tmin_cleaned_stage2
+  output_column: analysis_tmin_unadjusted
+  homogenization_allowed: false
+  interpolation_allowed: false
+  statistical_adjustment_allowed: false
+
+primary_network_id: primary_all_fixed_unadjusted
+
+networks:
+  primary_all_fixed_unadjusted:
+    description: All Step 6A fixed-network stations retained without adjustment
+    exclude_combined_homogeneity_statuses: []
+    exclude_source_transition_statuses: []
+
+  sensitivity_exclude_high:
+    description: Excludes high-priority combined homogeneity signals
+    exclude_combined_homogeneity_statuses:
+      - high_priority_homogeneity_review
+    exclude_source_transition_statuses: []
+
+  sensitivity_stable_only:
+    description: Excludes high- and moderate-priority combined homogeneity signals
+    exclude_combined_homogeneity_statuses:
+      - high_priority_homogeneity_review
+      - moderate_priority_homogeneity_review
+    exclude_source_transition_statuses: []
+
+  sensitivity_no_source_transition:
+    description: Excludes high and moderate January 2022 source-transition signals
+    exclude_combined_homogeneity_statuses: []
+    exclude_source_transition_statuses:
+      - high_source_transition_signal
+      - moderate_source_transition_signal
+
+station_winter_use:
+  complete_winter_required: true
+
+winter_network_eligibility:
+  minimum_station_fraction: 0.80
+  minimum_station_count: 15
+
+important:
+  - The primary analytical network retains all Step 6A fixed stations.
+  - Homogeneity diagnostics are not used to alter temperature values.
+  - Flagged stations are excluded only in sensitivity experiments.
+  - A station is usable in a winter only when that station-winter passed Step 6A completeness.
+  - The analysis dataset contains every expected DJF calendar date.
+  - Absent observations remain explicitly missing.

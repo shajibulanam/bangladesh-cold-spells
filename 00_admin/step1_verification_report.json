@@ -1,0 +1,87 @@
+{
+  "verification_time_utc": "2026-06-20T15:02:23.500027+00:00",
+  "python_version": "3.13.13 | packaged by Anaconda, Inc. | (main, Apr 14 2026, 06:19:41) [GCC 14.3.0]",
+  "platform": "Linux-6.8.0-124-generic-x86_64-with-glibc2.35",
+  "files": {
+    "temperature": {
+      "path": "/home/shajibul/Bangladesh_Cold_Wave/01_raw_data/MaxT_MinT_1981_2024_raw.xlsx",
+      "exists": true,
+      "size_bytes": 15590356,
+      "sha256": "eb2ac6137dfafa4fbf332efeb88f0d6a6bee8836d519612e2f6d41e039463f27",
+      "workbook_readable": true,
+      "sheets": [
+        {
+          "sheet_name": "MaxT & MinT",
+          "reported_rows": 548215,
+          "reported_columns": 6,
+          "first_rows_preview": [
+            [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            [
+              "Station",
+              "YEAR",
+              "Month",
+              "DATE",
+              "Max.T",
+              "Min.T"
+            ],
+            [
+              "Dhaka",
+              1981,
+              1,
+              1,
+              23.9,
+              10.7
+            ]
+          ]
+        }
+      ]
+    },
+    "station_metadata": {
+      "path": "/home/shajibul/Bangladesh_Cold_Wave/01_raw_data/All_station_BMD_raw.xlsx",
+      "exists": true,
+      "size_bytes": 8083,
+      "sha256": "20f04318c76fd9ae73c2d8f62be872859bb43e590913667f8a439d230100b27e",
+      "workbook_readable": true,
+      "sheets": [
+        {
+          "sheet_name": "Station_Info",
+          "reported_rows": 47,
+          "reported_columns": 4,
+          "first_rows_preview": [
+            [
+              "St_name",
+              "St_ID",
+              "Lat",
+              "Lon"
+            ],
+            [
+              "Dhaka",
+              41923,
+              23.766666666667,
+              90.383333333333
+            ],
+            [
+              "Mymensingh",
+              41886,
+              24.716666666667,
+              90.433333333333
+            ]
+          ]
+        },
+        {
+          "sheet_name": "Sheet1",
+          "reported_rows": 1,
+          "reported_columns": 1,
+          "first_rows_preview": []
+        }
+      ]
+    }
+  }
+}

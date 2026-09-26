@@ -1,0 +1,13 @@
+variable,label,onset_mean,onset_ci_low,onset_ci_high,sustained_lead_day,sign_at_onset
+nat_tmin_anom,National Tmin,-2.4165,-2.5836,-2.2548,-1.0000,-1
+siberian_high_std_anom,Siberian High,-0.0211,-0.2705,0.2371,,0
+ural_blocking_fraction_anom,Ural blocking,-0.0135,-0.0442,0.0213,,0
+mech_nigp_adv850_k_day_anom,"Adv850, NW IGP",0.2877,0.0627,0.5248,0.0000,1
+mech_bd_adv850_k_day_anom,"Adv850, Bangladesh",-1.1187,-1.3724,-0.8752,-1.0000,-1
+era5_bd_v850_anom,"v850, Bangladesh",-1.0303,-1.2901,-0.7748,0.0000,-1
+era5_sa_z500_anom,"Z500, South Asia",-16.5287,-21.7750,-10.9455,-13.0000,-1
+mech_jet200_core_lat_70_100e_anom,Jet latitude,0.0016,-0.7155,0.7664,,0
+mech_jet200_core_speed_70_100e_anom,Jet speed,3.3817,1.1945,5.3664,-10.0000,1
+rrwp_asian_corridor_envelope_z_trailing3,Wave envelope,-0.0183,-0.1750,0.1516,,0
+nam_proxy_100,NAM 100 hPa,0.4278,0.0925,0.7362,-15.0000,1
+nam_proxy_10,NAM 10 hPa,0.3654,0.0893,0.6115,-15.0000,1

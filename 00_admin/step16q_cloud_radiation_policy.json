@@ -1,0 +1,32 @@
+{
+  "step": "Step 16Q",
+  "input": "03_intermediate/era5_box_daily/era5_cloud_radiation_daily_oct_mar.csv",
+  "hazard_family": [
+    "cld_strd_wm2_anom",
+    "cld_ssrd_wm2_anom",
+    "cld_tcc_mean_anom",
+    "cld_tcc_00utc_anom",
+    "cld_lowcloud1000_frac_00utc_anom",
+    "cld_fog300_frac_00utc_anom",
+    "cld_td2m_mean_anom",
+    "cld_dpd_00utc_anom",
+    "cld_blh_06utc_anom",
+    "cld_strd_wm2_tend",
+    "cld_tcc_mean_tend",
+    "cld_lowcloud1000_frac_00utc_tend",
+    "cld_td2m_mean_tend",
+    "cld_dpd_00utc_tend"
+  ],
+  "hazard_adjustment": [
+    "log_event_age",
+    "winter_day_index",
+    "nat_tmin_anom",
+    "winter_start_year"
+  ],
+  "hazard_bootstrap": 2000,
+  "bootstrap": 5000,
+  "seed": 20260923,
+  "multiple_testing": "BH within the cloud/radiation hazard family; BH across variables in Part C",
+  "cold_day_period": "1985/86-2023/24",
+  "created_utc": "2026-09-24T17:04:45.857828+00:00"
+}

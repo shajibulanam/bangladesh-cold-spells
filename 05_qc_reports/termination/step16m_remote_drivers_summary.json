@@ -1,0 +1,10 @@
+{
+  "completed_utc": "2026-09-23T20:47:21.946273+00:00",
+  "duration_tests_fdr_significant": 0,
+  "mechanism_family_fdr_significant": [
+    "mech_bd_adv850_k_day_anom",
+    "mech_jet200_core_speed_70_100e_anom",
+    "mech_bd_adv850_k_day_tend",
+    "mech_nigp_adv850_k_day_tend"
+  ]
+}

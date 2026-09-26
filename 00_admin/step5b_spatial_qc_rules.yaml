@@ -1,0 +1,29 @@
+qc_stage: step5b_spatial_consistency
+
+station_network:
+  maximum_neighbours: 5
+  maximum_distance_km: 250.0
+  minimum_fixed_neighbours: 3
+  minimum_same_day_neighbours: 3
+
+spatial_residual:
+  minimum_robust_scale_celsius: 1.0
+  absolute_residual_threshold_celsius: 8.0
+  standardized_residual_threshold: 4.0
+
+regional_support:
+  minimum_absolute_neighbour_median_anomaly_celsius: 3.0
+  maximum_residual_from_neighbour_median_celsius: 4.0
+  minimum_same_sign_fraction: 0.60
+
+cold_event_support:
+  target_tmin_anomaly_maximum_celsius: -3.0
+  neighbour_median_tmin_anomaly_maximum_celsius: -3.0
+
+important:
+  - Spatial checks apply only to Step 5A candidate records.
+  - Comparisons use station climatological anomalies rather than raw temperature.
+  - Metadata-pending stations are retained but not spatially tested.
+  - Regional support is evidence for retaining a candidate, not proof of correctness.
+  - Isolated spatial outliers will be handled in Step 5C.
+  - No temperature value may be altered in Step 5B.

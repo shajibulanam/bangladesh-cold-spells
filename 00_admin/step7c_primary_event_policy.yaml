@@ -1,0 +1,38 @@
+stage: step7c_primary_cold_spell_event_catalogue
+
+study_period:
+  first_winter_start_year: 1985
+  last_winter_start_year: 2024
+  expected_winter_count: 40
+
+network:
+  membership_column: member_primary_all_fixed_unadjusted
+  station_winter_usable_column: station_winter_usable_primary_all_fixed_unadjusted
+
+daily_data_availability:
+  minimum_complete_station_fraction: 0.80
+  minimum_complete_station_count: 15
+  minimum_observed_station_fraction: 0.80
+  minimum_observed_station_count: 15
+
+cold_station_condition:
+  column: station_compound_cold_day_primary
+
+national_cold_day:
+  minimum_cold_station_fraction: 0.20
+  minimum_cold_station_count: 5
+
+cold_spell_event:
+  minimum_consecutive_days: 3
+  merge_one_day_gaps: false
+  allow_event_across_winter_boundary: false
+
+important:
+  - The primary station condition requires both station p10 and BMD Tmin at or below 10 C.
+  - Spatial percentage uses observed eligible stations as the denominator.
+  - At least five stations must satisfy the compound cold condition.
+  - At least three uninterrupted consecutive days are required.
+  - A nonqualifying day breaks the event.
+  - Events cannot cross DJF winter boundaries.
+  - No temperature is changed.
+  - No missing value is interpolated.

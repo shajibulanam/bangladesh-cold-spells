@@ -1,0 +1,41 @@
+{
+  "step": "Step 16J",
+  "title": "Daily 850-hPa temperature advection and 200-hPa jet diagnostics",
+  "time": "00 UTC daily snapshots, October-March, winters 1985/86-2024/25",
+  "advection": {
+    "level_hpa": 850,
+    "formula": "-(u dT/dx + v dT/dy)",
+    "derivatives": "centred differences on the native 0.25-degree grid (xarray.differentiate)",
+    "units": "K per day",
+    "boxes": {
+      "bd": [
+        20.5,
+        26.8,
+        88.0,
+        93.0
+      ],
+      "nigp": [
+        25.0,
+        32.0,
+        75.0,
+        88.0
+      ]
+    },
+    "averaging": "cosine-latitude weighted"
+  },
+  "jet": {
+    "level_hpa": 200.0,
+    "longitude_band": [
+      70.0,
+      100.0
+    ],
+    "latitude_band": [
+      15.0,
+      45.0
+    ],
+    "core_latitude": "latitude of maximum longitude-mean zonal wind",
+    "core_speed": "maximum longitude-mean zonal wind"
+  },
+  "inputs": "Step 9B standardized pressure-level files (read only)",
+  "created_utc": "2026-09-23T20:19:31.145207+00:00"
+}

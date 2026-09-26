@@ -1,0 +1,15 @@
+{
+  "step": "Step 16G",
+  "title": "Manuscript figures for Step 16",
+  "inputs": "Step 16C-16F tables and catalogues only; no statistics are recomputed",
+  "style": {
+    "width_mm": 180,
+    "font_pt": 8,
+    "palette": "Okabe-Ito",
+    "formats": [
+      "png 300 dpi",
+      "pdf"
+    ]
+  },
+  "created_utc": "2026-09-23T19:41:54.406540+00:00"
+}

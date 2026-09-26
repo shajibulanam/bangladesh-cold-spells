@@ -1,0 +1,12 @@
+{
+  "created_utc": "2026-08-03T02:16:19.546698+00:00",
+  "expected_files": 320,
+  "valid_before": 320,
+  "requested_for_recovery": 0,
+  "valid_after": 320,
+  "remaining_invalid": 0,
+  "domain": "20-80N, 0-359E",
+  "pressure_level_hpa": 250,
+  "time": "00 UTC",
+  "grid": "1 degree"
+}

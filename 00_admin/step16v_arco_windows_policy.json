@@ -1,0 +1,19 @@
+{
+  "step": "Step 16V",
+  "source": "https://arco.datastores.ecmwf.int/cadl-arco-geo-002/arco/reanalysis_era5_single_levels/sfc/geoChunked.zarr",
+  "box": [
+    20.5,
+    26.8,
+    88.0,
+    93.0
+  ],
+  "day_window_utc": "00-11 (06-17 LT), ends before the terminating night",
+  "night_window_utc": "12-23 (18-05 LT), overlaps the terminating night",
+  "radiation": "hourly accumulation / 3600 s, averaged over the window",
+  "precipitation": "hourly accumulation summed over the window, converted to mm",
+  "cloud_base_proxies": {
+    "low1000": "cloud base < 1000 m",
+    "fog300": "cloud base < 300 m"
+  },
+  "created_utc": "2026-09-25T06:45:18.076513+00:00"
+}

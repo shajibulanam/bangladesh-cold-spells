@@ -1,0 +1,24 @@
+{
+  "step": "Step 16H",
+  "title": "Bootstrap bands for end-aligned all-event composites",
+  "alignment": "days -5..+5 relative to the last event day",
+  "events": "all 85 primary events",
+  "bootstrap": {
+    "unit": "winter",
+    "repetitions": 5000,
+    "seed": 20260923,
+    "interval": "2.5-97.5 percentile"
+  },
+  "variables": [
+    "nat_tmin_anom",
+    "nat_tmax_anom",
+    "nat_dtr_anom",
+    "era5_bd_wspd10_anom",
+    "era5_bd_t850_anom",
+    "era5_bd_v850_anom",
+    "era5_bd_mslp_anom",
+    "era5_sa_z500_anom"
+  ],
+  "input": "Step 16B daily covariate dataset",
+  "created_utc": "2026-09-23T19:41:53.558956+00:00"
+}

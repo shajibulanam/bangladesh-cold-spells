@@ -1,0 +1,9 @@
+{
+  "step": "Step 16X",
+  "split_winter": 2004,
+  "bootstrap": 2000,
+  "seed": 20260923,
+  "power": "80%, two-sided alpha 0.05, MDD = 2.80 x SE (SE from bootstrap CI width / 3.92)",
+  "global_fdr": "Benjamini-Hochberg over all causal predictors of all families",
+  "created_utc": "2026-09-25T08:53:24.413634+00:00"
+}

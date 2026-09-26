@@ -1,0 +1,7 @@
+{
+  "created_utc": "2026-06-21T18:59:35.659648+00:00",
+  "value_review_rows": 310,
+  "invalid_date_review_rows": 54,
+  "value_template": "/home/shajibul/Bangladesh_Cold_Wave/05_qc_reports/step4b_value_decision_template.csv",
+  "invalid_date_template": "/home/shajibul/Bangladesh_Cold_Wave/05_qc_reports/step4b_invalid_date_decision_template.csv"
+}

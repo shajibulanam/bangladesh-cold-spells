@@ -1,0 +1,33 @@
+{
+  "created_utc": "2026-07-09T22:06:03.824324+00:00",
+  "event_count": 85,
+  "lag_min": -45,
+  "lag_max": 10,
+  "lag_count": 56,
+  "method": "event-day ERA5 minus 1991-2020 MM-DD climatology, then mean over events by lag",
+  "composite_files_written": 8,
+  "composite_files_failed": 0,
+  "group_summary": [
+    {
+      "group": "pressure_level",
+      "variables": 4,
+      "written": 4,
+      "failed": 0,
+      "total_size_mb": 390.078,
+      "min_event_count": 85,
+      "max_event_count": 85
+    },
+    {
+      "group": "single_level_instant",
+      "variables": 4,
+      "written": 4,
+      "failed": 0,
+      "total_size_mb": 57.799,
+      "min_event_count": 85,
+      "max_event_count": 85
+    }
+  ],
+  "log_csv": "/home/shajibul/Bangladesh_Cold_Wave/05_qc_reports/era5/step9d_era5_event_lag_composite_log.csv",
+  "event_lag_table": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/era5_event_composites/composite_tables/step9d_event_lag_date_table.csv",
+  "output_folder": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/era5_event_composites/composite_netcdf"
+}

@@ -1,0 +1,26 @@
+qc_stage: step4a_first_pass
+
+temperature_units: degrees_Celsius
+
+physical_screening:
+  tmin_minimum: -5.0
+  tmin_maximum: 45.0
+  tmax_minimum: 0.0
+  tmax_maximum: 50.0
+
+diurnal_temperature_range:
+  zero_tolerance: 0.000001
+  high_dtr_threshold: 30.0
+
+zero_temperature:
+  flag_all_tmin_zero_values: true
+  priority_winter_months: [12, 1, 2]
+
+missing_data:
+  tmax_2025_missing_is_expected: true
+
+important:
+  - Screening flags do not prove that an observation is erroneous.
+  - No temperature value may be changed automatically in Step 4A.
+  - Flagged values must be reviewed using original BMD records,
+    temporal consistency and neighbouring stations.
