@@ -1,6 +1,6 @@
 family,predictor,n_rows,n_terminations,odds_ratio_per_sd,ci_low,ci_high,p_bootstrap,n_boot_valid,q_fdr_causal,ci_excludes_one,fdr_significant
-station_temperature,nat_tmax_anom,259,84,1.6834,1.1938,2.7236,0.0030,2000,0.0234,True,True
-station_temperature,nat_dtr_anom,259,84,1.6450,1.1834,2.6115,0.0030,2000,0.0234,True,True
+station_temperature,nat_tmax_anom,260,85,1.6638,1.1857,2.6655,0.0030,2000,0.0234,True,True
+station_temperature,nat_dtr_anom,260,85,1.6309,1.1745,2.5711,0.0030,2000,0.0234,True,True
 station_temperature,p10_cold_national_area_fraction,260,85,0.8331,0.3676,2.0562,0.6630,2000,0.7388,False,False
 era5_state,era5_bd_t850_anom,260,85,1.0526,0.7276,1.5561,0.8070,2000,0.8506,False,False
 era5_state,era5_bd_stab_t2m_minus_t850_anom,260,85,0.9157,0.6412,1.2810,0.5980,2000,0.7067,False,False

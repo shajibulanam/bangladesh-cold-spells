@@ -19,5 +19,5 @@
     "seed": 20260923
   },
   "cross_validation": "leave-one-winter-out; AUC and Brier score on held-out risk-set rows",
-  "created_utc": "2026-09-23T17:53:21.642988+00:00"
+  "created_utc": "2026-09-28T18:07:32.998186+00:00"
 }

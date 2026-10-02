@@ -1,5 +1,5 @@
 type,pure,events,mean_duration,mean_nat_tmin_anom,mean_nat_tmax_anom,mean_nat_dtr_anom
-cold_day,False,32,5.719,-1.889,-3.298,-1.407
-cold_day,True,39,4.923,0.535,-3.141,-3.678
-cold_night,False,34,5.588,-2.935,-2.515,0.420
+cold_day,False,33,5.697,-1.849,-3.267,-1.418
+cold_day,True,40,4.875,0.549,-3.137,-3.687
+cold_night,False,35,5.514,-2.894,-2.476,0.420
 cold_night,True,50,4.740,-2.619,-0.753,1.867

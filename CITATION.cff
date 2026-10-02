@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this code or the derived data, please cite the article and this archive."
 title: "Code and derived data for: Do stratospheric and recurrent Rossby-wave precursors control persistent cold spells over Bangladesh? Evidence from 40 winters, 1985/86-2024/25"
-version: 1.0.0
+version: 1.1.0
 license: MIT
 authors:
   - family-names: Anam
@@ -16,5 +16,3 @@ authors:
     given-names: Shipa Rani
     affiliation: "Department of Meteorology, University of Dhaka"
     orcid: "https://orcid.org/0009-0001-0209-1490"
-doi: 10.5281/zenodo.22981714
-repository-code: "https://github.com/shajibulanam/bangladesh-cold-spells"

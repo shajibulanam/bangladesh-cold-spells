@@ -13,7 +13,7 @@ Step 16W - Analyses 7A and 7B.
     Adjustment and inference exactly as Step 16D/16E (log event age, season day, Tmin anomaly, year;
     winter-block bootstrap, 2,000 resamples).
 
-7B  Precipitation in pure cold-day versus pure cold-night spells (1985/86-2023/24):
+7B  Precipitation in pure cold-day versus pure cold-night spells (1985/86-2024/25):
     event-mean UTC-day precipitation, fraction of spell days with >= 1 mm, day-window precipitation;
     winter-block bootstrap (5,000). Sensitivity: the Table 1 contrast repeated using only DRY cold-day
     spells (event-mean precipitation < 1 mm/day).
@@ -53,7 +53,7 @@ T_PRECIP = C.TERM_TABLES / "table_115_precipitation_cold_day_vs_night.csv"
 T_DRY = C.TERM_TABLES / "table_116_dry_cold_day_vs_cold_night_contrast.csv"
 REPORT = C.TERM_QC / "step16w_prenight_precip_report.txt"
 N_BOOT_HAZ, N_BOOT, SEED = 2000, 5000, 20260923
-LAST_TMAX_WINTER = 2023
+LAST_TMAX_WINTER = 2024
 WET_MM = 1.0
 
 PRENIGHT = ["win_strd_day_anom", "win_ssrd_day_anom", "win_tcc_day_anom", "win_td2m_day_anom",

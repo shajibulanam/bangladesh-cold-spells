@@ -1,0 +1,74 @@
+Robustness predictors: ['nat_tmax_anom', 'nat_dtr_anom', 'era5_bd_wspd10_anom', 'era5_bd_t850_tend', 'era5_bd_stab_t2m_minus_t850_tend', 'era5_bd_z500_tend', 'era5_bd_mslp_tend', 'era5_bd_v850_tend', 'era5_sa_z500_tend']
+Multivariable predictors: ['nat_tmax_anom', 'era5_bd_wspd10_anom', 'era5_bd_stab_t2m_minus_t850_tend', 'era5_sa_z500_tend']
+done scenario bmd_area20_duration3
+done scenario p05_area20_duration3
+done scenario p10_area10_duration3
+done scenario p10_area20_duration3_gap1
+done scenario p10_area20_duration4
+done scenario p10_area30_duration3
+Step 16E - Hazard robustness, lead, multivariable model and duration trend
+========================================================================
+A. Duration trend
+                    statistic  estimate  ci_low  ci_high
+spearman_rho_duration_vs_year    -0.193  -0.358    0.007
+    ols_slope_days_per_decade    -0.547  -1.146   -0.040
+
+         decade  events  mean_duration  median_duration  persistent_events  short_events
+1985/86-1994/95      24       6.375000              5.5                 12             5
+1995/96-2004/05      23       4.652174              5.0                  5             8
+2005/06-2014/15      23       4.608696              5.0                  7            10
+2015/16-2024/25      15       4.266667              4.0                  2             7
+
+B/C/E. Odds ratio per SD across analyses (CI in table_95)
+analysis                          catalogue:bmd_area20_duration3  catalogue:p05_area20_duration3  catalogue:p10_area10_duration3  catalogue:p10_area20_duration3_gap1  catalogue:p10_area20_duration4  catalogue:p10_area30_duration3  detrended_covariates  lead_1_day  primary
+predictor                                                                                                                                                                                                                                                                       
+era5_bd_mslp_tend                                           0.94                            1.74                            0.77                                 0.81                            0.77                            1.07                  0.66        1.15     0.66
+era5_bd_stab_t2m_minus_t850_tend                            0.82                            0.36                            0.67                                 0.62                            0.66                            0.55                  0.62        1.19     0.62
+era5_bd_t850_tend                                           1.51                            2.57                            1.51                                 1.56                            1.49                            1.79                  1.50        0.76     1.50
+era5_bd_v850_tend                                           1.35                            1.14                            1.26                                 1.41                            1.30                            1.44                  1.39        0.94     1.39
+era5_bd_wspd10_anom                                         0.60                            1.48                            0.48                                 0.58                            0.54                            0.73                  0.53        0.74     0.53
+era5_bd_z500_tend                                           1.09                            1.32                            0.85                                 1.04                            0.75                            1.18                  0.74        1.07     0.74
+era5_sa_z500_tend                                           0.80                            1.44                            0.56                                 0.68                            0.60                            1.04                  0.58        0.92     0.58
+nat_dtr_anom                                                2.42                            1.48                            1.72                                 1.92                            1.96                            1.46                  1.61        1.11     1.63
+nat_tmax_anom                                               2.75                            1.69                            1.74                                 1.91                            1.95                            1.51                  1.66        1.11     1.66
+
+CI excludes 1, by analysis:
+analysis
+catalogue:bmd_area20_duration3         6
+catalogue:p05_area20_duration3         3
+catalogue:p10_area10_duration3         7
+catalogue:p10_area20_duration3_gap1    7
+catalogue:p10_area20_duration4         6
+catalogue:p10_area30_duration3         2
+detrended_covariates                   9
+lead_1_day                             0
+primary                                9
+
+D. Leave-one-winter-out
+                       predictor  primary_or  lowo_min_or  lowo_max_or  sign_stability  winters
+                   nat_tmax_anom       1.664        1.585        1.830             1.0       34
+                    nat_dtr_anom       1.631        1.556        1.787             1.0       34
+             era5_bd_wspd10_anom       0.528        0.475        0.581             1.0       34
+               era5_bd_t850_tend       1.501        1.443        1.649             1.0       34
+era5_bd_stab_t2m_minus_t850_tend       0.624        0.590        0.657             1.0       34
+               era5_bd_z500_tend       0.742        0.709        0.780             1.0       34
+               era5_bd_mslp_tend       0.655        0.595        0.702             1.0       34
+               era5_bd_v850_tend       1.387        1.321        1.456             1.0       34
+               era5_sa_z500_tend       0.580        0.544        0.618             1.0       34
+
+F. Multivariable model
+                            term  odds_ratio_per_sd  ci_low  ci_high   vif
+                   nat_tmax_anom              2.095   1.674    3.369 1.328
+             era5_bd_wspd10_anom              0.375   0.165    0.625 1.364
+era5_bd_stab_t2m_minus_t850_tend              0.415   0.238    0.605 1.149
+               era5_sa_z500_tend              0.661   0.416    0.955 1.280
+                   log_event_age              0.976   0.742    1.442 1.227
+                winter_day_index              2.350   1.614    4.019 1.162
+                   nat_tmin_anom              4.499   3.149    8.658 1.382
+               winter_start_year              1.182   0.857    1.782 1.150
+
+F. Leave-one-winter-out cross-validated skill
+                   model  cv_auc  cv_brier  ci_low  ci_high  climatological_brier
+         adjustment_only   0.765     0.184     NaN      NaN                  0.22
+adjustment_plus_synoptic   0.846     0.148     NaN      NaN                  0.22
+          auc_difference   0.081       NaN   0.026    0.159                  0.22

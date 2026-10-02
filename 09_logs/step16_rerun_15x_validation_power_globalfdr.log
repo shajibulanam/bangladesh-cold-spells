@@ -1,0 +1,40 @@
+Step 16X - Validation, power and global FDR
+============================================
+7C. Split-period validation
+          train            test  n_train_rows  n_test_rows  test_terminations  auc_adjustment_only  auc_plus_synoptic  auc_difference  auc_diff_ci_low  auc_diff_ci_high  brier_adjustment_only  brier_plus_synoptic  brier_climatology
+1985/86-2004/05 2005/06-2024/25           166           94                 38                0.783              0.875           0.092            0.021             0.188                  0.194                0.150              0.241
+2005/06-2024/25 1985/86-2004/05            94          166                 47                0.773              0.835           0.062           -0.012             0.158                  0.307                0.216              0.203
+Synoptic predictors: nat_tmax_anom;era5_bd_wspd10_anom;era5_bd_stab_t2m_minus_t850_tend;era5_sa_z500_tend
+
+7D. Minimum detectable differences, days 0-2 window
+   window                         variable  difference  ci_low  ci_high    se  mdd_80pct  pooled_between_event_sd  mdd_80pct_standardized
+onset_0_2                    nat_tmin_anom      -0.353  -0.682   -0.044 0.163      0.456                    0.709                   0.642
+onset_0_2                    nat_tmax_anom      -0.727  -1.433   -0.032 0.357      1.001                    1.513                   0.662
+onset_0_2                     nat_dtr_anom      -0.376  -1.026    0.238 0.322      0.903                    1.283                   0.704
+onset_0_2                 era5_bd_t2m_anom      -0.248  -0.579    0.093 0.171      0.480                    0.801                   0.599
+onset_0_2                era5_bd_t850_anom      -0.220  -1.036    0.562 0.408      1.142                    1.854                   0.616
+onset_0_2 era5_bd_stab_t2m_minus_t850_anom      -0.028  -0.804    0.714 0.387      1.085                    1.617                   0.671
+onset_0_2      era5_bd_thick_1000_500_anom       1.493 -16.518   19.390 9.160     25.663                   38.464                   0.667
+onset_0_2                era5_bd_z500_anom       2.439 -13.578   17.931 8.038     22.519                   34.988                   0.644
+onset_0_2                era5_bd_mslp_anom       0.132  -0.795    1.068 0.475      1.331                    1.839                   0.724
+onset_0_2                era5_bd_u850_anom       0.865   0.077    1.619 0.394      1.103                    1.703                   0.648
+onset_0_2                era5_bd_v850_anom       0.053  -0.480    0.570 0.268      0.750                    0.979                   0.767
+onset_0_2              era5_bd_wspd10_anom       0.153   0.002    0.300 0.076      0.213                    0.251                   0.848
+onset_0_2                era5_sa_t850_anom      -0.271  -0.891    0.360 0.319      0.894                    1.344                   0.665
+onset_0_2 era5_sa_stab_t2m_minus_t850_anom      -0.362  -0.807    0.085 0.228      0.638                    0.852                   0.748
+onset_0_2                era5_sa_z500_anom      -0.073 -11.175   11.030 5.664     15.869                   24.616                   0.645
+onset_0_2                era5_sa_mslp_anom       0.349  -0.804    1.438 0.572      1.603                    2.311                   0.694
+onset_0_2                era5_sa_u850_anom       0.164  -0.222    0.530 0.192      0.538                    0.831                   0.647
+onset_0_2                era5_sa_v850_anom      -0.160  -0.575    0.241 0.208      0.583                    0.666                   0.876
+
+7D. Median minimum detectable |rho| by window
+window
+onset_0_2    0.303
+pre10        0.270
+pre5         0.277
+
+7E. Predictors with global q < 0.05
+variant
+with_prenight_cloud_family    [nat_tmax_anom, nat_dtr_anom, era5_bd_wspd10_a...
+with_utc_day_cloud_family     [nat_tmax_anom, nat_dtr_anom, era5_bd_wspd10_a...
+

@@ -183,3 +183,54 @@ def load_covariates_with_mechanisms() -> pd.DataFrame:
     tend = anom.diff()
     tend.columns = [c.replace("_anom", "_tend") for c in tend.columns]
     return cov.join(anom).join(tend)
+
+
+# ----------------------------------------------------------------------------- merged Tmax (old archive + 2022-2025 file)
+RAW_TMAX_NEW = PROJECT_ROOT / "01_raw_data" / "Daily_Maximum_Temperature_2022_2025_raw.csv"
+NEW_SOURCE_START = pd.Timestamp("2022-01-01")
+TMAX_MISSING_CODES = (0.0,)  # exact 0.0 degC is a missing value entered as zero in the 2022-2025 file
+
+
+def _old_tmax() -> pd.DataFrame:
+    master = pd.read_csv(STATION_MASTER)
+    name_to_uid = dict(zip(master["old_xlsx_station_name"].astype(str).str.strip(), master["station_uid"]))
+    raw = pd.read_excel(RAW_TMAX_XLSX, header=None, skiprows=2,
+                        names=["station", "year", "month", "day", "tmax", "tmin"])
+    raw["station_uid"] = raw["station"].astype(str).str.strip().map(name_to_uid)
+    raw["date"] = pd.to_datetime(dict(year=raw["year"], month=raw["month"], day=raw["day"]), errors="coerce")
+    raw = raw.dropna(subset=["date", "station_uid"]).drop_duplicates(["station_uid", "date"], keep="first")
+    for c in ("tmax", "tmin"):
+        raw[c] = pd.to_numeric(raw[c], errors="coerce")
+    return raw[["station_uid", "date", "tmax", "tmin"]]
+
+
+def _new_tmax() -> pd.DataFrame:
+    master = pd.read_csv(STATION_MASTER)
+    name_to_uid = dict(zip(master["new_tmin_station_name"].astype(str).str.strip(), master["station_uid"]))
+    d = pd.read_csv(RAW_TMAX_NEW, skiprows=10, dtype=str)
+    d.columns = [c.strip() for c in d.columns]
+    days = [f"Day{i}" for i in range(1, 32)]
+    L = d.melt(id_vars=["Station", "Year", "Month"], value_vars=days, var_name="day", value_name="v")
+    L["date"] = pd.to_datetime(dict(year=pd.to_numeric(L["Year"]), month=pd.to_numeric(L["Month"]),
+                                    day=L["day"].str[3:].astype(int)), errors="coerce")
+    L["station_uid"] = L["Station"].astype(str).str.strip().map(name_to_uid)
+    L = L.dropna(subset=["date", "station_uid"])
+    L["tmax"] = pd.to_numeric(L["v"].astype(str).str.strip().replace({"**": None}), errors="coerce")
+    L["missing_code"] = L["tmax"].isin(TMAX_MISSING_CODES)
+    L.loc[L["missing_code"], "tmax"] = np.nan
+    return L[["station_uid", "date", "tmax", "missing_code"]].drop_duplicates(["station_uid", "date"])
+
+
+def raw_tmax_merged(return_parts: bool = False):
+    """Raw daily Tmax from both BMD sources, merged with the Step 2C rule used for Tmin:
+    before 2022 the old archive only; from 2022 the 2022-2025 file is selected where it has a value
+    (including where the two disagree) and the old archive fills its gaps. Exact 0.0 degC in the
+    2022-2025 file is treated as missing."""
+    old, new = _old_tmax(), _new_tmax()
+    m = old.merge(new.rename(columns={"tmax": "tmax_new"}), on=["station_uid", "date"], how="outer")
+    m = m.rename(columns={"tmax": "tmax_old"})
+    use_new = (m["date"] >= NEW_SOURCE_START) & m["tmax_new"].notna()
+    m["tmax"] = np.where(use_new, m["tmax_new"], m["tmax_old"])
+    m["tmax_source"] = np.where(use_new, "new_2022_2025", np.where(m["tmax_old"].notna(), "old_archive", "none"))
+    out = m[["station_uid", "date", "tmax", "tmin", "tmax_source"]].sort_values(["station_uid", "date"])
+    return (out, m) if return_parts else out

@@ -33,7 +33,7 @@ SCRIPTS=(
  09a_recover_z500_2024_12_nocache.py 09b_build_siberian_high_blocking_indices.py 09n_compute_tn_waf_diagnostics.py
  09s_download_rrwp_v250_global.py 09t_build_rrwp_r_metric.py
  11_stratosphere_common.py 11a_download_era5_stratosphere_daily.py 11b_build_stratospheric_indices.py 11c_detect_major_ssw_and_validate.py
- 15_termination_common.py 15a_extract_era5_box_daily.py 15b_build_daily_covariates.py 15c_leakage_free_persistence_tests.py
+ 15_termination_common.py 15a_extract_era5_box_daily.py 15a2_check_tmax_source_overlap.py 15b_build_daily_covariates.py 15c_leakage_free_persistence_tests.py
  15d_discrete_time_hazard_model.py 15e_hazard_robustness_and_trend.py 15f_cold_day_spell_catalogue.py
  15g_plot_termination_figures.py 15h_end_aligned_bootstrap_bands.py 15i_plot_onset_pathway_maps.py
  15j_extract_advection_jet_daily.py 15k3_extract_cloud_radiation_arco.py 15l_onset_timeline.py
@@ -123,7 +123,7 @@ cat > "${RELEASE}/CITATION.cff" <<'EOF'
 cff-version: 1.2.0
 message: "If you use this code or the derived data, please cite the article and this archive."
 title: "Code and derived data for: Do stratospheric and recurrent Rossby-wave precursors control persistent cold spells over Bangladesh? Evidence from 40 winters, 1985/86-2024/25"
-version: 1.0.0
+version: 1.1.0
 license: MIT
 authors:
   - family-names: Anam
@@ -180,7 +180,7 @@ are in `00_admin/*policy*`; output checksums in `00_admin/*_sha256.txt`; all ran
    thresholds and catalogues `06`.
 2. ERA5 preparation `08a`-`08i`; onset significance `08l`; indices `09b` (Siberian High, blocking), `09n` (wave-activity
    flux), `09t` (recurrent Rossby wave metric R), `11b`/`11c` (stratospheric indices, SSWs).
-3. Analysis (Step 16): `15a, 15b, 15c, 15d, 15e, 15f, 15h, 15j, 15k3, 15l, 15m, 15n, 15o, 15q, 15v, 15w, 15x`;
+3. Analysis (Step 16): `15a, 15a2, 15b, 15c, 15d, 15e, 15f, 15h, 15j, 15k3, 15l, 15m, 15n, 15o, 15q, 15v, 15w, 15x`;
    figures `15g, 15i, 15r, 15s, 15t, 15u`. Shared helpers: `15_termination_common.py`, `11_stratosphere_common.py`.
 
 ## Development note

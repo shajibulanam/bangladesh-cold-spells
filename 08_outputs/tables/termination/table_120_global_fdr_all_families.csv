@@ -1,6 +1,6 @@
 source,predictor,odds_ratio_per_sd,ci_low,ci_high,p_bootstrap,q_global,variant
-primary,nat_tmax_anom,1.6834,1.1938,2.7236,0.0030,0.0166,with_utc_day_cloud_family
-primary,nat_dtr_anom,1.6450,1.1834,2.6115,0.0030,0.0166,with_utc_day_cloud_family
+primary,nat_tmax_anom,1.6638,1.1857,2.6655,0.0030,0.0166,with_utc_day_cloud_family
+primary,nat_dtr_anom,1.6309,1.1745,2.5711,0.0030,0.0166,with_utc_day_cloud_family
 primary,p10_cold_national_area_fraction,0.8331,0.3676,2.0562,0.6630,0.7631,with_utc_day_cloud_family
 primary,era5_bd_t850_anom,1.0526,0.7276,1.5561,0.8070,0.8636,with_utc_day_cloud_family
 primary,era5_bd_stab_t2m_minus_t850_anom,0.9157,0.6412,1.2810,0.5980,0.7153,with_utc_day_cloud_family
@@ -60,8 +60,8 @@ cloud_utc_day,cld_tcc_mean_tend,1.4655,1.0965,2.2239,0.0110,0.0419,with_utc_day_
 cloud_utc_day,cld_lowcloud1000_frac_00utc_tend,0.7265,0.5134,0.9340,0.0170,0.0546,with_utc_day_cloud_family
 cloud_utc_day,cld_td2m_mean_tend,2.2524,1.5136,4.2342,0.0000,0.0000,with_utc_day_cloud_family
 cloud_utc_day,cld_dpd_00utc_tend,0.7786,0.5416,1.1392,0.1750,0.3558,with_utc_day_cloud_family
-primary,nat_tmax_anom,1.6834,1.1938,2.7236,0.0030,0.0261,with_prenight_cloud_family
-primary,nat_dtr_anom,1.6450,1.1834,2.6115,0.0030,0.0261,with_prenight_cloud_family
+primary,nat_tmax_anom,1.6638,1.1857,2.6655,0.0030,0.0261,with_prenight_cloud_family
+primary,nat_dtr_anom,1.6309,1.1745,2.5711,0.0030,0.0261,with_prenight_cloud_family
 primary,p10_cold_national_area_fraction,0.8331,0.3676,2.0562,0.6630,0.8254,with_prenight_cloud_family
 primary,era5_bd_t850_anom,1.0526,0.7276,1.5561,0.8070,0.9127,with_prenight_cloud_family
 primary,era5_bd_stab_t2m_minus_t850_anom,0.9157,0.6412,1.2810,0.5980,0.7761,with_prenight_cloud_family

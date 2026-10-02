@@ -1,0 +1,45 @@
+Step 16A2 - Tmax source overlap
+{
+  "overlap_period": [
+    "2022-01-01",
+    "2024-08-31"
+  ],
+  "all_stations_all_months": {
+    "pairs": 38153,
+    "identical_pct": 99.919,
+    "within_0p5C_pct": 99.932,
+    "mean_diff_new_minus_old": -0.0005,
+    "max_abs_diff": 6.0
+  },
+  "network26_all_months": {
+    "pairs": 23525,
+    "identical_pct": 99.868,
+    "within_0p5C_pct": 99.889,
+    "mean_diff_new_minus_old": -0.0007,
+    "max_abs_diff": 6.0
+  },
+  "all_stations_djf": {
+    "pairs": 9928,
+    "identical_pct": 100.0,
+    "within_0p5C_pct": 100.0,
+    "mean_diff_new_minus_old": 0.0,
+    "max_abs_diff": 0.0
+  },
+  "network26_djf": {
+    "pairs": 6146,
+    "identical_pct": 100.0,
+    "within_0p5C_pct": 100.0,
+    "mean_diff_new_minus_old": 0.0,
+    "max_abs_diff": 0.0
+  },
+  "zero_values_treated_as_missing": 17,
+  "zero_values_in_djf_study_period": 5,
+  "merged_values_by_source": {
+    "old_archive": 496759,
+    "new_2022_2025": 67101
+  },
+  "network26_djf_2024_25_completeness_pct": 98.76,
+  "completed_utc": "2026-09-28T18:02:44.378850+00:00"
+}
+
+Pairs differing by more than 1 degC: 16 (DJF: 0)

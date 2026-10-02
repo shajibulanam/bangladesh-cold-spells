@@ -21,7 +21,7 @@
     "merge_gaps": false,
     "cross_winter": false
   },
-  "period": "1985/86-2023/24",
+  "period": "1985/86-2024/25",
   "comparison": "pure cold-day vs pure cold-night events; event-level means; winter-block bootstrap; BH FDR",
-  "created_utc": "2026-09-23T19:18:19.985966+00:00"
+  "created_utc": "2026-09-28T18:11:49.749001+00:00"
 }

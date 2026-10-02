@@ -1,7 +1,5 @@
 # Bangladesh winter cold spells: onset, persistence, termination and stratospheric modulation (1985/86-2024/25)
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22981714.svg)](https://doi.org/10.5281/zenodo.22981714)
-
 Code and derived data reproducing the figures and tables of the article
 "Do stratospheric and recurrent Rossby-wave precursors control persistent cold spells over Bangladesh?
 Evidence from 40 winters, 1985/86-2024/25" (S. Anam, S. Yildiz, S. R. Singha; Department of Meteorology,
@@ -40,7 +38,7 @@ are in `00_admin/*policy*`; output checksums in `00_admin/*_sha256.txt`; all ran
    thresholds and catalogues `06`.
 2. ERA5 preparation `08a`-`08i`; onset significance `08l`; indices `09b` (Siberian High, blocking), `09n` (wave-activity
    flux), `09t` (recurrent Rossby wave metric R), `11b`/`11c` (stratospheric indices, SSWs).
-3. Analysis (Step 16): `15a, 15b, 15c, 15d, 15e, 15f, 15h, 15j, 15k3, 15l, 15m, 15n, 15o, 15q, 15v, 15w, 15x`;
+3. Analysis (Step 16): `15a, 15a2, 15b, 15c, 15d, 15e, 15f, 15h, 15j, 15k3, 15l, 15m, 15n, 15o, 15q, 15v, 15w, 15x`;
    figures `15g, 15i, 15r, 15s, 15t, 15u`. Shared helpers: `15_termination_common.py`, `11_stratosphere_common.py`.
 
 ## Development note

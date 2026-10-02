@@ -53,7 +53,10 @@ POLICY = {
     "step": "Step 16B",
     "title": "Tmax quality control and daily DJF covariate dataset",
     "tmin_source": "analysis_tmin_unadjusted from the Step 6C/7D cleaned DJF dataset",
-    "tmax_source": "raw BMD Max.T (MaxT_MinT_1981_2024_raw.xlsx); ends June 2024, so 2024/25 has no Tmax",
+    "tmax_source": ("raw BMD Tmax: MaxT_MinT_1981_2024_raw.xlsx (1981-2024) merged with "
+                    "Daily_Maximum_Temperature_2022_2025_raw.csv (2022-2025) by the Step 2C rule used for Tmin "
+                    "(from 2022 the 2022-2025 file is selected where it has a value, the old archive fills its gaps); "
+                    "exact 0.0 degC in the 2022-2025 file is treated as missing"),
     "tmax_qc": {
         "physical_range_degC": TMAX_RANGE,
         "reject_if_below_cleaned_tmin": True,
@@ -75,16 +78,7 @@ def load_station_temperatures() -> pd.DataFrame:
     tmin["date"] = pd.to_datetime(tmin["date"])
     tmin = tmin.rename(columns={"analysis_tmin_unadjusted": "tmin"})
 
-    master = pd.read_csv(C.STATION_MASTER)
-    name_to_uid = dict(zip(master["old_xlsx_station_name"].astype(str).str.strip(), master["station_uid"]))
-    raw = pd.read_excel(C.RAW_TMAX_XLSX, header=None, skiprows=2,
-                        names=["station", "year", "month", "day", "tmax_raw", "tmin_raw"])
-    raw["station"] = raw["station"].astype(str).str.strip()
-    raw["date"] = pd.to_datetime(dict(year=raw["year"], month=raw["month"], day=raw["day"]), errors="coerce")
-    raw["station_uid"] = raw["station"].map(name_to_uid)
-    raw = raw.dropna(subset=["date", "station_uid"])
-    raw["tmax"] = pd.to_numeric(raw["tmax_raw"], errors="coerce")
-    raw = raw[["station_uid", "date", "tmax"]].drop_duplicates(["station_uid", "date"], keep="first")
+    raw = C.raw_tmax_merged()[["station_uid", "date", "tmax", "tmax_source"]]
     return tmin.merge(raw, on=["station_uid", "date"], how="left")
 
 
@@ -204,6 +198,7 @@ def main() -> None:
 
     st = load_station_temperatures()
     raw_tmax_n = int(st["tmax"].notna().sum())
+    tmax_by_source = st.loc[st["tmax"].notna(), "tmax_source"].value_counts().to_dict()
     st, qc_log = qc_tmax(st)
     qc_log.to_csv(TMAX_QC_LOG, index=False)
     avail = st.groupby("winter_start_year")["tmax"].apply(lambda x: x.notna().mean()).rename("tmax_available_fraction")
@@ -225,7 +220,7 @@ def main() -> None:
         "step": "Step 16B", "completed_utc": C.now_utc(),
         "rows": int(len(cov)), "columns": int(cov.shape[1]),
         "first_date": str(cov.index.min().date()), "last_date": str(cov.index.max().date()),
-        "tmax_values_before_qc": raw_tmax_n, "tmax_rejected": n_reject, "tmax_flagged_retained": n_flag,
+        "tmax_values_before_qc": raw_tmax_n, "tmax_values_by_source_djf": tmax_by_source, "tmax_rejected": n_reject, "tmax_flagged_retained": n_flag,
         "tmax_rejection_reasons": qc_log.loc[qc_log["decision"] == "rejected", "reason"].value_counts().to_dict()
         if len(qc_log) else {},
         "national_tmax_missing_days": int(cov["nat_tmax_anom"].isna().sum()),
@@ -239,8 +234,7 @@ def main() -> None:
     lines = ["Step 16B - Tmax QC and daily covariate dataset", "=" * 48]
     lines += [f"{k}: {v}" for k, v in summary.items()]
     lines += ["", "Tmax availability by winter (last 5):",
-              avail.tail(5).round(3).to_string(),
-              "", "Note: 2024/25 has no Tmax because the raw Tmax source ends in June 2024."]
+              avail.tail(5).round(3).to_string()]
     REPORT.write_text("\n".join(lines) + "\n")
     print("\n".join(lines))
 

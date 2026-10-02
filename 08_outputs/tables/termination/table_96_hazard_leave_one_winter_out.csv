@@ -1,6 +1,6 @@
 predictor,primary_or,lowo_min_or,lowo_max_or,sign_stability,winters
-nat_tmax_anom,1.6834,1.6028,1.8536,1.0000,33
-nat_dtr_anom,1.6450,1.5688,1.8039,1.0000,33
+nat_tmax_anom,1.6638,1.5846,1.8296,1.0000,34
+nat_dtr_anom,1.6309,1.5555,1.7867,1.0000,34
 era5_bd_wspd10_anom,0.5280,0.4749,0.5808,1.0000,34
 era5_bd_t850_tend,1.5015,1.4433,1.6490,1.0000,34
 era5_bd_stab_t2m_minus_t850_tend,0.6235,0.5899,0.6569,1.0000,34

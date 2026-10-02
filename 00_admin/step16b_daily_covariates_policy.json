@@ -2,7 +2,7 @@
   "step": "Step 16B",
   "title": "Tmax quality control and daily DJF covariate dataset",
   "tmin_source": "analysis_tmin_unadjusted from the Step 6C/7D cleaned DJF dataset",
-  "tmax_source": "raw BMD Max.T (MaxT_MinT_1981_2024_raw.xlsx); ends June 2024, so 2024/25 has no Tmax",
+  "tmax_source": "raw BMD Tmax: MaxT_MinT_1981_2024_raw.xlsx (1981-2024) merged with Daily_Maximum_Temperature_2022_2025_raw.csv (2022-2025) by the Step 2C rule used for Tmin (from 2022 the 2022-2025 file is selected where it has a value, the old archive fills its gaps); exact 0.0 degC in the 2022-2025 file is treated as missing",
   "tmax_qc": {
     "physical_range_degC": [
       0.0,
@@ -16,5 +16,5 @@
   "national_mean": "area-weighted with Step 7D Voronoi weights; missing if observed area < 0.8",
   "era5": "Step 16A 00 UTC box means; anomalies as above; tendency = anomaly(day) - anomaly(day-1)",
   "rrwp_causality": "same-day R is centred (+/-7 days) and flagged non-causal; causal versions are R(t-7) and the trailing 3-day mean of the standardized instantaneous envelope",
-  "created_utc": "2026-09-23T17:35:44.095882+00:00"
+  "created_utc": "2026-10-02T12:20:25.668449+00:00"
 }

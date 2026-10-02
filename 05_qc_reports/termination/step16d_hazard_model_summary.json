@@ -1,6 +1,6 @@
 {
   "step": "Step 16D",
-  "completed_utc": "2026-09-23T17:39:59.388747+00:00",
+  "completed_utc": "2026-09-28T18:07:30.330174+00:00",
   "risk_set_rows": 260,
   "terminations": 85,
   "events": 85,
@@ -8,11 +8,11 @@
   "fdr_significant": [
     {
       "predictor": "nat_tmax_anom",
-      "odds_ratio_per_sd": 1.683423879031019
+      "odds_ratio_per_sd": 1.663812976120675
     },
     {
       "predictor": "nat_dtr_anom",
-      "odds_ratio_per_sd": 1.6449527622291042
+      "odds_ratio_per_sd": 1.6309079403771525
     },
     {
       "predictor": "era5_bd_wspd10_anom",

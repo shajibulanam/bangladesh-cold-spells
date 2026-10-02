@@ -10,7 +10,7 @@ Part A - Cloud/radiation family of the termination hazard model. Each predictor 
          bootstrap (2,000); Benjamini-Hochberg FDR within this family only.
 Part B - End-aligned all-event composites (days -5..+5) with 95% winter-block bootstrap bands
          (5,000) and a figure (fig_m7b_termination_cloud_radiation).
-Part C - Pure cold-day minus pure cold-night spell means (1985/86-2023/24), winter-block bootstrap
+Part C - Pure cold-day minus pure cold-night spell means (1985/86-2024/25), winter-block bootstrap
          (5,000), BH FDR across variables. Pure = shares no day with a spell of the other type.
 
 Run from the project root:
@@ -51,7 +51,7 @@ T_TYPE = C.TERM_TABLES / "table_113_cold_day_vs_cold_night_cloud_radiation.csv"
 REPORT = C.TERM_QC / "step16q_cloud_radiation_report.txt"
 FIG = "fig_m7b_termination_cloud_radiation"
 N_BOOT, N_BOOT_HAZ, SEED = 5000, 2000, 20260923
-LAST_TMAX_WINTER = 2023
+LAST_TMAX_WINTER = 2024
 
 STATE = ["strd_wm2", "ssrd_wm2", "tcc_mean", "tcc_00utc", "lowcloud1000_frac_00utc", "fog300_frac_00utc",
          "td2m_mean", "dpd_00utc", "blh_06utc"]

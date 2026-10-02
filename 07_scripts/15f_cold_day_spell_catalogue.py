@@ -8,7 +8,7 @@ Definition (mirrors Step 7A/7D, applied to Tmax)
     National cold day  : >= 20% of the full national area cold (Step 7D Voronoi weights), with
                          >= 80% of the area and >= 15 stations observed.
     Cold-day spell     : >= 3 consecutive national cold days within one DJF season; no gap merging.
-    Period             : 1985/86-2023/24 (raw Tmax ends June 2024).
+    Period             : 1985/86-2024/25 (Tmax: old BMD archive merged with the 2022-2025 file).
 Tmax values are the Step 16B QC'd values for DJF; threshold windows that reach into November or
 March use raw Tmax after the same range, Tmax<Tmin and 5-SD checks.
 
@@ -53,7 +53,7 @@ T_CONTRAST = C.TERM_TABLES / "table_101_cold_day_vs_cold_night_contrast.csv"
 REPORT = C.TERM_QC / "step16f_cold_day_spells_report.txt"
 SUMMARY = C.TERM_QC / "step16f_cold_day_spells_summary.json"
 
-LAST_WINTER = 2023
+LAST_WINTER = 2024
 P = 0.10
 HALF_WINDOW = 2
 MIN_AREA_OBS, MIN_STATIONS_OBS, MIN_COLD_AREA, MIN_DAYS = 0.80, 15, 0.20, 3
@@ -84,15 +84,7 @@ def cal366(dates: pd.Series) -> np.ndarray:
 
 
 def raw_tmax_full_year() -> pd.DataFrame:
-    master = pd.read_csv(C.STATION_MASTER)
-    name_to_uid = dict(zip(master["old_xlsx_station_name"].astype(str).str.strip(), master["station_uid"]))
-    raw = pd.read_excel(C.RAW_TMAX_XLSX, header=None, skiprows=2,
-                        names=["station", "year", "month", "day", "tmax", "tmin"])
-    raw["station_uid"] = raw["station"].astype(str).str.strip().map(name_to_uid)
-    raw["date"] = pd.to_datetime(dict(year=raw["year"], month=raw["month"], day=raw["day"]), errors="coerce")
-    raw = raw.dropna(subset=["date", "station_uid"]).drop_duplicates(["station_uid", "date"])
-    for c in ("tmax", "tmin"):
-        raw[c] = pd.to_numeric(raw[c], errors="coerce")
+    raw = C.raw_tmax_merged()  # old archive + 2022-2025 file (Step 2C rule); see 15_termination_common.py
     raw.loc[~raw["tmax"].between(*B.TMAX_RANGE), "tmax"] = np.nan
     raw.loc[raw["tmin"].notna() & (raw["tmax"] < raw["tmin"]), "tmax"] = np.nan
     return raw[["station_uid", "date", "tmax"]]

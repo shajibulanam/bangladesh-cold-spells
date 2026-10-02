@@ -1,0 +1,26 @@
+Step 16B - Tmax QC and daily covariate dataset
+================================================
+step: Step 16B
+completed_utc: 2026-09-28T18:03:05.905256+00:00
+rows: 3610
+columns: 66
+first_date: 1985-12-01
+last_date: 2025-02-28
+tmax_values_before_qc: 93481
+tmax_values_by_source_djf: {'old_archive': 84933, 'new_2022_2025': 8548}
+tmax_rejected: 8
+tmax_flagged_retained: 13
+tmax_rejection_reasons: {'climatological_outlier_5sd': 8}
+national_tmax_missing_days: 0
+national_tmin_missing_days: 0
+era5_missing_values: 0
+
+Tmax availability by winter (last 5):
+winter_start_year
+2020    1.000
+2021    1.000
+2022    0.999
+2023    1.000
+2024    0.988
+
+Note: 2024/25 has no Tmax because the raw Tmax source ends in June 2024.

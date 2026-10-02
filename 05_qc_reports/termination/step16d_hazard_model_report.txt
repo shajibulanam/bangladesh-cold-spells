@@ -10,8 +10,8 @@ Base model:
 winter_start_year              1.163   0.847    1.713     260
 
               family                                   predictor  odds_ratio_per_sd  ci_low  ci_high  p_bootstrap  q_fdr_causal
- station_temperature                               nat_tmax_anom              1.683   1.194    2.724        0.003         0.023
- station_temperature                                nat_dtr_anom              1.645   1.183    2.611        0.003         0.023
+ station_temperature                               nat_tmax_anom              1.664   1.186    2.666        0.003         0.023
+ station_temperature                                nat_dtr_anom              1.631   1.174    2.571        0.003         0.023
  station_temperature             p10_cold_national_area_fraction              0.833   0.368    2.056        0.663         0.739
           era5_state                           era5_bd_t850_anom              1.053   0.728    1.556        0.807         0.851
           era5_state            era5_bd_stab_t2m_minus_t850_anom              0.916   0.641    1.281        0.598         0.707
