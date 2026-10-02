@@ -1,5 +1,7 @@
 # Bangladesh winter cold spells: onset, persistence, termination and stratospheric modulation (1985/86-2024/25)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23102867.svg)](https://doi.org/10.5281/zenodo.23102867)
+
 Code and derived data reproducing the figures and tables of the article
 "Do stratospheric and recurrent Rossby-wave precursors control persistent cold spells over Bangladesh?
 Evidence from 40 winters, 1985/86-2024/25" (S. Anam, S. Yildiz, S. R. Singha; Department of Meteorology,
