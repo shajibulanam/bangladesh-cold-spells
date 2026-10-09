@@ -1,0 +1,32 @@
+{
+  "step": "Step 17A (revision)",
+  "adjustment": [
+    "log_event_age",
+    "winter_day_index",
+    "nat_tmin_anom",
+    "winter_start_year"
+  ],
+  "primary_candidates": 39,
+  "nested_selection": "inside each training fold: LR test per candidate, BH q < 0.05 across the 39, DTR excluded, skip |r| > 0.8 with a stronger selected predictor; training-only standardisation",
+  "validation": [
+    "leave-one-winter-out",
+    "train 1985/86-2004/05 test 2005/06-2024/25",
+    "reverse"
+  ],
+  "scores": [
+    "AUC",
+    "Brier",
+    "Brier skill vs training event fraction",
+    "calibration slope",
+    "observed/expected"
+  ],
+  "censoring": "last row of spells ending on the last DJF day coded censored; variant B drops 1 December starts",
+  "lead": "all predictors on day k-1; adjustment (day of season, same-day Tmin anomaly, age, year) unchanged",
+  "bootstrap": {
+    "unit": "winter",
+    "auc_brier": 2000,
+    "odds_ratios": 1000,
+    "seed": 20261003
+  },
+  "created_utc": "2026-10-03T14:37:07.029268+00:00"
+}

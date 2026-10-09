@@ -1,0 +1,55 @@
+Step 17D - revision analyses R5, R7, R11
+=============================================
+R5 Absolute humidity (box means; pure spells)
+     variable  pure_cold_day_mean  pure_cold_night_mean  djf_climatology  difference  ci_low  ci_high  p_bootstrap  n_a  n_b  n_boot_valid  n_pure_cold_day  n_pure_cold_night
+      t2m_day              19.725                19.926           21.166      -0.201  -0.883    0.553        0.601   40   50          2000               40                 50
+     td2m_day              14.682                11.328           14.179       3.354   2.756    4.078        0.000   40   50          2000               40                 50
+      dpd_day               5.043                 8.598            6.988      -3.555  -4.022   -3.085        0.000   40   50          2000               40                 50
+       rh_day              72.925                57.959           64.716      14.965  13.167   16.733        0.000   40   50          2000               40                 50
+    t2m_night              17.379                16.483           18.103       0.896   0.190    1.668        0.015   40   50          2000               40                 50
+   td2m_night              14.541                11.822           14.415       2.719   2.083    3.460        0.000   40   50          2000               40                 50
+    dpd_night               2.838                 4.661            3.688      -1.823  -2.145   -1.530        0.000   40   50          2000               40                 50
+     rh_night              83.511                74.121           79.202       9.390   8.035   10.820        0.000   40   50          2000               40                 50
+night_rh_ge95               0.000                 0.000            0.000       0.000   0.000    0.000        1.000   40   50          2000               40                 50
+
+R7 Gridded leakage-free persistent - short
+       window field  cells_fdr05  cells_total  fraction_fdr05  min_p  upstream_box_difference  upstream_box_ci_low  upstream_box_ci_high
+days -3 to -1  z500            4         1350           0.003  0.000                   34.430                7.105                62.651
+days -3 to -1  t850           14         1350           0.010  0.000                    1.723                0.586                 2.745
+days -3 to -1  u200            7         1350           0.005  0.000                   -0.355               -3.073                 2.207
+days -3 to -1   msl            0         1350           0.000  0.005                    0.488               -2.720                 3.913
+days -3 to -1   t2m            5         1350           0.004  0.000                    1.716                0.240                 3.126
+  days 0 to 2  z500            0         1350           0.000  0.001                   28.056               -2.104                62.126
+  days 0 to 2  t850            7         1350           0.005  0.000                    1.671                0.212                 3.078
+  days 0 to 2  u200            8         1350           0.006  0.000                   -1.534               -4.045                 1.035
+  days 0 to 2   msl            0         1350           0.000  0.002                   -1.246               -3.978                 1.848
+  days 0 to 2   t2m           28         1350           0.021  0.000                    2.418                0.987                 3.842
+written step17d_gridded_leakage_free.nc
+
+R11 Lead advection robustness
+                                 analysis                           predictor  odds_ratio_per_sd  ci_low  ci_high  p_bootstrap  n_rows  n_terminations
+                            lead 1 day(s)         mech_nigp_adv850_k_day_anom              1.486   1.185    1.880        0.000     260            85.0
+                            lead 1 day(s)           mech_bd_adv850_k_day_anom              0.741   0.554    0.999        0.050     260            85.0
+                            lead 1 day(s) mech_jet200_core_speed_70_100e_anom              0.620   0.441    0.802        0.004     260            85.0
+                            lead 2 day(s)         mech_nigp_adv850_k_day_anom              1.299   1.050    1.823        0.018     260            85.0
+                            lead 2 day(s)           mech_bd_adv850_k_day_anom              0.833   0.588    1.143        0.274     260            85.0
+                            lead 2 day(s) mech_jet200_core_speed_70_100e_anom              0.630   0.431    0.852        0.008     260            85.0
+       lead 1, season-end spells censored         mech_nigp_adv850_k_day_anom              1.483   1.171    1.903        0.002     260            83.0
+      lead 1, stable 25-station catalogue         mech_nigp_adv850_k_day_anom              1.555   1.244    1.993        0.000     258            84.0
+        lead 1 + same-day core predictors                      nigp_adv_lead1              1.091   0.823    1.506        0.490     260             NaN
+lead 1 + same-day NW IGP and BD advection                      nigp_adv_lead1              1.496   1.178    2.117        0.002     260             NaN
+
+Aligned composites
+alignment        end             onset       
+box       Bangladesh NW IGP Bangladesh NW IGP
+day                                          
+-5             -0.39  -0.45       0.19  -0.12
+-4             -0.95  -0.18      -0.00  -0.02
+-3             -1.11  -0.00      -0.13  -0.38
+-2             -1.26   0.44      -0.17  -0.75
+-1             -1.24   0.54      -0.41  -0.54
+ 0             -0.48   0.05      -1.12   0.29
+ 1              0.12  -0.09      -1.28   0.30
+ 2             -0.05   0.14      -0.85   0.24
+
+Sign convention: taken from 15j (confirm: positive = warm advection, -V.gradT).

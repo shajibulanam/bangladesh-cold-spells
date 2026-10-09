@@ -1,0 +1,12 @@
+{
+  "completed_utc": "2026-10-03T14:46:02.242209+00:00",
+  "right_censored_spells": [
+    "BDP10A_1985_03",
+    "BDP10A_1999_04"
+  ],
+  "left_truncated_spells": [
+    "BDP10A_1991_01",
+    "BDP10A_2006_01"
+  ],
+  "lead_tested": 66
+}

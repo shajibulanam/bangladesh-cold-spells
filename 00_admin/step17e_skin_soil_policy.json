@@ -1,0 +1,27 @@
+{
+  "step": "Step 17E (revision)",
+  "source": "https://arco.datastores.ecmwf.int/cadl-arco-geo-002/arco/reanalysis_era5_single_levels/sfc/geoChunked.zarr",
+  "box": [
+    20.5,
+    26.8,
+    88.0,
+    93.0
+  ],
+  "variables": {
+    "skt": [
+      "skt",
+      "skin_temperature"
+    ],
+    "stl1": [
+      "stl1",
+      "soil_temperature_level_1"
+    ]
+  },
+  "windows_utc": {
+    "day": "00-11",
+    "night": "12-23"
+  },
+  "bootstrap": 1000,
+  "seed": 20261003,
+  "created_utc": "2026-10-03T15:49:27.631008+00:00"
+}

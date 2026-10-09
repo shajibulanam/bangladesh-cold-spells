@@ -1,0 +1,4 @@
+scheme,test_rows,test_terminations,auc_adjustment_only,auc_nested_model,brier_adjustment_only,brier_nested_model,brier_training_climatology,auc_difference,brier_skill_vs_training_climatology,calibration_slope,observed_over_expected,auc_diff_ci_low,auc_diff_ci_high,brier_diff_full_minus_adj,brier_diff_ci_low,brier_diff_ci_high,selected_predictors
+leave-one-winter-out (nested),260,85,0.7646,0.8141,0.1840,0.1621,0.2222,0.0495,0.2703,0.8052,0.9522,-0.0046,0.1200,-0.0219,-0.0503,-0.0017,
+"train 1985/86-2004/05, test 2005/06-2024/25 (nested)",94,38,0.7834,0.7477,0.1942,0.2098,0.2555,-0.0357,0.1787,0.6080,1.2718,-0.0922,0.0078,0.0157,-0.0114,0.0452,nat_tmax_anom
+"train 2005/06-2024/25, test 1985/86-2004/05 (nested)",166,47,0.7726,0.7584,0.3072,0.3478,0.2176,-0.0141,-0.5979,0.5052,0.4111,-0.0735,0.0590,0.0406,0.0105,0.0651,era5_sa_z500_tend;era5_bd_wspd10_tend;era5_bd_mslp_tend;era5_bd_wspd10_anom

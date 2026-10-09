@@ -1,0 +1,14 @@
+analysis,index,spearman_rho,p_value,partial_rho_given_oni,mean_difference,ci_low,ci_high
+winter-mean vs DJF-mean NAM100 (40 winters),mech_jet200_core_speed_70_100e_anom,0.1527,0.3468,0.1518,,,
+winter-mean vs DJF-mean NAM100 (40 winters),mech_jet200_core_lat_70_100e_anom,-0.2158,0.1812,-0.2999,,,
+winter-mean vs DJF-mean NAM100 (40 winters),era5_sa_z500_anom,-0.4829,0.0016,-0.4838,,,
+winter-mean vs DJF-mean NAM100 (40 winters),mech_nigp_adv850_k_day_anom,0.1383,0.3948,0.1722,,,
+winter-mean vs DJF-mean NAM100 (40 winters),era5_bd_v850_anom,0.2602,0.1049,0.2785,,,
+winter-mean vs DJF-mean NAM100 (40 winters),nat_tmin_anom,-0.1844,0.2546,-0.1837,,,
+winter-mean vs DJF-mean NAM100 (40 winters),cold_spell_days,0.4336,0.0052,0.4318,,,
+post-SSW (0-45 d) minus rest of same winter (19 winters),mech_jet200_core_speed_70_100e_anom,,,,-3.9216,-6.7323,-1.1546
+post-SSW (0-45 d) minus rest of same winter (19 winters),mech_jet200_core_lat_70_100e_anom,,,,-0.3543,-1.3242,0.4973
+post-SSW (0-45 d) minus rest of same winter (19 winters),era5_sa_z500_anom,,,,4.2925,-4.2512,12.5707
+post-SSW (0-45 d) minus rest of same winter (19 winters),mech_nigp_adv850_k_day_anom,,,,0.2310,-0.0008,0.4297
+post-SSW (0-45 d) minus rest of same winter (19 winters),era5_bd_v850_anom,,,,0.1491,-0.1432,0.4451
+post-SSW (0-45 d) minus rest of same winter (19 winters),nat_tmin_anom,,,,-0.0677,-0.6206,0.4260

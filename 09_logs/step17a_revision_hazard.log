@@ -1,0 +1,28 @@
+Risk set: 260 rows, 85 terminations
+                                              scheme  auc_adjustment_only  auc_nested_model  auc_difference  auc_diff_ci_low  auc_diff_ci_high  brier_skill_vs_training_climatology  calibration_slope  observed_over_expected
+                       leave-one-winter-out (nested)                0.765             0.814           0.049           -0.005             0.120                                0.270              0.805                   0.952
+train 1985/86-2004/05, test 2005/06-2024/25 (nested)                0.783             0.748          -0.036           -0.092             0.008                                0.179              0.608                   1.272
+train 2005/06-2024/25, test 1985/86-2004/05 (nested)                0.773             0.758          -0.014           -0.074             0.059                               -0.598              0.505                   0.411
+R2 primary (as published): 85 terminations, 260 rows; q<0.05: ['nat_tmax_anom', 'nat_dtr_anom', 'era5_bd_wspd10_anom', 'era5_bd_stab_t2m_minus_t850_tend', 'era5_sa_z500_tend']
+R2 A: season-end spells censored: 83 terminations, 260 rows; q<0.05: ['nat_tmax_anom', 'nat_dtr_anom', 'era5_bd_wspd10_anom', 'era5_bd_t850_tend', 'era5_bd_stab_t2m_minus_t850_tend', 'era5_bd_v850_tend', 'era5_sa_z500_tend']
+R2 B: A + 1 December starts dropped: 81 terminations, 252 rows; q<0.05: ['nat_tmax_anom', 'nat_dtr_anom', 'era5_bd_wspd10_anom', 'era5_bd_stab_t2m_minus_t850_tend', 'era5_sa_z500_tend']
+analysis                          A: season-end spells censored  B: A + 1 December starts dropped  primary (as published)
+predictor                                                                                                                
+era5_bd_mslp_tend                                         0.078                             0.098                   0.078
+era5_bd_stab_t2m_minus_t850_tend                          0.000                             0.000                   0.000
+era5_bd_t850_tend                                         0.022                             0.065                   0.056
+era5_bd_v850_tend                                         0.022                             0.109                   0.056
+era5_bd_wspd10_anom                                       0.022                             0.026                   0.026
+era5_bd_z500_tend                                         0.068                             0.078                   0.058
+era5_sa_z500_tend                                         0.022                             0.026                   0.026
+nat_dtr_anom                                              0.022                             0.031                   0.031
+nat_tmax_anom                                             0.022                             0.031                   0.031
+
+R3 One-day lead: predictors with nominal 95% interval excluding 1
+       family                           predictor  odds_ratio_per_sd  ci_low  ci_high  q_fdr_family  q_fdr_all
+      primary                   era5_sa_v850_tend              1.373   1.006    1.900         0.641      0.660
+advection_jet           mech_bd_adv850_k_day_anom              0.741   0.554    0.999         0.133      0.660
+advection_jet         mech_nigp_adv850_k_day_anom              1.486   1.185    1.880         0.000      0.000
+advection_jet mech_jet200_core_speed_70_100e_anom              0.620   0.441    0.802         0.016      0.132
+Predictors with q_fdr_family < 0.05 at lead: ['mech_nigp_adv850_k_day_anom', 'mech_jet200_core_speed_70_100e_anom']
+Predictors with q_fdr_all < 0.05 at lead: ['mech_nigp_adv850_k_day_anom']

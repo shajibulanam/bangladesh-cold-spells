@@ -21,6 +21,7 @@ from pathlib import Path
 import matplotlib
 
 matplotlib.use("Agg")
+import matplotlib.lines
 import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
 import pandas as pd  # noqa: E402
@@ -119,14 +120,16 @@ def fig6() -> list[Path]:
         c = pd.read_csv(t114)
         c = pd.concat([c[c["family"] == "prenight"], c[c["family"] == "night_overlapping"]], ignore_index=True)
         c_open = c["family"] == "night_overlapping"
-        c_title = "(c) Cloud, humidity, radiation: before (filled) / during (open) night"
+        c_title = "(c) Cloud, humidity and radiation"
     else:
         c = pd.read_csv(T / "table_111_cloud_radiation_hazard.csv")
         c_open = None
         c_title = "(c) Cloud, humidity and radiation"
-    fig = plt.figure(figsize=(180 * MM, 165 * MM))
+    # laid out at Springer's full page width (174 mm) with room reserved for the predictor labels,
+    # so the journal does not need to shrink the figure and the lettering stays >= 2 mm
+    fig = plt.figure(figsize=(174 * MM, 178 * MM))
     gs = fig.add_gridspec(2, 2, width_ratios=[1, 1], height_ratios=[len(b) + 3, len(c) + 3],
-                          wspace=0.95, hspace=0.25)
+                          left=0.36, right=0.985, top=0.965, bottom=0.10, wspace=1.0, hspace=0.22)
     ax = fig.add_subplot(gs[:, 0])
     forest(ax, a.rename(columns={"q_fdr_causal": "q"}).assign(q=lambda d: d["q"].fillna(1.0)), "q",
            noncausal=(a["family"] == "noncausal_diagnostic"))
@@ -137,8 +140,14 @@ def fig6() -> list[Path]:
     ax.set_title("(b) Advection and jet", loc="left")
     ax = fig.add_subplot(gs[1, 1])
     forest_open(ax, c, "q_fdr_family", c_open)
-    ax.set_title(c_title, loc="left", fontsize=7)
+    ax.set_title(c_title, loc="left")
     ax.set_xlabel("Odds ratio of termination per SD")
+    if c_open is not None:
+        key = [matplotlib.lines.Line2D([], [], marker="o", ls="", color="k", ms=3.5, label="before terminating night"),
+               matplotlib.lines.Line2D([], [], marker="s", ls="", color="k", mfc="white", ms=3.5,
+                                       label="during terminating night")]
+        ax.legend(handles=key, loc="upper center", bbox_to_anchor=(0.3, -0.13), ncol=1, frameon=False, fontsize=6.3,
+                  handletextpad=0.3)
     return G.save(fig, "fig_final_06_hazard_forest_three_families")
 
 

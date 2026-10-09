@@ -1,12 +1,14 @@
 {
-  "title": "Code and derived data for: Do stratospheric and recurrent Rossby-wave precursors control persistent cold spells over Bangladesh? Evidence from 40 winters, 1985/86-2024/25",
+  "title": "Code and derived data for: Onset, termination and stratospheric modulation of Bangladesh winter cold spells: evidence from 40 winters",
+  "version": "1.2.0",
   "upload_type": "software",
-  "description": "Analysis code, frozen analysis policies, cold-night and cold-day spell catalogues, ERA5-derived daily series, and all result tables and figures of the article. BMD station observations are not included; they were obtained from the Bangladesh Meteorological Department on request and may not be redistributed.",
+  "description": "Analysis code, frozen analysis policies, cold-night and cold-day spell catalogues (including the 25-station sensitivity catalogue), ERA5-derived daily series and gridded fields, and all result tables and figures of the article and its Online Resource 1. Version 1.2.0 adds the revision analyses (Step 17): nested cross-validation of the termination hazard model, censoring and station-network sensitivity, one- and two-day lead predictors, robustness and ENSO controls of the stratospheric tests, the stratosphere-troposphere pathway, humidity and skin temperature of cold-day spells, and field significance of the gridded persistence comparisons. BMD station observations are not included; they were obtained from the Bangladesh Meteorological Department on request and may not be redistributed.",
   "creators": [
     {"name": "Anam, Shajibul", "affiliation": "Department of Meteorology, University of Dhaka", "orcid": "0009-0009-9681-9339"},
     {"name": "Yildiz, Shabista", "affiliation": "Department of Meteorology, University of Dhaka", "orcid": "0009-0007-4131-5542"},
     {"name": "Singha, Shipa Rani", "affiliation": "Department of Meteorology, University of Dhaka", "orcid": "0009-0001-0209-1490"}
   ],
   "license": "mit",
-  "keywords": ["cold spell", "Bangladesh", "persistence", "discrete-time hazard model", "sudden stratospheric warming", "ERA5", "fog"]
+  "keywords": ["cold spell", "Bangladesh", "temperature advection", "discrete-time hazard model",
+               "sudden stratospheric warming", "Indo-Gangetic Plain", "ERA5"]
 }

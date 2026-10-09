@@ -1,20 +1,32 @@
 #!/usr/bin/env bash
-# 100_make_paper_repository.sh
+# 100_make_paper_repository.sh  (version 1.2.0 of the paper repository)
 # Build a LEAN repository containing only what reproduces the manuscript and its supplement.
 # It COPIES an explicit whitelist; nothing in the working project is changed. BMD station data are excluded.
 #
-# Run from the project root:   bash 07_scripts/100_make_paper_repository.sh
-# Output: ~/bangladesh-cold-spells
+# Run from the project root:   bash 07_scripts/100_make_paper_repository.sh [output-folder]
+# Default output: ~/bangladesh-cold-spells_v1.2.0  (a fresh folder; sync it into your git clone afterwards)
 set -euo pipefail
+VERSION="1.2.0"
+TITLE="Onset, termination and stratospheric modulation of Bangladesh winter cold spells: evidence from 40 winters"
 PROJECT="$(pwd)"
-RELEASE="${HOME}/bangladesh-cold-spells"
+RELEASE="${1:-${HOME}/bangladesh-cold-spells_v${VERSION}}"
+MAX_MB=50            # GitHub refuses files over 100 MB; anything above this is reported, not copied
 [ -d "${PROJECT}/07_scripts" ] || { echo "Run from the project root."; exit 1; }
 [ -e "${RELEASE}" ] && { echo "${RELEASE} exists. Remove it first: rm -rf ${RELEASE}"; exit 1; }
 mkdir -p "${RELEASE}"
-MISSING=()
+MISSING=(); TOOBIG=()
 copy() { local f="$1"
-  if [ -f "${PROJECT}/${f}" ]; then mkdir -p "${RELEASE}/$(dirname "${f}")"; cp -p "${PROJECT}/${f}" "${RELEASE}/${f}"
+  if [ -f "${PROJECT}/${f}" ]; then
+    local mb; mb=$(( $(stat -c %s "${PROJECT}/${f}") / 1048576 ))
+    if [ "${mb}" -gt "${MAX_MB}" ]; then TOOBIG+=("${f} (${mb} MB)"); return; fi
+    mkdir -p "${RELEASE}/$(dirname "${f}")"; cp -p "${PROJECT}/${f}" "${RELEASE}/${f}"
   else MISSING+=("${f}"); fi; }
+# copy every file under the project that matches a name pattern (keeps its relative path)
+copy_find() { local dir="$1"; shift
+  [ -d "${PROJECT}/${dir}" ] || { MISSING+=("${dir}/ ($*)"); return; }
+  local n=0
+  while IFS= read -r f; do copy "${f}"; n=$((n+1)); done < <(cd "${PROJECT}" && find "${dir}" -type f \( "$@" \) | sort)
+  [ "${n}" -gt 0 ] || MISSING+=("${dir}/ ($*)"); }
 
 # ---------------------------------------------------------------- scripts used by the paper
 SCRIPTS=(
@@ -40,7 +52,11 @@ SCRIPTS=(
  15m_remote_driver_duration_tests.py 15n_stratosphere_ssw_power_nam.py 15o_enso_controls.py 15q_cloud_radiation_analysis.py
  15r_plot_domain_network_map.py 15s_termination_composite_maps.py 15t_plot_stratosphere_occurrence.py
  15u_plot_final_hazard_and_termination.py 15v_extract_arco_windows.py 15w_prenight_hazard_and_precipitation.py
- 15x_validation_power_globalfdr.py 100_make_paper_repository.sh
+ 15x_validation_power_globalfdr.py
+ 16a_revision_hazard_validation.py 16b_revision_stable_network_catalogue.py 16c_revision_stratosphere.py
+ 16d_revision_humidity_gridded_lead.py 16e_revision_skin_soil.py 16f_final_stratosphere_figure.py
+ 16g_final_advection_pulse_figure.py 16h_build_online_resource_tables.py
+ 100_make_paper_repository.sh
 )
 for s in "${SCRIPTS[@]}"; do copy "07_scripts/${s}"; done
 
@@ -48,46 +64,61 @@ for s in "${SCRIPTS[@]}"; do copy "07_scripts/${s}"; done
 (cd "${PROJECT}" && find 00_admin -maxdepth 1 -type f \( \
    -name "step1_*" -o -name "step2*" -o -name "step3*" -o -name "step4*" -o -name "step5*" -o -name "step6*" -o -name "step7*" \
    -o -name "step9a_*" -o -name "step9b_*" -o -name "step9c_*" -o -name "step9g_*" \
-   -o -name "step10a_*" -o -name "step10d_*" -o -name "step10e_*" -o -name "step12_*" -o -name "step16*" \
+   -o -name "step10a_*" -o -name "step10d_*" -o -name "step10e_*" -o -name "step12_*" -o -name "step16*" -o -name "step17*" \
    -o -name "project_config.yaml" -o -name "requirements-lock.txt" -o -name "temperature_source_policy.md" \
    -o -name "raw_file_manifest.txt" -o -name "raw_file_sha256*.txt" -o -name "noaa_era5_major_ssw_reference_through_2023.csv" \) -print) \
  | while read -r f; do copy "${f}"; done || true
 
 # ---------------------------------------------------------------- metadata, public inputs, catalogues
 for f in step6a_fixed_station_network.csv step6c_analytical_station_network.csv step6c_sensitivity_network_membership.csv \
-         step7d_primary_station_area_weights.csv step7d_primary_station_voronoi_weights.gpkg step7d_bangladesh_boundary.gpkg; do
+         step7d_primary_station_area_weights.csv step7d_primary_station_voronoi_weights.gpkg step7d_bangladesh_boundary.gpkg \
+         step17b_stable_network_area_weights.csv; do
   copy "02_metadata/${f}"; done
 for f in geospatial/geoBoundaries-BGD-ADM0.geojson geospatial/etopo1_south_asia_0p1deg.nc \
          climate_indices/oni.ascii.txt climate_indices/oni_monthly.csv; do copy "01_raw_data/${f}"; done
 for f in step7e_frozen_primary_event_catalogue.csv step7e_frozen_primary_event_days.csv step7e_frozen_event_onsets_and_windows.csv \
-         step7e_sensitivity_event_catalogue.csv step16f_cold_day_spell_catalogue.csv; do copy "06_events/${f}"; done
+         step7e_sensitivity_event_catalogue.csv step16f_cold_day_spell_catalogue.csv step17b_stable_network_event_catalogue.csv; do
+  copy "06_events/${f}"; done
 
-# ---------------------------------------------------------------- ERA5-derived series and gridded composites used in figures
+# ---------------------------------------------------------------- ERA5-derived series and gridded fields used in figures
 for f in era5_box_daily/era5_box_daily_oct_mar.csv era5_box_daily/era5_mechanism_daily_oct_mar.csv \
          era5_box_daily/era5_cloud_radiation_daily_oct_mar.csv era5_box_daily/era5_cloud_radiation_windows_oct_mar.csv \
          era5_significance/netcdf/ERA5_SIG_z500_selected_lags.nc tn_waf/netcdf/ERA5_TN_WAF_250hPa_selected_lags.nc \
          termination/step16s_end_aligned_composites.nc; do copy "03_intermediate/${f}"; done
+# Step 17 gridded caches (stratospheric pathway, winter fields, gridded leakage-free test)
+copy_find 03_intermediate -name "step17*.nc"
 
 # ---------------------------------------------------------------- result tables used by the paper and supplement
 (cd "${PROJECT}" && find 08_outputs/tables/termination -type f -name "*.csv" -print) | while read -r f; do copy "${f}"; done || true
+copy_find 08_outputs/tables/revision -name "*.csv"
 for f in stratosphere/table_59_daily_stratospheric_indices.csv stratosphere/table_59b_stratospheric_calendar_day_climatology.csv \
          stratosphere/table_60_major_ssw_catalogue.csv stratosphere/table_60b_major_ssw_validation.csv \
          tropospheric_indices/table_22_daily_siberian_high_blocking_indices.csv rrwp/table_43_daily_rrwp_sector_metrics.csv; do
   copy "08_outputs/tables/${f}"; done
 
-# ---------------------------------------------------------------- manuscript figures only
-for n in fig_final_01_domain_network fig_m2_spell_climatology fig_m3_onset_pathway_maps fig_m3b_onset_timeline \
-         fig_m4_leakage_free_composites fig_final_06_hazard_forest_three_families fig_final_07_termination_maps \
-         fig_final_08_termination_sequence fig_final_09_stratosphere_occurrence fig_m8_cold_day_vs_cold_night fig_m6_hazard_robustness; do
-  copy "08_outputs/figures/termination/${n}.png"; copy "08_outputs/figures/termination/${n}.pdf"; done
+# ---------------------------------------------------------------- manuscript and Online Resource figures only
+# Fig. 1-11 in manuscript order, then Fig. S2 (Fig. S1 is written by 16h to 08_outputs/online_resource_1)
+FIGS=(fig_final_01_domain_network fig_m2_spell_climatology fig_m8_cold_day_vs_cold_night fig_m3_onset_pathway_maps
+      fig_m3b_onset_timeline fig_m4_leakage_free_composites fig_final_06_hazard_forest_three_families
+      fig_final_R_stratosphere_pathway fig_final_08_termination_sequence fig_final_07_termination_maps
+      fig_final_R_advection_pulse fig_R7_gridded_leakage_free)
+for n in "${FIGS[@]}"; do
+  for ext in png pdf; do
+    f=$(cd "${PROJECT}" && find 08_outputs/figures -type f -name "${n}.${ext}" | sort | head -n 1)
+    if [ -n "${f}" ]; then copy "${f}"; else MISSING+=("08_outputs/figures/**/${n}.${ext}"); fi
+  done
+done
+for f in FigS1_hazard_robustness.png FigS1_hazard_robustness.pdf online_resource_1_tables_S10_S17.md \
+         online_resource_1_build_report.txt; do copy "08_outputs/online_resource_1/${f}"; done
 
 # ---------------------------------------------------------------- QC and run summaries (no station values)
 (cd "${PROJECT}" && find 05_qc_reports -maxdepth 1 -type f -name "step[2-7]*_summary.json" -print) | while read -r f; do copy "${f}"; done || true
 copy 05_qc_reports/step6b_homogeneity_report.txt
 (cd "${PROJECT}" && find 05_qc_reports/termination -type f \( -name "*.txt" -o -name "*.json" \) -print) | while read -r f; do copy "${f}"; done || true
+copy_find 05_qc_reports/revision -name "*.txt" -o -name "*.json"
 (cd "${PROJECT}" && find 05_qc_reports/era5 05_qc_reports/stratosphere 05_qc_reports/rrwp 05_qc_reports/tropospheric_indices 05_qc_reports/tn_waf \
    -type f -name "*summary.json" ! -path "*corrupted*" -print 2>/dev/null || true) | while read -r f; do copy "${f}"; done || true
-(cd "${PROJECT}" && find 09_logs -maxdepth 1 -type f -name "step16*.log" -print) | while read -r f; do copy "${f}"; done || true
+(cd "${PROJECT}" && find 09_logs -maxdepth 1 -type f \( -name "step16*.log" -o -name "step17*.log" \) -print) | while read -r f; do copy "${f}"; done || true
 rm -f "${RELEASE}/00_admin/step16k_download_cloud_radiation_policy.json" "${RELEASE}/09_logs/step16k_download_cloud_radiation.log"
 
 # ---------------------------------------------------------------- repository files
@@ -119,12 +150,14 @@ WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEM
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 EOF
-cat > "${RELEASE}/CITATION.cff" <<'EOF'
+cat > "${RELEASE}/CITATION.cff" <<EOF
 cff-version: 1.2.0
 message: "If you use this code or the derived data, please cite the article and this archive."
-title: "Code and derived data for: Do stratospheric and recurrent Rossby-wave precursors control persistent cold spells over Bangladesh? Evidence from 40 winters, 1985/86-2024/25"
-version: 1.1.0
+title: "Code and derived data for: ${TITLE}"
+version: ${VERSION}
+date-released: "$(date +%Y-%m-%d)"
 license: MIT
+repository-code: "https://github.com/shajibulanam/bangladesh-cold-spells"
 authors:
   - family-names: Anam
     given-names: Shajibul
@@ -139,65 +172,105 @@ authors:
     affiliation: "Department of Meteorology, University of Dhaka"
     orcid: "https://orcid.org/0009-0001-0209-1490"
 EOF
-cat > "${RELEASE}/README.md" <<'EOF'
-# Bangladesh winter cold spells: onset, persistence, termination and stratospheric modulation (1985/86-2024/25)
+cat > "${RELEASE}/.zenodo.json" <<EOF
+{
+  "title": "Code and derived data for: ${TITLE}",
+  "version": "${VERSION}",
+  "upload_type": "software",
+  "description": "Analysis code, frozen analysis policies, cold-night and cold-day spell catalogues (including the 25-station sensitivity catalogue), ERA5-derived daily series and gridded fields, and all result tables and figures of the article and its Online Resource 1. Version 1.2.0 adds the revision analyses (Step 17): nested cross-validation of the termination hazard model, censoring and station-network sensitivity, one- and two-day lead predictors, robustness and ENSO controls of the stratospheric tests, the stratosphere-troposphere pathway, humidity and skin temperature of cold-day spells, and field significance of the gridded persistence comparisons. BMD station observations are not included; they were obtained from the Bangladesh Meteorological Department on request and may not be redistributed.",
+  "creators": [
+    {"name": "Anam, Shajibul", "affiliation": "Department of Meteorology, University of Dhaka", "orcid": "0009-0009-9681-9339"},
+    {"name": "Yildiz, Shabista", "affiliation": "Department of Meteorology, University of Dhaka", "orcid": "0009-0007-4131-5542"},
+    {"name": "Singha, Shipa Rani", "affiliation": "Department of Meteorology, University of Dhaka", "orcid": "0009-0001-0209-1490"}
+  ],
+  "license": "mit",
+  "keywords": ["cold spell", "Bangladesh", "temperature advection", "discrete-time hazard model",
+               "sudden stratospheric warming", "Indo-Gangetic Plain", "ERA5"]
+}
+EOF
+cat > "${RELEASE}/README.md" <<EOF
+# Bangladesh winter cold spells: onset, termination and stratospheric modulation (1985/86-2024/25)
 
-Code and derived data reproducing the figures and tables of the article
-"Do stratospheric and recurrent Rossby-wave precursors control persistent cold spells over Bangladesh?
-Evidence from 40 winters, 1985/86-2024/25" (S. Anam, S. Yildiz, S. R. Singha; Department of Meteorology,
-University of Dhaka). Corresponding author: S. Yildiz, shabistayildiz@du.ac.bd.
+Version ${VERSION}. Code and derived data reproducing the figures and tables of the article
+"${TITLE}" (S. Anam, S. Yildiz, S. R. Singha; Department of Meteorology, University of Dhaka),
+submitted to *Climate Dynamics*, and of its Online Resource 1. Corresponding author: S. Yildiz, shabistayildiz@du.ac.bd.
 
 ## Data availability
 BMD daily station observations were obtained from the Bangladesh Meteorological Department on request and
-may not be redistributed; they are not included. Scripts `00`-`06` and `15b`/`15f` need them. All other inputs
-are public (ERA5 via the Copernicus Climate Data Store and ERA5 ARCO; NOAA CPC Oceanic Nino Index; NOAA ETOPO1;
+may not be redistributed; they are not included. Scripts \`00\`-\`06\`, \`15b\`, \`15f\` and \`16b\` need them. All other
+inputs are public (ERA5 via the Copernicus Climate Data Store and ERA5 ARCO; NOAA CPC Oceanic Nino Index; NOAA ETOPO1;
 geoBoundaries; NOAA SSW Compendium dates). This repository includes the derived cold-spell catalogues, station
-network metadata and Voronoi weights, ERA5-derived daily series, and every result table and figure of the paper.
+network metadata and Voronoi weights, ERA5-derived daily series and gridded fields, and every result table and figure
+of the paper and its supplement.
 
 ## Where each figure and table comes from
 | Paper item | File | Produced by |
 | --- | --- | --- |
-| Fig. 1 | `fig_final_01_domain_network` | `15r` |
-| Fig. 2 | `fig_m2_spell_climatology` | `15g` (tables 94, 99) |
-| Fig. 3 | `fig_m3_onset_pathway_maps` | `15i` (inputs from `08l`, `09n`) |
-| Fig. 4 | `fig_m3b_onset_timeline` | `15l` (table 103) |
-| Fig. 5 | `fig_m4_leakage_free_composites` | `15g` (table 90) |
-| Fig. 6 | `fig_final_06_hazard_forest_three_families` | `15u` (tables 91, 106, 114) |
-| Fig. 7 | `fig_final_07_termination_maps` | `15s` |
-| Fig. 8 | `fig_final_08_termination_sequence` | `15u` (tables 102, 112) |
-| Fig. 9 | `fig_final_09_stratosphere_occurrence` | `15t` (tables 107-110) |
-| Fig. 10 | `fig_m8_cold_day_vs_cold_night` | `15g` (table 101) |
-| Fig. S1 | `fig_m6_hazard_robustness` | `15g` (tables 95, 98) |
-| Table 1 | tables 101, 113, 115 | `15f`, `15q`, `15w` |
-| Table 2 | tables 107, 108, 109 | `15n`, `15o` |
-| Tables S1-S9 | tables 60/60b, 91, 106, 114, 111, 95, 117, 89 + 118, 105 + 119 | `11c`, `15d`, `15m`, `15w`, `15q`, `15e`, `15x`, `15c`, `15m` |
-Tables 89-120 are in `08_outputs/tables/termination`; figures in `08_outputs/figures/termination`.
+| Fig. 1 | \`fig_final_01_domain_network\` | \`15r\` |
+| Fig. 2 | \`fig_m2_spell_climatology\` | \`15g\` (tables 94, 99) |
+| Fig. 3 | \`fig_m8_cold_day_vs_cold_night\` | \`15g\` (tables 101, 113, 115) |
+| Fig. 4 | \`fig_m3_onset_pathway_maps\` | \`15i\` (inputs from \`08l\`, \`09n\`) |
+| Fig. 5 | \`fig_m3b_onset_timeline\` | \`15l\` (table 103) |
+| Fig. 6 | \`fig_m4_leakage_free_composites\` | \`15g\` (table 90) |
+| Fig. 7 | \`fig_final_06_hazard_forest_three_families\` | \`15u\` (tables 91, 106, 114) |
+| Fig. 8 | \`fig_final_R_stratosphere_pathway\` | \`16f\` (tables 107-110, R4, R6b) |
+| Fig. 9 | \`fig_final_08_termination_sequence\` | \`15u\` (tables 102, 112) |
+| Fig. 10 | \`fig_final_07_termination_maps\` | \`15s\` |
+| Fig. 11 | \`fig_final_R_advection_pulse\` | \`16g\` (tables R11, R11b) |
+| Table 1 | tables 101, 113, 115 | \`15f\`, \`15q\`, \`15w\` |
+| Table 2 | tables 107-109, R4 | \`15n\`, \`15o\`, \`16c\` |
+| Fig. S1 | \`FigS1_hazard_robustness\` | \`16h\` (tables 95, R1, R2, R10b) |
+| Fig. S2 | \`fig_R7_gridded_leakage_free\` | \`16d\` (table R7) |
+| Tables S1-S9 | tables 60/60b, 91, 106, 114, 111, 95, 117, 89 + 118, 105 + 119 | \`11c\`, \`15d\`, \`15m\`, \`15w\`, \`15q\`, \`15e\`, \`15x\`, \`15c\`, \`15m\` |
+| Table S10 | tables R1, R1b | \`16a\` |
+| Table S11 | tables R10, R10b, R2 | \`16b\`, \`16a\` |
+| Table S12 | tables R3, R11 | \`16a\`, \`16d\` |
+| Table S13 | table R4 | \`16c\` |
+| Table S14 | tables R8, R8b | \`16c\` |
+| Table S15 | tables R6b, R6 | \`16f\`, \`16c\` |
+| Table S16 | tables R5, R9c, R9 | \`16d\`, \`16e\` |
+| Table S17 | table R7 | \`16d\` |
+
+Tables 89-120 are in \`08_outputs/tables/termination\`, tables R1-R11 in \`08_outputs/tables/revision\`.
+Tables S10-S17 are rendered from the revision tables by \`16h\` (\`08_outputs/online_resource_1\`), which also draws Fig. S1.
 
 ## Workflow
-Script prefix *n* is analysis Step *n* + 1 (e.g. `06c` = Step 7C, `15d` = Step 16D). Frozen settings for every step
-are in `00_admin/*policy*`; output checksums in `00_admin/*_sha256.txt`; all random procedures use fixed seeds.
-1. Station data (BMD, not included): ingestion `01`-`02`, quality control `03`-`04`, network and homogeneity `05`,
-   thresholds and catalogues `06`.
-2. ERA5 preparation `08a`-`08i`; onset significance `08l`; indices `09b` (Siberian High, blocking), `09n` (wave-activity
-   flux), `09t` (recurrent Rossby wave metric R), `11b`/`11c` (stratospheric indices, SSWs).
-3. Analysis (Step 16): `15a, 15a2, 15b, 15c, 15d, 15e, 15f, 15h, 15j, 15k3, 15l, 15m, 15n, 15o, 15q, 15v, 15w, 15x`;
-   figures `15g, 15i, 15r, 15s, 15t, 15u`. Shared helpers: `15_termination_common.py`, `11_stratosphere_common.py`.
+Script prefix *n* is analysis Step *n* + 1 (e.g. \`06c\` = Step 7C, \`15d\` = Step 16D, \`16a\` = Step 17A). Frozen settings for
+every step are in \`00_admin/*policy*\`; output checksums in \`00_admin/*_sha256.txt\`; all random procedures use fixed seeds.
+1. Station data (BMD, not included): ingestion \`01\`-\`02\`, quality control \`03\`-\`04\`, network and homogeneity \`05\`,
+   thresholds and catalogues \`06\`.
+2. ERA5 preparation \`08a\`-\`08i\`; onset significance \`08l\`; indices \`09b\` (Siberian High, blocking), \`09n\` (wave-activity
+   flux), \`09t\` (recurrent Rossby wave metric R), \`11b\`/\`11c\` (stratospheric indices, SSWs).
+3. Analysis (Step 16): \`15a, 15a2, 15b, 15c, 15d, 15e, 15f, 15h, 15j, 15k3, 15l, 15m, 15n, 15o, 15q, 15v, 15w, 15x\`;
+   figures \`15g, 15i, 15r, 15s, 15t, 15u\`. Shared helpers: \`15_termination_common.py\`, \`11_stratosphere_common.py\`.
+4. Revision analyses (Step 17): \`16a\` nested cross-validation, censoring at season boundaries and one-day leads of all
+   predictors; \`16b\` catalogue rebuilt on 25 stations; \`16c\` robustness of the SSW tests, stratosphere and duration,
+   pathway indices; \`16d\` absolute humidity, gridded field significance and lead advection; \`16e\` skin temperature;
+   figures \`16f\` (Fig. 8) and \`16g\` (Fig. 11); Online Resource tables and Fig. S1 \`16h\`.
+
+## Changes in version ${VERSION}
+New article title and figure numbering (11 main figures; Online Resource 1 with Figs. S1-S2 and Tables S1-S17).
+Added the Step 17 scripts \`16a\`-\`16h\`, revision tables R1-R11, the 25-station sensitivity catalogue and weights,
+the Step 17 gridded fields, reports and logs. Fig. S1 is now drawn by \`16h\` (nested validation); the former
+\`fig_m6_hazard_robustness\` and \`fig_final_09_stratosphere_occurrence\` are superseded by Fig. S1 and Fig. 8.
 
 ## Development note
 Analysis code and parts of the text were drafted with the assistance of AI language models (ChatGPT, OpenAI, for the
-earlier pipeline steps; Claude, Anthropic, for Step 16). The authors specified the analyses, reviewed and ran all code,
-reproduced every reported number on their own computer with fixed random seeds, and are responsible for the results.
+earlier pipeline steps; Claude, Anthropic, for Steps 16 and 17). The authors specified the analyses, reviewed and ran all
+code, reproduced every reported number on their own computer with fixed random seeds, and are responsible for the results.
 
 ## Environment and licence
-Python 3; exact package versions in `requirements.txt`. Maps need `cartopy`; ERA5 ARCO access needs
-`zarr fsspec aiohttp requests` and a Copernicus key in `~/.cdsapirc`.
-Code: MIT (`LICENSE`). Derived tables, catalogues and figures: CC BY 4.0. Third-party data keep their own terms.
+Python 3; exact package versions in \`requirements.txt\`. Maps need \`cartopy\`; ERA5 ARCO access needs
+\`zarr fsspec aiohttp requests\` and a Copernicus key in \`~/.cdsapirc\`.
+Code: MIT (\`LICENSE\`). Derived tables, catalogues and figures: CC BY 4.0. Third-party data keep their own terms.
 EOF
 
-echo "Repository folder: ${RELEASE}"
+echo "Repository folder: ${RELEASE}  (version ${VERSION})"
 du -sh "${RELEASE}"; echo "Files: $(find "${RELEASE}" -type f | wc -l)"
+echo "Step 17 files: scripts $(ls "${RELEASE}"/07_scripts/16*.py 2>/dev/null | wc -l), revision tables $(ls "${RELEASE}"/08_outputs/tables/revision/*.csv 2>/dev/null | wc -l), gridded $(find "${RELEASE}/03_intermediate" -name 'step17*.nc' | wc -l)"
 if [ ${#MISSING[@]} -gt 0 ]; then echo "Listed but not found (check these):"; printf '  %s\n' "${MISSING[@]}"; fi
+if [ ${#TOOBIG[@]} -gt 0 ]; then echo "NOT copied, larger than ${MAX_MB} MB:"; printf '  %s\n' "${TOOBIG[@]}"; fi
 echo "Privacy check (should be 'none found'):"
 grep -rlE "analysis_tmin|tmin_raw|tmax_raw|analysis_tmax" "${RELEASE}" --include="*.csv" || echo "none found"
-(cd "${RELEASE}" && find . -type f | sort > "${HOME}/bangladesh-cold-spells_file_list.txt")
-echo "File list: ${HOME}/bangladesh-cold-spells_file_list.txt"
+(cd "${RELEASE}" && find . -type f | sort > "${HOME}/bangladesh-cold-spells_v${VERSION}_file_list.txt")
+echo "File list: ${HOME}/bangladesh-cold-spells_v${VERSION}_file_list.txt"

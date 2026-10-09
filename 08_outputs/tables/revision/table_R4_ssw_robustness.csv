@@ -1,0 +1,17 @@
+window_days,null,observed_onsets,null_mean,null_2.5,null_97.5,rate_ratio_vs_null,p_deficit,p_excess,p_two_sided,observed_at_risk_days,null_mean_at_risk_days,exposure_adjusted_ratio,rr_ci_low,rr_ci_high,onsets_rest_of_same_winters,at_risk_days_rest_of_same_winters
+0-30,calendar-matched (published),5,11.4855,6.0000,17.0000,0.4353,0.0119,0.9963,0.0238,451,374.3130,0.3613,,,,
+0-30,decade-matched (+/-5 yr),5,9.9754,6.0000,15.0000,0.5012,0.0218,0.9935,0.0436,451,379.3000,0.4215,,,,
+0-30,rate ratio vs all other at-risk DJF days,5,,,,0.3900,,,,451,,,0.1233,0.9485,,
+0-30,within-winter (19 SSW winters),5,,,,0.4852,,,,451,,,0.1455,1.2841,26.0000,1138.0000
+0-45,calendar-matched (published),6,15.0117,9.0000,21.0000,0.3997,0.0017,0.9997,0.0034,591,466.0920,0.3152,,,,
+0-45,decade-matched (+/-5 yr),6,14.1140,9.0000,20.0000,0.4251,0.0034,0.9991,0.0068,591,466.5580,0.3356,,,,
+0-45,rate ratio vs all other at-risk DJF days,6,,,,0.3436,,,,591,,,0.1224,0.7818,,
+0-45,within-winter (19 SSW winters),6,,,,0.4053,,,,591,,,0.1360,1.0120,25.0000,998.0000
+0-60,calendar-matched (published),6,16.7707,10.0000,23.0000,0.3578,0.0001,1.0000,0.0002,664,511.4190,0.2756,,,,
+0-60,decade-matched (+/-5 yr),6,15.7658,10.0000,22.0000,0.3806,0.0014,0.9997,0.0028,664,515.9020,0.2957,,,,
+0-60,rate ratio vs all other at-risk DJF days,6,,,,0.2975,,,,664,,,0.1060,0.6769,,
+0-60,within-winter (19 SSW winters),6,,,,0.3343,,,,664,,,0.1122,0.8349,25.0000,925.0000
+15-60,calendar-matched (published),4,11.3214,6.0000,17.0000,0.3533,0.0036,0.9991,0.0072,422,332.0400,0.2780,,,,
+15-60,decade-matched (+/-5 yr),4,11.9305,7.0000,17.0000,0.3353,0.0030,0.9993,0.0060,422,333.0950,0.2646,,,,
+15-60,rate ratio vs all other at-risk DJF days,4,,,,0.3327,,,,422,,,0.0885,0.8851,,
+15-60,within-winter (15 SSW winters),4,,,,0.5024,,,,422,,,0.1222,1.5573,16.0000,848.0000

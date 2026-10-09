@@ -1,0 +1,30 @@
+{
+  "step": "Step 17D (revision)",
+  "humidity": "Magnus RH over water; dewpoint depression; box means (Step 16V windows)",
+  "gridded_windows": {
+    "days -3 to -1": [
+      -3,
+      -1
+    ],
+    "days 0 to 2": [
+      0,
+      2
+    ]
+  },
+  "upstream_box": [
+    40.0,
+    60.0,
+    30.0,
+    60.0
+  ],
+  "grid": "2-degree means of 0.25-degree ERA5",
+  "lead_controls": [
+    "era5_bd_wspd10_anom",
+    "era5_sa_z500_tend",
+    "era5_bd_stab_t2m_minus_t850_tend",
+    "nat_tmax_anom"
+  ],
+  "bootstrap": 2000,
+  "seed": 20261003,
+  "created_utc": "2026-10-03T15:47:48.488794+00:00"
+}

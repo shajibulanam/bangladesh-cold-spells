@@ -1,0 +1,69 @@
+Using variables: {'skt': 'skt'}
+winter 1985/86: 3.7 min
+winter 1986/87: 2.8 min
+winter 1987/88: 4.4 min
+winter 1988/89: 2.0 min
+winter 1989/90: 1.3 min
+winter 1990/91: 0.8 min
+winter 1991/92: 0.6 min
+winter 1992/93: 0.5 min
+winter 1993/94: 1.0 min
+winter 1994/95: 0.6 min
+winter 1995/96: 0.5 min
+winter 1996/97: 0.7 min
+winter 1997/98: 0.6 min
+winter 1998/99: 0.6 min
+winter 1999/00: 0.5 min
+winter 2000/01: 0.6 min
+winter 2001/02: 0.7 min
+winter 2002/03: 0.5 min
+winter 2003/04: 0.5 min
+winter 2004/05: 0.6 min
+winter 2005/06: 0.6 min
+winter 2006/07: 0.5 min
+winter 2007/08: 0.7 min
+winter 2008/09: 0.5 min
+winter 2009/10: 0.7 min
+winter 2010/11: 0.5 min
+winter 2011/12: 0.5 min
+winter 2012/13: 0.5 min
+winter 2013/14: 0.5 min
+winter 2014/15: 0.5 min
+winter 2015/16: 0.5 min
+winter 2016/17: 0.8 min
+winter 2017/18: 0.5 min
+winter 2018/19: 0.4 min
+winter 2019/20: 0.5 min
+winter 2020/21: 0.5 min
+winter 2021/22: 0.5 min
+winter 2022/23: 0.5 min
+winter 2023/24: 0.5 min
+winter 2024/25: 0.5 min
+Step 17E - skin and soil temperature (R9)
+=============================================
+Termination hazard:
+                        window                   predictor  odds_ratio_per_sd  ci_low  ci_high  q_fdr_window
+      before terminating night             ss_skt_day_anom              1.626   1.014    2.751         0.073
+      before terminating night           ss_skt_00utc_anom              1.123   0.616    1.847         0.768
+      before terminating night   ss_skt_minus_t2m_day_anom              0.918   0.648    1.207         0.575
+      before terminating night             ss_skt_day_tend              1.433   1.079    1.994         0.073
+      before terminating night   ss_skt_minus_t2m_day_tend              0.738   0.512    0.986         0.073
+terminating night (concurrent)           ss_skt_night_anom              3.876   2.428    8.119         0.000
+terminating night (concurrent) ss_skt_minus_t2m_night_anom              0.912   0.570    1.331         0.534
+
+End-aligned composites (mean):
+variable  ss_skt_00utc_anom  ss_skt_minus_t2m_night_anom
+day                                                     
+-5                    -0.65                         0.19
+-4                    -1.12                         0.15
+-3                    -1.65                         0.11
+-2                    -2.00                         0.07
+-1                    -2.07                        -0.05
+ 0                    -1.86                        -0.06
+ 1                    -1.04                        -0.10
+ 2                    -0.74                        -0.10
+
+Pure cold-day minus pure cold-night:
+                   variable  difference  ci_low  ci_high  p_bootstrap  n_a  n_b  n_boot_valid
+          ss_skt_00utc_anom       2.309   1.929    2.741          0.0   40   50          1000
+ss_skt_minus_t2m_night_anom       0.544   0.390    0.675          0.0   40   50          1000

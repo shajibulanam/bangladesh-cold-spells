@@ -1,0 +1,30 @@
+{
+  "step": "Step 17C (revision)",
+  "windows_days_after_ssw": {
+    "0-30": [
+      0,
+      30
+    ],
+    "0-45": [
+      0,
+      45
+    ],
+    "0-60": [
+      0,
+      60
+    ],
+    "15-60": [
+      15,
+      60
+    ]
+  },
+  "monte_carlo": 10000,
+  "decade_matched_null": "control winters within +/-5 years of the SSW winter",
+  "exposure": "DJF days at risk of onset (not inside an ongoing spell after its first day)",
+  "rate_ratio_ci": "exact conditional binomial (Clopper-Pearson)",
+  "bootstrap": 2000,
+  "seed": 20261003,
+  "duration_metrics": "Step 11 definitions (table_63)",
+  "weak_vortex": "daily NAM10 <= -1 SD",
+  "created_utc": "2026-10-03T15:15:21.776718+00:00"
+}

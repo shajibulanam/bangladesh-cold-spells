@@ -1,0 +1,33 @@
+alignment,box,day,mean,ci_low,ci_high
+end,NW IGP,-5,-0.4462,-0.6861,-0.2063
+end,NW IGP,-4,-0.1801,-0.3974,0.0223
+end,NW IGP,-3,-0.0027,-0.2716,0.3221
+end,NW IGP,-2,0.4446,0.2830,0.6110
+end,NW IGP,-1,0.5378,0.3654,0.7405
+end,NW IGP,0,0.0538,-0.1309,0.2414
+end,NW IGP,1,-0.0937,-0.3081,0.1524
+end,NW IGP,2,0.1377,-0.1386,0.4086
+end,Bangladesh,-5,-0.3887,-0.7249,-0.0256
+end,Bangladesh,-4,-0.9508,-1.1950,-0.7146
+end,Bangladesh,-3,-1.1107,-1.4179,-0.8242
+end,Bangladesh,-2,-1.2597,-1.5727,-0.9734
+end,Bangladesh,-1,-1.2412,-1.6056,-0.9009
+end,Bangladesh,0,-0.4766,-0.7718,-0.1940
+end,Bangladesh,1,0.1158,-0.2139,0.4071
+end,Bangladesh,2,-0.0499,-0.3076,0.2249
+onset,NW IGP,-5,-0.1190,-0.3573,0.1312
+onset,NW IGP,-4,-0.0161,-0.2291,0.1937
+onset,NW IGP,-3,-0.3769,-0.6163,-0.1304
+onset,NW IGP,-2,-0.7454,-0.9205,-0.5482
+onset,NW IGP,-1,-0.5409,-0.7200,-0.3387
+onset,NW IGP,0,0.2877,0.0670,0.5062
+onset,NW IGP,1,0.3011,0.0987,0.5061
+onset,NW IGP,2,0.2426,0.0284,0.4471
+onset,Bangladesh,-5,0.1942,-0.2319,0.6417
+onset,Bangladesh,-4,-0.0001,-0.3718,0.3263
+onset,Bangladesh,-3,-0.1295,-0.4834,0.2199
+onset,Bangladesh,-2,-0.1729,-0.4744,0.1488
+onset,Bangladesh,-1,-0.4073,-0.7502,-0.0316
+onset,Bangladesh,0,-1.1187,-1.3654,-0.8851
+onset,Bangladesh,1,-1.2843,-1.5682,-1.0337
+onset,Bangladesh,2,-0.8534,-1.2222,-0.5103

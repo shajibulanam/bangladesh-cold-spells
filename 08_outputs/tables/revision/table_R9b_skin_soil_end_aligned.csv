@@ -1,0 +1,17 @@
+variable,day,mean,ci_low,ci_high
+ss_skt_00utc_anom,-5,-0.6538,-0.9939,-0.3248
+ss_skt_00utc_anom,-4,-1.1155,-1.3558,-0.8459
+ss_skt_00utc_anom,-3,-1.6520,-1.8547,-1.4334
+ss_skt_00utc_anom,-2,-2.0032,-2.1796,-1.8193
+ss_skt_00utc_anom,-1,-2.0736,-2.2408,-1.9093
+ss_skt_00utc_anom,0,-1.8563,-2.0282,-1.6845
+ss_skt_00utc_anom,1,-1.0413,-1.2179,-0.8650
+ss_skt_00utc_anom,2,-0.7358,-0.9361,-0.5270
+ss_skt_minus_t2m_night_anom,-5,0.1893,0.1142,0.2614
+ss_skt_minus_t2m_night_anom,-4,0.1492,0.0684,0.2301
+ss_skt_minus_t2m_night_anom,-3,0.1085,0.0244,0.1888
+ss_skt_minus_t2m_night_anom,-2,0.0685,-0.0059,0.1361
+ss_skt_minus_t2m_night_anom,-1,-0.0465,-0.1326,0.0370
+ss_skt_minus_t2m_night_anom,0,-0.0583,-0.1405,0.0225
+ss_skt_minus_t2m_night_anom,1,-0.0961,-0.1949,0.0031
+ss_skt_minus_t2m_night_anom,2,-0.0956,-0.1787,-0.0075
