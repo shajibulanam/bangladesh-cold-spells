@@ -7,6 +7,7 @@
 # Default output: ~/bangladesh-cold-spells_v1.2.0  (a fresh folder; sync it into your git clone afterwards)
 set -euo pipefail
 VERSION="1.2.0"
+DOI="10.5281/zenodo.23263890"   # Zenodo DOI of this version (set after the release has been archived)
 TITLE="Onset, termination and stratospheric modulation of Bangladesh winter cold spells: evidence from 40 winters"
 PROJECT="$(pwd)"
 RELEASE="${1:-${HOME}/bangladesh-cold-spells_v${VERSION}}"
@@ -157,6 +158,7 @@ title: "Code and derived data for: ${TITLE}"
 version: ${VERSION}
 date-released: "$(date +%Y-%m-%d)"
 license: MIT
+doi: ${DOI}
 repository-code: "https://github.com/shajibulanam/bangladesh-cold-spells"
 authors:
   - family-names: Anam
@@ -191,7 +193,9 @@ EOF
 cat > "${RELEASE}/README.md" <<EOF
 # Bangladesh winter cold spells: onset, termination and stratospheric modulation (1985/86-2024/25)
 
-Version ${VERSION}. Code and derived data reproducing the figures and tables of the article
+[![DOI](https://zenodo.org/badge/DOI/${DOI}.svg)](https://doi.org/${DOI})
+
+Version ${VERSION} (https://doi.org/${DOI}). Code and derived data reproducing the figures and tables of the article
 "${TITLE}" (S. Anam, S. Yildiz, S. R. Singha; Department of Meteorology, University of Dhaka),
 submitted to *Climate Dynamics*, and of its Online Resource 1. Corresponding author: S. Yildiz, shabistayildiz@du.ac.bd.
 

@@ -4,6 +4,7 @@ title: "Code and derived data for: Onset, termination and stratospheric modulati
 version: 1.2.0
 date-released: "2026-10-09"
 license: MIT
+doi: 10.5281/zenodo.23263890
 repository-code: "https://github.com/shajibulanam/bangladesh-cold-spells"
 authors:
   - family-names: Anam

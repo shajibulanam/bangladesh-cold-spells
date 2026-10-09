@@ -1,6 +1,8 @@
 # Bangladesh winter cold spells: onset, termination and stratospheric modulation (1985/86-2024/25)
 
-Version 1.2.0. Code and derived data reproducing the figures and tables of the article
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23263890.svg)](https://doi.org/10.5281/zenodo.23263890)
+
+Version 1.2.0 (https://doi.org/10.5281/zenodo.23263890). Code and derived data reproducing the figures and tables of the article
 "Onset, termination and stratospheric modulation of Bangladesh winter cold spells: evidence from 40 winters" (S. Anam, S. Yildiz, S. R. Singha; Department of Meteorology, University of Dhaka),
 submitted to *Climate Dynamics*, and of its Online Resource 1. Corresponding author: S. Yildiz, shabistayildiz@du.ac.bd.
 
