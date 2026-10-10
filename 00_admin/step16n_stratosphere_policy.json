@@ -5,9 +5,9 @@
   "horizon_days": 45,
   "control_exclusion_days": 45,
   "monte_carlo": 10000,
-  "bootstrap": 5000,
+  "bootstrap": 10000,
   "seed": 20260923,
   "power_model": "negative binomial with null dispersion index, mean = rate ratio x null mean",
   "quiet_day_gap": 10,
-  "created_utc": "2026-09-23T20:47:22.993560+00:00"
+  "created_utc": "2026-10-10T09:16:27.850009+00:00"
 }

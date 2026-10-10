@@ -16,5 +16,5 @@
   "national_mean": "area-weighted with Step 7D Voronoi weights; missing if observed area < 0.8",
   "era5": "Step 16A 00 UTC box means; anomalies as above; tendency = anomaly(day) - anomaly(day-1)",
   "rrwp_causality": "same-day R is centred (+/-7 days) and flagged non-causal; causal versions are R(t-7) and the trailing 3-day mean of the standardized instantaneous envelope",
-  "created_utc": "2026-10-02T12:20:25.668449+00:00"
+  "created_utc": "2026-10-10T08:59:54.429525+00:00"
 }

@@ -35,5 +35,5 @@
   "wet_day_threshold_mm": 1.0,
   "dry_cold_day_spell": "event-mean UTC-day precipitation < 1.0 mm",
   "cold_day_period": "1985/86-2024/25",
-  "created_utc": "2026-09-28T18:14:17.201735+00:00"
+  "created_utc": "2026-10-10T10:52:15.050759+00:00"
 }

@@ -1,5 +1,7 @@
 {
-  "completed_utc": "2026-09-28T18:16:14.480565+00:00",
-  "prenight_fdr_significant": [],
+  "completed_utc": "2026-10-10T10:52:41.988864+00:00",
+  "prenight_fdr_significant": [
+    "win_td2m_day_anom"
+  ],
   "precipitation_available": true
 }

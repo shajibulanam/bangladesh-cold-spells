@@ -1,4 +1,4 @@
 model,cv_auc,cv_brier,ci_low,ci_high,climatological_brier
-adjustment_only,0.7646,0.1840,,,0.2200
-adjustment_plus_synoptic,0.8456,0.1483,,,0.2200
-auc_difference,0.0810,,0.0256,0.1592,0.2200
+adjustment_only,0.7687,0.1798,,,0.2173
+adjustment_plus_synoptic,0.8215,0.1559,,,0.2173
+auc_difference,0.0528,,-0.0015,0.1244,0.2173

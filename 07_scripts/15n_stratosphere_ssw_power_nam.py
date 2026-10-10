@@ -40,7 +40,7 @@ SSW_TABLE = C.PROJECT_ROOT / "08_outputs" / "tables" / "stratosphere" / "table_6
 T_SSW = C.TERM_TABLES / "table_107_ssw_test_and_power.csv"
 T_NAM = C.TERM_TABLES / "table_108_nam_background_tests.csv"
 REPORT = C.TERM_QC / "step16n_stratosphere_report.txt"
-N_MC, N_BOOT, SEED = 10000, 5000, 20260923
+N_MC, N_BOOT, SEED = 10000, 10000, 20260923  # Step 18: N_BOOT was 5000
 HORIZON, EXCLUSION, QUIET_GAP = 45, 45, 10
 WINTERS = np.arange(1985, 2025)
 
@@ -135,7 +135,7 @@ def part_b(ev: pd.DataFrame) -> pd.DataFrame:
         rows.append({"test": "across_winters_onset_vs_calendar_matched", "index": col,
                      "estimate": obs - sims.mean(), "ci_low": obs - np.percentile(sims, 97.5),
                      "ci_high": obs - np.percentile(sims, 2.5),
-                     "p_two_sided": min(1.0, 2 * min((sims >= obs).mean(), (sims <= obs).mean()))})
+                     "p_two_sided": C.p_from_tail_counts((sims <= obs).sum(), (sims >= obs).sum(), len(sims))})
         within = []
         for e, v in zip(ev.itertuples(), onset_vals):
             ref = nam.loc[(cov["winter_start_year"] == e.winter_start_year) & quiet, col]
@@ -148,7 +148,7 @@ def part_b(ev: pd.DataFrame) -> pd.DataFrame:
         rows.append({"test": "within_winter_onset_minus_quiet_days", "index": col,
                      "estimate": within[ok].mean(), "ci_low": np.percentile(boot, 2.5),
                      "ci_high": np.percentile(boot, 97.5),
-                     "p_two_sided": min(1.0, 2 * min((boot <= 0).mean(), (boot >= 0).mean())),
+                     "p_two_sided": C.bootstrap_p(boot),
                      "n_events": int(ok.sum())})
         wmean = nam.groupby(cov["winter_start_year"])[col].mean()
         cold_days = ev.groupby("winter_start_year")["duration_days"].sum().reindex(wmean.index, fill_value=0)

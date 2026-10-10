@@ -199,17 +199,18 @@ def censored_risk_set(cov: pd.DataFrame, ev: pd.DataFrame, drop_dec1: bool) -> t
     cens = set(ev.loc[season_end, "event_id"])
     if drop_dec1:
         ev = ev[~dec1]
-    rs = E.risk_set(cov, ev, 3)
-    rs.loc[rs["event_id"].isin(cens) & (rs["terminates"] == 1), "terminates"] = 0
+    rs = E.risk_set(cov, ev, 3, censor=True)
     return rs, info
 
 
 def r2_censoring(cov: pd.DataFrame, ev: pd.DataFrame, rs_primary: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
-    variants = {"primary (as published)": rs_primary}
-    rsA, info = censored_risk_set(cov, ev, False)
+    # Step 18: season-end censoring is now the primary definition; the uncensored model (primary up to
+    # v1.2.0) is sensitivity A
+    variants = {"primary (season-end spells censored)": rs_primary}
+    _, info = censored_risk_set(cov, ev, False)
     rsB, _ = censored_risk_set(cov, ev, True)
-    variants["A: season-end spells censored"] = rsA
-    variants["B: A + 1 December starts dropped"] = rsB
+    variants["A: not censored (v1.2.0 primary)"] = E.risk_set(cov, ev, 3, censor=False)
+    variants["B: censored, 1 December starts removed"] = rsB
     rows = []
     for name, rs in variants.items():
         part = []

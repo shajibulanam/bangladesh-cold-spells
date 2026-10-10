@@ -1,0 +1,14 @@
+ Fig  source                                                 pixels   design size     dpi  note
+   1  fig_final_01_domain_network.pdf                   3674x1869      156x79  mm     600  ok
+   2  fig_m2_spell_climatology.pdf                      3648x2145      154x91  mm     600  ok
+   3  fig_m8_cold_day_vs_cold_night.pdf                 4033x2259      171x96  mm     600  ok
+   4  fig_m3_onset_pathway_maps.pdf                     3875x1971      164x83  mm     600  ok
+   5  fig_m3b_onset_timeline.pdf                        4110x2681      174x113 mm     600  scaled from 182 to 174 mm (lettering x0.96)
+   6  fig_m4_leakage_free_composites.pdf                4110x2427      174x103 mm     600  scaled from 179 to 174 mm (lettering x0.97)
+   7  fig_final_06_hazard_forest_three_families.pdf     4110x4303      174x182 mm     600  scaled from 176 to 174 mm (lettering x0.99)
+   8  fig_final_R_stratosphere_pathway.pdf              3657x3583      155x152 mm     600  ok
+   9  fig_final_08_termination_sequence.pdf             4110x2720      174x115 mm     600  scaled from 179 to 174 mm (lettering x0.97)
+  10  fig_final_07_termination_maps.pdf                 3874x2761      164x117 mm     600  ok
+  11  fig_final_R_advection_pulse.pdf                   4019x1566      170x66  mm     600  ok
+
+Written to /media/shajibul/Porag/Bangladesh_ColdWave_Analysis/ColdWave_Project/Bangladesh_Cold_Wave/09_submission/figures

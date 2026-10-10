@@ -1,118 +1,118 @@
-analysis,predictor,odds_ratio_per_sd,ci_low,ci_high,p_bootstrap,n_rows,n_terminations,q_fdr
-primary (as published),nat_tmax_anom,1.6638,1.1917,2.6697,0.0040,260,85,0.0312
-primary (as published),nat_dtr_anom,1.6309,1.1813,2.5713,0.0040,260,85,0.0312
-primary (as published),p10_cold_national_area_fraction,0.8331,0.3638,2.0927,0.6220,260,85,0.6931
-primary (as published),era5_bd_t850_anom,1.0526,0.7416,1.5512,0.8020,260,85,0.8517
-primary (as published),era5_bd_stab_t2m_minus_t850_anom,0.9157,0.6478,1.2649,0.5740,260,85,0.6878
-primary (as published),era5_bd_thick_1000_500_anom,0.9048,0.5927,1.2915,0.5560,260,85,0.6878
-primary (as published),era5_bd_z500_anom,0.8530,0.5634,1.1322,0.2420,260,85,0.5237
-primary (as published),era5_bd_mslp_anom,0.8630,0.5794,1.1456,0.2760,260,85,0.5237
-primary (as published),era5_bd_u850_anom,0.7879,0.6042,1.0234,0.0660,260,85,0.2145
-primary (as published),era5_bd_v850_anom,1.0616,0.8073,1.4157,0.6060,260,85,0.6931
-primary (as published),era5_bd_wspd10_anom,0.5280,0.3319,0.7419,0.0020,260,85,0.0260
-primary (as published),era5_sa_t850_anom,1.1077,0.7595,1.5808,0.5520,260,85,0.6878
-primary (as published),era5_sa_z500_anom,0.8266,0.5376,1.0838,0.1600,260,85,0.3900
-primary (as published),era5_sa_mslp_anom,0.7903,0.5318,1.0357,0.0780,260,85,0.2340
-primary (as published),era5_sa_u850_anom,1.1180,0.8219,1.5856,0.4760,260,85,0.6630
-primary (as published),era5_sa_v850_anom,1.1479,0.8060,1.5575,0.3840,260,85,0.5990
-primary (as published),era5_bd_t850_tend,1.5015,1.0915,2.2853,0.0100,260,85,0.0557
-primary (as published),era5_bd_stab_t2m_minus_t850_tend,0.6235,0.4108,0.8487,0.0000,260,85,0.0000
-primary (as published),era5_bd_z500_tend,0.7420,0.5569,0.9115,0.0120,260,85,0.0585
-primary (as published),era5_bd_mslp_tend,0.6555,0.4289,0.8898,0.0180,260,85,0.0780
-primary (as published),era5_bd_u850_tend,0.8409,0.6682,1.1050,0.2340,260,85,0.5237
-primary (as published),era5_bd_v850_tend,1.3868,1.0786,1.9004,0.0100,260,85,0.0557
-primary (as published),era5_bd_wspd10_tend,0.7233,0.4397,1.0012,0.0520,260,85,0.1844
-primary (as published),era5_sa_t850_tend,0.8856,0.6434,1.1691,0.3480,260,85,0.5655
-primary (as published),era5_sa_z500_tend,0.5802,0.4175,0.7869,0.0020,260,85,0.0260
-primary (as published),era5_sa_mslp_tend,0.7115,0.5040,0.9403,0.0360,260,85,0.1404
-primary (as published),era5_sa_v850_tend,1.1019,0.8101,1.4798,0.5820,260,85,0.6878
-primary (as published),siberian_high_std_anom,1.2546,0.9504,1.6965,0.1220,260,85,0.3172
-primary (as published),ural_blocking_fraction,1.1862,0.8401,1.4884,0.2820,260,85,0.5237
-primary (as published),nam_proxy_10,1.0051,0.6988,1.4072,0.9140,260,85,0.9140
-primary (as published),nam_proxy_100,0.9323,0.6793,1.3731,0.8080,260,85,0.8517
-primary (as published),rrwp_eurasian_upstream_R_lag7,1.2734,0.9456,1.7566,0.1100,260,85,0.3064
-primary (as published),rrwp_central_asia_R_lag7,1.1337,0.8243,1.5627,0.4080,260,85,0.6120
-primary (as published),rrwp_bangladesh_sector_R_lag7,1.1207,0.8172,1.6105,0.4300,260,85,0.6211
-primary (as published),rrwp_asian_corridor_R_lag7,1.1983,0.8798,1.7442,0.2780,260,85,0.5237
-primary (as published),rrwp_eurasian_upstream_envelope_z_trailing3,0.8843,0.6493,1.1190,0.2960,260,85,0.5247
-primary (as published),rrwp_central_asia_envelope_z_trailing3,0.8906,0.5949,1.1417,0.3300,260,85,0.5596
-primary (as published),rrwp_bangladesh_sector_envelope_z_trailing3,0.9874,0.7194,1.2382,0.8720,260,85,0.8949
-primary (as published),rrwp_asian_corridor_envelope_z_trailing3,0.9301,0.6368,1.1827,0.5520,260,85,0.6878
-A: season-end spells censored,nat_tmax_anom,1.6410,1.1692,2.6284,0.0040,260,83,0.0223
-A: season-end spells censored,nat_dtr_anom,1.6100,1.1623,2.5403,0.0040,260,83,0.0223
-A: season-end spells censored,p10_cold_national_area_fraction,0.6885,0.2840,1.9482,0.3840,260,83,0.5547
-A: season-end spells censored,era5_bd_t850_anom,1.0679,0.7460,1.6222,0.7240,260,83,0.7843
-A: season-end spells censored,era5_bd_stab_t2m_minus_t850_anom,0.9175,0.6424,1.2650,0.5700,260,83,0.6947
-A: season-end spells censored,era5_bd_thick_1000_500_anom,0.9326,0.6065,1.3643,0.6720,260,83,0.7488
-A: season-end spells censored,era5_bd_z500_anom,0.8780,0.5782,1.1692,0.3400,260,83,0.5522
-A: season-end spells censored,era5_bd_mslp_anom,0.8618,0.5529,1.1560,0.3000,260,83,0.5223
-A: season-end spells censored,era5_bd_u850_anom,0.7857,0.6023,1.0264,0.0800,260,83,0.2600
-A: season-end spells censored,era5_bd_v850_anom,1.0545,0.8009,1.4048,0.6420,260,83,0.7387
-A: season-end spells censored,era5_bd_wspd10_anom,0.5393,0.3374,0.7587,0.0020,260,83,0.0223
-A: season-end spells censored,era5_sa_t850_anom,1.1086,0.7579,1.5757,0.5500,260,83,0.6919
-A: season-end spells censored,era5_sa_z500_anom,0.8376,0.5518,1.0995,0.1540,260,83,0.3754
-A: season-end spells censored,era5_sa_mslp_anom,0.7970,0.5158,1.0376,0.0980,260,83,0.2730
-A: season-end spells censored,era5_sa_u850_anom,1.1338,0.8292,1.6097,0.4160,260,83,0.5794
-A: season-end spells censored,era5_sa_v850_anom,1.1097,0.8022,1.5040,0.4500,260,83,0.6052
-A: season-end spells censored,era5_bd_t850_tend,1.5262,1.1068,2.3470,0.0040,260,83,0.0223
-A: season-end spells censored,era5_bd_stab_t2m_minus_t850_tend,0.6259,0.4169,0.8539,0.0000,260,83,0.0000
-A: season-end spells censored,era5_bd_z500_tend,0.7436,0.5388,0.9232,0.0140,260,83,0.0683
-A: season-end spells censored,era5_bd_mslp_tend,0.6502,0.4162,0.8929,0.0180,260,83,0.0780
-A: season-end spells censored,era5_bd_u850_tend,0.8518,0.6645,1.1465,0.2900,260,83,0.5223
-A: season-end spells censored,era5_bd_v850_tend,1.4245,1.1030,1.9961,0.0040,260,83,0.0223
-A: season-end spells censored,era5_bd_wspd10_tend,0.6938,0.4087,0.9758,0.0320,260,83,0.1135
-A: season-end spells censored,era5_sa_t850_tend,0.8758,0.6136,1.1618,0.3080,260,83,0.5223
-A: season-end spells censored,era5_sa_z500_tend,0.5695,0.4001,0.7757,0.0020,260,83,0.0223
-A: season-end spells censored,era5_sa_mslp_tend,0.7046,0.4908,0.9418,0.0320,260,83,0.1135
-A: season-end spells censored,era5_sa_v850_tend,1.1102,0.8440,1.4855,0.5280,260,83,0.6864
-A: season-end spells censored,siberian_high_std_anom,1.2287,0.9338,1.7140,0.1520,260,83,0.3754
-A: season-end spells censored,ural_blocking_fraction,1.1961,0.8406,1.4989,0.2800,260,83,0.5223
-A: season-end spells censored,nam_proxy_10,0.9751,0.6774,1.3375,0.9380,260,83,0.9627
-A: season-end spells censored,nam_proxy_100,0.9292,0.6687,1.3752,0.7620,260,83,0.8032
-A: season-end spells censored,rrwp_eurasian_upstream_R_lag7,1.3059,0.9503,1.8286,0.0880,260,83,0.2640
-A: season-end spells censored,rrwp_central_asia_R_lag7,1.2018,0.8723,1.6815,0.2460,260,83,0.5223
-A: season-end spells censored,rrwp_bangladesh_sector_R_lag7,1.1794,0.8517,1.7107,0.2760,260,83,0.5223
-A: season-end spells censored,rrwp_asian_corridor_R_lag7,1.2524,0.9071,1.8567,0.1820,260,83,0.4175
-A: season-end spells censored,rrwp_eurasian_upstream_envelope_z_trailing3,0.8921,0.6365,1.1306,0.3540,260,83,0.5522
-A: season-end spells censored,rrwp_central_asia_envelope_z_trailing3,0.9019,0.6054,1.1505,0.3800,260,83,0.5547
-A: season-end spells censored,rrwp_bangladesh_sector_envelope_z_trailing3,1.0080,0.7338,1.2763,0.9920,260,83,0.9920
-A: season-end spells censored,rrwp_asian_corridor_envelope_z_trailing3,0.9475,0.6393,1.2116,0.6440,260,83,0.7387
-B: A + 1 December starts dropped,nat_tmax_anom,1.6479,1.1603,2.6502,0.0040,252,81,0.0312
-B: A + 1 December starts dropped,nat_dtr_anom,1.6165,1.1512,2.5547,0.0040,252,81,0.0312
-B: A + 1 December starts dropped,p10_cold_national_area_fraction,0.7598,0.3140,2.2301,0.5220,252,81,0.7101
-B: A + 1 December starts dropped,era5_bd_t850_anom,1.0500,0.7206,1.5922,0.8100,252,81,0.8775
-B: A + 1 December starts dropped,era5_bd_stab_t2m_minus_t850_anom,0.9249,0.6453,1.2790,0.6460,252,81,0.7410
-B: A + 1 December starts dropped,era5_bd_thick_1000_500_anom,0.9261,0.6046,1.3442,0.6440,252,81,0.7410
-B: A + 1 December starts dropped,era5_bd_z500_anom,0.8647,0.5678,1.1502,0.2980,252,81,0.5283
-B: A + 1 December starts dropped,era5_bd_mslp_anom,0.8463,0.5494,1.1229,0.2320,252,81,0.5027
-B: A + 1 December starts dropped,era5_bd_u850_anom,0.8086,0.6265,1.0514,0.1100,252,81,0.3064
-B: A + 1 December starts dropped,era5_bd_v850_anom,1.0175,0.7704,1.3665,0.9240,252,81,0.9240
-B: A + 1 December starts dropped,era5_bd_wspd10_anom,0.5399,0.3364,0.7616,0.0020,252,81,0.0260
-B: A + 1 December starts dropped,era5_sa_t850_anom,1.0970,0.7439,1.5567,0.5860,252,81,0.7410
-B: A + 1 December starts dropped,era5_sa_z500_anom,0.8222,0.5178,1.0926,0.1280,252,81,0.3328
-B: A + 1 December starts dropped,era5_sa_mslp_anom,0.7841,0.5138,1.0163,0.0700,252,81,0.2275
-B: A + 1 December starts dropped,era5_sa_u850_anom,1.1527,0.8435,1.6494,0.3740,252,81,0.5402
-B: A + 1 December starts dropped,era5_sa_v850_anom,1.0887,0.7913,1.4560,0.5280,252,81,0.7101
-B: A + 1 December starts dropped,era5_bd_t850_tend,1.4852,1.0827,2.2345,0.0100,252,81,0.0650
-B: A + 1 December starts dropped,era5_bd_stab_t2m_minus_t850_tend,0.6350,0.4242,0.8596,0.0000,252,81,0.0000
-B: A + 1 December starts dropped,era5_bd_z500_tend,0.7407,0.5411,0.9218,0.0140,252,81,0.0780
-B: A + 1 December starts dropped,era5_bd_mslp_tend,0.6578,0.4277,0.9042,0.0200,252,81,0.0975
-B: A + 1 December starts dropped,era5_bd_u850_tend,0.8657,0.6791,1.1633,0.3640,252,81,0.5402
-B: A + 1 December starts dropped,era5_bd_v850_tend,1.3891,1.0570,1.9629,0.0280,252,81,0.1092
-B: A + 1 December starts dropped,era5_bd_wspd10_tend,0.6817,0.4032,0.9544,0.0240,252,81,0.1040
-B: A + 1 December starts dropped,era5_sa_t850_tend,0.8705,0.6094,1.1607,0.2940,252,81,0.5283
-B: A + 1 December starts dropped,era5_sa_z500_tend,0.5720,0.4013,0.7752,0.0020,252,81,0.0260
-B: A + 1 December starts dropped,era5_sa_mslp_tend,0.7115,0.5075,0.9406,0.0320,252,81,0.1135
-B: A + 1 December starts dropped,era5_sa_v850_tend,1.0865,0.8116,1.4541,0.6460,252,81,0.7410
-B: A + 1 December starts dropped,siberian_high_std_anom,1.2185,0.9101,1.7197,0.1960,252,81,0.4778
-B: A + 1 December starts dropped,ural_blocking_fraction,1.1982,0.8431,1.5077,0.2740,252,81,0.5283
-B: A + 1 December starts dropped,nam_proxy_10,0.9672,0.6545,1.3417,0.9040,252,81,0.9240
-B: A + 1 December starts dropped,nam_proxy_100,0.9227,0.6635,1.3831,0.7460,252,81,0.8313
-B: A + 1 December starts dropped,rrwp_eurasian_upstream_R_lag7,1.3031,0.9440,1.8523,0.1040,252,81,0.3064
-B: A + 1 December starts dropped,rrwp_central_asia_R_lag7,1.1950,0.8717,1.7397,0.2880,252,81,0.5283
-B: A + 1 December starts dropped,rrwp_bangladesh_sector_R_lag7,1.1647,0.8371,1.7235,0.3280,252,81,0.5330
-B: A + 1 December starts dropped,rrwp_asian_corridor_R_lag7,1.2438,0.8914,1.8866,0.2120,252,81,0.4864
-B: A + 1 December starts dropped,rrwp_eurasian_upstream_envelope_z_trailing3,0.8893,0.6082,1.1397,0.3540,252,81,0.5402
-B: A + 1 December starts dropped,rrwp_central_asia_envelope_z_trailing3,0.8830,0.5705,1.1378,0.3140,252,81,0.5324
-B: A + 1 December starts dropped,rrwp_bangladesh_sector_envelope_z_trailing3,0.9978,0.7164,1.2717,0.9180,252,81,0.9240
-B: A + 1 December starts dropped,rrwp_asian_corridor_envelope_z_trailing3,0.9408,0.6181,1.2082,0.6040,252,81,0.7410
+analysis,predictor,odds_ratio_per_sd,ci_low,ci_high,p_bootstrap,n_rows,n_terminations,n_boot,n_boot_valid,n_boot_nonconverged,q_fdr
+primary (season-end spells censored),nat_tmax_anom,1.6410,1.1560,2.6626,0.0078,260,83,10000,10000,0,0.0507
+primary (season-end spells censored),nat_dtr_anom,1.6100,1.1479,2.5694,0.0078,260,83,10000,10000,0,0.0507
+primary (season-end spells censored),p10_cold_national_area_fraction,0.6885,0.2780,1.7775,0.4206,260,83,10000,10000,0,0.6109
+primary (season-end spells censored),era5_bd_t850_anom,1.0659,0.7360,1.6153,0.7605,260,83,10000,10000,0,0.8238
+primary (season-end spells censored),era5_bd_stab_t2m_minus_t850_anom,0.9194,0.6352,1.2935,0.6265,260,83,10000,10000,0,0.7889
+primary (season-end spells censored),era5_bd_thick_1000_500_anom,0.9314,0.5826,1.3551,0.6689,260,83,10000,10000,0,0.7889
+primary (season-end spells censored),era5_bd_z500_anom,0.8780,0.5558,1.1672,0.3426,260,83,10000,10000,0,0.5463
+primary (season-end spells censored),era5_bd_mslp_anom,0.8617,0.5568,1.1699,0.2990,260,83,10000,10000,0,0.5300
+primary (season-end spells censored),era5_bd_u850_anom,0.7852,0.5927,1.0199,0.0740,260,83,10000,10000,0,0.2376
+primary (season-end spells censored),era5_bd_v850_anom,1.0534,0.8097,1.3949,0.6877,260,83,10000,10000,0,0.7889
+primary (season-end spells censored),era5_bd_wspd10_anom,0.5393,0.3347,0.7791,0.0018,260,83,10000,10000,0,0.0338
+primary (season-end spells censored),era5_sa_t850_anom,1.0464,0.6868,1.5596,0.7815,260,83,10000,10000,0,0.8238
+primary (season-end spells censored),era5_sa_z500_anom,0.8376,0.5457,1.1112,0.1912,260,83,10000,10000,0,0.4634
+primary (season-end spells censored),era5_sa_mslp_anom,0.8474,0.5686,1.1094,0.2020,260,83,10000,10000,0,0.4634
+primary (season-end spells censored),era5_sa_u850_anom,1.1625,0.8366,1.6517,0.3494,260,83,10000,10000,0,0.5463
+primary (season-end spells censored),era5_sa_v850_anom,1.0673,0.7750,1.4431,0.6609,260,83,10000,10000,0,0.7889
+primary (season-end spells censored),era5_bd_t850_tend,1.5249,1.1223,2.2994,0.0070,260,83,10000,10000,0,0.0507
+primary (season-end spells censored),era5_bd_stab_t2m_minus_t850_tend,0.6280,0.4241,0.8526,0.0014,260,83,10000,10000,0,0.0338
+primary (season-end spells censored),era5_bd_z500_tend,0.7436,0.5346,0.9432,0.0174,260,83,10000,10000,0,0.0754
+primary (season-end spells censored),era5_bd_mslp_tend,0.6502,0.4204,0.9110,0.0140,260,83,10000,10000,0,0.0682
+primary (season-end spells censored),era5_bd_u850_tend,0.8492,0.6576,1.1367,0.2812,260,83,10000,10000,0,0.5300
+primary (season-end spells censored),era5_bd_v850_tend,1.4237,1.1004,1.9532,0.0098,260,83,10000,10000,0,0.0546
+primary (season-end spells censored),era5_bd_wspd10_tend,0.6938,0.4117,0.9989,0.0498,260,83,10000,10000,0,0.1765
+primary (season-end spells censored),era5_sa_t850_tend,0.9054,0.6499,1.2580,0.5485,260,83,10000,10000,0,0.7640
+primary (season-end spells censored),era5_sa_z500_tend,0.5695,0.3939,0.7864,0.0026,260,83,10000,10000,0,0.0338
+primary (season-end spells censored),era5_sa_mslp_tend,0.6790,0.4663,0.9308,0.0200,260,83,10000,10000,0,0.0780
+primary (season-end spells censored),era5_sa_v850_tend,1.0931,0.8180,1.4601,0.5805,260,83,10000,10000,0,0.7807
+primary (season-end spells censored),siberian_high_std_anom,1.2287,0.9229,1.7203,0.1636,260,83,10000,10000,0,0.4557
+primary (season-end spells censored),ural_blocking_fraction,1.1961,0.8405,1.4997,0.2634,260,83,10000,10000,0,0.5300
+primary (season-end spells censored),nam_proxy_10,0.9751,0.6657,1.3746,0.9187,260,83,10000,10000,0,0.9429
+primary (season-end spells censored),nam_proxy_100,0.9292,0.6567,1.4015,0.7695,260,83,10000,10000,0,0.8238
+primary (season-end spells censored),rrwp_eurasian_upstream_R_lag7,1.3059,0.9658,1.8975,0.0792,260,83,10000,10000,0,0.2376
+primary (season-end spells censored),rrwp_central_asia_R_lag7,1.2018,0.8638,1.7450,0.2464,260,83,10000,10000,0,0.5300
+primary (season-end spells censored),rrwp_bangladesh_sector_R_lag7,1.1794,0.8438,1.7493,0.2980,260,83,10000,10000,0,0.5300
+primary (season-end spells censored),rrwp_asian_corridor_R_lag7,1.2524,0.8943,1.9206,0.1768,260,83,10000,10000,0,0.4596
+primary (season-end spells censored),rrwp_eurasian_upstream_envelope_z_trailing3,0.8921,0.6264,1.1429,0.3502,260,83,10000,10000,0,0.5463
+primary (season-end spells censored),rrwp_central_asia_envelope_z_trailing3,0.9019,0.5864,1.1724,0.4230,260,83,10000,10000,0,0.6109
+primary (season-end spells censored),rrwp_bangladesh_sector_envelope_z_trailing3,1.0080,0.7228,1.3003,0.9919,260,83,10000,10000,0,0.9919
+primary (season-end spells censored),rrwp_asian_corridor_envelope_z_trailing3,0.9475,0.6367,1.2210,0.6511,260,83,10000,10000,0,0.7889
+A: not censored (v1.2.0 primary),nat_tmax_anom,1.6638,1.1737,2.7179,0.0056,260,85,10000,10000,0,0.0437
+A: not censored (v1.2.0 primary),nat_dtr_anom,1.6309,1.1648,2.6218,0.0056,260,85,10000,10000,0,0.0437
+A: not censored (v1.2.0 primary),p10_cold_national_area_fraction,0.8331,0.3719,2.0103,0.6573,260,85,10000,10000,0,0.7540
+A: not censored (v1.2.0 primary),era5_bd_t850_anom,1.0507,0.7311,1.5563,0.8093,260,85,10000,10000,0,0.8531
+A: not censored (v1.2.0 primary),era5_bd_stab_t2m_minus_t850_anom,0.9176,0.6369,1.2837,0.6133,260,85,10000,10000,0,0.7540
+A: not censored (v1.2.0 primary),era5_bd_thick_1000_500_anom,0.9037,0.5713,1.2934,0.5389,260,85,10000,10000,0,0.7369
+A: not censored (v1.2.0 primary),era5_bd_z500_anom,0.8530,0.5368,1.1296,0.2504,260,85,10000,10000,0,0.5202
+A: not censored (v1.2.0 primary),era5_bd_mslp_anom,0.8628,0.5736,1.1566,0.2862,260,85,10000,10000,0,0.5315
+A: not censored (v1.2.0 primary),era5_bd_u850_anom,0.7877,0.6027,1.0131,0.0650,260,85,10000,10000,0,0.2216
+A: not censored (v1.2.0 primary),era5_bd_v850_anom,1.0609,0.8201,1.4139,0.6425,260,85,10000,10000,0,0.7540
+A: not censored (v1.2.0 primary),era5_bd_wspd10_anom,0.5280,0.3300,0.7552,0.0010,260,85,10000,10000,0,0.0195
+A: not censored (v1.2.0 primary),era5_sa_t850_anom,1.0521,0.6958,1.5881,0.7517,260,85,10000,10000,0,0.8376
+A: not censored (v1.2.0 primary),era5_sa_z500_anom,0.8266,0.5330,1.0995,0.1708,260,85,10000,10000,0,0.4173
+A: not censored (v1.2.0 primary),era5_sa_mslp_anom,0.8393,0.5670,1.0931,0.1712,260,85,10000,10000,0,0.4173
+A: not censored (v1.2.0 primary),era5_sa_u850_anom,1.1440,0.8216,1.6178,0.4022,260,85,10000,10000,0,0.6389
+A: not censored (v1.2.0 primary),era5_sa_v850_anom,1.1087,0.7924,1.5455,0.5347,260,85,10000,10000,0,0.7369
+A: not censored (v1.2.0 primary),era5_bd_t850_tend,1.5005,1.1081,2.2544,0.0084,260,85,10000,10000,0,0.0546
+A: not censored (v1.2.0 primary),era5_bd_stab_t2m_minus_t850_tend,0.6254,0.4217,0.8464,0.0010,260,85,10000,10000,0,0.0195
+A: not censored (v1.2.0 primary),era5_bd_z500_tend,0.7420,0.5448,0.9266,0.0114,260,85,10000,10000,0,0.0635
+A: not censored (v1.2.0 primary),era5_bd_mslp_tend,0.6554,0.4296,0.9158,0.0144,260,85,10000,10000,0,0.0641
+A: not censored (v1.2.0 primary),era5_bd_u850_tend,0.8387,0.6584,1.1014,0.2176,260,85,10000,10000,0,0.4992
+A: not censored (v1.2.0 primary),era5_bd_v850_tend,1.3865,1.0740,1.8715,0.0148,260,85,10000,10000,0,0.0641
+A: not censored (v1.2.0 primary),era5_bd_wspd10_tend,0.7233,0.4393,1.0251,0.0682,260,85,10000,10000,0,0.2216
+A: not censored (v1.2.0 primary),era5_sa_t850_tend,0.9165,0.6541,1.2803,0.6119,260,85,10000,10000,0,0.7540
+A: not censored (v1.2.0 primary),era5_sa_z500_tend,0.5802,0.4093,0.7870,0.0016,260,85,10000,10000,0,0.0208
+A: not censored (v1.2.0 primary),era5_sa_mslp_tend,0.6800,0.4698,0.9305,0.0186,260,85,10000,10000,0,0.0725
+A: not censored (v1.2.0 primary),era5_sa_v850_tend,1.0846,0.8032,1.4622,0.6295,260,85,10000,10000,0,0.7540
+A: not censored (v1.2.0 primary),siberian_high_std_anom,1.2546,0.9387,1.7408,0.1240,260,85,10000,10000,0,0.3454
+A: not censored (v1.2.0 primary),ural_blocking_fraction,1.1862,0.8483,1.4882,0.2668,260,85,10000,10000,0,0.5202
+A: not censored (v1.2.0 primary),nam_proxy_10,1.0051,0.6880,1.4428,0.9367,260,85,10000,10000,0,0.9367
+A: not censored (v1.2.0 primary),nam_proxy_100,0.9323,0.6679,1.4125,0.7985,260,85,10000,10000,0,0.8531
+A: not censored (v1.2.0 primary),rrwp_eurasian_upstream_R_lag7,1.2734,0.9547,1.8081,0.0984,260,85,10000,10000,0,0.2952
+A: not censored (v1.2.0 primary),rrwp_central_asia_R_lag7,1.1337,0.8126,1.6151,0.4096,260,85,10000,10000,0,0.6389
+A: not censored (v1.2.0 primary),rrwp_bangladesh_sector_R_lag7,1.1207,0.8080,1.6342,0.4458,260,85,10000,10000,0,0.6686
+A: not censored (v1.2.0 primary),rrwp_asian_corridor_R_lag7,1.1983,0.8633,1.7987,0.2552,260,85,10000,10000,0,0.5202
+A: not censored (v1.2.0 primary),rrwp_eurasian_upstream_envelope_z_trailing3,0.8843,0.6328,1.1350,0.3094,260,85,10000,10000,0,0.5484
+A: not censored (v1.2.0 primary),rrwp_central_asia_envelope_z_trailing3,0.8906,0.5787,1.1523,0.3652,260,85,10000,10000,0,0.6192
+A: not censored (v1.2.0 primary),rrwp_bangladesh_sector_envelope_z_trailing3,0.9874,0.7090,1.2657,0.8685,260,85,10000,10000,0,0.8914
+A: not censored (v1.2.0 primary),rrwp_asian_corridor_envelope_z_trailing3,0.9301,0.6297,1.1963,0.5479,260,85,10000,10000,0,0.7369
+"B: censored, 1 December starts removed",nat_tmax_anom,1.6479,1.1445,2.6930,0.0092,252,81,10000,10000,0,0.0611
+"B: censored, 1 December starts removed",nat_dtr_anom,1.6165,1.1367,2.6006,0.0094,252,81,10000,10000,0,0.0611
+"B: censored, 1 December starts removed",p10_cold_national_area_fraction,0.7598,0.3018,2.0967,0.5699,252,81,10000,10000,0,0.7938
+"B: censored, 1 December starts removed",era5_bd_t850_anom,1.0482,0.7163,1.5963,0.8345,252,81,10000,10000,0,0.9041
+"B: censored, 1 December starts removed",era5_bd_stab_t2m_minus_t850_anom,0.9267,0.6411,1.3091,0.6661,252,81,10000,10000,0,0.8140
+"B: censored, 1 December starts removed",era5_bd_thick_1000_500_anom,0.9250,0.5847,1.3383,0.6363,252,81,10000,10000,0,0.8140
+"B: censored, 1 December starts removed",era5_bd_z500_anom,0.8647,0.5479,1.1493,0.2906,252,81,10000,10000,0,0.5159
+"B: censored, 1 December starts removed",era5_bd_mslp_anom,0.8462,0.5531,1.1416,0.2426,252,81,10000,10000,0,0.5159
+"B: censored, 1 December starts removed",era5_bd_u850_anom,0.8081,0.6136,1.0505,0.1132,252,81,10000,10000,0,0.3396
+"B: censored, 1 December starts removed",era5_bd_v850_anom,1.0164,0.7678,1.3589,0.9247,252,81,10000,10000,0,0.9325
+"B: censored, 1 December starts removed",era5_bd_wspd10_anom,0.5399,0.3347,0.7834,0.0018,252,81,10000,10000,0,0.0338
+"B: censored, 1 December starts removed",era5_sa_t850_anom,1.0429,0.6828,1.5625,0.7979,252,81,10000,10000,0,0.8891
+"B: censored, 1 December starts removed",era5_sa_z500_anom,0.8222,0.5207,1.0995,0.1656,252,81,10000,10000,0,0.4305
+"B: censored, 1 December starts removed",era5_sa_mslp_anom,0.8333,0.5594,1.0860,0.1574,252,81,10000,10000,0,0.4305
+"B: censored, 1 December starts removed",era5_sa_u850_anom,1.1793,0.8519,1.6688,0.3094,252,81,10000,10000,0,0.5159
+"B: censored, 1 December starts removed",era5_sa_v850_anom,1.0489,0.7618,1.4170,0.7557,252,81,10000,10000,0,0.8669
+"B: censored, 1 December starts removed",era5_bd_t850_tend,1.4840,1.0966,2.2320,0.0094,252,81,10000,10000,0,0.0611
+"B: censored, 1 December starts removed",era5_bd_stab_t2m_minus_t850_tend,0.6370,0.4298,0.8608,0.0018,252,81,10000,10000,0,0.0338
+"B: censored, 1 December starts removed",era5_bd_z500_tend,0.7407,0.5326,0.9397,0.0152,252,81,10000,10000,0,0.0751
+"B: censored, 1 December starts removed",era5_bd_mslp_tend,0.6578,0.4308,0.9165,0.0154,252,81,10000,10000,0,0.0751
+"B: censored, 1 December starts removed",era5_bd_u850_tend,0.8631,0.6733,1.1520,0.3236,252,81,10000,10000,0,0.5159
+"B: censored, 1 December starts removed",era5_bd_v850_tend,1.3881,1.0401,1.9367,0.0274,252,81,10000,10000,0,0.1068
+"B: censored, 1 December starts removed",era5_bd_wspd10_tend,0.6817,0.4036,0.9817,0.0388,252,81,10000,10000,0,0.1375
+"B: censored, 1 December starts removed",era5_sa_t850_tend,0.9062,0.6488,1.2607,0.5563,252,81,10000,10000,0,0.7938
+"B: censored, 1 December starts removed",era5_sa_z500_tend,0.5720,0.3986,0.7897,0.0026,252,81,10000,10000,0,0.0338
+"B: censored, 1 December starts removed",era5_sa_mslp_tend,0.6883,0.4793,0.9342,0.0200,252,81,10000,10000,0,0.0867
+"B: censored, 1 December starts removed",era5_sa_v850_tend,1.0739,0.8021,1.4448,0.6679,252,81,10000,10000,0,0.8140
+"B: censored, 1 December starts removed",siberian_high_std_anom,1.2185,0.9032,1.7226,0.2096,252,81,10000,10000,0,0.4808
+"B: censored, 1 December starts removed",ural_blocking_fraction,1.1982,0.8412,1.5049,0.2612,252,81,10000,10000,0,0.5159
+"B: censored, 1 December starts removed",nam_proxy_10,0.9672,0.6421,1.3717,0.8895,252,81,10000,10000,0,0.9325
+"B: censored, 1 December starts removed",nam_proxy_100,0.9227,0.6494,1.4074,0.7467,252,81,10000,10000,0,0.8669
+"B: censored, 1 December starts removed",rrwp_eurasian_upstream_R_lag7,1.3031,0.9550,1.9166,0.0900,252,81,10000,10000,0,0.2925
+"B: censored, 1 December starts removed",rrwp_central_asia_R_lag7,1.1950,0.8562,1.8145,0.2750,252,81,10000,10000,0,0.5159
+"B: censored, 1 December starts removed",rrwp_bangladesh_sector_R_lag7,1.1647,0.8332,1.7790,0.3392,252,81,10000,10000,0,0.5159
+"B: censored, 1 December starts removed",rrwp_asian_corridor_R_lag7,1.2438,0.8808,1.9698,0.2026,252,81,10000,10000,0,0.4808
+"B: censored, 1 December starts removed",rrwp_eurasian_upstream_envelope_z_trailing3,0.8893,0.6113,1.1434,0.3440,252,81,10000,10000,0,0.5159
+"B: censored, 1 December starts removed",rrwp_central_asia_envelope_z_trailing3,0.8830,0.5585,1.1526,0.3434,252,81,10000,10000,0,0.5159
+"B: censored, 1 December starts removed",rrwp_bangladesh_sector_envelope_z_trailing3,0.9978,0.7016,1.2888,0.9325,252,81,10000,10000,0,0.9325
+"B: censored, 1 December starts removed",rrwp_asian_corridor_envelope_z_trailing3,0.9408,0.6183,1.2135,0.6171,252,81,10000,10000,0,0.8140

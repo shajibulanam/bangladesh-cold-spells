@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """
-16h_build_online_resource_tables.py  (v2, schema-specific)
-==========================================================
+16h_build_online_resource_tables.py  (v3, Step 18)
+==================================================
 
 Builds the new material of Online Resource 1 (ESM_1) from the Step 17
 revision outputs. Nothing is recomputed: every number is read from the CSV
 files written by 16a-16g, so the supplement and the main text cannot drift.
 
 Outputs (08_outputs/online_resource_1/):
+  online_resource_1_tables_S1_S9.md      Tables S1-S9 with captions (v3: from result tables 60-119)
   online_resource_1_tables_S10_S17.md    Tables S10-S17 with captions
   FigS1_hazard_robustness.{pdf,png,tif}  (a) odds-ratio robustness,
                                          (b) nested validation
@@ -352,8 +353,8 @@ def t_s11(D):
     trunc = next(a_ for a_ in an if a_.startswith("B"))
     cols = [("Primary (26 stations)", r2[r2.analysis == prim]),
             ("25 stations", r10b),
-            ("Season-end spells censored", r2[r2.analysis == cens]),
-            ("Censored and 1 December starts removed", r2[r2.analysis == trunc])]
+            ("Season-end spells not censored", r2[r2.analysis == cens]),
+            ("1 December starts removed", r2[r2.analysis == trunc])]
     idx = [c[1].set_index("predictor") for c in cols]
     rows = []
     for p in idx[0].index:
@@ -620,8 +621,9 @@ TABLES = [
              "frequency; the calibration slope and the ratio of observed to expected terminations "
              "refer to the held-out predictions. In the split-period folds the winter-start-year "
              "term is extrapolated beyond the training period; trained on the later half, even the "
-             "adjustment-only model scores worse than the training-period climatology (Brier 0.307 "
-             "against 0.218), and calibration is poor in both directions. (b) Predictors selected "
+             "adjustment-only model scores worse than the training-period climatology (compare the "
+             "Brier columns), and calibration is poor in both directions. The risk set treats the two "
+             "season-end spells as right-censored (83 terminations). (b) Predictors selected "
              "in the training folds. This table supersedes Table S7, in which the predictors had "
              "been chosen on the full record. The AUC values are plotted in Fig. S1b.")),
     dict(id="S11",
@@ -632,13 +634,14 @@ TABLES = [
              "(a) The primary cold-night spell catalogue (26 stations) and the catalogue rebuilt "
              "on the 25 stations other than Satkhira, the station flagged by the homogeneity "
              "screen, with Voronoi weights recomputed. The rebuild code was first validated by "
-             "reproducing the 26-station weights and all 85 primary spells exactly; the rebuilt "
-             "catalogue matches 83 of the 85 primary spells. (b) Odds ratios of termination per "
+             "reproducing the 26-station weights and all 85 primary spells exactly; the 84 rebuilt "
+             "spells overlap 83 of the 85 primary spells (79 with identical dates). (b) Odds ratios of termination per "
              "standard deviation (95% winter-block bootstrap interval) for the 39 causal "
              "primary-family predictors, " + ADJ + ": as in Table S2 (primary), on the 25-station "
-             "catalogue, with the two spells that end on the last day of the season treated as "
-             "censored rather than terminated, and with the two spells that start on 1 December "
-             "(whose age at the start of the season is unknown) also removed. An asterisk marks an "
+             "catalogue, with the two spells that end on the last day of the season counted as "
+             "terminations instead of being right-censored, and "
+             "with the two spells that start on 1 December (whose age at the start of the season "
+             "is unknown) removed. An asterisk marks an "
              "interval that excludes 1. The last row gives the number of risk-set rows and "
              "terminations.")),
     dict(id="S12", title="Termination hazard model with predictors taken one and two days earlier",
@@ -651,7 +654,7 @@ TABLES = [
              "family and for a single Benjamini–Hochberg correction across all predictors. "
              "(b) Lead associations of 850-hPa advection and jet speed at one and two days, and "
              "robustness of the one-day lead of advection over the northwestern Indo-Gangetic Plain "
-             "(NW IGP) to censoring of the season-end spells, to the 25-station catalogue, to adding "
+             "(NW IGP) to counting the season-end spells as terminations, to the 25-station catalogue, to adding "
              "the same-day core predictors (10-m wind, South Asian Z500 tendency, T2m − T850 "
              "tendency, Tmax) and to adding same-day advection over both regions. Adv850 is "
              "positive for warm advection. Intervals are 95% winter-block bootstrap intervals. The "
@@ -695,11 +698,14 @@ TABLES = [
              "South Asia (15–35°N, 70–100°E) and Bangladesh (20.5–26.8°N, "
              "88–93°E). The last column gives the fraction of grid points over "
              "10–70°N, 30–120°E passing Benjamini–Hochberg control "
-             "(q < 0.05). (b) Onset-pathway indices: Spearman correlation of winter means with "
+             "(q < 0.05; t-tests for the regressions, exact sign-flip tests over the 19 winters for the "
+             "post-SSW differences); T850 and MSLP exclude grid points above 1000 m. (b) Onset-pathway indices: Spearman correlation of winter means with "
              "winter-mean NAM at 100 hPa (40 winters; partial correlation given DJF ONI), and the "
-             "post-SSW minus rest-of-winter difference with a bootstrap over winters (2000 "
-             "resamples). Jet indices are the latitude and speed of the 200-hPa zonal wind maximum "
-             "over 70–100°E.")),
+             "post-SSW minus rest-of-winter difference with a bootstrap interval over winters (2000 "
+             "resamples) and an exact two-sided sign-flip p-value over the 19 winters. Jet indices are the latitude and speed of the 200-hPa zonal wind maximum "
+             "over 70–100°E. The South Asian Z500 post-SSW difference differs slightly between (a) "
+             "and (b) because (a) averages the 2° composite field over the box and (b) the daily "
+             "0.25° box index.")),
     dict(id="S16", title="Humidity and surface temperature of cold-day and cold-night spells",
          files=["table_R5_absolute_humidity.csv", "table_R9c_skin_soil_regimes.csv",
                 "table_R9_skin_soil_hazard.csv"], build=t_s16,
@@ -710,9 +716,9 @@ TABLES = [
              "means of box-mean 2-m temperature, dewpoint, dewpoint depression and relative "
              "humidity (Magnus formula over water; Alduchov and Eskridge 1996), the "
              "December–February climatology, and the cold-day minus cold-night difference "
-             "with a 95% winter-block bootstrap interval (2000 resamples). (b) Cold-day minus "
+             "with a 95% winter-block bootstrap interval (10,000 resamples). (b) Cold-day minus "
              "cold-night difference of the anomalies of skin temperature and of skin minus 2-m air "
-             "temperature (1000 resamples). (c) Skin-temperature predictors in the termination "
+             "temperature (10,000 resamples). (c) Skin-temperature predictors in the termination "
              "hazard model, " + ADJ + "; q is controlled within each window. Night-time values "
              "overlap the night that decides termination and are concurrent with the outcome. "
              "Soil temperature is not available in the ARCO archive.")),
@@ -722,12 +728,247 @@ TABLES = [
              "Event-mean anomaly fields, persistent (≥ 6 days, n = 26) minus short (3 days, "
              "n = 30) cold-night spells, in the two windows of identical event status, on 2° "
              "means of the 0.25° ERA5 fields over 10–70°N, 30–120°E. Grid "
-             "points with q < 0.05: winter-block bootstrap at each grid point (2000 resamples) "
-             "with Benjamini–Hochberg control across the grid points of each field and window "
-             "(Wilks 2016). The last two columns give the difference of the means over the "
+             "points with q < 0.05: two-sided plus-one winter-block bootstrap p-value at each grid "
+             "point (10,000 resamples) with Benjamini–Hochberg control across the grid points of each field and window "
+             "(Wilks 2016); T850 and MSLP are tested only where the mean elevation of the 2° cell is "
+             "below 1000 m. The last two columns give the difference of the means over the "
              "upstream box (40–60°N, 30–60°E) with its 95% bootstrap interval; the "
              "box was examined because earlier fixed-lag composites suggested it, so this "
              "comparison is exploratory. The fields are mapped in Fig. S2.")),
+]
+
+
+# --------------------------------------------------------------------------
+# Tables S1-S9 (v3, Step 18): generated from the Step 11-16 result tables, so
+# that no number in Online Resource 1 is typed by hand.
+# --------------------------------------------------------------------------
+
+EXACT.update({
+    "ural_blocking_fraction_anom": "Ural blocking",
+})
+CLD = {"strd_wm2": "Downward longwave (UTC-day mean)", "ssrd_wm2": "Downward solar (UTC-day mean)",
+       "tcc_mean": "Total cloud (UTC-day mean)", "tcc_00utc": "Total cloud, 06 LT",
+       "lowcloud1000_frac_00utc": "Cloud base < 1 km, 06 LT",
+       "fog300_frac_00utc": "Cloud base < 300 m, 06 LT",
+       "td2m_mean": "2-m dewpoint (UTC-day mean)", "dpd_00utc": "Dewpoint depression, 06 LT",
+       "blh_06utc": "Boundary-layer height, 12 LT"}
+GROUP = {"station_temperature": "Station temperature", "era5_state": "ERA5 state",
+         "era5_tendency": "ERA5 tendency", "remote_causal": "Remote (past only)",
+         "noncausal_diagnostic": "Non-causal diagnostic"}
+FAMILY.update({"night_overlapping": "Terminating night (concurrent)"})
+PWIN = {"pre_onset": "Days −3 to −1", "onset_0_2": "Days 0–2", "last_day": "Last event day",
+        "post_end": "Days +1 to +2", "pre10": "Days −10 to −1", "pre5": "Days −5 to −1"}
+
+
+def var_label2(raw) -> str:
+    """var_label plus the UTC-day cloud names (Table S5) and centred R (Table S2)."""
+    s = str(raw)
+    m = re.fullmatch(r"cld_(.+)_(anom|tend)", s)
+    if m and m.group(1) in CLD:
+        return ("Δ" if m.group(2) == "tend" else "") + CLD[m.group(1)]
+    m = re.fullmatch(r"rrwp_([a-z_]+?)_R_centred_noncausal", s)
+    if m and m.group(1) in RRWP:
+        return f"RRWP {RRWP[m.group(1)]} R centred (t ± 7)"
+    return var_label(s)
+
+
+def short_label(raw) -> str:
+    return var_label2(raw).replace(" anomaly", "")
+
+
+def _or_row(r, q_col):
+    return [num(r.odds_ratio_per_sd), ci(r.ci_low, r.ci_high, ratio=True), pval(r.p_bootstrap),
+            pval(r[q_col]) if q_col and q_col in r and not _isnan(r[q_col]) else DASH]
+
+
+def t_s1(D):
+    c, v = D["table_60_major_ssw_catalogue.csv"], D["table_60b_major_ssw_validation.csv"]
+    need(c, ["central_date", "winter_label", "u60_10_central_ms", "easterly_run_days"], "table_60")
+    exact = set(pd.to_datetime(v.loc[v["exact_match"].astype(bool), "nearest_derived_date"]).dt.strftime("%Y-%m-%d"))
+    rows = []
+    for i, r in enumerate(c.sort_values("central_date").itertuples(), 1):
+        d = str(r.central_date)[:10]
+        ref = "exact match" if d in exact else ("after 2023, not in reference list" if d >= "2024" else "no match")
+        rows.append([i, d, r.winter_label, num(r.u60_10_central_ms, 1), integer(r.easterly_run_days), ref])
+    REP.checks.append(f"S1: {len(rows)} major SSWs, {len(exact)} exact matches with the NOAA compendium")
+    return [(None, md_table(["#", "Central date", "Winter", "U(60°N, 10 hPa) at central date (m s⁻¹)",
+                             "Easterly run (days)", "NOAA compendium"], rows))]
+
+
+def t_s2(D):
+    t = D["table_91_termination_hazard_odds_ratios.csv"]
+    need(t, ["family", "predictor", "odds_ratio_per_sd", "ci_low", "ci_high", "p_bootstrap",
+             "q_fdr_causal", "n_rows", "n_terminations"], "table_91")
+    rows = [[GROUP.get(r.family, r.family), var_label2(r.predictor)] + _or_row(r, "q_fdr_causal")
+            for _, r in t.iterrows()]
+    REP.checks.append(f"S2: {int(t.n_rows.max())} risk-set rows, {int(t.n_terminations.max())} terminations; "
+                      f"q < 0.05: {[var_label2(p) for p in t.loc[t.q_fdr_causal < 0.05, 'predictor']]}")
+    return [(None, md_table(["Group", "Predictor", "OR per SD", "95% CI", "p", "q (FDR)"], rows))]
+
+
+def t_s3(D):
+    t = D["table_106_mechanism_extension_hazard.csv"]
+    order = ["mech_bd_adv850_k_day_anom", "mech_nigp_adv850_k_day_anom", "mech_jet200_core_lat_70_100e_anom",
+             "mech_jet200_core_speed_70_100e_anom", "mech_bd_adv850_k_day_tend", "mech_nigp_adv850_k_day_tend",
+             "mech_jet200_core_lat_70_100e_tend", "mech_jet200_core_speed_70_100e_tend"]
+    t = t.set_index("predictor").reindex([p for p in order if p in set(t.predictor)] +
+                                         [p for p in t.predictor if p not in order]).reset_index()
+    rows = [[var_label2(r.predictor)] + _or_row(r, "q_fdr_family") for _, r in t.iterrows()]
+    return [(None, md_table(["Predictor", "OR per SD", "95% CI", "p", "q (FDR)"], rows))]
+
+
+def t_s4(D):
+    t = D["table_114_prenight_vs_night_hazard.csv"]
+    rows = [[FAMILY.get(r.family, r.family), var_label2(r.predictor)] + _or_row(r, "q_fdr_family")
+            for _, r in t.iterrows()]
+    return [(None, md_table(["Window", "Predictor", "OR per SD", "95% CI", "p", "q (FDR within window)"], rows))]
+
+
+def t_s5(D):
+    t = D["table_111_cloud_radiation_hazard.csv"]
+    rows = [[var_label2(r.predictor)] + _or_row(r, "q_fdr_family") for _, r in t.iterrows()]
+    return [(None, md_table(["Predictor", "OR per SD", "95% CI", "p", "q (FDR)"], rows))]
+
+
+def t_s6(D):
+    t = D["table_95_hazard_robustness.csv"]
+    cols = ROB_COLS + [("lead_1_day", "1-day lead")]
+    preds = list(t.loc[t.analysis == "primary", "predictor"])
+    grid = {k: t[t.analysis == k].set_index("predictor") for k, _ in cols}
+    rows = []
+    for p in preds:
+        row = [short_label(p)]
+        for k, _ in cols:
+            g = grid[k]
+            if p in g.index:
+                r = g.loc[p]
+                row.append(num(r.odds_ratio_per_sd) + ("\\*" if excludes(r.ci_low, r.ci_high, 1) else ""))
+            else:
+                row.append(DASH)
+        rows.append(row)
+    REP.checks.append(f"S6: {len(preds)} primary-family predictors with q < 0.10")
+    return [(None, md_table(["Predictor"] + [lab for _, lab in cols], rows))]
+
+
+def t_s7(D):
+    t = D["table_117_split_period_validation.csv"]
+    rows = []
+    for _, r in t.iterrows():
+        rows.append([str(r.train).replace("-", NDASH), str(r.test).replace("-", NDASH),
+                     f"{integer(r.n_test_rows)} ({integer(r.test_terminations)})",
+                     num(r.auc_adjustment_only, 3), num(r.auc_plus_synoptic, 3),
+                     f"{num(r.auc_difference, 3)} {ci(r.auc_diff_ci_low, r.auc_diff_ci_high, 3)}",
+                     num(r.brier_adjustment_only, 3), num(r.brier_plus_synoptic, 3),
+                     num(r.brier_climatology, 3)])
+    preds = "; ".join(var_label2(x) for x in str(t.synoptic_predictors.iloc[0]).split(";"))
+    REP.checks.append(f"S7: synoptic predictors chosen on the full record: {preds}")
+    return [(None, md_table(["Trained on", "Tested on", "Test rows (terminations)", "AUC, adjustment only",
+                             "AUC, + synoptic", "ΔAUC [95% CI]", "Brier, adjustment only",
+                             "Brier, + synoptic", "Brier, climatology"], rows))]
+
+
+def t_s8(D):
+    a, b = D["table_89_leakage_free_persistence_tests.csv"], D["table_118_minimum_detectable_differences.csv"]
+    m = a.merge(b[["window", "variable", "mdd_80pct", "mdd_80pct_standardized"]], on=["window", "variable"], how="left")
+    rows = [[PWIN.get(r.window, r.window), short_label(r.variable), num(r.difference),
+             ci(r.ci_low, r.ci_high), pval(r.q_fdr_within_window), num(r.mdd_80pct), num(r.mdd_80pct_standardized)]
+            for _, r in m.iterrows()]
+    REP.checks.append(f"S8: {len(m)} contrasts, min q {m.q_fdr_within_window.min():.3f}")
+    return [(None, md_table(["Window", "Variable", "Persistent − short", "95% CI", "q", "MDD (80% power)",
+                             "MDD / between-event SD"], rows))]
+
+
+def t_s9(D):
+    a, b = D["table_105_remote_driver_duration_tests.csv"], D["table_119_minimum_detectable_correlations.csv"]
+    m = a.merge(b[["window", "driver", "min_detectable_abs_rho_80pct"]], on=["window", "driver"], how="left")
+    rows = [[PWIN.get(r.window, r.window), short_label(r.driver), num(r.persistent_minus_short),
+             pval(r.diff_q), num(r.spearman_rho), ci(r.rho_ci_low, r.rho_ci_high), pval(r.rho_q),
+             num(r.min_detectable_abs_rho_80pct)] for _, r in m.iterrows()]
+    REP.checks.append(f"S9: min q (difference) {a.diff_q.min():.3f}, min q (rho) {a.rho_q.min():.3f}")
+    return [(None, md_table(["Window", "Driver", "Persistent − short", "q", "Spearman ρ", "95% CI", "q",
+                             "Minimum detectable ρ"], rows))]
+
+
+INF = ("Intervals are 95% winter-block bootstrap intervals and p-values two-sided plus-one bootstrap "
+       "p-values, 2(min(n≤0, n≥0) + 1)/(B + 1), from B = 10,000 resamples")
+TABLES_A = [
+    dict(id="S1", title="Major sudden stratospheric warmings, 1985/86–2024/25",
+         files=["table_60_major_ssw_catalogue.csv", "table_60b_major_ssw_validation.csv"], build=t_s1,
+         caption=("Major SSWs identified from the first reversal of the daily-mean zonal-mean zonal wind at "
+                  "60°N and 10 hPa in ERA5, with at least 20 consecutive westerly days between events and "
+                  "final warmings excluded unless westerlies return for at least 10 consecutive days before "
+                  "30 April (Charlton and Polvani 2007). All events up to 2023 coincide exactly (zero-day "
+                  "offset) with the ERA5 central dates of the NOAA SSW Compendium (Butler et al. 2017); the "
+                  "two events of 2024 postdate that reference list.")),
+    dict(id="S2", title="Termination hazard model: primary predictor family",
+         files=["table_91_termination_hazard_odds_ratios.csv"], build=t_s2,
+         caption=("39 causal predictors, measured on day k or earlier (station Tmin and Tmax of day k; ERA5 at "
+                  "00 UTC of day k; RRWP R lagged by 7 days or trailing envelopes), " + ADJ + ". The risk set "
+                  "has 260 spell days and 83 terminations: the two spells whose last day is the last day of "
+                  "February are right-censored. ERA5 box means of 1000- and 850-hPa fields and MSLP exclude "
+                  "grid points above 1000 m. q is controlled across the 39 causal predictors. The four "
+                  "same-day centred R values (±7-day window) use information from after day k; they are "
+                  "shown as non-causal diagnostics and are excluded from the false-discovery-rate correction. "
+                  + INF + ".")),
+    dict(id="S3", title="Termination hazard model: advection and jet family",
+         files=["table_106_mechanism_extension_hazard.csv"], build=t_s3,
+         caption=("Daily 850-hPa temperature advection (positive = warm advection; grid points above 1000 m and "
+                  "their neighbours excluded) and 200-hPa jet diagnostics at 00 UTC, as anomalies and "
+                  "day-to-day tendencies, " + ADJ + "; q is controlled within this family of eight "
+                  "predictors. " + INF + ".")),
+    dict(id="S4", title="Termination hazard model: cloud, humidity and radiation before and during the terminating night",
+         files=["table_114_prenight_vs_night_hazard.csv"], build=t_s4,
+         caption=("ERA5 hourly fields from the ARCO archive, Bangladesh box. “Before terminating night”: means "
+                  "over 00–11 UTC of day k (06–17 LT), 00 UTC (06 LT) dawn values, and day-to-day changes of "
+                  "the daytime means; these can carry precursor information. “Terminating night”: means over "
+                  "12–23 UTC (18–05 LT), which overlap the night that decides whether the spell continues; "
+                  "these are concurrent with the outcome. Radiation accumulations (J m⁻²) were converted to "
+                  "mean fluxes by dividing by the accumulation time (3600 s per hourly field). q is controlled "
+                  "separately within each window; the global correction across all 61 causal predictors is "
+                  "given in the main text. " + INF + ".")),
+    dict(id="S5", title="Superseded analysis: cloud, humidity and radiation as UTC-day means",
+         files=["table_111_cloud_radiation_hazard.csv"], build=t_s5,
+         caption=("Retained for transparency (see Text S2). UTC-day means run from 06 LT on day k to 06 LT on "
+                  "day k + 1 and therefore include the terminating night; they are superseded by Table S4. "
+                  "q is controlled within this family of 14 predictors. " + INF + ".")),
+    dict(id="S6", title="Robustness of the termination odds ratios",
+         files=["table_95_hazard_robustness.csv"], build=t_s6,
+         caption=("Odds ratios per SD for the primary-family predictors with q < 0.10, re-estimated with linearly "
+                  "detrended covariates, with each alternative event catalogue (number of spells: one-day gap "
+                  "merge 86; area ≥ 10% 110; area ≥ 30% 63; minimum duration 4 days 55; p05 threshold 35; BMD "
+                  "absolute 10 °C threshold 93), and with every predictor taken one day earlier (day k − 1). "
+                  "An asterisk marks a 95% winter-block bootstrap interval excluding 1 (10,000 resamples). The "
+                  "same values are plotted in Fig. S1a.")),
+    dict(id="S7", title="Superseded analysis: split-period validation with predictors chosen on the full record",
+         files=["table_117_split_period_validation.csv"], build=t_s7,
+         caption=("Retained for transparency; superseded by the nested validation of Table S10. The synoptic "
+                  "predictors here were chosen using all 40 winters, including the test half, so these AUC "
+                  "differences are optimistic; when selection is repeated inside each training fold, neither "
+                  "split improves on the adjustment-only model (Table S10). Each model is fitted on one half of "
+                  "the record and scored on the other; the interval of the AUC difference is a winter-block "
+                  "bootstrap of the test rows (2000 resamples).")),
+    dict(id="S8", title="Leakage-free comparisons of persistent and short cold-night spells, with minimum detectable differences",
+         files=["table_89_leakage_free_persistence_tests.csv", "table_118_minimum_detectable_differences.csv"],
+         build=t_s8,
+         caption=("Event-mean anomalies, persistent (≥ 6 days, n = 26) minus short (3 days, n = 30), in windows "
+                  "where the event status of both groups is identical. Units: °C for Tmin, Tmax, DTR and T2m; K "
+                  "for T850 and T2m − T850; m for thickness and Z500; hPa for MSLP; m s⁻¹ for winds. SA box "
+                  "means of 1000- and 850-hPa fields and MSLP exclude grid points above 1000 m. CI: winter-block "
+                  "bootstrap (10,000 resamples); q: false discovery rate within each window. MDD: minimum "
+                  "difference detectable with 80% power at a two-sided 5% level, 2.80 × the bootstrap standard "
+                  "error, also given in units of the pooled between-event standard deviation; these MDDs are "
+                  "nominal single-comparison values that do not account for the false-discovery-rate correction.")),
+    dict(id="S9", title="Large-scale and remote drivers versus spell duration, with minimum detectable correlations",
+         files=["table_105_remote_driver_duration_tests.csv", "table_119_minimum_detectable_correlations.csv"],
+         build=t_s9,
+         caption=("Event-window means of 14 drivers in three windows of identical event status, related to "
+                  "duration in two ways: persistent minus short difference (units as in Table S8; SD for the "
+                  "Siberian High, NAM and RRWP measures; fraction for Ural blocking; K day⁻¹ for 850-hPa "
+                  "advection; degrees and m s⁻¹ for jet latitude and speed), and Spearman correlation with "
+                  "duration across all 85 spells. Rossby-wave measures enter only in causal form (R lagged by "
+                  "7 days; trailing 3-day envelope). q: false discovery rate within each window and statistic. "
+                  "Minimum detectable ρ: the smallest absolute correlation detectable with 80% power at a "
+                  "two-sided 5% level (2.80 × bootstrap standard error; nominal, single comparison).")),
 ]
 
 
@@ -788,7 +1029,7 @@ def build_fig_s1(root: Path, outdir: Path, D: dict):
         r2 = D["table_R2_censoring_sensitivity.csv"]
         a = next((x for x in r2.analysis.astype(str).unique() if x.startswith("A")), None)
         if a:
-            grids.append(("Censored", r2[r2.analysis == a].set_index("predictor")))
+            grids.append(("Not censored", r2[r2.analysis == a].set_index("predictor")))
     if "lead_1_day" in set(rob.analysis):
         grids.append(("1-day lead", rob[rob.analysis == "lead_1_day"].set_index("predictor")))
     labels = [g[0] for g in grids]
@@ -916,11 +1157,11 @@ def main():
         return
     outdir = Path(args.out) if args.out else root / "08_outputs" / "online_resource_1"
     outdir.mkdir(parents=True, exist_ok=True)
-    REP.add("Online Resource 1 build report (16h v2)")
+    REP.add("Online Resource 1 build report (16h v3)")
     REP.add(f"project root: {root}\n")
 
     D = {}
-    for t in TABLES:
+    for t in TABLES_A + TABLES:
         for f in t["files"]:
             p = locate(root, f)
             if p is not None:
@@ -930,9 +1171,22 @@ def main():
                 REP.add(f"MISSING: {f}")
     REP.add("")
 
-    md = ["<!-- Generated by 07_scripts/16h_build_online_resource_tables.py (v2). "
+    for name, tabs in (("online_resource_1_tables_S1_S9.md", TABLES_A),
+                       ("online_resource_1_tables_S10_S17.md", TABLES)):
+        write_tables(outdir / name, tabs, D)
+
+    try:
+        build_fig_s1(root, outdir, D)
+    except Exception as exc:
+        REP.add(f"Fig. S1 NOT BUILT: {type(exc).__name__}: {exc}")
+    copy_fig_s2(root, outdir)
+    finish_report(outdir)
+
+
+def write_tables(path: Path, tables: list, D: dict):
+    md = ["<!-- Generated by 07_scripts/16h_build_online_resource_tables.py (v3). "
           "Do not edit numbers by hand; re-run the script. -->", ""]
-    for t in TABLES:
+    for t in tables:
         REP.ctx = f"Table {t['id']}"
         md += [f"## Table {t['id']}. {t['title']}", "", t["caption"], ""]
         try:
@@ -944,14 +1198,10 @@ def main():
             msg = f"Table {t['id']} NOT BUILT: {type(exc).__name__}: {exc}"
             REP.add(msg)
             md += [f"*[{msg}]*", ""]
-    (outdir / "online_resource_1_tables_S10_S17.md").write_text("\n".join(md), encoding="utf-8")
+    path.write_text("\n".join(md), encoding="utf-8")
 
-    try:
-        build_fig_s1(root, outdir, D)
-    except Exception as exc:
-        REP.add(f"Fig. S1 NOT BUILT: {type(exc).__name__}: {exc}")
-    copy_fig_s2(root, outdir)
 
+def finish_report(outdir: Path):
     REP.add("\nConsistency checks (compare with the main text):")
     REP.lines += [f"  {c}" for c in REP.checks] or ["  none"]
     REP.add("\nRounding ties (stored value ends in 5 one decimal beyond the display; rounded "

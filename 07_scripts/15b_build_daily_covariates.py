@@ -149,8 +149,15 @@ def era5_covariates() -> pd.DataFrame:
     for b in ("bd", "sa"):
         d[f"{b}_t2m"] = e[f"{b}_t2m_c"]
         d[f"{b}_t850"] = e[f"{b}_air_temperature_k_850"] - 273.15
-        d[f"{b}_stab_t2m_minus_t850"] = d[f"{b}_t2m"] - d[f"{b}_t850"]
-        d[f"{b}_thick_1000_500"] = e[f"{b}_geopotential_height_m_500"] - e[f"{b}_geopotential_height_m_1000"]
+        # Step 18: use the point-by-point differences over the terrain-valid area when 15a provides them
+        if f"{b}_stab_t2m_minus_t850_k" in e:
+            d[f"{b}_stab_t2m_minus_t850"] = e[f"{b}_stab_t2m_minus_t850_k"]
+        else:
+            d[f"{b}_stab_t2m_minus_t850"] = d[f"{b}_t2m"] - d[f"{b}_t850"]
+        if f"{b}_thick_1000_500_m" in e:
+            d[f"{b}_thick_1000_500"] = e[f"{b}_thick_1000_500_m"]
+        else:
+            d[f"{b}_thick_1000_500"] = e[f"{b}_geopotential_height_m_500"] - e[f"{b}_geopotential_height_m_1000"]
         d[f"{b}_z500"] = e[f"{b}_geopotential_height_m_500"]
         d[f"{b}_mslp"] = e[f"{b}_msl_hpa"]
         d[f"{b}_u850"] = e[f"{b}_u_wind_ms_850"]

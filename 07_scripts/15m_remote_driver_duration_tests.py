@@ -44,7 +44,7 @@ E = _load("step16e", "15e_hazard_robustness_and_trend.py")
 T_DUR = C.TERM_TABLES / "table_105_remote_driver_duration_tests.csv"
 T_HAZ = C.TERM_TABLES / "table_106_mechanism_extension_hazard.csv"
 REPORT = C.TERM_QC / "step16m_remote_drivers_report.txt"
-N_BOOT, SEED, N_BOOT_HAZ = 5000, 20260923, 2000
+N_BOOT, SEED, N_BOOT_HAZ = 10000, 20260923, 10000  # Step 18: was 5000 / 2000
 
 WINDOWS = {"pre10": (-10, -1), "pre5": (-5, -1), "onset_0_2": (0, 2)}
 DRIVERS = [
@@ -74,7 +74,7 @@ def spearman_boot(x: np.ndarray, y: np.ndarray, winters: np.ndarray) -> tuple[fl
         if len(np.unique(y[rep])) > 1:
             out.append(spearmanr(x[rep], y[rep])[0])
     out = np.array(out)
-    p = min(1.0, 2 * min((out <= 0).mean(), (out >= 0).mean()))
+    p = C.bootstrap_p(out)  # Step 18: plus-one p-value
     return rho, np.percentile(out, 2.5), np.percentile(out, 97.5), p
 
 

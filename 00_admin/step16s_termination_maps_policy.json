@@ -15,9 +15,11 @@
   "climatology": "Step 9C calendar-day",
   "significance": {
     "bootstrap": "winter-block",
-    "resamples": 1000,
+    "resamples": 10000,
     "fdr_q": 0.05,
-    "seed": 20260923
+    "seed": 20260923,
+    "p_value": "two-sided plus-one (Step 18)"
   },
-  "created_utc": "2026-09-24T18:01:17.523946+00:00"
+  "high_terrain_mask": "MSLP, T850 and 850-hPa wind set to missing where the ETOPO1 mean elevation of the 1-degree cell exceeds 1000.0 m, before compositing and significance (Step 18)",
+  "created_utc": "2026-10-10T10:15:13.709823+00:00"
 }

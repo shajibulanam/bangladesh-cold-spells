@@ -1,0 +1,60 @@
+done window pre10
+done window pre5
+done window onset_0_2
+Step 16M - Remote-driver duration tests
+========================================
+   window                                   driver  persistent_minus_short  diff_q  spearman_rho  rho_ci_low  rho_ci_high  rho_q
+    pre10                   siberian_high_std_anom                  -0.040   0.948        -0.009      -0.180        0.168  0.943
+    pre10              ural_blocking_fraction_anom                   0.056   0.440         0.115      -0.093        0.321  0.943
+    pre10              mech_nigp_adv850_k_day_anom                  -0.029   0.948        -0.048      -0.232        0.127  0.943
+    pre10                mech_bd_adv850_k_day_anom                   0.025   0.948         0.066      -0.139        0.264  0.943
+    pre10                        era5_bd_v850_anom                  -0.022   0.948         0.055      -0.110        0.233  0.943
+    pre10                        era5_sa_z500_anom                   0.751   0.948        -0.010      -0.200        0.160  0.943
+    pre10        mech_jet200_core_lat_70_100e_anom                  -0.077   0.948        -0.014      -0.249        0.198  0.943
+    pre10      mech_jet200_core_speed_70_100e_anom                   0.834   0.948         0.028      -0.196        0.238  0.943
+    pre10               rrwp_asian_corridor_R_lag7                   0.015   0.948         0.021      -0.166        0.219  0.943
+    pre10                 rrwp_central_asia_R_lag7                  -0.065   0.948         0.011      -0.209        0.237  0.943
+    pre10            rrwp_eurasian_upstream_R_lag7                   0.230   0.948         0.092      -0.103        0.267  0.943
+    pre10 rrwp_asian_corridor_envelope_z_trailing3                   0.219   0.948         0.154      -0.089        0.382  0.943
+    pre10                            nam_proxy_100                  -0.103   0.948        -0.029      -0.218        0.160  0.943
+    pre10                             nam_proxy_10                  -0.165   0.948        -0.116      -0.279        0.050  0.943
+     pre5                   siberian_high_std_anom                  -0.231   0.684        -0.084      -0.245        0.091  0.908
+     pre5              ural_blocking_fraction_anom                   0.071   0.684         0.111      -0.098        0.333  0.908
+     pre5              mech_nigp_adv850_k_day_anom                   0.127   0.684         0.036      -0.176        0.225  0.908
+     pre5                mech_bd_adv850_k_day_anom                   0.320   0.684         0.192      -0.081        0.439  0.908
+     pre5                        era5_bd_v850_anom                   0.333   0.684         0.123      -0.115        0.367  0.908
+     pre5                        era5_sa_z500_anom                   5.429   0.684         0.045      -0.114        0.204  0.908
+     pre5        mech_jet200_core_lat_70_100e_anom                   0.130   0.891        -0.006      -0.236        0.205  0.983
+     pre5      mech_jet200_core_speed_70_100e_anom                   1.346   0.684         0.050      -0.177        0.245  0.908
+     pre5               rrwp_asian_corridor_R_lag7                  -0.003   0.954        -0.005      -0.180        0.176  0.983
+     pre5                 rrwp_central_asia_R_lag7                  -0.117   0.684        -0.056      -0.250        0.138  0.908
+     pre5            rrwp_eurasian_upstream_R_lag7                   0.059   0.891        -0.016      -0.215        0.177  0.983
+     pre5 rrwp_asian_corridor_envelope_z_trailing3                   0.152   0.684         0.082      -0.178        0.316  0.908
+     pre5                            nam_proxy_100                  -0.184   0.684        -0.066      -0.240        0.113  0.908
+     pre5                             nam_proxy_10                  -0.247   0.684        -0.122      -0.283        0.031  0.908
+onset_0_2                   siberian_high_std_anom                  -0.135   0.921        -0.104      -0.329        0.131  0.749
+onset_0_2              ural_blocking_fraction_anom                  -0.022   0.921         0.022      -0.159        0.225  0.877
+onset_0_2              mech_nigp_adv850_k_day_anom                  -0.600   0.498        -0.153      -0.367        0.080  0.749
+onset_0_2                mech_bd_adv850_k_day_anom                   0.071   0.947         0.093      -0.129        0.300  0.749
+onset_0_2                        era5_bd_v850_anom                   0.051   0.947         0.029      -0.201        0.255  0.877
+onset_0_2                        era5_sa_z500_anom                  -0.073   0.981        -0.011      -0.191        0.160  0.877
+onset_0_2        mech_jet200_core_lat_70_100e_anom                   0.119   0.947         0.099      -0.163        0.345  0.749
+onset_0_2      mech_jet200_core_speed_70_100e_anom                   4.019   0.498         0.227      -0.012        0.431  0.749
+onset_0_2               rrwp_asian_corridor_R_lag7                  -0.241   0.790        -0.067      -0.290        0.148  0.749
+onset_0_2                 rrwp_central_asia_R_lag7                  -0.169   0.836        -0.061      -0.308        0.170  0.749
+onset_0_2            rrwp_eurasian_upstream_R_lag7                  -0.184   0.836        -0.088      -0.331        0.147  0.749
+onset_0_2 rrwp_asian_corridor_envelope_z_trailing3                  -0.213   0.638        -0.091      -0.253        0.082  0.749
+onset_0_2                            nam_proxy_100                  -0.263   0.790        -0.106      -0.285        0.064  0.749
+onset_0_2                             nam_proxy_10                  -0.295   0.638        -0.084      -0.251        0.095  0.749
+
+Mechanism-extension hazard family (adjusted as Step 16D)
+                          predictor  odds_ratio_per_sd  ci_low  ci_high  p_bootstrap  q_fdr_family
+          mech_bd_adv850_k_day_anom              1.556   1.206    2.149        0.002         0.005
+        mech_nigp_adv850_k_day_anom              1.089   0.721    1.591        0.702         0.786
+  mech_jet200_core_lat_70_100e_anom              0.805   0.543    1.118        0.171         0.274
+mech_jet200_core_speed_70_100e_anom              0.613   0.414    0.838        0.005         0.010
+          mech_bd_adv850_k_day_tend              1.868   1.357    3.042        0.000         0.003
+        mech_nigp_adv850_k_day_tend              0.645   0.423    0.848        0.002         0.005
+  mech_jet200_core_lat_70_100e_tend              0.961   0.689    1.379        0.786         0.786
+mech_jet200_core_speed_70_100e_tend              1.054   0.797    1.361        0.698         0.786
+

@@ -119,8 +119,11 @@ def r7_gridded(ev: pd.DataFrame) -> tuple[pd.DataFrame, str]:
     keys = list(S.FIELDS)
     is_p = (sub["group"] == "persistent").to_numpy()
     winters = sub["winter_start_year"].to_numpy()
-    uniq, counts = C.winter_bootstrap_counts(winters, N_BOOT, SEED)
+    B = C.test_boot(N_BOOT)  # Step 18: 10 000 resamples, plus-one p-values, processed in chunks
+    uniq, counts = C.winter_bootstrap_counts(winters, B, SEED)
     Wb = counts[:, np.searchsorted(uniq, winters)].astype(float)
+    # Step 18: T850 and MSLP are missing over high terrain (same rule as the box means, 2-degree cells)
+    terrain = C.below_ground_mask(lat, lon, 850.0, half_width=S.COARSEN * 0.125)
     ds = xr.Dataset(coords={"lat": lat, "lon": lon})
     rows = []
     in_box = (lat[:, None] >= UPSTREAM_BOX[0]) & (lat[:, None] <= UPSTREAM_BOX[1]) & \
@@ -129,22 +132,38 @@ def r7_gridded(ev: pd.DataFrame) -> tuple[pd.DataFrame, str]:
         for k in keys:
             X = np.stack([np.mean([an[r.start_date + pd.Timedelta(days=j)][k] for j in range(a, b + 1)], axis=0)
                           for r in sub.itertuples()])
+            X = X.astype(float)
+            if k in ("t850", "msl"):
+                X[:, terrain] = np.nan
             flat = X.reshape(len(sub), -1)
-            diff = flat[is_p].mean(0) - flat[~is_p].mean(0)
-            mp = (Wb[:, is_p] @ flat[is_p]) / Wb[:, is_p].sum(1, keepdims=True)
-            ms = (Wb[:, ~is_p] @ flat[~is_p]) / Wb[:, ~is_p].sum(1, keepdims=True)
-            bd = mp - ms
-            p = np.minimum(1, 2 * np.minimum((bd <= 0).mean(0), (bd >= 0).mean(0)))
+            valid = np.isfinite(flat).all(axis=0)
+            flat = np.where(valid[None, :], flat, 0.0)
+            diff = np.where(valid, flat[is_p].mean(0) - flat[~is_p].mean(0), np.nan)
+            boxw = np.cos(np.deg2rad(lat))[:, None] * in_box * valid.reshape(len(lat), len(lon))
+            bflat = (boxw / boxw.sum()).ravel()
+            n_le, n_ge, n_v = (np.zeros(flat.shape[1]) for _ in range(3))
+            bdiff = []
+            for s0 in range(0, B, 1000):
+                Wc = Wb[s0:s0 + 1000]
+                mp = (Wc[:, is_p] @ flat[is_p]) / Wc[:, is_p].sum(1, keepdims=True)
+                ms = (Wc[:, ~is_p] @ flat[~is_p]) / Wc[:, ~is_p].sum(1, keepdims=True)
+                bd = mp - ms
+                fin = np.isfinite(bd) & valid[None, :]
+                n_le += ((bd <= 0) & fin).sum(0)
+                n_ge += ((bd >= 0) & fin).sum(0)
+                n_v += fin.sum(0)
+                bdiff.append(bd @ bflat)
+            bdiff = np.concatenate(bdiff)
+            bdiff = bdiff[np.isfinite(bdiff)]
+            p = C.p_from_tail_counts(n_le, n_ge, n_v)
             q = C.benjamini_hochberg(p)
+            sig = np.nan_to_num(q, nan=1.0) < 0.05
             tag = "pre" if a < 0 else "early"
             ds[f"{k}_{tag}_persistent_minus_short"] = (("lat", "lon"), diff.reshape(len(lat), len(lon)))
-            ds[f"{k}_{tag}_fdr05"] = (("lat", "lon"), (q < 0.05).reshape(len(lat), len(lon)))
-            boxw = np.cos(np.deg2rad(lat))[:, None] * in_box
-            bflat = (boxw / boxw.sum()).ravel()
-            bdiff = bd @ bflat
-            rows.append({"window": wname, "field": k, "cells_fdr05": int((q < 0.05).sum()), "cells_total": q.size,
-                         "fraction_fdr05": float((q < 0.05).mean()), "min_p": float(p.min()),
-                         "upstream_box_difference": float(diff @ bflat), "upstream_box_ci_low": np.percentile(bdiff, 2.5),
+            ds[f"{k}_{tag}_fdr05"] = (("lat", "lon"), sig.reshape(len(lat), len(lon)))
+            rows.append({"window": wname, "field": k, "cells_fdr05": int(sig.sum()), "cells_total": int(valid.sum()),
+                         "fraction_fdr05": float(sig.sum() / valid.sum()), "min_p": float(np.nanmin(p)),
+                         "upstream_box_difference": float(np.nansum(diff * bflat)), "upstream_box_ci_low": np.percentile(bdiff, 2.5),
                          "upstream_box_ci_high": np.percentile(bdiff, 97.5)})
             print(f"R7 {wname:14s} {k:5s} FDR cells {rows[-1]['cells_fdr05']}/{q.size}; upstream box "
                   f"{rows[-1]['upstream_box_difference']:.2f} [{rows[-1]['upstream_box_ci_low']:.2f}, "
@@ -196,27 +215,17 @@ def or_with_controls(rs: pd.DataFrame, pred: str, controls: list[str]) -> dict:
     X = ((d[cols] - d[cols].mean()) / d[cols].std()).to_numpy()
     y = d["terminates"].to_numpy()
     est = E.fit(X, y).coef_[0][0]
-    uniq, counts = C.winter_bootstrap_counts(d["winter_start_year"].to_numpy(), N_BOOT_OR, SEED)
-    widx = np.searchsorted(uniq, d["winter_start_year"].to_numpy())
-    boots = []
-    for b in range(N_BOOT_OR):
-        w = counts[b, widx].astype(float)
-        keep = w > 0
-        if y[keep].min() != y[keep].max():
-            boots.append(E.fit(X[keep], y[keep], w[keep]).coef_[0][0])
-    boots = np.array(boots)
+    coef, conv = E.bootstrap_coefs(X, y, d["winter_start_year"].to_numpy(), C.test_boot(N_BOOT_OR), SEED)
+    boots = coef[:, 0]
     return {"odds_ratio_per_sd": np.exp(est), "ci_low": np.exp(np.percentile(boots, 2.5)),
             "ci_high": np.exp(np.percentile(boots, 97.5)),
-            "p_bootstrap": min(1.0, 2 * min((boots <= 0).mean(), (boots >= 0).mean())), "n_rows": len(d)}
+            "p_bootstrap": C.bootstrap_p(boots), "n_rows": len(d), "n_boot_valid": int(len(boots)),
+            "n_boot_nonconverged": int((~conv).sum())}
 
 
-def lead_risk_set(cov, ev, lead, censor_season_end=False):
-    rs = E.risk_set(cov, ev, 3, lead=lead)
-    if censor_season_end:
-        end = pd.to_datetime(ev["end_date"])
-        cens = set(ev.loc[(end.dt.month == 2) & ((end + pd.Timedelta(days=1)).dt.month == 3), "event_id"])
-        rs.loc[rs["event_id"].isin(cens) & (rs["terminates"] == 1), "terminates"] = 0
-    return rs
+def lead_risk_set(cov, ev, lead, censor=None):
+    """Season-end spells censored by default (Step 18 primary); censor=False gives the v1.2.0 definition."""
+    return E.risk_set(cov, ev, 3, lead=lead, censor=censor)
 
 
 def r11_lead(cov: pd.DataFrame, ev: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
@@ -225,8 +234,9 @@ def r11_lead(cov: pd.DataFrame, ev: pd.DataFrame) -> tuple[pd.DataFrame, pd.Data
         rs = lead_risk_set(cov, ev, lead)
         for p in (ADV_NW, ADV_BD, JET):
             rows.append({"analysis": f"lead {lead} day(s)", "predictor": p, **E.odds_ratio(rs, p, N_BOOT_OR)})
-    rs = lead_risk_set(cov, ev, 1, censor_season_end=True)
-    rows.append({"analysis": "lead 1, season-end spells censored", "predictor": ADV_NW, **E.odds_ratio(rs, ADV_NW, N_BOOT_OR)})
+    rs = lead_risk_set(cov, ev, 1, censor=False)
+    rows.append({"analysis": "lead 1, season-end spells not censored", "predictor": ADV_NW,
+                 **E.odds_ratio(rs, ADV_NW, N_BOOT_OR)})
     if STABLE_CAT.exists():
         st = pd.read_csv(STABLE_CAT, parse_dates=["start_date", "end_date"])
         rs = lead_risk_set(cov, st, 1)
@@ -288,7 +298,8 @@ def main() -> None:
     C.write_policy("step17d_revision_policy.json", {
         "step": "Step 17D (revision)", "humidity": "Magnus RH over water; dewpoint depression; box means (Step 16V windows)",
         "gridded_windows": GRID_WINDOWS, "upstream_box": UPSTREAM_BOX, "grid": "2-degree means of 0.25-degree ERA5",
-        "lead_controls": CORE_SAME_DAY, "bootstrap": N_BOOT, "seed": SEED})
+        "lead_controls": CORE_SAME_DAY, "bootstrap": N_BOOT, "test_bootstrap": C.test_boot(N_BOOT), "seed": SEED,
+        "p_value": "two-sided plus-one; T850 and MSLP masked over terrain > 1000 m (Step 18)"})
     ev = C.load_events()
     cov = W.load_covariates()
     R5 = r5_humidity(ev)

@@ -1,10 +1,10 @@
 cff-version: 1.2.0
 message: "If you use this code or the derived data, please cite the article and this archive."
-title: "Code and derived data for: Onset, termination and stratospheric modulation of Bangladesh winter cold spells: evidence from 40 winters"
-version: 1.2.0
-date-released: "2026-10-09"
+title: "Code and derived data for: Onset and termination of Bangladesh winter cold spells and their association with polar vortex variability: evidence from 40 winters"
+version: 1.3.0
+date-released: "2026-10-10"
 license: MIT
-doi: 10.5281/zenodo.23263890
+
 repository-code: "https://github.com/shajibulanam/bangladesh-cold-spells"
 authors:
   - family-names: Anam

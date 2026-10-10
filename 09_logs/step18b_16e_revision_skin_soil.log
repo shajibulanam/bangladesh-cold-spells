@@ -1,0 +1,28 @@
+Step 17E - skin and soil temperature (R9)
+=============================================
+Termination hazard:
+                        window                   predictor  odds_ratio_per_sd  ci_low  ci_high  q_fdr_window
+      before terminating night             ss_skt_day_anom              1.530   0.987    2.608         0.094
+      before terminating night           ss_skt_00utc_anom              1.154   0.667    1.925         0.612
+      before terminating night   ss_skt_minus_t2m_day_anom              0.853   0.602    1.090         0.217
+      before terminating night             ss_skt_day_tend              1.452   1.084    1.999         0.050
+      before terminating night   ss_skt_minus_t2m_day_tend              0.692   0.452    0.943         0.050
+terminating night (concurrent)           ss_skt_night_anom              3.905   2.502    8.850         0.000
+terminating night (concurrent) ss_skt_minus_t2m_night_anom              0.899   0.566    1.323         0.529
+
+End-aligned composites (mean):
+variable  ss_skt_00utc_anom  ss_skt_minus_t2m_night_anom
+day                                                     
+-5                    -0.65                         0.19
+-4                    -1.12                         0.15
+-3                    -1.65                         0.11
+-2                    -2.00                         0.07
+-1                    -2.07                        -0.05
+ 0                    -1.86                        -0.06
+ 1                    -1.04                        -0.10
+ 2                    -0.74                        -0.10
+
+Pure cold-day minus pure cold-night:
+                   variable  difference  ci_low  ci_high  p_bootstrap  n_a  n_b  n_boot_valid
+          ss_skt_00utc_anom       2.309    1.92    2.737          0.0   40   50         10000
+ss_skt_minus_t2m_night_anom       0.544    0.40    0.675          0.0   40   50         10000

@@ -37,5 +37,12 @@
     "core_speed": "maximum longitude-mean zonal wind"
   },
   "inputs": "Step 9B standardized pressure-level files (read only)",
-  "created_utc": "2026-09-23T20:19:31.145207+00:00"
+  "terrain_mask": {
+    "source": "ETOPO1 cell-mean elevation on the ERA5 grid (01_raw_data/geospatial)",
+    "threshold_m": 1000.0,
+    "neighbours": "four neighbours of every masked point also excluded",
+    "applies_to": "850-hPa advection box means; the 200-hPa jet is not masked",
+    "revision": "Step 18 (October 2026); unmasked series kept as *_unmasked.csv"
+  },
+  "created_utc": "2026-10-10T08:45:46.999591+00:00"
 }

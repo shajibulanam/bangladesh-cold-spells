@@ -134,7 +134,7 @@ def main() -> None:
             sims[i] = cov.loc[picks, col].mean()
         rows.append({"test": f"onset_{col}_vs_calendar_and_enso_phase_matched", "estimate": obs - sims.mean(),
                      "ci_low": obs - np.percentile(sims, 97.5), "ci_high": obs - np.percentile(sims, 2.5),
-                     "p": min(1.0, 2 * min((sims >= obs).mean(), (sims <= obs).mean()))})
+                     "p": C.p_from_tail_counts((sims <= obs).sum(), (sims >= obs).sum(), len(sims))})
 
     # SSW test with ENSO-phase-matched control winters
     ssw = pd.read_csv(N.SSW_TABLE, parse_dates=["central_date"])["central_date"]

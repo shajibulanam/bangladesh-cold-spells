@@ -4,9 +4,9 @@ Step 16L - Onset timeline
                            nat_tmin_anom      National Tmin      -2.417        -2.584         -2.255                -1.0             -1
                   siberian_high_std_anom      Siberian High      -0.021        -0.271          0.237                 NaN              0
              ural_blocking_fraction_anom      Ural blocking      -0.014        -0.044          0.021                 NaN              0
-             mech_nigp_adv850_k_day_anom     Adv850, NW IGP       0.288         0.063          0.525                 0.0              1
-               mech_bd_adv850_k_day_anom Adv850, Bangladesh      -1.119        -1.372         -0.875                -1.0             -1
-                       era5_bd_v850_anom   v850, Bangladesh      -1.030        -1.290         -0.775                 0.0             -1
+             mech_nigp_adv850_k_day_anom     Adv850, NW IGP      -0.102        -0.311          0.112                 NaN              0
+               mech_bd_adv850_k_day_anom Adv850, Bangladesh      -1.199        -1.470         -0.938                -1.0             -1
+                       era5_bd_v850_anom   v850, Bangladesh      -1.035        -1.296         -0.778                 0.0             -1
                        era5_sa_z500_anom   Z500, South Asia     -16.529       -21.775        -10.946               -13.0             -1
        mech_jet200_core_lat_70_100e_anom       Jet latitude       0.002        -0.715          0.766                 NaN              0
      mech_jet200_core_speed_70_100e_anom          Jet speed       3.382         1.194          5.366               -10.0              1

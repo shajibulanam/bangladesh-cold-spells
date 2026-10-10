@@ -57,7 +57,7 @@ T_SKILL = C.TERM_TABLES / "table_98_hazard_cross_validated_skill.csv"
 REPORT = C.TERM_QC / "step16e_hazard_robustness_report.txt"
 SUMMARY = C.TERM_QC / "step16e_hazard_robustness_summary.json"
 
-N_BOOT = 1000
+N_BOOT = 1000          # confidence intervals; hypothesis tests use C.test_boot(N_BOOT) = 10 000 (Step 18)
 SEED = 20260923
 ROBUST_Q = 0.10
 MULTI_Q = 0.05
@@ -73,19 +73,22 @@ POLICY = {
     "risk_set_start": "event day k >= minimum duration of the scenario",
     "detrending": "ordinary least-squares linear trend in time removed from each covariate over all DJF days",
     "lead": "predictors on day k-1",
-    "bootstrap": {"unit": "winter", "repetitions": N_BOOT, "seed": SEED},
+    "bootstrap": {"unit": "winter", "repetitions": C.test_boot(N_BOOT), "seed": SEED,
+                  "p_value": "two-sided plus-one: 2 (min(#<=0, #>=0) + 1) / (B + 1) (Step 18)"},
     "cross_validation": "leave-one-winter-out; AUC and Brier score on held-out risk-set rows",
 }
 
 
-def risk_set(cov: pd.DataFrame, ev: pd.DataFrame, min_k: int, lead: int = 0) -> pd.DataFrame:
+def risk_set(cov: pd.DataFrame, ev: pd.DataFrame, min_k: int, lead: int = 0,
+             censor: bool | None = None) -> pd.DataFrame:
+    """Risk set from day min_k; season-end spells right-censored unless censor=False (Step 18)."""
     rows = []
     for e in ev.itertuples(index=False):
         for k in range(min_k, int(e.duration_days) + 1):
             rows.append({"event_id": e.event_id, "winter_start_year": int(e.winter_start_year),
                          "log_event_age": np.log(k), "terminates": int(k == e.duration_days),
                          "date": pd.Timestamp(e.start_date) + pd.Timedelta(days=k - 1)})
-    rs = pd.DataFrame(rows)
+    rs = C.apply_season_end_censoring(pd.DataFrame(rows), ev, censor)
     cols = [c for c in cov.columns if c != "winter_start_year"]
     rs = rs.merge(cov[cols], left_on="date", right_index=True, how="left")
     if lead:
@@ -99,26 +102,34 @@ def fit(X, y, w=None):
     return LogisticRegression(penalty=None, max_iter=5000).fit(X, y, sample_weight=w)
 
 
+def bootstrap_coefs(X: np.ndarray, y: np.ndarray, winters: np.ndarray, n_boot: int,
+                    seed: int = SEED) -> tuple[np.ndarray, np.ndarray]:
+    """
+    Winter-block bootstrap of the logistic coefficients (Step 18: all replicates fitted at once with
+    C.logit_fit_batch, the same unpenalised estimator as sklearn). Replicates with a single outcome class
+    are dropped, as before. Returns (B_valid x p coefficients, converged flags).
+    """
+    uniq, counts = C.winter_bootstrap_counts(winters, n_boot, seed)
+    W = counts[:, np.searchsorted(uniq, winters)].astype(float)
+    coef, conv = C.logit_fit_batch(X, y, W)
+    ok = np.isfinite(coef).all(axis=1)
+    return coef[ok], conv[ok]
+
+
 def odds_ratio(rs: pd.DataFrame, pred: str, n_boot: int = N_BOOT) -> dict:
+    n_boot = C.test_boot(n_boot)
     cols = [pred] + ADJ
     d = rs.dropna(subset=cols)
     X = ((d[cols] - d[cols].mean()) / d[cols].std()).to_numpy()
     y = d["terminates"].to_numpy()
     est = fit(X, y).coef_[0][0]
-    uniq, counts = C.winter_bootstrap_counts(d["winter_start_year"].to_numpy(), n_boot, SEED)
-    widx = np.searchsorted(uniq, d["winter_start_year"].to_numpy())
-    boots = []
-    for b in range(n_boot):
-        w = counts[b, widx].astype(float)
-        keep = w > 0
-        if y[keep].min() == y[keep].max():
-            continue
-        boots.append(fit(X[keep], y[keep], w[keep]).coef_[0][0])
-    boots = np.array(boots)
+    coef, conv = bootstrap_coefs(X, y, d["winter_start_year"].to_numpy(), n_boot)
+    boots = coef[:, 0]
     return {"odds_ratio_per_sd": np.exp(est), "ci_low": np.exp(np.percentile(boots, 2.5)),
             "ci_high": np.exp(np.percentile(boots, 97.5)),
-            "p_bootstrap": min(1.0, 2 * min((boots <= 0).mean(), (boots >= 0).mean())),
-            "n_rows": len(d), "n_terminations": int(y.sum())}
+            "p_bootstrap": C.bootstrap_p(boots),
+            "n_rows": len(d), "n_terminations": int(y.sum()),
+            "n_boot": n_boot, "n_boot_valid": int(len(boots)), "n_boot_nonconverged": int((~conv).sum())}
 
 
 def detrend(cov: pd.DataFrame, cols: list[str]) -> pd.DataFrame:

@@ -1,4 +1,4 @@
-metric,difference,ci_low,ci_high,p_bootstrap,n_a,n_b,n_boot_valid,odds_ratio_per_sd,n_rows,n_terminations
-pre20_weak_vortex_fraction persistent minus short,0.0514,-0.0571,0.1615,0.3400,26.0000,30.0000,2000.0000,,,
-hazard: weak_vortex_fraction_trailing20,,0.7581,1.5820,0.5870,,,,1.0875,260.0000,85.0000
-hazard: nam10_mean_trailing20,,0.6262,1.1876,0.3260,,,,0.8509,260.0000,85.0000
+metric,difference,ci_low,ci_high,p_bootstrap,n_a,n_b,n_boot_valid,odds_ratio_per_sd,n_rows,n_terminations,n_boot,n_boot_nonconverged
+pre20_weak_vortex_fraction persistent minus short,0.0514,-0.0576,0.1658,0.3552,26.0000,30.0000,10000,,,,,
+hazard: weak_vortex_fraction_trailing20,,0.7900,1.5743,0.5639,,,10000,1.0959,260.0000,83.0000,10000.0000,0.0000
+hazard: nam10_mean_trailing20,,0.6146,1.1861,0.2980,,,10000,0.8402,260.0000,83.0000,10000.0000,0.0000

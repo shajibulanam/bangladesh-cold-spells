@@ -201,7 +201,7 @@ def r8_duration(ev: pd.DataFrame, strat: pd.DataFrame, cov: pd.DataFrame) -> tup
     winters = M["winter"].to_numpy()
     uw = np.unique(winters)
     rng = np.random.default_rng(SEED)
-    boots = [np.concatenate([np.flatnonzero(winters == w) for w in rng.choice(uw, len(uw))]) for _ in range(N_BOOT)]
+    boots = [np.concatenate([np.flatnonzero(winters == w) for w in rng.choice(uw, len(uw))]) for _ in range(C.test_boot(N_BOOT))]  # Step 18: 10 000
     Z = M[["onset_day_of_season", "winter"]].to_numpy(float)
     out = []
     for mtr in metrics:
@@ -212,10 +212,10 @@ def r8_duration(ev: pd.DataFrame, strat: pd.DataFrame, cov: pd.DataFrame) -> tup
         bp = np.array([partial_spearman(x[i], y[i], Z[i]) for i in boots])
         out.append({"metric": mtr, "events_with_nonzero": int((x != 0).sum()), "spearman_rho": rho,
                     "rho_ci_low": np.nanpercentile(br, 2.5), "rho_ci_high": np.nanpercentile(br, 97.5),
-                    "p_bootstrap": min(1, 2 * min(np.nanmean(br <= 0), np.nanmean(br >= 0))),
+                    "p_bootstrap": C.bootstrap_p(br),
                     "partial_rho_season_year": prho, "partial_ci_low": np.nanpercentile(bp, 2.5),
                     "partial_ci_high": np.nanpercentile(bp, 97.5),
-                    "partial_p_bootstrap": min(1, 2 * min(np.nanmean(bp <= 0), np.nanmean(bp >= 0))),
+                    "partial_p_bootstrap": C.bootstrap_p(bp),
                     "rho_metric_vs_onset_day": spearmanr(x, M["onset_day_of_season"]).correlation})
     R = pd.DataFrame(out)
     R["q_fdr"] = C.benjamini_hochberg(R["p_bootstrap"].to_numpy())
@@ -268,7 +268,8 @@ def r6a_box(cov: pd.DataFrame, strat: pd.DataFrame, ev: pd.DataFrame) -> pd.Data
         per = per[np.isfinite(per)]
         bs = [rng.choice(per, len(per)).mean() for _ in range(N_BOOT)]
         rows.append({"analysis": f"post-SSW (0-45 d) minus rest of same winter ({len(per)} winters)", "index": c,
-                     "mean_difference": per.mean(), "ci_low": np.percentile(bs, 2.5), "ci_high": np.percentile(bs, 97.5)})
+                     "mean_difference": per.mean(), "ci_low": np.percentile(bs, 2.5), "ci_high": np.percentile(bs, 97.5),
+                     "p_sign_flip_exact": float(C.sign_flip_p(per)[0])})  # Step 18
     return pd.DataFrame(rows)
 
 
@@ -305,7 +306,8 @@ def r6b_maps(cov: pd.DataFrame, strat: pd.DataFrame) -> str:
     lat = next(iter(clim.values()))["lat"].values
     lon = next(iter(clim.values()))["lon"].values
     nam = pd.Series(strat["nam_proxy_100"].reindex(cov.index).to_numpy(), index=winters).groupby(level=0).mean().reindex(uw).to_numpy()
-    fields = map_statistics(wsum, wn, psum, pn, nam, keys, shape)
+    terrain = C.below_ground_mask(lat, lon, 850.0, half_width=S.COARSEN * 0.125)  # Step 18
+    fields = map_statistics(wsum, wn, psum, pn, nam, keys, shape, terrain)
     sw = int((pn > 0).sum())
     ds = xr.Dataset({k: (("lat", "lon"), v) for k, v in fields.items()}, coords={"lat": lat, "lon": lon})
     ds.attrs.update({"winters": len(uw), "ssw_winters_with_djf_followup": sw})
@@ -314,8 +316,12 @@ def r6b_maps(cov: pd.DataFrame, strat: pd.DataFrame) -> str:
     return f"maps: {len(uw)} winters, {sw} SSW winters with DJF follow-up; written {OUT_NC.name}"
 
 
-def map_statistics(wsum, wn, psum, pn, nam, keys, shape) -> dict[str, np.ndarray]:
-    """Regression of winter means on winter-mean NAM100 (t-test, BH) and within-winter post-SSW minus rest (bootstrap, BH)."""
+def map_statistics(wsum, wn, psum, pn, nam, keys, shape, terrain=None) -> dict[str, np.ndarray]:
+    """
+    Regression of winter means on winter-mean NAM100 (t-test, BH) and within-winter post-SSW minus rest
+    (Step 18: exact sign-flip test over the SSW winters, BH; was a 1000-resample bootstrap whose p could be 0).
+    T850 and MSLP are set to missing over high terrain before testing when a terrain mask is given.
+    """
     namz = (nam - nam.mean()) / nam.std()
     n = len(nam)
     sw = pn > 0
@@ -323,6 +329,9 @@ def map_statistics(wsum, wn, psum, pn, nam, keys, shape) -> dict[str, np.ndarray
     out = {}
     for k in keys:
         X = (wsum[k] / wn[:, None, None]).reshape(n, -1)
+        if terrain is not None and k in ("t850", "msl"):
+            X = X.copy()
+            X[:, terrain.ravel()] = np.nan
         Xc = X - X.mean(0)
         slope = (namz[:, None] * Xc).sum(0) / (namz ** 2).sum()
         r = (namz[:, None] * Xc).sum(0) / np.sqrt((namz ** 2).sum() * (Xc ** 2).sum(0) + 1e-30)
@@ -332,8 +341,9 @@ def map_statistics(wsum, wn, psum, pn, nam, keys, shape) -> dict[str, np.ndarray
         out[f"{k}_regression_fdr05"] = (C.benjamini_hochberg(p) < 0.05).reshape(shape)
         rest = (wsum[k] - psum[k]) / np.maximum(wn - pn, 1)[:, None, None]
         diff = (psum[k][sw] / pn[sw][:, None, None] - rest[sw]).reshape(int(sw.sum()), -1)
-        bs = np.array([diff[rng.integers(0, len(diff), len(diff))].mean(0) for _ in range(1000)])
-        pb = np.minimum(1, 2 * np.minimum((bs <= 0).mean(0), (bs >= 0).mean(0)))
+        if terrain is not None and k in ("t850", "msl"):
+            diff[:, terrain.ravel()] = np.nan
+        pb = C.sign_flip_p(diff)
         out[f"{k}_post_ssw_minus_rest"] = diff.mean(0).reshape(shape)
         out[f"{k}_post_ssw_fdr05"] = (C.benjamini_hochberg(pb) < 0.05).reshape(shape)
     return out

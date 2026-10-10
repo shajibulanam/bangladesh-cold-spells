@@ -1,0 +1,34 @@
+anchor,day,variable,mean_total,share_positive,positive_means,djf_climatology_1991_2020,n_events
+onset,-3,nigp_adv850_k_day,-0.3662,0.2824,warm,0.0699,85
+onset,-2,nigp_adv850_k_day,-0.7204,0.1765,warm,0.0699,85
+onset,-1,nigp_adv850_k_day,-0.6500,0.2706,warm,0.0699,85
+onset,0,nigp_adv850_k_day,-0.0390,0.4941,warm,0.0699,85
+onset,1,nigp_adv850_k_day,0.3268,0.5412,warm,0.0699,85
+onset,-3,bd_adv850_k_day,-0.8346,0.2941,warm,-0.6602,85
+onset,-2,bd_adv850_k_day,-0.9271,0.2471,warm,-0.6602,85
+onset,-1,bd_adv850_k_day,-1.1382,0.1294,warm,-0.6602,85
+onset,0,bd_adv850_k_day,-1.8616,0.0706,warm,-0.6602,85
+onset,1,bd_adv850_k_day,-2.0459,0.0235,warm,-0.6602,85
+onset,-3,bd_v_wind_ms_850,-1.1890,0.2824,southerly,-1.2469,85
+onset,-2,bd_v_wind_ms_850,-1.1540,0.2588,southerly,-1.2469,85
+onset,-1,bd_v_wind_ms_850,-1.4496,0.1059,southerly,-1.2469,85
+onset,0,bd_v_wind_ms_850,-2.2815,0.0471,southerly,-1.2469,85
+onset,1,bd_v_wind_ms_850,-2.3644,0.0235,southerly,-1.2469,85
+last cold day,-3,nigp_adv850_k_day,-0.1530,0.4706,warm,0.0699,85
+last cold day,-2,nigp_adv850_k_day,0.3558,0.6235,warm,0.0699,85
+last cold day,-1,nigp_adv850_k_day,0.6751,0.6471,warm,0.0699,85
+last cold day,0,nigp_adv850_k_day,0.2589,0.5412,warm,0.0699,85
+last cold day,1,nigp_adv850_k_day,-0.0335,0.5059,warm,0.0699,85
+last cold day,2,nigp_adv850_k_day,0.2554,0.5412,warm,0.0699,85
+last cold day,-3,bd_adv850_k_day,-1.8655,0.0706,warm,-0.6602,85
+last cold day,-2,bd_adv850_k_day,-2.0188,0.0588,warm,-0.6602,85
+last cold day,-1,bd_adv850_k_day,-1.9820,0.0588,warm,-0.6602,85
+last cold day,0,bd_adv850_k_day,-1.1498,0.1882,warm,-0.6602,85
+last cold day,1,bd_adv850_k_day,-0.4846,0.3647,warm,-0.6602,85
+last cold day,2,bd_adv850_k_day,-0.5950,0.2471,warm,-0.6602,85
+last cold day,-3,bd_v_wind_ms_850,-2.2599,0.0353,southerly,-1.2469,85
+last cold day,-2,bd_v_wind_ms_850,-2.4663,0.0353,southerly,-1.2469,85
+last cold day,-1,bd_v_wind_ms_850,-2.3966,0.0588,southerly,-1.2469,85
+last cold day,0,bd_v_wind_ms_850,-1.9003,0.1294,southerly,-1.2469,85
+last cold day,1,bd_v_wind_ms_850,-1.2170,0.2235,southerly,-1.2469,85
+last cold day,2,bd_v_wind_ms_850,-1.2730,0.1882,southerly,-1.2469,85

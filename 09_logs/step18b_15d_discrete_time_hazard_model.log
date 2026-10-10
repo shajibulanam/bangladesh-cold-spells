@@ -1,0 +1,98 @@
+station_temperature    nat_tmax_anom                                    OR=1.64
+station_temperature    nat_dtr_anom                                     OR=1.61
+station_temperature    p10_cold_national_area_fraction                  OR=0.69
+era5_state             era5_bd_t850_anom                                OR=1.07
+era5_state             era5_bd_stab_t2m_minus_t850_anom                 OR=0.92
+era5_state             era5_bd_thick_1000_500_anom                      OR=0.93
+era5_state             era5_bd_z500_anom                                OR=0.88
+era5_state             era5_bd_mslp_anom                                OR=0.86
+era5_state             era5_bd_u850_anom                                OR=0.79
+era5_state             era5_bd_v850_anom                                OR=1.05
+era5_state             era5_bd_wspd10_anom                              OR=0.54
+era5_state             era5_sa_t850_anom                                OR=1.05
+era5_state             era5_sa_z500_anom                                OR=0.84
+era5_state             era5_sa_mslp_anom                                OR=0.85
+era5_state             era5_sa_u850_anom                                OR=1.16
+era5_state             era5_sa_v850_anom                                OR=1.07
+era5_tendency          era5_bd_t850_tend                                OR=1.52
+era5_tendency          era5_bd_stab_t2m_minus_t850_tend                 OR=0.63
+era5_tendency          era5_bd_z500_tend                                OR=0.74
+era5_tendency          era5_bd_mslp_tend                                OR=0.65
+era5_tendency          era5_bd_u850_tend                                OR=0.85
+era5_tendency          era5_bd_v850_tend                                OR=1.42
+era5_tendency          era5_bd_wspd10_tend                              OR=0.69
+era5_tendency          era5_sa_t850_tend                                OR=0.91
+era5_tendency          era5_sa_z500_tend                                OR=0.57
+era5_tendency          era5_sa_mslp_tend                                OR=0.68
+era5_tendency          era5_sa_v850_tend                                OR=1.09
+remote_causal          siberian_high_std_anom                           OR=1.23
+remote_causal          ural_blocking_fraction                           OR=1.20
+remote_causal          nam_proxy_10                                     OR=0.98
+remote_causal          nam_proxy_100                                    OR=0.93
+remote_causal          rrwp_eurasian_upstream_R_lag7                    OR=1.31
+remote_causal          rrwp_central_asia_R_lag7                         OR=1.20
+remote_causal          rrwp_bangladesh_sector_R_lag7                    OR=1.18
+remote_causal          rrwp_asian_corridor_R_lag7                       OR=1.25
+remote_causal          rrwp_eurasian_upstream_envelope_z_trailing3      OR=0.89
+remote_causal          rrwp_central_asia_envelope_z_trailing3           OR=0.90
+remote_causal          rrwp_bangladesh_sector_envelope_z_trailing3      OR=1.01
+remote_causal          rrwp_asian_corridor_envelope_z_trailing3         OR=0.95
+noncausal_diagnostic   rrwp_eurasian_upstream_R_centred_noncausal       OR=1.52
+noncausal_diagnostic   rrwp_central_asia_R_centred_noncausal            OR=1.40
+noncausal_diagnostic   rrwp_bangladesh_sector_R_centred_noncausal       OR=1.26
+noncausal_diagnostic   rrwp_asian_corridor_R_centred_noncausal          OR=1.44
+Step 16D - Discrete-time hazard model of termination
+====================================================
+Risk-set rows: 260; terminations: 83; adjustment: log_event_age, winter_day_index, nat_tmin_anom, winter_start_year
+
+Base model:
+             term  odds_ratio_per_sd  ci_low  ci_high  n_rows
+    log_event_age              1.077   0.885    1.556     260
+ winter_day_index              2.078   1.494    3.409     260
+    nat_tmin_anom              4.003   2.804    6.817     260
+winter_start_year              1.219   0.897    1.783     260
+
+              family                                   predictor  odds_ratio_per_sd  ci_low  ci_high  p_bootstrap  q_fdr_causal
+ station_temperature                               nat_tmax_anom              1.641   1.156    2.663        0.008         0.051
+ station_temperature                                nat_dtr_anom              1.610   1.148    2.569        0.008         0.051
+ station_temperature             p10_cold_national_area_fraction              0.689   0.278    1.778        0.421         0.611
+          era5_state                           era5_bd_t850_anom              1.066   0.736    1.615        0.761         0.824
+          era5_state            era5_bd_stab_t2m_minus_t850_anom              0.919   0.635    1.293        0.627         0.789
+          era5_state                 era5_bd_thick_1000_500_anom              0.931   0.583    1.355        0.669         0.789
+          era5_state                           era5_bd_z500_anom              0.878   0.556    1.167        0.343         0.546
+          era5_state                           era5_bd_mslp_anom              0.862   0.557    1.170        0.299         0.530
+          era5_state                           era5_bd_u850_anom              0.785   0.593    1.020        0.074         0.238
+          era5_state                           era5_bd_v850_anom              1.053   0.810    1.395        0.688         0.789
+          era5_state                         era5_bd_wspd10_anom              0.539   0.335    0.779        0.002         0.034
+          era5_state                           era5_sa_t850_anom              1.046   0.687    1.560        0.782         0.824
+          era5_state                           era5_sa_z500_anom              0.838   0.546    1.111        0.191         0.463
+          era5_state                           era5_sa_mslp_anom              0.847   0.569    1.109        0.202         0.463
+          era5_state                           era5_sa_u850_anom              1.163   0.837    1.652        0.349         0.546
+          era5_state                           era5_sa_v850_anom              1.067   0.775    1.443        0.661         0.789
+       era5_tendency                           era5_bd_t850_tend              1.525   1.122    2.299        0.007         0.051
+       era5_tendency            era5_bd_stab_t2m_minus_t850_tend              0.628   0.424    0.853        0.001         0.034
+       era5_tendency                           era5_bd_z500_tend              0.744   0.535    0.943        0.017         0.075
+       era5_tendency                           era5_bd_mslp_tend              0.650   0.420    0.911        0.014         0.068
+       era5_tendency                           era5_bd_u850_tend              0.849   0.658    1.137        0.281         0.530
+       era5_tendency                           era5_bd_v850_tend              1.424   1.100    1.953        0.010         0.055
+       era5_tendency                         era5_bd_wspd10_tend              0.694   0.412    0.999        0.050         0.177
+       era5_tendency                           era5_sa_t850_tend              0.905   0.650    1.258        0.549         0.764
+       era5_tendency                           era5_sa_z500_tend              0.570   0.394    0.786        0.003         0.034
+       era5_tendency                           era5_sa_mslp_tend              0.679   0.466    0.931        0.020         0.078
+       era5_tendency                           era5_sa_v850_tend              1.093   0.818    1.460        0.581         0.781
+       remote_causal                      siberian_high_std_anom              1.229   0.923    1.720        0.164         0.456
+       remote_causal                      ural_blocking_fraction              1.196   0.840    1.500        0.263         0.530
+       remote_causal                                nam_proxy_10              0.975   0.666    1.375        0.919         0.943
+       remote_causal                               nam_proxy_100              0.929   0.657    1.401        0.770         0.824
+       remote_causal               rrwp_eurasian_upstream_R_lag7              1.306   0.966    1.897        0.079         0.238
+       remote_causal                    rrwp_central_asia_R_lag7              1.202   0.864    1.745        0.246         0.530
+       remote_causal               rrwp_bangladesh_sector_R_lag7              1.179   0.844    1.749        0.298         0.530
+       remote_causal                  rrwp_asian_corridor_R_lag7              1.252   0.894    1.921        0.177         0.460
+       remote_causal rrwp_eurasian_upstream_envelope_z_trailing3              0.892   0.626    1.143        0.350         0.546
+       remote_causal      rrwp_central_asia_envelope_z_trailing3              0.902   0.586    1.172        0.423         0.611
+       remote_causal rrwp_bangladesh_sector_envelope_z_trailing3              1.008   0.723    1.300        0.992         0.992
+       remote_causal    rrwp_asian_corridor_envelope_z_trailing3              0.947   0.637    1.221        0.651         0.789
+noncausal_diagnostic  rrwp_eurasian_upstream_R_centred_noncausal              1.521   1.148    2.227        0.004           NaN
+noncausal_diagnostic       rrwp_central_asia_R_centred_noncausal              1.396   1.114    1.902        0.005           NaN
+noncausal_diagnostic  rrwp_bangladesh_sector_R_centred_noncausal              1.260   0.960    1.799        0.093           NaN
+noncausal_diagnostic     rrwp_asian_corridor_R_centred_noncausal              1.438   1.084    2.071        0.014           NaN

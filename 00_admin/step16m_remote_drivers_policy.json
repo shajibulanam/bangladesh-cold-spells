@@ -47,8 +47,8 @@
   ],
   "bootstrap": {
     "unit": "winter",
-    "repetitions": 5000,
-    "hazard_repetitions": 2000,
+    "repetitions": 10000,
+    "hazard_repetitions": 10000,
     "seed": 20260923
   },
   "multiple_testing": "BH within window x statistic (Part A); within the mechanism family (Part B)",
@@ -58,5 +58,5 @@
     "nat_tmin_anom",
     "winter_start_year"
   ],
-  "created_utc": "2026-09-23T20:45:49.229445+00:00"
+  "created_utc": "2026-10-10T10:49:51.910676+00:00"
 }

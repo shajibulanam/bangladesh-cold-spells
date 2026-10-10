@@ -1,11 +1,11 @@
-analysis,predictor,odds_ratio_per_sd,ci_low,ci_high,p_bootstrap,n_rows,n_terminations
-lead 1 day(s),mech_nigp_adv850_k_day_anom,1.4861,1.1853,1.8798,0.0000,260,85.0000
-lead 1 day(s),mech_bd_adv850_k_day_anom,0.7409,0.5540,0.9994,0.0500,260,85.0000
-lead 1 day(s),mech_jet200_core_speed_70_100e_anom,0.6198,0.4415,0.8017,0.0040,260,85.0000
-lead 2 day(s),mech_nigp_adv850_k_day_anom,1.2989,1.0504,1.8232,0.0180,260,85.0000
-lead 2 day(s),mech_bd_adv850_k_day_anom,0.8331,0.5877,1.1426,0.2740,260,85.0000
-lead 2 day(s),mech_jet200_core_speed_70_100e_anom,0.6299,0.4314,0.8520,0.0080,260,85.0000
-"lead 1, season-end spells censored",mech_nigp_adv850_k_day_anom,1.4830,1.1707,1.9032,0.0020,260,83.0000
-"lead 1, stable 25-station catalogue",mech_nigp_adv850_k_day_anom,1.5550,1.2442,1.9931,0.0000,258,84.0000
-lead 1 + same-day core predictors,nigp_adv_lead1,1.0914,0.8229,1.5055,0.4900,260,
-lead 1 + same-day NW IGP and BD advection,nigp_adv_lead1,1.4960,1.1784,2.1166,0.0020,260,
+analysis,predictor,odds_ratio_per_sd,ci_low,ci_high,p_bootstrap,n_rows,n_terminations,n_boot,n_boot_valid,n_boot_nonconverged
+lead 1 day(s),mech_nigp_adv850_k_day_anom,1.8259,1.3300,2.7787,0.0002,260,83.0000,10000.0000,10000,0
+lead 1 day(s),mech_bd_adv850_k_day_anom,0.7293,0.5280,0.9544,0.0278,260,83.0000,10000.0000,10000,0
+lead 1 day(s),mech_jet200_core_speed_70_100e_anom,0.6395,0.4700,0.8421,0.0038,260,83.0000,10000.0000,10000,0
+lead 2 day(s),mech_nigp_adv850_k_day_anom,1.5748,1.1087,2.8091,0.0088,260,83.0000,10000.0000,10000,0
+lead 2 day(s),mech_bd_adv850_k_day_anom,0.8321,0.5767,1.1623,0.2926,260,83.0000,10000.0000,10000,0
+lead 2 day(s),mech_jet200_core_speed_70_100e_anom,0.6557,0.4558,0.8847,0.0064,260,83.0000,10000.0000,10000,0
+"lead 1, season-end spells not censored",mech_nigp_adv850_k_day_anom,1.8869,1.4193,2.8456,0.0002,260,85.0000,10000.0000,10000,0
+"lead 1, stable 25-station catalogue",mech_nigp_adv850_k_day_anom,1.9336,1.3938,3.0929,0.0002,258,82.0000,10000.0000,10000,0
+lead 1 + same-day core predictors,nigp_adv_lead1,1.3681,0.9119,2.3781,0.1268,260,,,10000,0
+lead 1 + same-day NW IGP and BD advection,nigp_adv_lead1,1.8255,1.3722,2.9291,0.0002,260,,,10000,0

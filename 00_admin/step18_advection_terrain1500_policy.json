@@ -1,0 +1,48 @@
+{
+  "step": "Step 16J",
+  "title": "Daily 850-hPa temperature advection and 200-hPa jet diagnostics",
+  "time": "00 UTC daily snapshots, October-March, winters 1985/86-2024/25",
+  "advection": {
+    "level_hpa": 850,
+    "formula": "-(u dT/dx + v dT/dy)",
+    "derivatives": "centred differences on the native 0.25-degree grid (xarray.differentiate)",
+    "units": "K per day",
+    "boxes": {
+      "bd": [
+        20.5,
+        26.8,
+        88.0,
+        93.0
+      ],
+      "nigp": [
+        25.0,
+        32.0,
+        75.0,
+        88.0
+      ]
+    },
+    "averaging": "cosine-latitude weighted"
+  },
+  "jet": {
+    "level_hpa": 200.0,
+    "longitude_band": [
+      70.0,
+      100.0
+    ],
+    "latitude_band": [
+      15.0,
+      45.0
+    ],
+    "core_latitude": "latitude of maximum longitude-mean zonal wind",
+    "core_speed": "maximum longitude-mean zonal wind"
+  },
+  "inputs": "Step 9B standardized pressure-level files (read only)",
+  "terrain_mask": {
+    "source": "ETOPO1 cell-mean elevation on the ERA5 grid (01_raw_data/geospatial)",
+    "threshold_m": 1500.0,
+    "neighbours": "four neighbours of every masked point also excluded",
+    "applies_to": "850-hPa advection box means; the 200-hPa jet is not masked",
+    "revision": "Step 18 (October 2026); unmasked series kept as *_unmasked.csv"
+  },
+  "created_utc": "2026-10-10T08:53:26.595115+00:00"
+}

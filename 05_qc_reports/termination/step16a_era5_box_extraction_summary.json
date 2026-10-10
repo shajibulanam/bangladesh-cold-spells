@@ -1,7 +1,26 @@
 {
   "step": "Step 16A",
-  "completed_utc": "2026-09-23T16:59:42.234110+00:00",
+  "completed_utc": "2026-10-10T08:30:22.584460+00:00",
   "output_csv": "03_intermediate/era5_box_daily/era5_box_daily_oct_mar.csv",
+  "unmasked_csv": "03_intermediate/era5_box_daily/era5_box_daily_oct_mar_unmasked.csv",
+  "terrain_threshold_m": 1000.0,
+  "masked_area_fraction": {
+    "bd_geopotential_height_m_1000": 0.0108,
+    "bd_geopotential_height_m_850": 0.0108,
+    "bd_air_temperature_k_1000": 0.0108,
+    "bd_air_temperature_k_850": 0.0108,
+    "bd_u_wind_ms_850": 0.0108,
+    "bd_v_wind_ms_850": 0.0108,
+    "bd_msl_hpa": 0.0108,
+    "sa_geopotential_height_m_1000": 0.3157,
+    "sa_geopotential_height_m_850": 0.3157,
+    "sa_air_temperature_k_1000": 0.3157,
+    "sa_air_temperature_k_850": 0.3157,
+    "sa_air_temperature_k_700": 0.2505,
+    "sa_u_wind_ms_850": 0.3157,
+    "sa_v_wind_ms_850": 0.3157,
+    "sa_msl_hpa": 0.3157
+  },
   "rows": 7290,
   "expected_rows": 7290,
   "columns": [
@@ -24,6 +43,8 @@
     "bd_u10_ms",
     "bd_v10_ms",
     "bd_wspd10_ms",
+    "bd_thick_1000_500_m",
+    "bd_stab_t2m_minus_t850_k",
     "sa_geopotential_height_m_1000",
     "sa_geopotential_height_m_850",
     "sa_geopotential_height_m_500",
@@ -42,7 +63,9 @@
     "sa_msl_hpa",
     "sa_u10_ms",
     "sa_v10_ms",
-    "sa_wspd10_ms"
+    "sa_wspd10_ms",
+    "sa_thick_1000_500_m",
+    "sa_stab_t2m_minus_t850_k"
   ],
   "first_date": "1985-10-01",
   "last_date": "2025-03-31",
@@ -52,5 +75,5 @@
     28.205137335959417
   ],
   "issues": [],
-  "sha256": "3a05672f47ef04abb11d81ee030b2079be012835c0295cb0aecf7ecf2baf8823"
+  "sha256": "4b3d0091f074393c7097632286203b16e18a241d2dead1dc1b0aee36bbba5fb3"
 }

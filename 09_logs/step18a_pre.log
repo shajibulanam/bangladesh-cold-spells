@@ -1,0 +1,21 @@
+NOTE terrain mask: 37.4% of the grid lies outside the ETOPO1 extract and is not masked
+Step 18A - pre-run checks
+==========================
+
+1. Batched logistic fitter versus sklearn (primary risk set, 300 winter-block replicates)
+   nat_tmax_anom                max |OR batch - OR exact| 3.6e-07  (old sklearn settings: 4.3e-03); non-converged 0; batch 0.03 s vs sklearn 1.4 s
+   era5_sa_z500_tend            max |OR batch - OR exact| 1.6e-07  (old sklearn settings: 5.1e-04); non-converged 0; batch 0.11 s vs sklearn 1.4 s
+   era5_bd_wspd10_anom          max |OR batch - OR exact| 7.0e-08  (old sklearn settings: 4.9e-04); non-converged 0; batch 0.12 s vs sklearn 1.4 s
+   mech_bd_adv850_k_day_anom    max |OR batch - OR exact| 1.4e-07  (old sklearn settings: 2.2e-03); non-converged 0; batch 0.09 s vs sklearn 1.4 s
+   PASS: batch fits agree with the exact estimates to 3.6e-07 (PASS below 1e-4)
+
+2. Terrain mask on the ERA5 grid (ETOPO1 cell-mean elevation)
+   grid from ERA5_PL_STD_1985_10.nc: 241 x 361
+   > 1000 m  Bangladesh (20.5-26.8N, 88-93E)    masked   1.1%   with neighbours (advection)   8.1%
+   > 1000 m  NW IGP (25-32N, 75-88E)            masked  42.1%   with neighbours (advection)  45.7%
+   > 1000 m  South Asia (15-35N, 70-100E)       masked  31.6%   with neighbours (advection)  35.3%
+   > 1500 m  Bangladesh (20.5-26.8N, 88-93E)    masked   0.4%   with neighbours (advection)   2.9%
+   > 1500 m  NW IGP (25-32N, 75-88E)            masked  38.1%   with neighbours (advection)  42.3%
+   > 1500 m  South Asia (15-35N, 70-100E)       masked  27.9%   with neighbours (advection)  30.4%
+
+Written 05_qc_reports/revision/step18a_pre_checks.txt

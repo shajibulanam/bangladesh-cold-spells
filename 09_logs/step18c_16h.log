@@ -1,0 +1,80 @@
+Online Resource 1 build report (16h v3)
+project root: /media/shajibul/Porag/Bangladesh_ColdWave_Analysis/ColdWave_Project/Bangladesh_Cold_Wave
+
+source: 08_outputs/tables/stratosphere/table_60_major_ssw_catalogue.csv (25 rows)
+source: 08_outputs/tables/stratosphere/table_60b_major_ssw_validation.csv (23 rows)
+source: 08_outputs/tables/termination/table_91_termination_hazard_odds_ratios.csv (43 rows)
+source: 08_outputs/tables/termination/table_106_mechanism_extension_hazard.csv (8 rows)
+source: 08_outputs/tables/termination/table_114_prenight_vs_night_hazard.csv (19 rows)
+source: 08_outputs/tables/termination/table_111_cloud_radiation_hazard.csv (14 rows)
+source: 08_outputs/tables/termination/table_95_hazard_robustness.csv (90 rows)
+source: 08_outputs/tables/termination/table_117_split_period_validation.csv (2 rows)
+source: 08_outputs/tables/termination/table_89_leakage_free_persistence_tests.csv (72 rows)
+source: 08_outputs/tables/termination/table_118_minimum_detectable_differences.csv (72 rows)
+source: 08_outputs/tables/termination/table_105_remote_driver_duration_tests.csv (42 rows)
+source: 08_outputs/tables/termination/table_119_minimum_detectable_correlations.csv (42 rows)
+source: 08_outputs/tables/revision/table_R1_nested_validation.csv (3 rows)
+source: 08_outputs/tables/revision/table_R1b_nested_selection.csv (44 rows)
+source: 08_outputs/tables/revision/table_R10_stable_network_catalogue.csv (2 rows)
+source: 08_outputs/tables/revision/table_R10b_stable_network_hazard.csv (39 rows)
+source: 08_outputs/tables/revision/table_R2_censoring_sensitivity.csv (117 rows)
+source: 08_outputs/tables/revision/table_R3_one_day_lead_all_families.csv (66 rows)
+source: 08_outputs/tables/revision/table_R11_lead_advection_robustness.csv (10 rows)
+source: 08_outputs/tables/revision/table_R4_ssw_robustness.csv (16 rows)
+source: 08_outputs/tables/revision/table_R8_stratosphere_duration.csv (8 rows)
+source: 08_outputs/tables/revision/table_R8b_stratosphere_duration_extra.csv (3 rows)
+source: 08_outputs/tables/revision/table_R6b_enso_controlled_pathway.csv (12 rows)
+source: 08_outputs/tables/revision/table_R6_pathway_box_indices.csv (13 rows)
+source: 08_outputs/tables/revision/table_R5_absolute_humidity.csv (9 rows)
+source: 08_outputs/tables/revision/table_R9c_skin_soil_regimes.csv (2 rows)
+source: 08_outputs/tables/revision/table_R9_skin_soil_hazard.csv (7 rows)
+source: 08_outputs/tables/revision/table_R7_gridded_leakage_free.csv (10 rows)
+
+Fig. S1: columns ['Primary', 'Detrended', 'Gap merge', 'Area ≥ 10%', 'Area ≥ 30%', 'Duration ≥ 4 d', 'p05', 'BMD ≤ 10 °C', '25 stations', 'Not censored', '1-day lead']
+Fig. S2: copied from 08_outputs/figures/termination
+
+Consistency checks (compare with the main text):
+  S1: 25 major SSWs, 23 exact matches with the NOAA compendium
+  S2: 260 risk-set rows, 83 terminations; q < 0.05: ['BD 10-m wind', 'ΔBD T2m − T850', 'ΔSA Z500']
+  S6: 10 primary-family predictors with q < 0.10
+  S7: synoptic predictors chosen on the full record: BD 10-m wind; ΔBD T2m − T850; ΔSA Z500
+  S8: 72 contrasts, min q 0.212
+  S9: min q (difference) 0.440, min q (rho) 0.749
+  S10: 34 leave-one-winter-out folds
+  S12: 66 one-day-lead predictors
+  S14: partial q < 0.05 for pre20_weak_vortex_fraction (partial rho 0.272, q 0.0240, spells non-zero 19)
+  S14: partial q < 0.05 for prior45_ssw_flag (partial rho 0.166, q 0.0480, spells non-zero 6)
+  S17: max fraction of cells with q < 0.05 = 0.0089
+
+Rounding ties (stored value ends in 5 one decimal beyond the display; rounded half up, so quote the same rounding in the text):
+  Table S2: 0.775 shown with 2 decimals
+  Table S2: 1.745 shown with 2 decimals
+  Table S4: 0.665 shown with 2 decimals
+  Table S4: 0.735 shown with 2 decimals
+  Table S7: 0.8675 shown with 3 decimals
+  Table S8: 0.705 shown with 2 decimals
+  Table S8: -0.285 shown with 2 decimals
+  Table S9: 0.245 shown with 2 decimals
+  Table S9: -0.245 shown with 2 decimals
+  Table S9: 0.255 shown with 2 decimals
+  Table S10: -0.0095 shown with 3 decimals
+  Table S10: 0.0115 shown with 3 decimals
+  Table S10: 0.0675 shown with 3 decimals
+  Table S11: 0.925 shown with 2 decimals
+  Table S11: 0.775 shown with 2 decimals
+  Table S11: 0.665 shown with 2 decimals
+  Table S11: 1.485 shown with 2 decimals
+  Table S11: 0.955 shown with 2 decimals
+  Table S11: 1.745 shown with 2 decimals
+  Table S11: 1.195 shown with 2 decimals
+  Table S11: 1.135 shown with 2 decimals
+  Table S11: 0.685 shown with 2 decimals
+  Table S14: 0.045 shown with 2 decimals
+  Table S15: -4.705 shown with 2 decimals
+  Table S15: 0.035 shown with 2 decimals
+  Table S17: -0.355 shown with 2 decimals
+
+Names without a label (shown unchanged):
+  none
+
+Written to /media/shajibul/Porag/Bangladesh_ColdWave_Analysis/ColdWave_Project/Bangladesh_Cold_Wave/08_outputs/online_resource_1

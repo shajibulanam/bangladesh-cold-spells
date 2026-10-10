@@ -1,9 +1,16 @@
-Step 16J - advection and jet daily diagnostics
+Step 16J - advection and jet daily diagnostics (terrain-masked, Step 18)
+Terrain threshold: 1000 m (ETOPO1 cell mean; masked points and their 4 neighbours removed)
+Valid (unmasked) area fraction: bd 91.9%, nigp 54.3%
+Output: era5_mechanism_daily_oct_mar.csv; unmasked copy: era5_mechanism_daily_oct_mar_unmasked.csv
 Rows: 7290 (expected 7290)
 Missing files: none
 
+Masked versus unmasked (DJF):
+  bd_adv850_k_day      DJF mean -0.627 (unmasked -0.569), SD 1.718 (unmasked 1.602), correlation with unmasked 0.998
+  nigp_adv850_k_day    DJF mean +0.093 (unmasked +0.058), SD 1.360 (unmasked 1.038), correlation with unmasked 0.767
+
                              mean     std     min     max
-bd_adv850_k_day            -0.058   1.809  -5.773  18.469
-nigp_adv850_k_day          -0.079   0.966  -7.085   4.784
+bd_adv850_k_day            -0.066   1.942  -6.229  20.206
+nigp_adv850_k_day           0.130   1.248  -9.981   9.602
 jet200_core_lat_70_100e    30.272   4.513  15.000  45.000
 jet200_core_speed_70_100e  52.581  11.110  26.011  95.412

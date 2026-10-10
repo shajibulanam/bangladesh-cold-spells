@@ -53,7 +53,7 @@ SL_DIR = C.PROJECT_ROOT / "03_intermediate" / "era5_preprocessed" / "single_leve
 CLIM = C.PROJECT_ROOT / "03_intermediate" / "era5_climatology"
 OUT_NC = C.TERM_INTERMEDIATE / "step16s_end_aligned_composites.nc"
 ETOPO = C.PROJECT_ROOT / "01_raw_data" / "geospatial" / "etopo1_south_asia_0p1deg.nc"
-HIGH_TERRAIN_M = 1500.0
+HIGH_TERRAIN_M = C.TERRAIN_MAX_M  # Step 18: was 1500 m and applied only when plotting; now 1000 m, before the tests
 FIG = "fig_final_07_termination_maps"
 LAGS = [-2, 0, 1]
 DOMAIN = (10.0, 45.0, 60.0, 110.0)  # lat0, lat1, lon0, lon1
@@ -124,15 +124,33 @@ def load_anomalies(dates: list[pd.Timestamp], clim: dict[str, xr.DataArray]) -> 
     return result
 
 
+def gridded_bootstrap_p(flat: np.ndarray, winters: np.ndarray, n_boot: int, seed: int,
+                        chunk: int = 1000) -> np.ndarray:
+    """
+    Step 18: two-sided plus-one winter-block bootstrap p-value of H0: composite mean = 0 at every cell.
+    flat is events x cells (NaN allowed). Resamples are processed in chunks, so 10 000 replicates need little
+    memory; cells without any finite resample get NaN (ignored by Benjamini-Hochberg).
+    """
+    ok = np.isfinite(flat)
+    vals, okf = np.nan_to_num(flat), ok.astype(float)
+    uniq, counts = C.winter_bootstrap_counts(winters, n_boot, seed)
+    W = counts[:, np.searchsorted(uniq, winters)].astype(float)
+    n_le, n_ge, n_v = (np.zeros(flat.shape[1]) for _ in range(3))
+    for s in range(0, n_boot, chunk):
+        Wc = W[s:s + chunk]
+        with np.errstate(invalid="ignore", divide="ignore"):
+            means = (Wc @ vals) / (Wc @ okf)
+        fin = np.isfinite(means)
+        n_le += ((means <= 0) & fin).sum(axis=0)
+        n_ge += ((means >= 0) & fin).sum(axis=0)
+        n_v += fin.sum(axis=0)
+    return C.p_from_tail_counts(n_le, n_ge, n_v)
+
+
 def fdr_mask(x: np.ndarray, winters: np.ndarray) -> np.ndarray:
     """x: events x ny x nx. Returns boolean mask of FDR-significant cells."""
     n, ny, nx = x.shape
-    flat = x.reshape(n, -1)
-    uniq, counts = C.winter_bootstrap_counts(winters, N_BOOT, SEED)
-    W = counts[:, np.searchsorted(uniq, winters)].astype(float)
-    ok = np.isfinite(flat)
-    means = (W @ np.nan_to_num(flat)) / (W @ ok.astype(float))
-    p = np.minimum(1.0, 2 * np.minimum((means <= 0).mean(axis=0), (means >= 0).mean(axis=0)))
+    p = gridded_bootstrap_p(x.reshape(n, -1), winters, C.test_boot(N_BOOT), SEED)
     q = C.benjamini_hochberg(p)
     return (q < Q).reshape(ny, nx)
 
@@ -141,8 +159,10 @@ def compute() -> xr.Dataset:
     C.write_policy("step16s_termination_maps_policy.json", {
         "step": "Step 16S", "lags_from_last_event_day": LAGS, "domain_lat_lon": DOMAIN,
         "coarsening": f"{COARSEN}x{COARSEN} block mean (0.25 -> 1 degree)", "climatology": "Step 9C calendar-day",
-        "significance": {"bootstrap": "winter-block", "resamples": N_BOOT, "fdr_q": Q, "seed": SEED},
-        "high_terrain_mask": f"MSLP, T850 and 850-hPa wind masked where ETOPO1 elevation > {HIGH_TERRAIN_M} m"})
+        "significance": {"bootstrap": "winter-block", "resamples": C.test_boot(N_BOOT), "fdr_q": Q, "seed": SEED,
+                         "p_value": "two-sided plus-one (Step 18)"},
+        "high_terrain_mask": f"MSLP, T850 and 850-hPa wind set to missing where the ETOPO1 mean elevation of the "
+                             f"1-degree cell exceeds {HIGH_TERRAIN_M} m, before compositing and significance (Step 18)"})
     ev = C.load_events()
     winters = ev["winter_start_year"].to_numpy()
     clim = load_climatology()
@@ -151,13 +171,17 @@ def compute() -> xr.Dataset:
     lat = clim["z500"]["lat"].values
     lon = clim["z500"]["lon"].values
     ds_out = xr.Dataset(coords={"lag": LAGS, "lat": lat, "lon": lon})
+    terrain = C.below_ground_mask(lat, lon, 850.0, HIGH_TERRAIN_M, half_width=COARSEN * 0.125)
     comp = {k: [] for k in FIELDS}
     sig = {k: [] for k in ("z500", "t850", "t2m")}
     for lag in LAGS:
         ds_ = [d + pd.Timedelta(days=lag) for d in ev["end_date"]]
         for key in FIELDS:
-            stack = np.stack([anom[d][key] for d in ds_])
-            comp[key].append(np.nanmean(stack, axis=0))
+            stack = np.stack([anom[d][key] for d in ds_]).astype(float)
+            if key in ("msl", "t850", "u850", "v850"):
+                stack[:, terrain] = np.nan
+            with np.errstate(invalid="ignore"):
+                comp[key].append(np.nanmean(stack, axis=0))
             if key in sig:
                 sig[key].append(fdr_mask(stack, winters))
         print(f"composites and significance done for day {lag:+d}", flush=True)
@@ -190,7 +214,7 @@ def main() -> None:
     C.ensure_dirs()
     ds_out = xr.open_dataset(OUT_NC) if (args.replot and OUT_NC.exists()) else compute()
     lat, lon = ds_out["lat"].values, ds_out["lon"].values
-    mask = high_terrain(lat, lon)
+    mask = C.below_ground_mask(lat, lon, 850.0, HIGH_TERRAIN_M, half_width=COARSEN * 0.125)
     comp, sig = {}, {}
     for i, lag in enumerate(LAGS):
         for key in FIELDS:

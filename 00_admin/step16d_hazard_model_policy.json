@@ -2,6 +2,7 @@
   "step": "Step 16D",
   "title": "Discrete-time hazard model of cold-spell termination",
   "risk_set": "event days k >= 3; outcome = day k is the final event day",
+  "censoring": "spells ending on the last day of February are right-censored (Step 18 primary definition)",
   "adjustment": [
     "log_event_age",
     "winter_day_index",
@@ -66,11 +67,11 @@
   "standardization": "predictors and adjustment covariates z-scored on the full risk set",
   "bootstrap": {
     "unit": "winter",
-    "repetitions": 2000,
+    "repetitions": 10000,
     "seed": 20260923,
     "implementation": "integer sample weights = number of times each winter is drawn"
   },
   "multiple_testing": "Benjamini-Hochberg across all causal predictors (families except noncausal_diagnostic)",
   "input": "Step 16B daily covariate dataset",
-  "created_utc": "2026-09-28T18:03:09.470566+00:00"
+  "created_utc": "2026-10-10T10:46:48.848973+00:00"
 }

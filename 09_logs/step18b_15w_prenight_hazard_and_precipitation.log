@@ -1,0 +1,61 @@
+prenight           win_strd_day_anom                        OR=1.54
+prenight           win_ssrd_day_anom                        OR=0.95
+prenight           win_tcc_day_anom                         OR=1.03
+prenight           win_td2m_day_anom                        OR=2.55
+prenight           win_low1000_day_anom                     OR=0.89
+prenight           win_fog300_day_anom                      OR=0.97
+prenight           win_blh_day_anom                         OR=0.93
+prenight           dly_tcc_00utc_anom                       OR=0.90
+prenight           dly_lowcloud1000_frac_00utc_anom         OR=0.88
+prenight           dly_fog300_frac_00utc_anom               OR=0.99
+prenight           dly_dpd_00utc_anom                       OR=0.70
+prenight           win_strd_day_tend                        OR=1.18
+prenight           win_td2m_day_tend                        OR=1.50
+prenight           win_tcc_day_tend                         OR=1.03
+night_overlapping  win_strd_night_anom                      OR=2.55
+night_overlapping  win_tcc_night_anom                       OR=1.66
+night_overlapping  win_td2m_night_anom                      OR=4.69
+night_overlapping  win_low1000_night_anom                   OR=1.10
+night_overlapping  win_fog300_night_anom                    OR=1.36
+Step 16W - Pre-night hazard (7A) and precipitation check (7B)
+============================================================
+7A. Hazard odds ratios
+           family                        predictor  odds_ratio_per_sd  ci_low  ci_high  p_bootstrap  q_fdr_family
+         prenight                win_strd_day_anom              1.544   0.972    2.530        0.066         0.231
+         prenight                win_ssrd_day_anom              0.950   0.596    1.574        0.826         0.967
+         prenight                 win_tcc_day_anom              1.025   0.641    1.527        0.911         0.967
+         prenight                win_td2m_day_anom              2.554   1.519    5.670        0.001         0.011
+         prenight             win_low1000_day_anom              0.890   0.611    1.268        0.480         0.960
+         prenight              win_fog300_day_anom              0.970   0.665    1.565        0.838         0.967
+         prenight                 win_blh_day_anom              0.933   0.616    1.307        0.691         0.967
+         prenight               dly_tcc_00utc_anom              0.900   0.572    1.314        0.578         0.967
+         prenight dly_lowcloud1000_frac_00utc_anom              0.883   0.628    1.202        0.382         0.892
+         prenight       dly_fog300_frac_00utc_anom              0.994   0.645    1.555        0.967         0.967
+         prenight               dly_dpd_00utc_anom              0.698   0.453    0.981        0.036         0.205
+         prenight                win_strd_day_tend              1.177   0.848    1.688        0.317         0.886
+         prenight                win_td2m_day_tend              1.502   1.010    2.432        0.044         0.205
+         prenight                 win_tcc_day_tend              1.033   0.735    1.458        0.805         0.967
+night_overlapping              win_strd_night_anom              2.553   1.734    4.718        0.000         0.000
+night_overlapping               win_tcc_night_anom              1.664   1.186    2.611        0.004         0.007
+night_overlapping              win_td2m_night_anom              4.687   2.846   13.325        0.000         0.000
+night_overlapping           win_low1000_night_anom              1.098   0.718    1.634        0.667         0.667
+night_overlapping            win_fog300_night_anom              1.361   0.853    2.354        0.160         0.200
+
+7B. Precipitation, pure cold-day minus pure cold-night
+        variable  cold_day_mean  cold_night_mean  difference  ci_low  ci_high  p_bootstrap  n_a  n_b  q_fdr  pure_cold_day_spells  dry_cold_day_spells
+    tp_utcday_mm          2.241            0.097       2.144   1.172    3.365          0.0   40   50    0.0                    40                   22
+       tp_day_mm          1.258            0.056       1.202   0.657    1.873          0.0   40   50    0.0                    40                   22
+wet_day_fraction          0.326            0.020       0.306   0.190    0.435          0.0   40   50    0.0                    40                   22
+
+7B. Dry cold-day spells only (event-mean precipitation < 1 mm/day) vs cold-night
+                        variable  dry_cold_day_mean  cold_night_mean  difference  ci_low  ci_high  q_fdr  n_a  n_b
+                   nat_tmin_anom             -0.039           -2.619       2.580   2.229    2.912    0.0   22   50
+                   nat_tmax_anom             -3.187           -0.753      -2.434  -2.903   -1.943    0.0   22   50
+                    nat_dtr_anom             -3.148            1.867      -5.015  -5.514   -4.436    0.0   22   50
+                win_tcc_day_anom              0.086           -0.131       0.217   0.160    0.269    0.0   22   50
+               win_strd_day_anom             -1.418          -19.892      18.474  14.874   21.799    0.0   22   50
+               win_ssrd_day_anom             -4.572           25.761     -30.333 -39.849  -21.172    0.0   22   50
+               win_td2m_day_anom              0.047           -2.755       2.803   2.373    3.197    0.0   22   50
+dly_lowcloud1000_frac_00utc_anom              0.052           -0.101       0.154   0.110    0.199    0.0   22   50
+      dly_fog300_frac_00utc_anom              0.007           -0.048       0.055   0.035    0.077    0.0   22   50
+              dly_dpd_00utc_anom             -0.335            0.699      -1.035  -1.166   -0.903    0.0   22   50

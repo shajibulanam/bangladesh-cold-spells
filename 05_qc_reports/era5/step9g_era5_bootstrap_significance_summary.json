@@ -1,5 +1,5 @@
 {
-  "created_utc": "2026-07-10T19:21:29.926709+00:00",
+  "created_utc": "2026-10-10T12:32:17.530951+00:00",
   "event_count": 85,
   "selected_lags": [
     -10,
@@ -22,15 +22,15 @@
   "box_results_count": 40,
   "primary_robust_box_results": 24,
   "netcdf_files": [
-    "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/era5_significance/netcdf/ERA5_SIG_mslp_selected_lags.nc",
-    "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/era5_significance/netcdf/ERA5_SIG_t2m_selected_lags.nc",
-    "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/era5_significance/netcdf/ERA5_SIG_t850_selected_lags.nc",
-    "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/era5_significance/netcdf/ERA5_SIG_u200_selected_lags.nc",
-    "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/era5_significance/netcdf/ERA5_SIG_z500_selected_lags.nc"
+    "/media/shajibul/Porag/Bangladesh_ColdWave_Analysis/ColdWave_Project/Bangladesh_Cold_Wave/03_intermediate/era5_significance/netcdf/ERA5_SIG_mslp_selected_lags.nc",
+    "/media/shajibul/Porag/Bangladesh_ColdWave_Analysis/ColdWave_Project/Bangladesh_Cold_Wave/03_intermediate/era5_significance/netcdf/ERA5_SIG_t2m_selected_lags.nc",
+    "/media/shajibul/Porag/Bangladesh_ColdWave_Analysis/ColdWave_Project/Bangladesh_Cold_Wave/03_intermediate/era5_significance/netcdf/ERA5_SIG_t850_selected_lags.nc",
+    "/media/shajibul/Porag/Bangladesh_ColdWave_Analysis/ColdWave_Project/Bangladesh_Cold_Wave/03_intermediate/era5_significance/netcdf/ERA5_SIG_u200_selected_lags.nc",
+    "/media/shajibul/Porag/Bangladesh_ColdWave_Analysis/ColdWave_Project/Bangladesh_Cold_Wave/03_intermediate/era5_significance/netcdf/ERA5_SIG_z500_selected_lags.nc"
   ],
-  "box_results_csv": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/tables/era5/table_13_era5_box_bootstrap_robustness.csv",
-  "area_fraction_csv": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/tables/era5/table_14_era5_gridpoint_significant_area_fraction.csv",
-  "agreement_summary_csv": "/home/shajibul/Bangladesh_Cold_Wave/08_outputs/tables/era5/table_15_era5_event_agreement_summary.csv",
-  "event_level_csv": "/home/shajibul/Bangladesh_Cold_Wave/03_intermediate/era5_significance/step9g_event_level_box_anomalies.csv",
-  "log_csv": "/home/shajibul/Bangladesh_Cold_Wave/05_qc_reports/era5/step9g_era5_bootstrap_significance_log.csv"
+  "box_results_csv": "/media/shajibul/Porag/Bangladesh_ColdWave_Analysis/ColdWave_Project/Bangladesh_Cold_Wave/08_outputs/tables/era5/table_13_era5_box_bootstrap_robustness.csv",
+  "area_fraction_csv": "/media/shajibul/Porag/Bangladesh_ColdWave_Analysis/ColdWave_Project/Bangladesh_Cold_Wave/08_outputs/tables/era5/table_14_era5_gridpoint_significant_area_fraction.csv",
+  "agreement_summary_csv": "/media/shajibul/Porag/Bangladesh_ColdWave_Analysis/ColdWave_Project/Bangladesh_Cold_Wave/08_outputs/tables/era5/table_15_era5_event_agreement_summary.csv",
+  "event_level_csv": "/media/shajibul/Porag/Bangladesh_ColdWave_Analysis/ColdWave_Project/Bangladesh_Cold_Wave/03_intermediate/era5_significance/step9g_event_level_box_anomalies.csv",
+  "log_csv": "/media/shajibul/Porag/Bangladesh_ColdWave_Analysis/ColdWave_Project/Bangladesh_Cold_Wave/05_qc_reports/era5/step9g_era5_bootstrap_significance_log.csv"
 }

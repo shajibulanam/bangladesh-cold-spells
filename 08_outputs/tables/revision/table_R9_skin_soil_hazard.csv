@@ -1,8 +1,8 @@
-window,predictor,odds_ratio_per_sd,ci_low,ci_high,p_bootstrap,n_rows,n_terminations,q_fdr_window
-before terminating night,ss_skt_day_anom,1.6257,1.0141,2.7511,0.0440,260,85,0.0733
-before terminating night,ss_skt_00utc_anom,1.1230,0.6163,1.8471,0.7680,260,85,0.7680
-before terminating night,ss_skt_minus_t2m_day_anom,0.9180,0.6485,1.2067,0.4600,260,85,0.5750
-before terminating night,ss_skt_day_tend,1.4329,1.0787,1.9945,0.0160,260,85,0.0733
-before terminating night,ss_skt_minus_t2m_day_tend,0.7377,0.5117,0.9865,0.0380,260,85,0.0733
-terminating night (concurrent),ss_skt_night_anom,3.8760,2.4282,8.1194,0.0000,260,85,0.0000
-terminating night (concurrent),ss_skt_minus_t2m_night_anom,0.9123,0.5703,1.3306,0.5340,260,85,0.5340
+window,predictor,odds_ratio_per_sd,ci_low,ci_high,p_bootstrap,n_rows,n_terminations,n_boot,n_boot_valid,n_boot_nonconverged,q_fdr_window
+before terminating night,ss_skt_day_anom,1.5303,0.9874,2.6081,0.0566,260,83,10000,10000,0,0.0943
+before terminating night,ss_skt_00utc_anom,1.1539,0.6670,1.9246,0.6123,260,83,10000,10000,0,0.6123
+before terminating night,ss_skt_minus_t2m_day_anom,0.8529,0.6017,1.0901,0.1740,260,83,10000,10000,0,0.2175
+before terminating night,ss_skt_day_tend,1.4517,1.0837,1.9985,0.0116,260,83,10000,10000,0,0.0505
+before terminating night,ss_skt_minus_t2m_day_tend,0.6917,0.4523,0.9431,0.0202,260,83,10000,10000,0,0.0505
+terminating night (concurrent),ss_skt_night_anom,3.9047,2.5022,8.8498,0.0002,260,83,10000,10000,0,0.0004
+terminating night (concurrent),ss_skt_minus_t2m_night_anom,0.8990,0.5660,1.3235,0.5289,260,83,10000,10000,0,0.5289

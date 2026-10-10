@@ -1,0 +1,77 @@
+Step 16C - Leakage-free persistent-minus-short comparisons
+==========================================================
+Tests: 72; CI excludes zero: 6; FDR q<0.05: 0
+
+   window                         variable  difference  ci_low  ci_high  p_bootstrap  q_fdr_within_window
+pre_onset                    nat_tmin_anom       0.017  -0.749    0.760        0.977                0.977
+pre_onset                    nat_tmax_anom       0.439  -0.255    1.112        0.219                0.492
+pre_onset                     nat_dtr_anom       0.422  -0.642    1.521        0.450                0.737
+pre_onset                 era5_bd_t2m_anom      -0.083  -0.719    0.501        0.787                0.945
+pre_onset                era5_bd_t850_anom       0.565  -0.108    1.269        0.100                0.442
+pre_onset era5_bd_stab_t2m_minus_t850_anom      -0.644  -1.576    0.229        0.154                0.456
+pre_onset      era5_bd_thick_1000_500_anom      12.088  -5.607   30.352        0.177                0.456
+pre_onset                era5_bd_z500_anom      12.836  -2.205   30.400        0.093                0.442
+pre_onset                era5_bd_mslp_anom       0.080  -0.951    1.221        0.878                0.977
+pre_onset                era5_bd_u850_anom       0.141  -0.696    0.867        0.739                0.945
+pre_onset                era5_bd_v850_anom       0.671  -0.163    1.494        0.118                0.442
+pre_onset              era5_bd_wspd10_anom      -0.080  -0.280    0.110        0.425                0.737
+pre_onset                era5_sa_t850_anom       0.231  -0.318    0.759        0.418                0.737
+pre_onset era5_sa_stab_t2m_minus_t850_anom      -0.452  -1.001    0.119        0.123                0.442
+pre_onset                era5_sa_z500_anom       3.503  -6.773   17.033        0.550                0.825
+pre_onset                era5_sa_mslp_anom       0.038  -0.872    1.040        0.923                0.977
+pre_onset                era5_sa_u850_anom       0.130  -0.568    0.707        0.708                0.945
+pre_onset                era5_sa_v850_anom       0.364  -0.030    0.743        0.072                0.442
+onset_0_2                    nat_tmin_anom      -0.353  -0.679   -0.044        0.023                0.217
+onset_0_2                    nat_tmax_anom      -0.727  -1.436   -0.030        0.039                0.217
+onset_0_2                     nat_dtr_anom      -0.376  -1.025    0.239        0.239                0.615
+onset_0_2                 era5_bd_t2m_anom      -0.248  -0.580    0.091        0.158                0.474
+onset_0_2                era5_bd_t850_anom      -0.217  -1.030    0.582        0.631                0.963
+onset_0_2 era5_bd_stab_t2m_minus_t850_anom      -0.028  -0.805    0.718        0.929                0.984
+onset_0_2      era5_bd_thick_1000_500_anom       1.544 -16.354   19.688        0.847                0.963
+onset_0_2                era5_bd_z500_anom       2.439 -13.458   18.148        0.754                0.963
+onset_0_2                era5_bd_mslp_anom       0.133  -0.794    1.078        0.798                0.963
+onset_0_2                era5_bd_u850_anom       0.870   0.069    1.621        0.033                0.217
+onset_0_2                era5_bd_v850_anom       0.051  -0.477    0.583        0.856                0.963
+onset_0_2              era5_bd_wspd10_anom       0.153   0.001    0.300        0.048                0.217
+onset_0_2                era5_sa_t850_anom      -0.102  -0.640    0.461        0.726                0.963
+onset_0_2 era5_sa_stab_t2m_minus_t850_anom      -0.416  -0.961    0.167        0.158                0.474
+onset_0_2                era5_sa_z500_anom      -0.073 -11.290   10.914        0.993                0.993
+onset_0_2                era5_sa_mslp_anom       0.216  -0.690    1.082        0.621                0.963
+onset_0_2                era5_sa_u850_anom       0.240  -0.308    0.763        0.394                0.886
+onset_0_2                era5_sa_v850_anom      -0.165  -0.764    0.430        0.582                0.963
+ last_day                    nat_tmin_anom       0.250  -0.162    0.621        0.232                0.464
+ last_day                    nat_tmax_anom       0.741  -0.089    1.446        0.085                0.464
+ last_day                     nat_dtr_anom       0.492  -0.314    1.217        0.225                0.464
+ last_day                 era5_bd_t2m_anom       0.189  -0.284    0.633        0.434                0.710
+ last_day                era5_bd_t850_anom       0.009  -0.750    0.739        0.967                0.967
+ last_day era5_bd_stab_t2m_minus_t850_anom       0.182  -0.593    0.874        0.631                0.811
+ last_day      era5_bd_thick_1000_500_anom      15.435  -8.599   38.623        0.204                0.464
+ last_day                era5_bd_z500_anom      19.256  -4.101   41.948        0.112                0.464
+ last_day                era5_bd_mslp_anom       0.425  -0.781    1.554        0.480                0.720
+ last_day                era5_bd_u850_anom       0.099  -1.249    1.431        0.881                0.964
+ last_day                era5_bd_v850_anom      -0.548  -1.243    0.210        0.153                0.464
+ last_day              era5_bd_wspd10_anom      -0.023  -0.284    0.219        0.911                0.964
+ last_day                era5_sa_t850_anom       0.600  -0.096    1.281        0.099                0.464
+ last_day era5_sa_stab_t2m_minus_t850_anom      -0.465  -1.150    0.256        0.201                0.464
+ last_day                era5_sa_z500_anom      19.662   4.378   34.675        0.012                0.212
+ last_day                era5_sa_mslp_anom       0.474  -0.658    1.512        0.387                0.697
+ last_day                era5_sa_u850_anom      -0.135  -0.873    0.603        0.700                0.840
+ last_day                era5_sa_v850_anom      -0.149  -0.747    0.410        0.585                0.810
+ post_end                    nat_tmin_anom      -0.259  -0.688    0.185        0.236                0.708
+ post_end                    nat_tmax_anom       0.182  -0.922    1.111        0.747                0.899
+ post_end                     nat_dtr_anom       0.440  -0.594    1.355        0.408                0.735
+ post_end                 era5_bd_t2m_anom      -0.285  -0.689    0.093        0.135                0.607
+ post_end                era5_bd_t850_anom       0.094  -0.705    0.849        0.799                0.899
+ post_end era5_bd_stab_t2m_minus_t850_anom      -0.381  -1.216    0.433        0.348                0.729
+ post_end      era5_bd_thick_1000_500_anom       3.678 -17.197   23.503        0.715                0.899
+ post_end                era5_bd_z500_anom       8.576 -10.368   27.255        0.364                0.729
+ post_end                era5_bd_mslp_anom       0.566  -0.566    1.746        0.320                0.729
+ post_end                era5_bd_u850_anom      -0.222  -1.505    0.997        0.709                0.899
+ post_end                era5_bd_v850_anom      -0.479  -1.141    0.203        0.180                0.646
+ post_end              era5_bd_wspd10_anom      -0.015  -0.254    0.211        0.959                0.959
+ post_end                era5_sa_t850_anom       0.562  -0.046    1.139        0.070                0.607
+ post_end era5_sa_stab_t2m_minus_t850_anom      -0.451  -0.996    0.088        0.105                0.607
+ post_end                era5_sa_z500_anom      14.918   2.656   27.704        0.015                0.266
+ post_end                era5_sa_mslp_anom       0.431  -0.712    1.591        0.457                0.747
+ post_end                era5_sa_u850_anom      -0.078  -0.871    0.719        0.797                0.899
+ post_end                era5_sa_v850_anom      -0.039  -0.426    0.347        0.852                0.902

@@ -122,44 +122,60 @@ def partial_regression(Y: np.ndarray, nam: np.ndarray, oni: np.ndarray | None) -
     return beta[1], p
 
 
-def post_minus_rest(post: np.ndarray, rest: np.ndarray, n_boot: int = 2000) -> tuple[np.ndarray, np.ndarray]:
-    ok = np.isfinite(post).all(axis=1)
+def post_minus_rest(post: np.ndarray, rest: np.ndarray, bad: np.ndarray | None = None) -> tuple[np.ndarray, np.ndarray]:
+    """
+    Per-winter post-SSW minus rest-of-winter differences (winters with post-SSW days only) and their two-sided
+    p-value. Step 18: exact sign-flip test over the 19 SSW winters (all 2^19 sign patterns); the earlier
+    2000-resample bootstrap gave p = 0 whenever no resample crossed zero, which produced spurious FDR stippling.
+    """
+    ok = np.isfinite(post).any(axis=1)
     diff = post[ok] - rest[ok]
-    rng = np.random.default_rng(SEED)
-    bs = np.array([diff[rng.integers(0, len(diff), len(diff))].mean(0) for _ in range(n_boot)])
-    p = np.minimum(1, 2 * np.minimum((bs <= 0).mean(0), (bs >= 0).mean(0)))
-    return diff.mean(0), p
+    if bad is not None:
+        diff[:, bad] = np.nan
+    return diff.mean(0), C.sign_flip_p(diff)
 
 
 def box_mean(field2d: np.ndarray, lat, lon, box) -> float:
     m = (lat[:, None] >= box[0]) & (lat[:, None] <= box[1]) & (lon[None, :] >= box[2]) & (lon[None, :] <= box[3])
-    w = np.cos(np.deg2rad(lat))[:, None] * m
-    return float((field2d * w).sum() / w.sum())
+    w = np.cos(np.deg2rad(lat))[:, None] * m * np.isfinite(field2d)
+    return float(np.nansum(field2d * w) / w.sum())
+
+
+def fdr_fraction(p: np.ndarray) -> float:
+    """Fraction of tested (non-missing) cells with Benjamini-Hochberg q < 0.05."""
+    ok = np.isfinite(p)
+    return float((C.benjamini_hochberg(p)[ok] < 0.05).mean())
 
 
 def statistics(cache: dict, nam: np.ndarray, oni: np.ndarray | None) -> tuple[dict, pd.DataFrame]:
     lat, lon = cache["lat"], cache["lon"]
     shape = (len(lat), len(lon))
+    # Step 18: T850 and MSLP are missing where 850 hPa is below ground (2-degree cells above 1,000 m)
+    terrain = C.below_ground_mask(lat, lon, 850.0, half_width=1.0).ravel()
     out, rows = {}, []
     for k in KEYS:
-        Y = cache[f"{k}_winter_mean"].reshape(len(nam), -1)
+        bad = terrain if k in ("t850", "msl") else np.zeros_like(terrain)
+        Y = cache[f"{k}_winter_mean"].reshape(len(nam), -1).copy()
+        Y[:, bad] = 0.0
         for label, o in (("enso_removed", oni), ("no_enso_control", None)):
             if label == "enso_removed" and oni is None:
                 continue
             b, p = partial_regression(Y, nam, o)
+            b, p = np.where(bad, np.nan, b), np.where(bad, np.nan, p)
             out[f"{k}_nam_{label}"] = b.reshape(shape)
             out[f"{k}_nam_{label}_sig"] = (C.benjamini_hochberg(p) < 0.05).reshape(shape)
             rows.append({"field": k, "statistic": f"regression on NAM100 ({label})",
                          "south_asia_box": box_mean(b.reshape(shape), lat, lon, SA_BOX),
                          "bangladesh_box": box_mean(b.reshape(shape), lat, lon, BOXES["BD"]),
-                         "fraction_cells_q05": float((C.benjamini_hochberg(p) < 0.05).mean())})
-        d, p = post_minus_rest(cache[f"{k}_post_ssw_mean"].reshape(len(nam), -1), cache[f"{k}_rest_mean"].reshape(len(nam), -1))
+                         "fraction_cells_q05": fdr_fraction(p), "cells_q05": int((C.benjamini_hochberg(p) < 0.05).sum())})
+        d, p = post_minus_rest(cache[f"{k}_post_ssw_mean"].reshape(len(nam), -1),
+                               cache[f"{k}_rest_mean"].reshape(len(nam), -1), bad)
         out[f"{k}_post"] = d.reshape(shape)
         out[f"{k}_post_sig"] = (C.benjamini_hochberg(p) < 0.05).reshape(shape)
         rows.append({"field": k, "statistic": "post-SSW minus rest of winter",
                      "south_asia_box": box_mean(d.reshape(shape), lat, lon, SA_BOX),
                      "bangladesh_box": box_mean(d.reshape(shape), lat, lon, BOXES["BD"]),
-                     "fraction_cells_q05": float((C.benjamini_hochberg(p) < 0.05).mean())})
+                     "fraction_cells_q05": fdr_fraction(p), "cells_q05": int((C.benjamini_hochberg(p) < 0.05).sum())})
     return out, pd.DataFrame(rows)
 
 

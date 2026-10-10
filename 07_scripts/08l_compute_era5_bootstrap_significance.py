@@ -592,10 +592,13 @@ def bootstrap_map(
         negative_bootstrap_count / N_BOOTSTRAP_MAP
     )
 
-    p_value = 2 * np.minimum(
-        positive_probability,
-        negative_probability,
-    )
+    # Step 18 revision: two-sided plus-one p-value, 2 (min(#<=0, #>=0) + 1) / (B + 1). The earlier
+    # 2 min(P(>0), P(<0)) was exactly 0 whenever every resample had the same sign.
+    count_le0 = N_BOOTSTRAP_MAP - positive_bootstrap_count
+    count_ge0 = N_BOOTSTRAP_MAP - negative_bootstrap_count
+    p_value = 2 * (
+        np.minimum(count_le0, count_ge0).astype("float64") + 1
+    ) / (N_BOOTSTRAP_MAP + 1)
 
     p_value = np.clip(
         p_value,
@@ -733,13 +736,14 @@ def scalar_winter_bootstrap(
         np.mean(bootstrap_values < 0)
     )
 
+    # Step 18 revision: two-sided plus-one p-value (see the map function above)
+    n_valid = int(np.isfinite(bootstrap_values).sum())
+    count_le0 = n_valid - int(np.sum(bootstrap_values > 0))
+    count_ge0 = n_valid - int(np.sum(bootstrap_values < 0))
     p_value = float(
         min(
             1,
-            2 * min(
-                positive_probability,
-                negative_probability,
-            ),
+            2 * (min(count_le0, count_ge0) + 1) / (n_valid + 1),
         )
     )
 

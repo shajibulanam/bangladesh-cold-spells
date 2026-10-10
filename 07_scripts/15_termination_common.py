@@ -135,9 +135,164 @@ def winter_bootstrap_counts(winters: np.ndarray, n_boot: int, seed: int) -> tupl
     return uniq, counts
 
 
+# Step 18 revision (October 2026). Season-end censoring is the primary hazard definition: a spell whose last
+# cold day is the last day of February (the end of the analysed season) has an unobserved end, so its final
+# risk-set row is right-censored (terminates = 0) instead of counted as a termination. Two of the 85 primary
+# spells are affected. The uncensored definition (used up to v1.2.0) is kept as a sensitivity analysis.
+CENSOR_SEASON_END = True
+
+
+def season_end_censored(ev: pd.DataFrame) -> set:
+    """Event ids whose last cold day is the last day of February."""
+    end = pd.to_datetime(ev["end_date"])
+    nxt = end + pd.Timedelta(days=1)
+    return set(ev.loc[(end.dt.month == 2) & (nxt.dt.month == 3), "event_id"])
+
+
+def apply_season_end_censoring(rs: pd.DataFrame, ev: pd.DataFrame, censor: bool | None = None) -> pd.DataFrame:
+    """Set terminates = 0 on the final row of season-end spells when censoring is on (default: CENSOR_SEASON_END)."""
+    if CENSOR_SEASON_END if censor is None else censor:
+        ids = season_end_censored(ev)
+        rs.loc[rs["event_id"].isin(ids) & (rs["terminates"] == 1), "terminates"] = 0
+    return rs
+
+
+# Step 18 revision (October 2026). Every bootstrap or Monte Carlo p-value is now a "plus-one" p-value,
+#     p = min(1, 2 (min(#{t* <= 0}, #{t* >= 0}) + 1) / (B + 1)),
+# which can never be exactly zero (the earlier 2 min(frac <= 0, frac >= 0) gave p = 0 whenever no
+# resample crossed zero, and Benjamini-Hochberg then accepted every such test). Hypothesis tests use at
+# least MIN_TEST_BOOT resamples so that the smallest attainable p (2 / (B + 1)) is far below the
+# Benjamini-Hochberg thresholds of the largest test families (66 scalar predictors).
+MIN_TEST_BOOT = 10000
+
+
+def test_boot(n_boot: int) -> int:
+    """Number of bootstrap resamples to use for a hypothesis test (never fewer than MIN_TEST_BOOT)."""
+    return max(int(n_boot), MIN_TEST_BOOT)
+
+
+def p_from_tail_counts(n_le, n_ge, n_valid):
+    """Two-sided plus-one p-value from the counts of resamples <= null and >= null."""
+    n_le, n_ge, n_valid = np.asarray(n_le, float), np.asarray(n_ge, float), np.asarray(n_valid, float)
+    with np.errstate(invalid="ignore", divide="ignore"):
+        p = np.minimum(1.0, 2.0 * (np.minimum(n_le, n_ge) + 1.0) / (n_valid + 1.0))
+    p = np.where(n_valid > 0, p, np.nan)
+    return float(p) if p.ndim == 0 else p
+
+
+def bootstrap_p(draws, null: float = 0.0, axis: int = 0):
+    """Two-sided plus-one bootstrap p-value of H0: statistic = null. NaN draws are ignored."""
+    d = np.asarray(draws, dtype=float)
+    ok = np.isfinite(d)
+    return p_from_tail_counts(((d <= null) & ok).sum(axis=axis), ((d >= null) & ok).sum(axis=axis),
+                              ok.sum(axis=axis))
+
+
+def logit_fit_batch(X: np.ndarray, y: np.ndarray, W: np.ndarray, max_iter: int = 100, tol: float = 1e-10,
+                    chunk: int = 2000) -> tuple[np.ndarray, np.ndarray]:
+    """
+    Unpenalised weighted logistic regression for many weight vectors at once (Newton-Raphson with step
+    halving). This is the same estimator as sklearn LogisticRegression(penalty=None) with sample_weight,
+    but fits 10 000 winter-block bootstrap replicates in seconds instead of minutes.
+
+    X: n x p predictors (an intercept is added), y: n (0/1), W: B x n non-negative weights (bootstrap counts).
+    Returns (coef, converged): coef is B x p (intercept dropped); rows whose weighted outcome has only one class
+    are NaN. Replicates with (quasi-)separation do not converge and keep their last (large) iterate, as sklearn
+    does; the number of such replicates is reported by the callers.
+    """
+    X = np.asarray(X, dtype=float)
+    y = np.asarray(y, dtype=float)
+    W = np.atleast_2d(np.asarray(W, dtype=float))
+    n, p = X.shape
+    Xi = np.column_stack([np.ones(n), X])
+    k = p + 1
+    coef = np.full((W.shape[0], k), np.nan)
+    conv = np.zeros(W.shape[0], dtype=bool)
+    ridge = 1e-10 * np.eye(k)
+
+    def loglik(b, Wc):
+        eta = b @ Xi.T
+        return (Wc * (y * eta - np.logaddexp(0.0, eta))).sum(axis=1)
+
+    for s in range(0, W.shape[0], chunk):
+        Wc = W[s:s + chunk]
+        pos, tot = Wc @ y, Wc.sum(axis=1)
+        ok = (pos > 0) & (pos < tot)
+        if not ok.any():
+            continue
+        Wc = Wc[ok]
+        b = np.zeros((len(Wc), k))
+        ybar = pos[ok] / tot[ok]
+        b[:, 0] = np.log(ybar / (1.0 - ybar))
+        ll = loglik(b, Wc)
+        done = np.zeros(len(Wc), dtype=bool)
+        for _ in range(max_iter):
+            act = ~done
+            if not act.any():
+                break
+            ba, Wa = b[act], Wc[act]
+            mu = 1.0 / (1.0 + np.exp(-(ba @ Xi.T)))
+            g = (Wa * (y - mu)) @ Xi
+            H = np.einsum("cn,ni,nj->cij", Wa * mu * (1.0 - mu), Xi, Xi, optimize=True) + ridge
+            step = np.linalg.solve(H, g[..., None])[..., 0]
+            t = np.ones(len(ba))
+            ll_old = ll[act]
+            new = ba + step
+            ll_new = loglik(new, Wa)
+            for _h in range(30):  # step halving where the log-likelihood fell
+                bad = ll_new < ll_old - 1e-12
+                if not bad.any():
+                    break
+                t[bad] *= 0.5
+                new[bad] = ba[bad] + t[bad, None] * step[bad]
+                ll_new[bad] = loglik(new[bad], Wa[bad])
+            idx = np.flatnonzero(act)
+            b[idx], ll[idx] = new, ll_new
+            done[idx] = np.max(np.abs(t[:, None] * step), axis=1) < tol
+        rows = np.flatnonzero(ok) + s
+        coef[rows] = b
+        conv[rows] = done
+    return coef[:, 1:], conv
+
+
+def sign_flip_p(diff: np.ndarray, n_exact_max: int = 22, n_mc: int = 200000, seed: int = 20261010,
+                chunk: int = 8192) -> np.ndarray:
+    """
+    Two-sided sign-flip (paired permutation) test of H0: mean = 0 for each column of diff (n x m),
+    e.g. per-winter post-SSW minus rest-of-winter differences at m grid cells. Exact (all 2^n sign
+    patterns) for n <= n_exact_max, otherwise Monte Carlo with a plus-one p-value. Columns with any NaN get NaN.
+    """
+    d = np.asarray(diff, dtype=float)
+    if d.ndim == 1:
+        d = d[:, None]
+    n, m = d.shape
+    good = np.isfinite(d).all(axis=0)
+    dz = np.where(good[None, :], d, 0.0)
+    obs = np.abs(dz.sum(axis=0))
+    tol = 1e-9 * np.maximum(np.abs(dz).sum(axis=0), 1e-30)
+    count = np.zeros(m)
+    bits = np.arange(n)
+    if n <= n_exact_max:
+        total = 2 ** n
+        for s in range(0, total, chunk):
+            idx = np.arange(s, min(s + chunk, total), dtype=np.int64)
+            signs = 1.0 - 2.0 * ((idx[:, None] >> bits[None, :]) & 1)
+            count += (np.abs(signs @ dz) >= obs - tol).sum(axis=0)
+        p = count / total
+    else:
+        rng = np.random.default_rng(seed)
+        for s in range(0, n_mc, chunk):
+            c = min(chunk, n_mc - s)
+            signs = rng.choice([-1.0, 1.0], size=(c, n))
+            count += (np.abs(signs @ dz) >= obs - tol).sum(axis=0)
+        p = (count + 1.0) / (n_mc + 1.0)
+    return np.where(good, np.minimum(p, 1.0), np.nan)
+
+
 def group_difference_bootstrap(values: np.ndarray, is_a: np.ndarray, is_b: np.ndarray, winters: np.ndarray,
                                n_boot: int = 5000, seed: int = 20260923) -> dict:
-    """Mean(A) - mean(B) with winter-block bootstrap CI and two-sided bootstrap p-value."""
+    """Mean(A) - mean(B) with winter-block bootstrap CI and two-sided plus-one bootstrap p-value."""
+    n_boot = test_boot(n_boot)
     ok = ~np.isnan(values)
     values, is_a, is_b, winters = values[ok], is_a[ok], is_b[ok], winters[ok]
     obs = values[is_a].mean() - values[is_b].mean()
@@ -149,9 +304,95 @@ def group_difference_bootstrap(values: np.ndarray, is_a: np.ndarray, is_b: np.nd
         diff = (wa @ values) / wa.sum(axis=1) - (wb @ values) / wb.sum(axis=1)
     diff = diff[np.isfinite(diff)]
     lo, hi = np.percentile(diff, [2.5, 97.5])
-    p = min(1.0, 2 * min((diff <= 0).mean(), (diff >= 0).mean()))
+    p = bootstrap_p(diff)
     return {"difference": obs, "ci_low": lo, "ci_high": hi, "p_bootstrap": p,
             "n_a": int(is_a.sum()), "n_b": int(is_b.sum()), "n_boot_valid": int(len(diff))}
+
+
+# ----------------------------------------------------------------------------- terrain validity (Step 18)
+# 850 hPa (standard height about 1,460 m) lies below or within a few hundred metres of the ground wherever the
+# mean terrain height of an ERA5 0.25-degree cell exceeds about 1,000 m; ERA5 values there are extrapolated.
+# Pressure-level fields at 1000 and 850 hPa and sea-level pressure are therefore masked where the ETOPO1
+# cell-mean elevation exceeds TERRAIN_MAX_M; 700 hPa is masked above 2,500 m; 500 hPa and above are not masked.
+# The rule was fixed before rerunning any analysis; 1,500 m is the pre-stated sensitivity threshold.
+TERRAIN_FILE = PROJECT_ROOT / "01_raw_data" / "geospatial" / "etopo1_south_asia_0p1deg.nc"
+TERRAIN_MAX_M = 1000.0
+TERRAIN_700HPA_MAX_M = 2500.0
+_ELEV_CACHE: dict = {}
+
+
+def _read_terrain() -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """(lat, lon, elevation[lat, lon]) from the ETOPO1 file, with xarray or, failing that, scipy (netCDF3)."""
+    if not TERRAIN_FILE.exists():
+        raise FileNotFoundError(f"{TERRAIN_FILE} is needed for the terrain mask")
+    try:
+        import xarray as xr
+        with xr.open_dataset(TERRAIN_FILE) as ds:
+            var = "altitude" if "altitude" in ds else list(ds.data_vars)[0]
+            z = ds[var]
+            dlat = next(d for d in z.dims if "lat" in d.lower())
+            dlon = next(d for d in z.dims if "lon" in d.lower())
+            return (ds[dlat].values.astype(float), ds[dlon].values.astype(float),
+                    z.transpose(dlat, dlon).values.astype(float))
+    except ImportError:
+        from scipy.io import netcdf_file
+        f = netcdf_file(TERRAIN_FILE, "r", mmap=False)
+        v = f.variables
+        dlat = next(k for k in v if "lat" in k.lower())
+        dlon = next(k for k in v if "lon" in k.lower())
+        var = "altitude" if "altitude" in v else next(k for k in v if k not in (dlat, dlon))
+        return v[dlat][:].astype(float), v[dlon][:].astype(float), v[var][:].astype(float)
+
+
+def grid_cell_elevation(lat: np.ndarray, lon: np.ndarray, half_width: float = 0.125) -> np.ndarray:
+    """Mean ETOPO1 elevation (m) of the grid cell centred on each (lat, lon) point; returns nlat x nlon."""
+    lat, lon = np.asarray(lat, dtype=float), np.asarray(lon, dtype=float)
+    key = (lat.tobytes(), lon.tobytes(), half_width)
+    if key in _ELEV_CACHE:
+        return _ELEV_CACHE[key]
+    elat, elon, Z = _read_terrain()
+    eps = 1e-6
+    inside_lat = (lat >= elat.min() - eps) & (lat <= elat.max() + eps)
+    inside_lon = (lon >= elon.min() - eps) & (lon <= elon.max() + eps)
+    elev = np.full((len(lat), len(lon)), np.nan)
+    rows = np.array([np.nanmean(Z[np.abs(elat - la) <= half_width + eps], axis=0) if ok else np.full(len(elon), np.nan)
+                     for la, ok in zip(lat, inside_lat)])
+    for j, (lo, ok) in enumerate(zip(lon, inside_lon)):
+        if ok:
+            elev[:, j] = np.nanmean(rows[:, np.abs(elon - lo) <= half_width + eps], axis=1)
+    outside = ~(inside_lat[:, None] & inside_lon[None, :])
+    if outside.any():
+        # The ETOPO1 extract covers 0-55N, 45-125E. Cells outside it (Anatolia, Caucasus, Europe, north of 55N)
+        # are left unmasked; they lie outside every analysis box and only enter the hemispheric maps.
+        print(f"NOTE terrain mask: {outside.mean():.1%} of the grid lies outside the ETOPO1 extract and is not masked")
+    _ELEV_CACHE[key] = elev
+    return elev
+
+
+def below_ground_mask(lat: np.ndarray, lon: np.ndarray, level_hpa: float | None,
+                      max_m: float = TERRAIN_MAX_M, half_width: float = 0.125) -> np.ndarray:
+    """
+    True where a field is extrapolated below ground. level_hpa=None means sea-level pressure.
+    half_width is half the grid spacing in degrees (0.125 for the native 0.25-degree grid, 0.5 for 1-degree
+    block means, 1.0 for 2-degree block means).
+    """
+    elev = grid_cell_elevation(lat, lon, half_width)
+    with np.errstate(invalid="ignore"):
+        if level_hpa is None or float(level_hpa) >= 850.0:
+            return np.nan_to_num(elev, nan=-1e9) > max_m
+        if float(level_hpa) >= 700.0:
+            return np.nan_to_num(elev, nan=-1e9) > TERRAIN_700HPA_MAX_M
+    return np.zeros_like(elev, dtype=bool)
+
+
+def dilate_mask(mask: np.ndarray) -> np.ndarray:
+    """Add the four neighbours of every masked cell (centred differences use them)."""
+    out = mask.copy()
+    out[1:, :] |= mask[:-1, :]
+    out[:-1, :] |= mask[1:, :]
+    out[:, 1:] |= mask[:, :-1]
+    out[:, :-1] |= mask[:, 1:]
+    return out
 
 
 def benjamini_hochberg(p: np.ndarray) -> np.ndarray:

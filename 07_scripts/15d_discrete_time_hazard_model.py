@@ -45,7 +45,7 @@ TABLE_BASE = C.TERM_TABLES / "table_92_termination_hazard_base_model.csv"
 REPORT = C.TERM_QC / "step16d_hazard_model_report.txt"
 SUMMARY = C.TERM_QC / "step16d_hazard_model_summary.json"
 
-N_BOOT = 2000
+N_BOOT = 10000  # Step 18: was 2000; >= C.MIN_TEST_BOOT so that plus-one p-values resolve the FDR thresholds
 SEED = 20260923
 MIN_DURATION_AT_RISK = 3
 ADJUSTMENT = ["log_event_age", "winter_day_index", "nat_tmin_anom", "winter_start_year"]
@@ -80,6 +80,7 @@ POLICY = {
     "step": "Step 16D",
     "title": "Discrete-time hazard model of cold-spell termination",
     "risk_set": f"event days k >= {MIN_DURATION_AT_RISK}; outcome = day k is the final event day",
+    "censoring": "spells ending on the last day of February are right-censored (Step 18 primary definition)",
     "adjustment": ADJUSTMENT,
     "predictor_families": FAMILIES,
     "standardization": "predictors and adjustment covariates z-scored on the full risk set",
@@ -90,7 +91,7 @@ POLICY = {
 }
 
 
-def build_risk_set(cov: pd.DataFrame, ev: pd.DataFrame) -> pd.DataFrame:
+def build_risk_set(cov: pd.DataFrame, ev: pd.DataFrame, censor: bool | None = None) -> pd.DataFrame:
     rows = []
     for e in ev.itertuples(index=False):
         for k in range(MIN_DURATION_AT_RISK, e.duration_days + 1):
@@ -98,7 +99,7 @@ def build_risk_set(cov: pd.DataFrame, ev: pd.DataFrame) -> pd.DataFrame:
                          "group": e.group, "event_age_k": k, "log_event_age": np.log(k),
                          "date": e.start_date + pd.Timedelta(days=k - 1),
                          "terminates": int(k == e.duration_days)})
-    rs = pd.DataFrame(rows)
+    rs = C.apply_season_end_censoring(pd.DataFrame(rows), ev, censor)
     cov_cols = [c for c in cov.columns if c not in ("winter_start_year",)]
     return rs.merge(cov[cov_cols], left_on="date", right_index=True, how="left")
 
@@ -125,14 +126,11 @@ def main() -> None:
         y = d["terminates"].to_numpy()
         est = fit_coef(X, y)
         widx = np.searchsorted(uniq, d["winter_start_year"].to_numpy())
-        boots = []
-        for b in range(N_BOOT):
-            w = counts[b, widx].astype(float)
-            keep = w > 0
-            if y[keep].min() == y[keep].max():
-                continue
-            boots.append(fit_coef(X[keep], y[keep], w[keep]))
-        return est, np.array(boots), len(d)
+        # Step 18: all replicates fitted at once (same unpenalised estimator as sklearn); replicates with a
+        # single outcome class are dropped as before
+        coef, _conv = C.logit_fit_batch(X, y, counts[:, widx].astype(float))
+        boots = coef[np.isfinite(coef).all(axis=1)]
+        return est, boots, len(d)
 
     # Base model
     est, boots, n = analyse(ADJUSTMENT)
@@ -155,7 +153,7 @@ def main() -> None:
                 "n_terminations": int(rs.dropna(subset=[p] + ADJUSTMENT)["terminates"].sum()),
                 "odds_ratio_per_sd": np.exp(est[0]),
                 "ci_low": np.exp(np.percentile(b, 2.5)), "ci_high": np.exp(np.percentile(b, 97.5)),
-                "p_bootstrap": min(1.0, 2 * min((b <= 0).mean(), (b >= 0).mean())),
+                "p_bootstrap": C.bootstrap_p(b),
                 "n_boot_valid": len(b),
             })
             print(f"{family:22s} {p:48s} OR={np.exp(est[0]):.2f}")

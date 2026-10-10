@@ -23,34 +23,34 @@ window_days                                     null  observed_onsets  null_mean
 
 R8 Stratosphere vs duration (Step 11 metrics)
                            metric  events_with_nonzero  spearman_rho  rho_ci_low  rho_ci_high  p_bootstrap  partial_rho_season_year  partial_ci_low  partial_ci_high  partial_p_bootstrap  rho_metric_vs_onset_day  q_fdr  partial_q_fdr
-                 pre45_nam10_mean                   85        -0.141      -0.339        0.077        0.200                   -0.097          -0.309            0.099                0.335                    0.208  0.320          0.447
-                 pre30_nam10_mean                   85        -0.156      -0.341        0.031        0.097                   -0.122          -0.319            0.049                0.160                    0.201  0.320          0.320
-                 pre20_nam10_mean                   85        -0.093      -0.275        0.077        0.297                   -0.081          -0.271            0.086                0.313                    0.108  0.396          0.447
-                pre10_nam100_mean                   85        -0.011      -0.187        0.167        0.902                   -0.032          -0.218            0.140                0.686                    0.161  0.902          0.686
-       pre20_weak_vortex_fraction                   19         0.256       0.084        0.438        0.001                    0.272           0.094            0.468                0.002                   -0.098  0.008          0.016
-pre20_negative_nam10_100_fraction                   41         0.116      -0.053        0.284        0.188                    0.127          -0.040            0.318                0.128                   -0.173  0.320          0.320
-   pre45_vortex_displacement_mean                   85         0.020      -0.160        0.205        0.805                    0.072          -0.102            0.258                0.395                    0.195  0.902          0.451
-                 prior45_ssw_flag                    6         0.095      -0.029        0.247        0.167                    0.166           0.032            0.312                0.007                    0.124  0.320          0.028
+                 pre45_nam10_mean                   85        -0.141      -0.340        0.077        0.201                   -0.097          -0.306            0.099                0.318                    0.208  0.321          0.424
+                 pre30_nam10_mean                   85        -0.156      -0.347        0.027        0.094                   -0.122          -0.324            0.045                0.142                    0.201  0.321          0.284
+                 pre20_nam10_mean                   85        -0.093      -0.278        0.079        0.293                   -0.081          -0.280            0.082                0.315                    0.108  0.391          0.424
+                pre10_nam100_mean                   85        -0.011      -0.189        0.162        0.909                   -0.032          -0.221            0.140                0.683                    0.161  0.909          0.683
+       pre20_weak_vortex_fraction                   19         0.256       0.087        0.434        0.003                    0.272           0.094            0.468                0.003                   -0.098  0.022          0.024
+pre20_negative_nam10_100_fraction                   41         0.116      -0.051        0.291        0.177                    0.127          -0.034            0.326                0.125                   -0.173  0.321          0.284
+   pre45_vortex_displacement_mean                   85         0.020      -0.151        0.208        0.839                    0.072          -0.098            0.263                0.388                    0.195  0.909          0.443
+                 prior45_ssw_flag                    6         0.095      -0.029        0.245        0.164                    0.166           0.033            0.306                0.012                    0.124  0.321          0.048
 
-                                           metric  difference  ci_low  ci_high  p_bootstrap  n_a  n_b  n_boot_valid  odds_ratio_per_sd  n_rows  n_terminations
-pre20_weak_vortex_fraction persistent minus short       0.051  -0.057    0.161        0.340 26.0 30.0        2000.0                NaN     NaN             NaN
-          hazard: weak_vortex_fraction_trailing20         NaN   0.758    1.582        0.587  NaN  NaN           NaN              1.087   260.0            85.0
-                    hazard: nam10_mean_trailing20         NaN   0.626    1.188        0.326  NaN  NaN           NaN              0.851   260.0            85.0
+                                           metric  difference  ci_low  ci_high  p_bootstrap  n_a  n_b  n_boot_valid  odds_ratio_per_sd  n_rows  n_terminations  n_boot  n_boot_nonconverged
+pre20_weak_vortex_fraction persistent minus short       0.051  -0.058    0.166        0.355 26.0 30.0         10000                NaN     NaN             NaN     NaN                  NaN
+          hazard: weak_vortex_fraction_trailing20         NaN   0.790    1.574        0.564  NaN  NaN         10000              1.096   260.0            83.0 10000.0                  0.0
+                    hazard: nam10_mean_trailing20         NaN   0.615    1.186        0.298  NaN  NaN         10000              0.840   260.0            83.0 10000.0                  0.0
 
 R6a Pathway (box indices)
-                                                analysis                               index  spearman_rho  p_value  partial_rho_given_oni  mean_difference  ci_low  ci_high
-             winter-mean vs DJF-mean NAM100 (40 winters) mech_jet200_core_speed_70_100e_anom         0.153    0.347                  0.152              NaN     NaN      NaN
-             winter-mean vs DJF-mean NAM100 (40 winters)   mech_jet200_core_lat_70_100e_anom        -0.216    0.181                 -0.300              NaN     NaN      NaN
-             winter-mean vs DJF-mean NAM100 (40 winters)                   era5_sa_z500_anom        -0.483    0.002                 -0.484              NaN     NaN      NaN
-             winter-mean vs DJF-mean NAM100 (40 winters)         mech_nigp_adv850_k_day_anom         0.138    0.395                  0.172              NaN     NaN      NaN
-             winter-mean vs DJF-mean NAM100 (40 winters)                   era5_bd_v850_anom         0.260    0.105                  0.278              NaN     NaN      NaN
-             winter-mean vs DJF-mean NAM100 (40 winters)                       nat_tmin_anom        -0.184    0.255                 -0.184              NaN     NaN      NaN
-             winter-mean vs DJF-mean NAM100 (40 winters)                     cold_spell_days         0.434    0.005                  0.432              NaN     NaN      NaN
-post-SSW (0-45 d) minus rest of same winter (19 winters) mech_jet200_core_speed_70_100e_anom           NaN      NaN                    NaN           -3.922  -6.732   -1.155
-post-SSW (0-45 d) minus rest of same winter (19 winters)   mech_jet200_core_lat_70_100e_anom           NaN      NaN                    NaN           -0.354  -1.324    0.497
-post-SSW (0-45 d) minus rest of same winter (19 winters)                   era5_sa_z500_anom           NaN      NaN                    NaN            4.292  -4.251   12.571
-post-SSW (0-45 d) minus rest of same winter (19 winters)         mech_nigp_adv850_k_day_anom           NaN      NaN                    NaN            0.231  -0.001    0.430
-post-SSW (0-45 d) minus rest of same winter (19 winters)                   era5_bd_v850_anom           NaN      NaN                    NaN            0.149  -0.143    0.445
-post-SSW (0-45 d) minus rest of same winter (19 winters)                       nat_tmin_anom           NaN      NaN                    NaN           -0.068  -0.621    0.426
+                                                analysis                               index  spearman_rho  p_value  partial_rho_given_oni  mean_difference  ci_low  ci_high  p_sign_flip_exact
+             winter-mean vs DJF-mean NAM100 (40 winters) mech_jet200_core_speed_70_100e_anom         0.153    0.347                  0.152              NaN     NaN      NaN                NaN
+             winter-mean vs DJF-mean NAM100 (40 winters)   mech_jet200_core_lat_70_100e_anom        -0.216    0.181                 -0.300              NaN     NaN      NaN                NaN
+             winter-mean vs DJF-mean NAM100 (40 winters)                   era5_sa_z500_anom        -0.483    0.002                 -0.484              NaN     NaN      NaN                NaN
+             winter-mean vs DJF-mean NAM100 (40 winters)         mech_nigp_adv850_k_day_anom         0.117    0.474                  0.161              NaN     NaN      NaN                NaN
+             winter-mean vs DJF-mean NAM100 (40 winters)                   era5_bd_v850_anom         0.260    0.106                  0.278              NaN     NaN      NaN                NaN
+             winter-mean vs DJF-mean NAM100 (40 winters)                       nat_tmin_anom        -0.184    0.255                 -0.184              NaN     NaN      NaN                NaN
+             winter-mean vs DJF-mean NAM100 (40 winters)                     cold_spell_days         0.434    0.005                  0.432              NaN     NaN      NaN                NaN
+post-SSW (0-45 d) minus rest of same winter (19 winters) mech_jet200_core_speed_70_100e_anom           NaN      NaN                    NaN           -3.922  -6.732   -1.155              0.019
+post-SSW (0-45 d) minus rest of same winter (19 winters)   mech_jet200_core_lat_70_100e_anom           NaN      NaN                    NaN           -0.354  -1.324    0.497              0.476
+post-SSW (0-45 d) minus rest of same winter (19 winters)                   era5_sa_z500_anom           NaN      NaN                    NaN            4.292  -4.251   12.571              0.338
+post-SSW (0-45 d) minus rest of same winter (19 winters)         mech_nigp_adv850_k_day_anom           NaN      NaN                    NaN            0.226  -0.036    0.470              0.103
+post-SSW (0-45 d) minus rest of same winter (19 winters)                   era5_bd_v850_anom           NaN      NaN                    NaN            0.152  -0.143    0.449              0.332
+post-SSW (0-45 d) minus rest of same winter (19 winters)                       nat_tmin_anom           NaN      NaN                    NaN           -0.068  -0.621    0.426              0.812
 
-maps: 40 winters, 19 SSW winters with DJF follow-up; written step17c_stratospheric_pathway_fields.nc
+maps not run (use --maps)

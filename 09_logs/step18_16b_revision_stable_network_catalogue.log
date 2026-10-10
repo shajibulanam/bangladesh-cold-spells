@@ -1,0 +1,32 @@
+Validation: 26 stations, max weight difference 3.89e-16; rebuilt 85 spells vs primary 85; identical dates: True
+Step 17B - stable-network (25-station) cold-night catalogue
+=======================================================
+Validation: 26-station rebuild reproduces Step 7D weights (max diff 3.9e-16) and all 85 spells
+Excluded station(s): ['Satkhira']
+
+            catalogue  spells  spell_days  short_3d  intermediate_4_5d  persistent_ge6d  winters_with_spells
+primary (26 stations)      85         430        30                 29               26                   34
+ stable (25 stations)      84         426        30                 29               25                   33
+
+{
+ "excluded_station": [
+  "Satkhira"
+ ],
+ "shared_spell_days": 421,
+ "primary_only_days": 9,
+ "stable_only_days": 5,
+ "primary_spells_overlapping_a_stable_spell": 83
+}
+
+Termination model on the stable catalogue (q < 0.10):
+                       predictor  odds_ratio_per_sd  ci_low  ci_high  q_fdr
+                   nat_tmax_anom              1.774   1.235    2.988  0.016
+                    nat_dtr_anom              1.738   1.224    2.882  0.016
+             era5_bd_wspd10_anom              0.528   0.322    0.785  0.016
+               era5_bd_t850_tend              1.476   1.120    2.184  0.032
+era5_bd_stab_t2m_minus_t850_tend              0.607   0.414    0.810  0.016
+               era5_bd_mslp_tend              0.690   0.461    0.943  0.091
+               era5_bd_v850_tend              1.409   1.103    1.934  0.033
+               era5_sa_z500_tend              0.574   0.408    0.758  0.016
+               era5_sa_mslp_tend              0.693   0.482    0.930  0.085
+Note: national covariates (e.g. Tmin anomaly) are the 26-station series.

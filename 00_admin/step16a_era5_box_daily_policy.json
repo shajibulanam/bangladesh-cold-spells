@@ -58,7 +58,13 @@
   "derived_fields": {
     "wspd10_ms": "10-m wind speed computed at each grid point, then box-averaged"
   },
+  "terrain_mask": {
+    "source": "ETOPO1 cell-mean elevation on the ERA5 grid (01_raw_data/geospatial)",
+    "threshold_m": 1000.0,
+    "masked": "1000- and 850-hPa fields and MSLP above the threshold; 700 hPa above 2,500 m; 500 hPa and above, 2-m and 10-m fields not masked",
+    "revision": "Step 18 (October 2026); unmasked means kept as *_unmasked.csv"
+  },
   "anomalies": "Not computed here. Calendar-day anomalies are computed in Step 16B/16D from these series.",
   "raw_data_policy": "Input NetCDF files are read only and never modified.",
-  "created_utc": "2026-09-23T16:48:17.556676+00:00"
+  "created_utc": "2026-10-10T08:17:55.674609+00:00"
 }

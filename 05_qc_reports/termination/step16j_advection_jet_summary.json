@@ -1,5 +1,10 @@
 {
   "rows": 7290,
   "missing_files": [],
-  "completed_utc": "2026-09-23T20:25:27.786646+00:00"
+  "terrain_threshold_m": 1000.0,
+  "valid_area_fraction": {
+    "bd": 0.9187599758296386,
+    "nigp": 0.5433964383384402
+  },
+  "completed_utc": "2026-10-10T08:51:35.984488+00:00"
 }

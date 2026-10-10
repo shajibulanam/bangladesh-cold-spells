@@ -2,20 +2,20 @@ Step 16Q - Cloud, humidity and radiation
 ========================================
 A. Termination hazard, cloud/radiation family
                        predictor  odds_ratio_per_sd  ci_low  ci_high  p_bootstrap  q_fdr_family
-               cld_strd_wm2_anom              2.139   1.430    3.636        0.001         0.004
-               cld_ssrd_wm2_anom              0.946   0.597    1.585        0.825         0.888
-               cld_tcc_mean_anom              1.323   0.934    2.038        0.109         0.191
-              cld_tcc_00utc_anom              0.907   0.560    1.322        0.591         0.689
-cld_lowcloud1000_frac_00utc_anom              0.871   0.621    1.184        0.344         0.482
-      cld_fog300_frac_00utc_anom              0.996   0.667    1.568        0.982         0.982
-              cld_td2m_mean_anom              3.444   2.177    8.736        0.000         0.000
-              cld_dpd_00utc_anom              0.765   0.512    1.063        0.099         0.191
-              cld_blh_06utc_anom              1.133   0.761    1.580        0.462         0.588
-               cld_strd_wm2_tend              1.976   1.532    3.103        0.000         0.000
-               cld_tcc_mean_tend              1.466   1.096    2.224        0.011         0.031
-cld_lowcloud1000_frac_00utc_tend              0.727   0.513    0.934        0.017         0.040
-              cld_td2m_mean_tend              2.252   1.514    4.234        0.000         0.000
-              cld_dpd_00utc_tend              0.779   0.542    1.139        0.175         0.272
+               cld_strd_wm2_anom              2.101   1.409    3.611        0.000         0.001
+               cld_ssrd_wm2_anom              0.948   0.594    1.572        0.820         0.916
+               cld_tcc_mean_anom              1.300   0.901    2.025        0.143         0.250
+              cld_tcc_00utc_anom              0.900   0.572    1.314        0.578         0.736
+cld_lowcloud1000_frac_00utc_anom              0.883   0.628    1.202        0.382         0.535
+      cld_fog300_frac_00utc_anom              0.994   0.645    1.555        0.967         0.967
+              cld_td2m_mean_anom              3.927   2.401   10.252        0.000         0.001
+              cld_dpd_00utc_anom              0.698   0.453    0.981        0.036         0.072
+              cld_blh_06utc_anom              1.026   0.716    1.393        0.851         0.916
+               cld_strd_wm2_tend              1.924   1.475    2.911        0.000         0.001
+               cld_tcc_mean_tend              1.454   1.052    2.220        0.027         0.064
+cld_lowcloud1000_frac_00utc_tend              0.710   0.482    0.922        0.011         0.030
+              cld_td2m_mean_tend              2.167   1.450    3.948        0.000         0.001
+              cld_dpd_00utc_tend              0.838   0.576    1.261        0.377         0.535
 
 B. End-aligned all-event anomalies (means)
 variable  strd_wm2  ssrd_wm2  tcc_mean  lowcloud1000_frac_00utc  td2m_mean  dpd_00utc  blh_06utc  fog300_frac_00utc
@@ -34,11 +34,11 @@ lag
 
 C. Pure cold-day minus pure cold-night
                variable  cold_day_mean  cold_night_mean  difference   ci_low  ci_high  q_fdr  n_a  n_b
-               strd_wm2          6.941          -18.722      25.663   20.714   31.342    0.0   40   50
-               ssrd_wm2        -22.701           12.936     -35.637  -45.105  -26.625    0.0   40   50
+               strd_wm2          6.941          -18.722      25.663   20.786   31.308    0.0   40   50
+               ssrd_wm2        -22.701           12.936     -35.637  -45.149  -26.704    0.0   40   50
                tcc_mean          0.157           -0.118       0.275    0.217    0.335    0.0   40   50
 lowcloud1000_frac_00utc          0.112           -0.101       0.213    0.169    0.260    0.0   40   50
-              td2m_mean          0.346           -2.612       2.958    2.516    3.473    0.0   40   50
-              dpd_00utc         -0.381            0.699      -1.080   -1.235   -0.936    0.0   40   50
-              blh_06utc       -107.002           96.544    -203.546 -257.606 -150.679    0.0   40   50
+              td2m_mean          0.346           -2.612       2.958    2.523    3.466    0.0   40   50
+              dpd_00utc         -0.381            0.699      -1.080   -1.230   -0.937    0.0   40   50
+              blh_06utc       -107.002           96.544    -203.546 -257.112 -150.218    0.0   40   50
       fog300_frac_00utc          0.042           -0.048       0.090    0.065    0.118    0.0   40   50

@@ -1,30 +1,22 @@
 {
   "step": "Step 16D",
-  "completed_utc": "2026-09-28T18:07:30.330174+00:00",
+  "completed_utc": "2026-10-10T10:47:42.691006+00:00",
   "risk_set_rows": 260,
-  "terminations": 85,
+  "terminations": 83,
   "events": 85,
   "causal_predictors_tested": 39,
   "fdr_significant": [
     {
-      "predictor": "nat_tmax_anom",
-      "odds_ratio_per_sd": 1.663812976120675
-    },
-    {
-      "predictor": "nat_dtr_anom",
-      "odds_ratio_per_sd": 1.6309079403771525
-    },
-    {
       "predictor": "era5_bd_wspd10_anom",
-      "odds_ratio_per_sd": 0.528043059197151
+      "odds_ratio_per_sd": 0.539337808822314
     },
     {
       "predictor": "era5_bd_stab_t2m_minus_t850_tend",
-      "odds_ratio_per_sd": 0.6235142463375447
+      "odds_ratio_per_sd": 0.627957004286091
     },
     {
       "predictor": "era5_sa_z500_tend",
-      "odds_ratio_per_sd": 0.5801660581280402
+      "odds_ratio_per_sd": 0.5695309505453073
     }
   ]
 }

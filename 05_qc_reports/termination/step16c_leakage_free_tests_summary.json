@@ -1,8 +1,8 @@
 {
   "step": "Step 16C",
-  "completed_utc": "2026-09-28T18:03:08.147277+00:00",
+  "completed_utc": "2026-10-10T09:10:37.013508+00:00",
   "tests": 72,
-  "ci_excludes_zero": 8,
+  "ci_excludes_zero": 6,
   "fdr_significant": 0,
   "fdr_significant_results": []
 }

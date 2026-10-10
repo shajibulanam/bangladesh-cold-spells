@@ -1,0 +1,66 @@
+Step 18A - post-run checks (after 15a, 15j, 15b)
+================================================
+
+3. Masked (1,000 m) versus unmasked daily advection, DJF
+   bd_adv850_k_day      r = 0.998; SD masked 1.72 vs unmasked 1.60 K/day; mean -0.63 vs -0.57
+   nigp_adv850_k_day    r = 0.767; SD masked 1.36 vs unmasked 1.04 K/day; mean +0.09 vs +0.06
+
+4. Advection odds ratios per SD (primary risk set, adjustment: age, season day, Tmin(k), year;
+   10 000 winter-block resamples; plus-one two-sided p). Lead 1 = advection on the day before.
+                  advection_series  lead_days                   predictor  odds_ratio_per_sd  ci_low  ci_high  p_bootstrap  n_rows  n_terminations
+      unmasked (v1.2.0 definition)          0 mech_nigp_adv850_k_day_anom             0.8750  0.6022   1.1887       0.3594     260              85
+      unmasked (v1.2.0 definition)          0   mech_bd_adv850_k_day_anom             1.5291  1.1773   2.1255       0.0034     260              85
+      unmasked (v1.2.0 definition)          1 mech_nigp_adv850_k_day_anom             1.4861  1.1865   1.8727       0.0006     260              85
+      unmasked (v1.2.0 definition)          1   mech_bd_adv850_k_day_anom             0.7409  0.5397   0.9855       0.0418     260              85
+      unmasked (v1.2.0 definition)          2 mech_nigp_adv850_k_day_anom             1.2989  1.0415   1.8204       0.0232     260              85
+      unmasked (v1.2.0 definition)          2   mech_bd_adv850_k_day_anom             0.8331  0.5811   1.1458       0.2812     260              85
+    terrain mask 1,000 m (primary)          0 mech_nigp_adv850_k_day_anom             1.0887  0.7208   1.5911       0.7021     260              85
+    terrain mask 1,000 m (primary)          0   mech_bd_adv850_k_day_anom             1.5561  1.2062   2.1492       0.0018     260              85
+    terrain mask 1,000 m (primary)          1 mech_nigp_adv850_k_day_anom             1.8869  1.4193   2.8456       0.0002     260              85
+    terrain mask 1,000 m (primary)          1   mech_bd_adv850_k_day_anom             0.7564  0.5531   1.0108       0.0574     260              85
+    terrain mask 1,000 m (primary)          2 mech_nigp_adv850_k_day_anom             1.5426  1.0933   2.7989       0.0124     260              85
+    terrain mask 1,000 m (primary)          2   mech_bd_adv850_k_day_anom             0.8407  0.5857   1.1613       0.3132     260              85
+terrain mask 1,500 m (sensitivity)          0 mech_nigp_adv850_k_day_anom             1.0979  0.7320   1.6037       0.6611     260              85
+terrain mask 1,500 m (sensitivity)          0   mech_bd_adv850_k_day_anom             1.5331  1.1827   2.1271       0.0030     260              85
+terrain mask 1,500 m (sensitivity)          1 mech_nigp_adv850_k_day_anom             1.9051  1.4351   2.8824       0.0002     260              85
+terrain mask 1,500 m (sensitivity)          1   mech_bd_adv850_k_day_anom             0.7454  0.5443   0.9919       0.0458     260              85
+terrain mask 1,500 m (sensitivity)          2 mech_nigp_adv850_k_day_anom             1.5242  1.0819   2.7890       0.0142     260              85
+terrain mask 1,500 m (sensitivity)          2   mech_bd_adv850_k_day_anom             0.8359  0.5831   1.1511       0.2948     260              85
+   Note: the global FDR q over all 66 lag-1 predictors comes from 16a (table_R3) after the full rerun.
+
+5. TOTAL 850-hPa advection (K/day, terrain-masked) and Bangladesh v850 (m/s) around onset and the
+   last cold day (day 0); share_positive = share of the 85 events with warm advection / southerly flow
+       anchor  day          variable  mean_total  share_positive  djf_climatology_1991_2020
+        onset   -3 nigp_adv850_k_day       -0.37            28.0                       0.07
+        onset   -2 nigp_adv850_k_day       -0.72            18.0                       0.07
+        onset   -1 nigp_adv850_k_day       -0.65            27.0                       0.07
+        onset    0 nigp_adv850_k_day       -0.04            49.0                       0.07
+        onset    1 nigp_adv850_k_day        0.33            54.0                       0.07
+        onset   -3   bd_adv850_k_day       -0.83            29.0                      -0.66
+        onset   -2   bd_adv850_k_day       -0.93            25.0                      -0.66
+        onset   -1   bd_adv850_k_day       -1.14            13.0                      -0.66
+        onset    0   bd_adv850_k_day       -1.86             7.0                      -0.66
+        onset    1   bd_adv850_k_day       -2.05             2.0                      -0.66
+        onset   -3  bd_v_wind_ms_850       -1.19            28.0                      -1.25
+        onset   -2  bd_v_wind_ms_850       -1.15            26.0                      -1.25
+        onset   -1  bd_v_wind_ms_850       -1.45            11.0                      -1.25
+        onset    0  bd_v_wind_ms_850       -2.28             5.0                      -1.25
+        onset    1  bd_v_wind_ms_850       -2.36             2.0                      -1.25
+last cold day   -3 nigp_adv850_k_day       -0.15            47.0                       0.07
+last cold day   -2 nigp_adv850_k_day        0.36            62.0                       0.07
+last cold day   -1 nigp_adv850_k_day        0.68            65.0                       0.07
+last cold day    0 nigp_adv850_k_day        0.26            54.0                       0.07
+last cold day    1 nigp_adv850_k_day       -0.03            51.0                       0.07
+last cold day    2 nigp_adv850_k_day        0.26            54.0                       0.07
+last cold day   -3   bd_adv850_k_day       -1.87             7.0                      -0.66
+last cold day   -2   bd_adv850_k_day       -2.02             6.0                      -0.66
+last cold day   -1   bd_adv850_k_day       -1.98             6.0                      -0.66
+last cold day    0   bd_adv850_k_day       -1.15            19.0                      -0.66
+last cold day    1   bd_adv850_k_day       -0.48            36.0                      -0.66
+last cold day    2   bd_adv850_k_day       -0.59            25.0                      -0.66
+last cold day   -3  bd_v_wind_ms_850       -2.26             4.0                      -1.25
+last cold day   -2  bd_v_wind_ms_850       -2.47             4.0                      -1.25
+last cold day   -1  bd_v_wind_ms_850       -2.40             6.0                      -1.25
+last cold day    0  bd_v_wind_ms_850       -1.90            13.0                      -1.25
+last cold day    1  bd_v_wind_ms_850       -1.22            22.0                      -1.25
+last cold day    2  bd_v_wind_ms_850       -1.27            19.0                      -1.25

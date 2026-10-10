@@ -1,0 +1,52 @@
+Step 16F - Cold-day spell catalogue
+====================================
+step: Step 16F
+completed_utc: 2026-10-10T09:14:24.842530+00:00
+cold_day_spells: 73
+cold_night_spells_same_period: 85
+cold_day_spells_overlapping_cold_night: 33
+cold_night_spells_overlapping_cold_day: 35
+shared_days: 110
+cold_night_days: 430
+cold_day_days: 383
+trends_per_winter: {'cold_night_spells': {'spearman_rho': -0.20784906494435143, 'p_value': 0.1981022332936296, 'ols_slope_per_decade': -0.29174484052533184}, 'cold_day_spells': {'spearman_rho': 0.3002593033499357, 'p_value': 0.059770124850429616, 'ols_slope_per_decade': 0.2711069418386514}, 'cold_night_days': {'spearman_rho': -0.27358856745543736, 'p_value': 0.08759544708454318, 'ols_slope_per_decade': -2.4821763602251714}, 'cold_day_days': {'spearman_rho': 0.2905819976198405, 'p_value': 0.06891152959847703, 'ols_slope_per_decade': 0.9971857410881811}}
+january_2024_cold_day_spells: [{'start_date': '2024-01-12', 'end_date': '2024-01-18', 'duration_days': '7'}, {'start_date': '2024-01-21', 'end_date': '2024-01-25', 'duration_days': '5'}]
+invalid_national_days: 0
+
+Duration distribution (cold-day spells):
+duration_days
+3     21
+4     16
+5     10
+6      9
+7      6
+8      1
+9      4
+10     3
+11     1
+12     1
+13     1
+
+Spell types:
+      type  pure  events  mean_duration  mean_nat_tmin_anom  mean_nat_tmax_anom  mean_nat_dtr_anom
+  cold_day False      33           5.70               -1.85               -3.27              -1.42
+  cold_day  True      40           4.88                0.55               -3.14              -3.69
+cold_night False      35           5.51               -2.89               -2.48               0.42
+cold_night  True      50           4.74               -2.62               -0.75               1.87
+
+Pure cold-day minus pure cold-night (event means):
+                        variable  cold_day_mean  cold_night_mean  difference  ci_low  ci_high  q_fdr
+                   nat_tmin_anom          0.549           -2.619       3.168   2.742    3.680  0.000
+                   nat_tmax_anom         -3.137           -0.753      -2.384  -2.760   -1.971  0.000
+                    nat_dtr_anom         -3.687            1.867      -5.554  -6.018   -5.116  0.000
+                era5_bd_t2m_anom          0.193           -1.914       2.107   1.681    2.571  0.000
+               era5_bd_t850_anom         -0.476           -1.321       0.845   0.328    1.384  0.004
+era5_bd_stab_t2m_minus_t850_anom          0.665           -0.591       1.257   0.729    1.765  0.000
+               era5_bd_z500_anom         -5.989          -13.463       7.474  -7.985   23.100  0.528
+               era5_bd_mslp_anom          0.305            0.085       0.220  -0.603    1.053  0.666
+               era5_bd_u850_anom         -0.229           -0.023      -0.206  -0.935    0.429  0.643
+               era5_bd_v850_anom          0.861           -0.896       1.758   1.165    2.401  0.000
+             era5_bd_wspd10_anom          0.085            0.177      -0.092  -0.196    0.011  0.133
+               era5_sa_z500_anom         -4.019           -8.338       4.319  -7.875   17.329  0.643
+               era5_sa_mslp_anom          0.200           -0.069       0.269  -0.524    1.084  0.643
+               era5_sa_t850_anom         -0.453           -0.437      -0.016  -0.414    0.393  0.927

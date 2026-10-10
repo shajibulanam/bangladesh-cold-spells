@@ -1,0 +1,60 @@
+R4 0-30   calendar-matched (published) obs= 5 null= 11.5 ratio=0.44 p_two_sided=0.0238
+R4 0-30   decade-matched (+/-5 yr)     obs= 5 null= 10.0 ratio=0.50 p_two_sided=0.0436
+R4 0-45   calendar-matched (published) obs= 6 null= 15.0 ratio=0.40 p_two_sided=0.0034
+R4 0-45   decade-matched (+/-5 yr)     obs= 6 null= 14.1 ratio=0.43 p_two_sided=0.0068
+R4 0-60   calendar-matched (published) obs= 6 null= 16.8 ratio=0.36 p_two_sided=0.0002
+R4 0-60   decade-matched (+/-5 yr)     obs= 6 null= 15.8 ratio=0.38 p_two_sided=0.0028
+R4 15-60  calendar-matched (published) obs= 4 null= 11.3 ratio=0.35 p_two_sided=0.0072
+R4 15-60  decade-matched (+/-5 yr)     obs= 4 null= 11.9 ratio=0.34 p_two_sided=0.0060
+R4 SSW robustness
+window_days                                     null  observed_onsets  null_mean  null_2.5  null_97.5  rate_ratio_vs_null  p_deficit  p_excess  p_two_sided  observed_at_risk_days  null_mean_at_risk_days  exposure_adjusted_ratio  rr_ci_low  rr_ci_high  onsets_rest_of_same_winters  at_risk_days_rest_of_same_winters
+       0-30             calendar-matched (published)                5    11.4855       6.0       17.0              0.4353     0.0119    0.9963       0.0238                    451                 374.313                   0.3613        NaN         NaN                          NaN                                NaN
+       0-30                 decade-matched (+/-5 yr)                5     9.9754       6.0       15.0              0.5012     0.0218    0.9935       0.0436                    451                 379.300                   0.4215        NaN         NaN                          NaN                                NaN
+       0-30 rate ratio vs all other at-risk DJF days                5        NaN       NaN        NaN              0.3900        NaN       NaN          NaN                    451                     NaN                      NaN     0.1233      0.9485                          NaN                                NaN
+       0-30           within-winter (19 SSW winters)                5        NaN       NaN        NaN              0.4852        NaN       NaN          NaN                    451                     NaN                      NaN     0.1455      1.2841                         26.0                             1138.0
+       0-45             calendar-matched (published)                6    15.0117       9.0       21.0              0.3997     0.0017    0.9997       0.0034                    591                 466.092                   0.3152        NaN         NaN                          NaN                                NaN
+       0-45                 decade-matched (+/-5 yr)                6    14.1140       9.0       20.0              0.4251     0.0034    0.9991       0.0068                    591                 466.558                   0.3356        NaN         NaN                          NaN                                NaN
+       0-45 rate ratio vs all other at-risk DJF days                6        NaN       NaN        NaN              0.3436        NaN       NaN          NaN                    591                     NaN                      NaN     0.1224      0.7818                          NaN                                NaN
+       0-45           within-winter (19 SSW winters)                6        NaN       NaN        NaN              0.4053        NaN       NaN          NaN                    591                     NaN                      NaN     0.1360      1.0120                         25.0                              998.0
+       0-60             calendar-matched (published)                6    16.7707      10.0       23.0              0.3578     0.0001    1.0000       0.0002                    664                 511.419                   0.2756        NaN         NaN                          NaN                                NaN
+       0-60                 decade-matched (+/-5 yr)                6    15.7658      10.0       22.0              0.3806     0.0014    0.9997       0.0028                    664                 515.902                   0.2957        NaN         NaN                          NaN                                NaN
+       0-60 rate ratio vs all other at-risk DJF days                6        NaN       NaN        NaN              0.2975        NaN       NaN          NaN                    664                     NaN                      NaN     0.1060      0.6769                          NaN                                NaN
+       0-60           within-winter (19 SSW winters)                6        NaN       NaN        NaN              0.3343        NaN       NaN          NaN                    664                     NaN                      NaN     0.1122      0.8349                         25.0                              925.0
+      15-60             calendar-matched (published)                4    11.3214       6.0       17.0              0.3533     0.0036    0.9991       0.0072                    422                 332.040                   0.2780        NaN         NaN                          NaN                                NaN
+      15-60                 decade-matched (+/-5 yr)                4    11.9305       7.0       17.0              0.3353     0.0030    0.9993       0.0060                    422                 333.095                   0.2646        NaN         NaN                          NaN                                NaN
+      15-60 rate ratio vs all other at-risk DJF days                4        NaN       NaN        NaN              0.3327        NaN       NaN          NaN                    422                     NaN                      NaN     0.0885      0.8851                          NaN                                NaN
+      15-60           within-winter (15 SSW winters)                4        NaN       NaN        NaN              0.5024        NaN       NaN          NaN                    422                     NaN                      NaN     0.1222      1.5573                         16.0                              848.0
+
+R8 Stratosphere vs duration (Step 11 metrics)
+                           metric  events_with_nonzero  spearman_rho  rho_ci_low  rho_ci_high  p_bootstrap  partial_rho_season_year  partial_ci_low  partial_ci_high  partial_p_bootstrap  rho_metric_vs_onset_day  q_fdr  partial_q_fdr
+                 pre45_nam10_mean                   85        -0.141      -0.340        0.077        0.201                   -0.097          -0.306            0.099                0.318                    0.208  0.321          0.424
+                 pre30_nam10_mean                   85        -0.156      -0.347        0.027        0.094                   -0.122          -0.324            0.045                0.142                    0.201  0.321          0.284
+                 pre20_nam10_mean                   85        -0.093      -0.278        0.079        0.293                   -0.081          -0.280            0.082                0.315                    0.108  0.391          0.424
+                pre10_nam100_mean                   85        -0.011      -0.189        0.162        0.909                   -0.032          -0.221            0.140                0.683                    0.161  0.909          0.683
+       pre20_weak_vortex_fraction                   19         0.256       0.087        0.434        0.003                    0.272           0.094            0.468                0.003                   -0.098  0.022          0.024
+pre20_negative_nam10_100_fraction                   41         0.116      -0.051        0.291        0.177                    0.127          -0.034            0.326                0.125                   -0.173  0.321          0.284
+   pre45_vortex_displacement_mean                   85         0.020      -0.151        0.208        0.839                    0.072          -0.098            0.263                0.388                    0.195  0.909          0.443
+                 prior45_ssw_flag                    6         0.095      -0.029        0.245        0.164                    0.166           0.033            0.306                0.012                    0.124  0.321          0.048
+
+                                           metric  difference  ci_low  ci_high  p_bootstrap  n_a  n_b  n_boot_valid  odds_ratio_per_sd  n_rows  n_terminations  n_boot  n_boot_nonconverged
+pre20_weak_vortex_fraction persistent minus short       0.051  -0.058    0.166        0.355 26.0 30.0         10000                NaN     NaN             NaN     NaN                  NaN
+          hazard: weak_vortex_fraction_trailing20         NaN   0.790    1.574        0.564  NaN  NaN         10000              1.096   260.0            83.0 10000.0                  0.0
+                    hazard: nam10_mean_trailing20         NaN   0.615    1.186        0.298  NaN  NaN         10000              0.840   260.0            83.0 10000.0                  0.0
+
+R6a Pathway (box indices)
+                                                analysis                               index  spearman_rho  p_value  partial_rho_given_oni  mean_difference  ci_low  ci_high  p_sign_flip_exact
+             winter-mean vs DJF-mean NAM100 (40 winters) mech_jet200_core_speed_70_100e_anom         0.153    0.347                  0.152              NaN     NaN      NaN                NaN
+             winter-mean vs DJF-mean NAM100 (40 winters)   mech_jet200_core_lat_70_100e_anom        -0.216    0.181                 -0.300              NaN     NaN      NaN                NaN
+             winter-mean vs DJF-mean NAM100 (40 winters)                   era5_sa_z500_anom        -0.483    0.002                 -0.484              NaN     NaN      NaN                NaN
+             winter-mean vs DJF-mean NAM100 (40 winters)         mech_nigp_adv850_k_day_anom         0.117    0.474                  0.161              NaN     NaN      NaN                NaN
+             winter-mean vs DJF-mean NAM100 (40 winters)                   era5_bd_v850_anom         0.260    0.106                  0.278              NaN     NaN      NaN                NaN
+             winter-mean vs DJF-mean NAM100 (40 winters)                       nat_tmin_anom        -0.184    0.255                 -0.184              NaN     NaN      NaN                NaN
+             winter-mean vs DJF-mean NAM100 (40 winters)                     cold_spell_days         0.434    0.005                  0.432              NaN     NaN      NaN                NaN
+post-SSW (0-45 d) minus rest of same winter (19 winters) mech_jet200_core_speed_70_100e_anom           NaN      NaN                    NaN           -3.922  -6.732   -1.155              0.019
+post-SSW (0-45 d) minus rest of same winter (19 winters)   mech_jet200_core_lat_70_100e_anom           NaN      NaN                    NaN           -0.354  -1.324    0.497              0.476
+post-SSW (0-45 d) minus rest of same winter (19 winters)                   era5_sa_z500_anom           NaN      NaN                    NaN            4.292  -4.251   12.571              0.338
+post-SSW (0-45 d) minus rest of same winter (19 winters)         mech_nigp_adv850_k_day_anom           NaN      NaN                    NaN            0.226  -0.036    0.470              0.103
+post-SSW (0-45 d) minus rest of same winter (19 winters)                   era5_bd_v850_anom           NaN      NaN                    NaN            0.152  -0.143    0.449              0.332
+post-SSW (0-45 d) minus rest of same winter (19 winters)                       nat_tmin_anom           NaN      NaN                    NaN           -0.068  -0.621    0.426              0.812
+
+maps not run (use --maps)

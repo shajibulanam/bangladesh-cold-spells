@@ -39,7 +39,7 @@ NW = "mech_nigp_adv850_k_day_anom"
 ROWS = [  # (analysis, predictor, label)
     ("lead 1 day(s)", NW, "k − 1"),
     ("lead 2 day(s)", NW, "k − 2"),
-    ("lead 1, season-end spells censored", NW, "k − 1, censored"),
+    ("lead 1, season-end spells not censored", NW, "k − 1, not censored"),
     ("lead 1, stable 25-station catalogue", NW, "k − 1, 25 stations"),
     ("lead 1 + same-day NW IGP and BD advection", "nigp_adv_lead1", "k − 1, + adv. day k"),
     ("lead 1 + same-day core predictors", "nigp_adv_lead1", "k − 1, + core day k"),

@@ -1,7 +1,7 @@
 Step 16F - Cold-day spell catalogue
 ====================================
 step: Step 16F
-completed_utc: 2026-09-28T18:12:38.787765+00:00
+completed_utc: 2026-10-10T09:14:24.842530+00:00
 cold_day_spells: 73
 cold_night_spells_same_period: 85
 cold_day_spells_overlapping_cold_night: 33
@@ -36,17 +36,17 @@ cold_night  True      50           4.74               -2.62               -0.75 
 
 Pure cold-day minus pure cold-night (event means):
                         variable  cold_day_mean  cold_night_mean  difference  ci_low  ci_high  q_fdr
-                   nat_tmin_anom          0.549           -2.619       3.168   2.739    3.682  0.000
-                   nat_tmax_anom         -3.137           -0.753      -2.384  -2.756   -1.976  0.000
-                    nat_dtr_anom         -3.687            1.867      -5.554  -6.019   -5.116  0.000
-                era5_bd_t2m_anom          0.193           -1.914       2.107   1.682    2.571  0.000
-               era5_bd_t850_anom         -0.478           -1.322       0.844   0.324    1.379  0.004
-era5_bd_stab_t2m_minus_t850_anom          0.671           -0.591       1.262   0.743    1.764  0.000
-               era5_bd_z500_anom         -5.989          -13.463       7.474  -8.038   23.372  0.536
-               era5_bd_mslp_anom          0.303            0.081       0.222  -0.587    1.059  0.612
-               era5_bd_u850_anom         -0.230           -0.031      -0.199  -0.906    0.436  0.599
-               era5_bd_v850_anom          0.852           -0.892       1.745   1.169    2.399  0.000
-             era5_bd_wspd10_anom          0.085            0.177      -0.092  -0.196    0.013  0.149
-               era5_sa_z500_anom         -4.019           -8.338       4.319  -8.072   17.636  0.599
-               era5_sa_mslp_anom          0.230           -0.109       0.339  -0.602    1.291  0.599
-               era5_sa_t850_anom         -0.451           -0.603       0.152  -0.288    0.617  0.599
+                   nat_tmin_anom          0.549           -2.619       3.168   2.742    3.680  0.000
+                   nat_tmax_anom         -3.137           -0.753      -2.384  -2.760   -1.971  0.000
+                    nat_dtr_anom         -3.687            1.867      -5.554  -6.018   -5.116  0.000
+                era5_bd_t2m_anom          0.193           -1.914       2.107   1.681    2.571  0.000
+               era5_bd_t850_anom         -0.476           -1.321       0.845   0.328    1.384  0.004
+era5_bd_stab_t2m_minus_t850_anom          0.665           -0.591       1.257   0.729    1.765  0.000
+               era5_bd_z500_anom         -5.989          -13.463       7.474  -7.985   23.100  0.528
+               era5_bd_mslp_anom          0.305            0.085       0.220  -0.603    1.053  0.666
+               era5_bd_u850_anom         -0.229           -0.023      -0.206  -0.935    0.429  0.643
+               era5_bd_v850_anom          0.861           -0.896       1.758   1.165    2.401  0.000
+             era5_bd_wspd10_anom          0.085            0.177      -0.092  -0.196    0.011  0.133
+               era5_sa_z500_anom         -4.019           -8.338       4.319  -7.875   17.329  0.643
+               era5_sa_mslp_anom          0.200           -0.069       0.269  -0.524    1.084  0.643
+               era5_sa_t850_anom         -0.453           -0.437      -0.016  -0.414    0.393  0.927
