@@ -1,8 +1,8 @@
 # Bangladesh winter cold spells: onset, termination and polar vortex variability (1985/86-2024/25)
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23282635.svg)](https://doi.org/10.5281/zenodo.23282635)
 
-Version 1.3.0 (https://doi.org/10.5281/zenodo.23282635). Code and derived data reproducing the figures and tables of the article
+
+Version 1.4.0. Code and derived data reproducing the figures and tables of the article
 "Onset and termination of Bangladesh winter cold spells and their association with polar vortex variability: evidence from 40 winters" (S. Anam, S. Yildiz, S. R. Singha; Department of Meteorology, University of Dhaka),
 submitted to *Climate Dynamics*, and of its Online Resource 1. Corresponding author: S. Yildiz, shabistayildiz@du.ac.bd.
 
@@ -13,6 +13,19 @@ inputs are public (ERA5 via the Copernicus Climate Data Store and ERA5 ARCO; NOA
 geoBoundaries; NOAA SSW Compendium dates). This repository includes the derived cold-spell catalogues, station
 network metadata and Voronoi weights, ERA5-derived daily series and gridded fields, and every result table and figure
 of the paper and its supplement.
+
+## Fixed external inputs
+SHA-256 checksums of the external files used are in `00_admin/fixed_inputs_sha256.txt`.
+- National boundary: geoBoundaries ADM0 for Bangladesh (`01_raw_data/geospatial/geoBoundaries-BGD-ADM0.geojson`; boundary ID
+  BGD-ADM0-71232402, build date 12 Dec 2023; full metadata in `00_admin/step7d_geoboundaries_metadata.json`). Voronoi cells are computed on a Bangladesh-centred
+  Albers equal-area projection (+proj=aea +lat_1=21 +lat_2=26 +lat_0=23.5 +lon_0=90 +datum=WGS84 +units=m; also in
+  `00_admin/step7d_area_weighted_event_policy.yaml`); exact station
+  weights (summing to 1) are in `02_metadata/step7d_primary_station_area_weights.csv`.
+- Oceanic Nino Index: NOAA CPC `oni.ascii.txt` as retrieved for the analysis (`01_raw_data/climate_indices/`).
+- Major SSW reference dates: NOAA CSL SSW Compendium, https://csl.noaa.gov/groups/csl8/sswcompendium/majorevents.html
+  (ERA5 column through February 2023, accessed 12 October 2026), copied to `00_admin/noaa_era5_major_ssw_reference_through_2023.csv`.
+- Terrain: ETOPO1 ice-surface relief, 0-55N, 45-125E, thinned to 0.1 deg (`01_raw_data/geospatial/etopo1_south_asia_0p1deg.nc`).
+- ERA5 request settings (variables, levels, area, times) are in the `00_admin/*policy*` files of the download steps.
 
 ## Where each figure and table comes from
 | Paper item | File | Produced by |
@@ -29,22 +42,25 @@ of the paper and its supplement.
 | Fig. 10 | `fig_final_07_termination_maps` | `15s` |
 | Fig. 11 | `fig_final_R_advection_pulse` | `16g` (tables R11, R11b) |
 | Terrain-mask checks | tables R12, R13 | `17a` |
+| Step 19 checks; Table S12c, Text S3 | tables R14-R17 | `17b` |
+| Step 20 check: final rows of the season-end spells omitted | table R18 | `17c` |
+| Table S18 | station network and weights (`02_metadata`) | `16h` |
 | Table 1 | tables 101, 113, 115 | `15f`, `15q`, `15w` |
 | Table 2 | tables 107-109, R4 | `15n`, `15o`, `16c` |
 | Fig. S1 | `FigS1_hazard_robustness` | `16h` (tables 95, R1, R2, R10b) |
 | Fig. S2 | `fig_R7_gridded_leakage_free` | `16d` (table R7) |
 | Tables S1-S9 | tables 60/60b, 91, 106, 114, 111, 95, 117, 89 + 118, 105 + 119 | `11c`, `15d`, `15m`, `15w`, `15q`, `15e`, `15x`, `15c`, `15m` |
 | Table S10 | tables R1, R1b | `16a` |
-| Table S11 | tables R10, R10b, R2 | `16b`, `16a` |
-| Table S12 | tables R3, R11 | `16a`, `16d` |
+| Table S11 | tables R10, R10b, R2, R18 | `16b`, `16a`, `17c` |
+| Table S12 | tables R3, R11, R15, R18 | `16a`, `16d`, `17b`, `17c` |
 | Table S13 | table R4 | `16c` |
 | Table S14 | tables R8, R8b | `16c` |
 | Table S15 | tables R6b, R6 | `16f`, `16c` |
 | Table S16 | tables R5, R9c, R9 | `16d`, `16e` |
 | Table S17 | table R7 | `16d` |
 
-Tables 89-120 are in `08_outputs/tables/termination`, tables R1-R13 in `08_outputs/tables/revision`.
-Tables S1-S17 are rendered from the revision tables by `16h` (`08_outputs/online_resource_1`), which also draws Fig. S1.
+Tables 89-120 are in `08_outputs/tables/termination`, tables R1-R18 in `08_outputs/tables/revision`.
+Tables S1-S18 are rendered from the revision tables by `16h` (`08_outputs/online_resource_1`), which also draws Fig. S1.
 
 ## Workflow
 Script prefix *n* is analysis Step *n* + 1 (e.g. `06c` = Step 7C, `15d` = Step 16D, `16a` = Step 17A). Frozen settings for
@@ -65,6 +81,16 @@ every step are in `00_admin/*policy*`; output checksums in `00_admin/*_sha256.tx
    `00_admin/STEP18_RUNBOOK.md`. The switch `CENSOR_SEASON_END` in `15_termination_common.py` selects the
    primary (censored) or the version 1.2.0 (not censored) risk set.
 
+## Changes in version 1.4.0
+Step 19 (second pre-submission review): `17b` checks pressure-level validity against ERA5 surface pressure (table R14,
+R14b), refits the upstream advection predictor in the six alternative event catalogues (R15), counts SSW null redraws
+(R16) and gives predictor standard deviations in physical units (R17); `08l` uses 10,000 map resamples (Fig. 4);
+`16h` v4 adds Table S12c and the station table S18 and uses lag labels. Unchanged primary results.
+Step 20 (third pre-submission review): `17c` refits the hazard model without the final rows of the two season-end
+spells, whose outcome depends on the Tmin of 1 March (table R18; 258 rows, 83 terminations; no odds ratio changes by more
+than 5%); `16h` v5 adds R18 to Tables S11 and S12, labels radiation accumulation intervals (05-17 and 17-05 LT) and
+splits Tables S8 and S13 into panels; `15u` and `16g` relabel Figs. 7 and 11. Unchanged primary results.
+
 ## Changes in version 1.3.0
 New article title. ERA5 box means of 1000/850-hPa fields and MSLP exclude grid points whose ETOPO1 cell-mean elevation
 exceeds 1000 m (700 hPa: 2500 m); for 850-hPa advection the four neighbours of masked points are excluded too, and
@@ -73,11 +99,11 @@ thickness and T2m - T850 are differenced point by point. The previous series are
 with B >= 10,000 for hypothesis tests (logistic refits are batched); the post-SSW maps use an exact sign-flip test over
 19 winters. The two spells that end on the last day of February are right-censored in the primary hazard model.
 Added `17a`, tables R12-R13 and Online Resource Tables S1-S9 as Markdown. All results were regenerated.
-Version 1.2.0: https://doi.org/10.5281/zenodo.23263890.
+Version 1.3.0: https://doi.org/10.5281/zenodo.23282635.
 
 ## Development note
 Analysis code and parts of the text were drafted with the assistance of AI language models (ChatGPT, OpenAI, for the
-earlier pipeline steps; Claude, Anthropic, for Steps 16 to 18). The authors specified the analyses, reviewed and ran all
+earlier pipeline steps; Claude, Anthropic, for Steps 16 to 19). The authors specified the analyses, reviewed and ran all
 code, reproduced every reported number on their own computer with fixed random seeds, and are responsible for the results.
 
 ## Environment and licence

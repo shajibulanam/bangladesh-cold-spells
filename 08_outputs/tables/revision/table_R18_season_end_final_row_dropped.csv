@@ -1,0 +1,108 @@
+analysis,family,predictor,odds_ratio_per_sd,ci_low,ci_high,p_bootstrap,n_rows,n_terminations,n_boot,n_boot_valid,n_boot_nonconverged,published_or,published_q,q,ratio_to_published
+"same day, primary family",station_temperature,nat_tmax_anom,1.6486,1.1630,2.6843,0.0064,258,83,10000,10000,0,1.6410,0.0507,0.0468,1.0046
+"same day, primary family",station_temperature,nat_dtr_anom,1.6152,1.1544,2.5875,0.0064,258,83,10000,10000,0,1.6100,0.0507,0.0468,1.0032
+"same day, primary family",station_temperature,p10_cold_national_area_fraction,0.7190,0.2877,1.8489,0.4756,258,83,10000,10000,0,0.6885,0.6109,0.6869,1.0444
+"same day, primary family",era5_state,era5_bd_t850_anom,1.0602,0.7345,1.6018,0.7797,258,83,10000,10000,0,1.0659,0.8238,0.8219,0.9947
+"same day, primary family",era5_state,era5_bd_stab_t2m_minus_t850_anom,0.9195,0.6344,1.2944,0.6263,258,83,10000,10000,0,0.9194,0.7889,0.7492,1.0001
+"same day, primary family",era5_state,era5_bd_thick_1000_500_anom,0.9222,0.5770,1.3405,0.6339,258,83,10000,10000,0,0.9314,0.7889,0.7492,0.9902
+"same day, primary family",era5_state,era5_bd_z500_anom,0.8698,0.5481,1.1562,0.3148,258,83,10000,10000,0,0.8780,0.5463,0.5580,0.9906
+"same day, primary family",era5_state,era5_bd_mslp_anom,0.8621,0.5599,1.1680,0.2966,258,83,10000,10000,0,0.8617,0.5300,0.5508,1.0005
+"same day, primary family",era5_state,era5_bd_u850_anom,0.7842,0.5942,1.0165,0.0694,258,83,10000,10000,0,0.7852,0.2376,0.2255,0.9987
+"same day, primary family",era5_state,era5_bd_v850_anom,1.0555,0.8128,1.4015,0.6757,258,83,10000,10000,0,1.0534,0.7889,0.7751,1.0020
+"same day, primary family",era5_state,era5_bd_wspd10_anom,0.5348,0.3323,0.7719,0.0018,258,83,10000,10000,0,0.5393,0.0338,0.0312,0.9916
+"same day, primary family",era5_state,era5_sa_t850_anom,1.0476,0.6893,1.5721,0.7721,258,83,10000,10000,0,1.0464,0.8238,0.8219,1.0012
+"same day, primary family",era5_state,era5_sa_z500_anom,0.8348,0.5392,1.1109,0.1886,258,83,10000,10000,0,0.8376,0.4634,0.4533,0.9967
+"same day, primary family",era5_state,era5_sa_mslp_anom,0.8455,0.5686,1.1041,0.1914,258,83,10000,10000,0,0.8474,0.4634,0.4533,0.9977
+"same day, primary family",era5_state,era5_sa_u850_anom,1.1587,0.8324,1.6483,0.3596,258,83,10000,10000,0,1.1625,0.5463,0.5609,0.9967
+"same day, primary family",era5_state,era5_sa_v850_anom,1.0765,0.7758,1.4739,0.6311,258,83,10000,10000,0,1.0673,0.7889,0.7492,1.0086
+"same day, primary family",era5_tendency,era5_bd_t850_tend,1.5208,1.1189,2.2877,0.0072,258,83,10000,10000,0,1.5249,0.0507,0.0468,0.9973
+"same day, primary family",era5_tendency,era5_bd_stab_t2m_minus_t850_tend,0.6271,0.4228,0.8519,0.0014,258,83,10000,10000,0,0.6280,0.0338,0.0312,0.9985
+"same day, primary family",era5_tendency,era5_bd_z500_tend,0.7430,0.5370,0.9397,0.0156,258,83,10000,10000,0,0.7436,0.0754,0.0676,0.9992
+"same day, primary family",era5_tendency,era5_bd_mslp_tend,0.6499,0.4198,0.9120,0.0142,258,83,10000,10000,0,0.6502,0.0682,0.0676,0.9996
+"same day, primary family",era5_tendency,era5_bd_u850_tend,0.8447,0.6559,1.1235,0.2604,258,83,10000,10000,0,0.8492,0.5300,0.5464,0.9946
+"same day, primary family",era5_tendency,era5_bd_v850_tend,1.4165,1.0921,1.9425,0.0112,258,83,10000,10000,0,1.4237,0.0546,0.0624,0.9950
+"same day, primary family",era5_tendency,era5_bd_wspd10_tend,0.6997,0.4166,1.0048,0.0542,258,83,10000,10000,0,0.6938,0.1765,0.1921,1.0085
+"same day, primary family",era5_tendency,era5_sa_t850_tend,0.9096,0.6534,1.2680,0.5743,258,83,10000,10000,0,0.9054,0.7640,0.7492,1.0046
+"same day, primary family",era5_tendency,era5_sa_z500_tend,0.5708,0.3950,0.7878,0.0024,258,83,10000,10000,0,0.5695,0.0338,0.0312,1.0022
+"same day, primary family",era5_tendency,era5_sa_mslp_tend,0.6786,0.4660,0.9300,0.0194,258,83,10000,10000,0,0.6790,0.0780,0.0757,0.9994
+"same day, primary family",era5_tendency,era5_sa_v850_tend,1.0893,0.8114,1.4603,0.6039,258,83,10000,10000,0,1.0931,0.7807,0.7492,0.9965
+"same day, primary family",remote_causal,siberian_high_std_anom,1.2367,0.9255,1.7337,0.1528,258,83,10000,10000,0,1.2287,0.4557,0.4256,1.0065
+"same day, primary family",remote_causal,ural_blocking_fraction,1.1935,0.8414,1.4993,0.2662,258,83,10000,10000,0,1.1961,0.5300,0.5464,0.9978
+"same day, primary family",remote_causal,nam_proxy_10,0.9824,0.6727,1.3913,0.9579,258,83,10000,10000,0,0.9751,0.9429,0.9717,1.0075
+"same day, primary family",remote_causal,nam_proxy_100,0.9299,0.6595,1.4077,0.7755,258,83,10000,10000,0,0.9292,0.8238,0.8219,1.0007
+"same day, primary family",remote_causal,rrwp_eurasian_upstream_R_lag7,1.3016,0.9645,1.8824,0.0822,258,83,10000,10000,0,1.3059,0.2376,0.2466,0.9967
+"same day, primary family",remote_causal,rrwp_central_asia_R_lag7,1.1870,0.8498,1.7193,0.2864,258,83,10000,10000,0,1.2018,0.5300,0.5508,0.9877
+"same day, primary family",remote_causal,rrwp_bangladesh_sector_R_lag7,1.1649,0.8324,1.7200,0.3334,258,83,10000,10000,0,1.1794,0.5300,0.5606,0.9877
+"same day, primary family",remote_causal,rrwp_asian_corridor_R_lag7,1.2407,0.8850,1.8963,0.1976,258,83,10000,10000,0,1.2524,0.4596,0.4533,0.9906
+"same day, primary family",remote_causal,rrwp_eurasian_upstream_envelope_z_trailing3,0.8907,0.6268,1.1428,0.3450,258,83,10000,10000,0,0.8921,0.5463,0.5606,0.9984
+"same day, primary family",remote_causal,rrwp_central_asia_envelope_z_trailing3,0.8989,0.5823,1.1697,0.4086,258,83,10000,10000,0,0.9019,0.6109,0.6128,0.9967
+"same day, primary family",remote_causal,rrwp_bangladesh_sector_envelope_z_trailing3,1.0026,0.7188,1.2921,0.9717,258,83,10000,10000,0,1.0080,0.9919,0.9717,0.9946
+"same day, primary family",remote_causal,rrwp_asian_corridor_envelope_z_trailing3,0.9434,0.6338,1.2153,0.6305,258,83,10000,10000,0,0.9475,0.7889,0.7492,0.9957
+"predictor lag 1 day, all families",primary,nat_tmax_anom,1.0760,0.7704,1.4966,0.5901,258,83,10000,10000,0,1.0661,0.8893,0.8789,1.0093
+"predictor lag 1 day, all families",primary,nat_dtr_anom,1.0821,0.8071,1.4010,0.5161,258,83,10000,10000,0,1.0713,0.8666,0.8309,1.0101
+"predictor lag 1 day, all families",primary,p10_cold_national_area_fraction,1.0058,0.6981,1.5086,0.9803,258,83,10000,10000,0,0.9881,0.9676,0.9835,1.0179
+"predictor lag 1 day, all families",primary,era5_bd_t850_anom,0.7208,0.4677,1.1005,0.1256,258,83,10000,10000,0,0.7232,0.7374,0.7589,0.9966
+"predictor lag 1 day, all families",primary,era5_bd_stab_t2m_minus_t850_anom,1.3441,0.9212,2.0759,0.1184,258,83,10000,10000,0,1.3427,0.7374,0.7589,1.0011
+"predictor lag 1 day, all families",primary,era5_bd_thick_1000_500_anom,0.9712,0.6511,1.4195,0.8787,258,83,10000,10000,0,0.9800,0.9676,0.9835,0.9910
+"predictor lag 1 day, all families",primary,era5_bd_z500_anom,1.0348,0.6576,1.4714,0.8545,258,83,10000,10000,0,1.0436,0.9552,0.9835,0.9916
+"predictor lag 1 day, all families",primary,era5_bd_mslp_anom,1.1331,0.8390,1.5073,0.3708,258,83,10000,10000,0,1.1319,0.7696,0.7772,1.0011
+"predictor lag 1 day, all families",primary,era5_bd_u850_anom,0.8974,0.6044,1.2323,0.4944,258,83,10000,10000,0,0.8949,0.8078,0.8157,1.0027
+"predictor lag 1 day, all families",primary,era5_bd_v850_anom,0.7329,0.5319,0.9580,0.0280,258,83,10000,10000,0,0.7285,0.4587,0.5675,1.0061
+"predictor lag 1 day, all families",primary,era5_bd_wspd10_anom,0.7692,0.5240,1.1195,0.1458,258,83,10000,10000,0,0.7839,0.7374,0.7589,0.9813
+"predictor lag 1 day, all families",primary,era5_sa_t850_anom,1.0954,0.7492,1.6494,0.6079,258,83,10000,10000,0,1.0962,0.8893,0.8789,0.9993
+"predictor lag 1 day, all families",primary,era5_sa_z500_anom,1.1083,0.7312,1.5404,0.5687,258,83,10000,10000,0,1.1137,0.8444,0.8730,0.9951
+"predictor lag 1 day, all families",primary,era5_sa_mslp_anom,1.0556,0.7676,1.4075,0.7217,258,83,10000,10000,0,1.0569,0.8893,0.9060,0.9987
+"predictor lag 1 day, all families",primary,era5_sa_u850_anom,1.2439,0.8983,1.7532,0.1814,258,83,10000,10000,0,1.2532,0.7374,0.7589,0.9926
+"predictor lag 1 day, all families",primary,era5_sa_v850_anom,1.0054,0.7386,1.3470,0.9497,258,83,10000,10000,0,0.9939,0.9879,0.9835,1.0115
+"predictor lag 1 day, all families",primary,era5_bd_t850_tend,0.7745,0.5062,1.1235,0.1744,258,83,10000,10000,0,0.7822,0.7374,0.7589,0.9902
+"predictor lag 1 day, all families",primary,era5_bd_stab_t2m_minus_t850_tend,1.1479,0.7897,1.6534,0.4776,258,83,10000,10000,0,1.1328,0.8337,0.8157,1.0133
+"predictor lag 1 day, all families",primary,era5_bd_z500_tend,1.0709,0.7786,1.5080,0.6651,258,83,10000,10000,0,1.0681,0.8893,0.8815,1.0026
+"predictor lag 1 day, all families",primary,era5_bd_mslp_tend,1.1258,0.8610,1.4401,0.3934,258,83,10000,10000,0,1.1105,0.8078,0.7772,1.0138
+"predictor lag 1 day, all families",primary,era5_bd_u850_tend,0.8107,0.5194,1.0865,0.1776,258,83,10000,10000,0,0.8160,0.7374,0.7589,0.9935
+"predictor lag 1 day, all families",primary,era5_bd_v850_tend,0.9114,0.6807,1.2346,0.4940,258,83,10000,10000,0,0.9039,0.8078,0.8157,1.0083
+"predictor lag 1 day, all families",primary,era5_bd_wspd10_tend,0.7984,0.5936,1.1092,0.1506,258,83,10000,10000,0,0.8043,0.7374,0.7589,0.9927
+"predictor lag 1 day, all families",primary,era5_sa_t850_tend,1.0085,0.7120,1.5394,0.9271,258,83,10000,10000,0,1.0063,0.9676,0.9835,1.0021
+"predictor lag 1 day, all families",primary,era5_sa_z500_tend,0.8963,0.6739,1.1312,0.3402,258,83,10000,10000,0,0.8882,0.7374,0.7772,1.0092
+"predictor lag 1 day, all families",primary,era5_sa_mslp_tend,0.8868,0.6653,1.1400,0.3194,258,83,10000,10000,0,0.8769,0.7374,0.7772,1.0113
+"predictor lag 1 day, all families",primary,era5_sa_v850_tend,1.3491,0.9926,1.8869,0.0566,258,83,10000,10000,0,1.3547,0.6811,0.7470,0.9959
+"predictor lag 1 day, all families",primary,siberian_high_std_anom,1.0943,0.7944,1.5082,0.6325,258,83,10000,10000,0,1.0789,0.8893,0.8815,1.0143
+"predictor lag 1 day, all families",primary,ural_blocking_fraction,1.1058,0.7280,1.5598,0.6513,258,83,10000,10000,0,1.1029,0.8893,0.8815,1.0026
+"predictor lag 1 day, all families",primary,nam_proxy_10,0.9686,0.6654,1.3595,0.8897,258,83,10000,10000,0,0.9599,0.9592,0.9835,1.0090
+"predictor lag 1 day, all families",primary,nam_proxy_100,0.9360,0.6753,1.4239,0.8121,258,83,10000,10000,0,0.9337,0.9529,0.9696,1.0025
+"predictor lag 1 day, all families",primary,rrwp_eurasian_upstream_R_lag7,1.1378,0.8310,1.6644,0.4122,258,83,10000,10000,0,1.1374,0.7851,0.7772,1.0003
+"predictor lag 1 day, all families",primary,rrwp_central_asia_R_lag7,1.1944,0.8758,1.7277,0.2400,258,83,10000,10000,0,1.2005,0.7374,0.7589,0.9949
+"predictor lag 1 day, all families",primary,rrwp_bangladesh_sector_R_lag7,1.2003,0.8736,1.7253,0.2192,258,83,10000,10000,0,1.2089,0.7374,0.7589,0.9929
+"predictor lag 1 day, all families",primary,rrwp_asian_corridor_R_lag7,1.1921,0.8631,1.7641,0.2530,258,83,10000,10000,0,1.1980,0.7374,0.7589,0.9951
+"predictor lag 1 day, all families",primary,rrwp_eurasian_upstream_envelope_z_trailing3,0.9209,0.6703,1.1591,0.4562,258,83,10000,10000,0,0.9209,0.8078,0.8157,1.0000
+"predictor lag 1 day, all families",primary,rrwp_central_asia_envelope_z_trailing3,1.1124,0.8649,1.4068,0.3830,258,83,10000,10000,0,1.1184,0.7374,0.7772,0.9946
+"predictor lag 1 day, all families",primary,rrwp_bangladesh_sector_envelope_z_trailing3,1.1919,0.9236,1.5370,0.1426,258,83,10000,10000,0,1.1938,0.7374,0.7589,0.9984
+"predictor lag 1 day, all families",primary,rrwp_asian_corridor_envelope_z_trailing3,1.0559,0.7900,1.3322,0.6717,258,83,10000,10000,0,1.0565,0.8893,0.8815,0.9994
+"predictor lag 1 day, all families",advection_jet,mech_bd_adv850_k_day_anom,0.7350,0.5305,0.9700,0.0344,258,83,10000,10000,0,0.7293,0.4587,0.5675,1.0078
+"predictor lag 1 day, all families",advection_jet,mech_nigp_adv850_k_day_anom,1.8910,1.4049,2.8733,0.0002,258,83,10000,10000,0,1.8259,0.0132,0.0132,1.0357
+"predictor lag 1 day, all families",advection_jet,mech_jet200_core_lat_70_100e_anom,0.8551,0.5815,1.1043,0.2208,258,83,10000,10000,0,0.8582,0.7374,0.7589,0.9964
+"predictor lag 1 day, all families",advection_jet,mech_jet200_core_speed_70_100e_anom,0.6315,0.4635,0.8315,0.0028,258,83,10000,10000,0,0.6395,0.1254,0.0924,0.9874
+"predictor lag 1 day, all families",advection_jet,mech_bd_adv850_k_day_tend,0.8977,0.6441,1.2890,0.5311,258,83,10000,10000,0,0.8921,0.8337,0.8347,1.0063
+"predictor lag 1 day, all families",advection_jet,mech_nigp_adv850_k_day_tend,1.2617,0.8636,1.7444,0.2088,258,83,10000,10000,0,1.2444,0.7374,0.7589,1.0139
+"predictor lag 1 day, all families",advection_jet,mech_jet200_core_lat_70_100e_tend,0.8681,0.4877,1.1631,0.3592,258,83,10000,10000,0,0.8620,0.7374,0.7772,1.0070
+"predictor lag 1 day, all families",advection_jet,mech_jet200_core_speed_70_100e_tend,1.0320,0.7432,1.4647,0.8085,258,83,10000,10000,0,1.0298,0.9552,0.9696,1.0021
+"predictor lag 1 day, all families",prenight,win_strd_day_anom,1.2830,0.8048,2.1505,0.2990,258,83,10000,10000,0,1.2900,0.7374,0.7772,0.9945
+"predictor lag 1 day, all families",prenight,win_ssrd_day_anom,0.9146,0.4939,1.3254,0.6811,258,83,10000,10000,0,0.9109,0.8893,0.8815,1.0040
+"predictor lag 1 day, all families",prenight,win_tcc_day_anom,0.9962,0.6312,1.4783,0.9487,258,83,10000,10000,0,0.9925,0.9676,0.9835,1.0037
+"predictor lag 1 day, all families",prenight,win_td2m_day_anom,1.2941,0.8317,2.1601,0.2436,258,83,10000,10000,0,1.3536,0.7374,0.7589,0.9560
+"predictor lag 1 day, all families",prenight,win_low1000_day_anom,1.1588,0.8494,1.5534,0.3364,258,83,10000,10000,0,1.1690,0.7374,0.7772,0.9913
+"predictor lag 1 day, all families",prenight,win_fog300_day_anom,1.1367,0.8302,1.9598,0.3188,258,83,10000,10000,0,1.1415,0.7374,0.7772,0.9958
+"predictor lag 1 day, all families",prenight,win_blh_day_anom,1.2989,0.8817,2.0884,0.1840,258,83,10000,10000,0,1.2610,0.7374,0.7589,1.0300
+"predictor lag 1 day, all families",prenight,dly_tcc_00utc_anom,0.9498,0.5799,1.3641,0.7275,258,83,10000,10000,0,0.9476,0.8893,0.9060,1.0023
+"predictor lag 1 day, all families",prenight,dly_lowcloud1000_frac_00utc_anom,1.2567,0.9318,1.7569,0.1226,258,83,10000,10000,0,1.2702,0.7374,0.7589,0.9894
+"predictor lag 1 day, all families",prenight,dly_fog300_frac_00utc_anom,1.2380,0.8995,2.1061,0.1514,258,83,10000,10000,0,1.2455,0.7374,0.7589,0.9940
+"predictor lag 1 day, all families",prenight,dly_dpd_00utc_anom,0.8776,0.5553,1.2924,0.4908,258,83,10000,10000,0,0.8475,0.7729,0.8157,1.0355
+"predictor lag 1 day, all families",prenight,win_strd_day_tend,1.0121,0.7635,1.4118,0.9835,258,83,10000,10000,0,1.0007,0.9676,0.9835,1.0114
+"predictor lag 1 day, all families",prenight,win_td2m_day_tend,0.9020,0.5643,1.3705,0.6125,258,83,10000,10000,0,0.8828,0.8337,0.8789,1.0218
+"predictor lag 1 day, all families",prenight,win_tcc_day_tend,0.9762,0.7814,1.2342,0.8227,258,83,10000,10000,0,0.9665,0.9202,0.9696,1.0101
+"predictor lag 1 day, all families",night,win_strd_night_anom,1.0390,0.6483,1.6466,0.9115,258,83,10000,10000,0,1.0393,0.9676,0.9835,0.9997
+"predictor lag 1 day, all families",night,win_tcc_night_anom,0.8672,0.5671,1.2289,0.4006,258,83,10000,10000,0,0.8661,0.7729,0.7772,1.0013
+"predictor lag 1 day, all families",night,win_td2m_night_anom,1.3791,0.7057,2.6664,0.3346,258,83,10000,10000,0,1.4380,0.7374,0.7772,0.9591
+"predictor lag 1 day, all families",night,win_low1000_night_anom,1.0144,0.7469,1.3356,0.9753,258,83,10000,10000,0,1.0210,0.9676,0.9835,0.9935
+"predictor lag 1 day, all families",night,win_fog300_night_anom,1.1614,0.8181,1.7673,0.3606,258,83,10000,10000,0,1.1727,0.7374,0.7772,0.9903
+predictor lag 2 days,advection_jet,mech_nigp_adv850_k_day_anom,1.5804,1.1090,2.8713,0.0082,258,83,10000,10000,0,1.5748,,,1.0035
+predictor lag 2 days,advection_jet,mech_jet200_core_speed_70_100e_anom,0.6464,0.4473,0.8746,0.0058,258,83,10000,10000,0,0.6557,,,0.9858

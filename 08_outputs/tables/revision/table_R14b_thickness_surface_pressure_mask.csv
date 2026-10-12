@@ -1,0 +1,7 @@
+quantity,value,ci_low,ci_high,p
+"anomaly correlation, sp mask vs terrain mask (DJF days)",0.9983,,,
+"anomaly correlation, recomputed terrain-mask series vs published covariate",1.0000,,,
+mean valid area fraction with sp >= 1000 hPa (of the whole BD box),0.7753,,,
+RMS anomaly difference (m),2.0480,,,
+"termination OR per SD of BD thickness anomaly, published (terrain mask)",0.9314,0.5826,1.3551,0.6689
+"termination OR per SD of BD thickness anomaly, surface-pressure mask",0.9222,0.5739,1.3564,0.6453

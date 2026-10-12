@@ -18,5 +18,5 @@
   "z500_stippling": "robust_fdr_agreement060 == 1, every 3rd grid point",
   "waf_vectors": "only where waf_all_event_robust_vector == 1 and |WAF| >= 0.15 x reference vector, every 4rd grid point",
   "coastlines": "cartopy Natural Earth 50m",
-  "created_utc": "2026-10-10T12:32:18.427794+00:00"
+  "created_utc": "2026-10-10T18:18:43.372599+00:00"
 }

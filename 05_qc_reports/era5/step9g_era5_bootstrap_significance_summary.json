@@ -1,5 +1,5 @@
 {
-  "created_utc": "2026-10-10T12:32:17.530951+00:00",
+  "created_utc": "2026-10-10T18:18:42.294365+00:00",
   "event_count": 85,
   "selected_lags": [
     -10,
@@ -15,8 +15,8 @@
     "u200"
   ],
   "bootstrap_unit": "winter",
-  "map_bootstrap_repetitions": 1000,
-  "box_bootstrap_repetitions": 5000,
+  "map_bootstrap_repetitions": 10000,
+  "box_bootstrap_repetitions": 10000,
   "bootstrap_grid": "approximately 1 degree",
   "fdr_alpha": 0.05,
   "box_results_count": 40,

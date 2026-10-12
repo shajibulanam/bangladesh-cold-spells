@@ -1,0 +1,56 @@
+Step 19 checks (17b)
+====================
+Primary risk set: 260 rows, 83 terminations
+
+D  Original-unit SDs
+                       predictor                                          label     sd    unit  n_rows        note
+     mech_nigp_adv850_k_day_anom NW IGP 850-hPa advection anomaly, previous day  1.183 K day-1     260            
+             era5_bd_wspd10_anom                     BD 10-m wind speed anomaly  0.364   m s-1     260            
+era5_bd_stab_t2m_minus_t850_tend             day-to-day change in BD T2m - T850  1.254 K day-1     260            
+               era5_sa_z500_tend                   day-to-day change in SA Z500 15.785 m day-1     260            
+                   nat_tmax_anom                          national Tmax anomaly  1.474    degC     260            
+               nigp_adv850_k_day   NW IGP 850-hPa total advection, all DJF days  1.360 K day-1    3610 for context
+
+B  Upstream advection, alternative catalogues
+                catalogue  spells  predictor_lag_days  n_rows  n_terminations  odds_ratio_per_sd  ci_low  ci_high  p_bootstrap
+                  primary      85                   1     260              83             1.8259  1.3300   2.7787       0.0002
+                  primary      85                   2     260              83             1.5748  1.1087   2.8091       0.0088
+     bmd_area20_duration3      93                   1     385              93             2.1031  1.6792   2.9633       0.0002
+     bmd_area20_duration3      93                   2     385              93             1.4753  1.1442   2.0313       0.0028
+     p05_area20_duration3      35                   1      69              33             1.9477  0.7878   8.5517       0.1430
+     p05_area20_duration3      35                   2      69              33             1.8120  1.0462   5.2204       0.0352
+     p10_area10_duration3     110                   1     428             106             1.9012  1.5096   2.5908       0.0002
+     p10_area10_duration3     110                   2     428             106             1.4629  1.0972   2.1491       0.0064
+p10_area20_duration3_gap1      86                   1     296              83             1.8774  1.3670   2.7926       0.0004
+p10_area20_duration3_gap1      86                   2     296              83             1.5324  1.1400   2.3487       0.0048
+     p10_area20_duration4      55                   1     175              54             1.9989  1.3301   3.9392       0.0016
+     p10_area20_duration4      55                   2     175              54             1.6567  1.1172   4.3593       0.0090
+     p10_area30_duration3      63                   1     168              61             1.7624  1.1848   3.1518       0.0092
+     p10_area30_duration3      63                   2     168              61             1.4738  1.0073   2.2640       0.0476
+
+C  SSW null redraws
+                         null  replicates  ssw_dates  control_dates_drawn  limit_reached  max_attempts  mean_attempts  share_needing_redraw                                same_winter_ssws_moved
+             calendar-matched       10000         25               250000              0            15         1.6674                0.3930 independently (each SSW draws its own control winter)
+decade-matched (+/-5 winters)       10000         25               250000              0            36         1.9813                0.4167 independently (each SSW draws its own control winter)
+           ENSO-phase-matched       10000         25               250000              0            34         1.9448                0.4280 independently (each SSW draws its own control winter)
+
+A  Pressure-level validity (surface pressure)
+Surface pressure source: ERA5 surface_pressure_hpa
+ box  level_hpa  retained_fraction_of_box  days  mean_below_ground_fraction_retained  p95_below_ground_fraction_retained  max_below_ground_fraction_retained  days_with_any_retained_point_below  mean_below_ground_fraction_all_points  lowest_surface_pressure_retained_hpa
+  bd      700.0                    1.0000  3610                               0.0000                              0.0000                              0.0000                                   0                                 0.0000                              856.4871
+  bd      850.0                    0.9892  3610                               0.0000                              0.0000                              0.0000                                   0                                 0.0000                              900.0270
+  bd     1000.0                    0.9892  3610                               0.2162                              0.2555                              0.3854                                3610                                 0.2247                              900.0270
+nigp      700.0                    0.6606  3610                               0.0000                              0.0000                              0.0019                                  62                                 0.3270                              695.8095
+nigp      850.0                    0.5440  3610                               0.0000                              0.0000                              0.0000                                   0                                 0.3884                              917.4419
+nigp     1000.0                    0.5791  3610                               0.6866                              0.8239                              0.9977                                3610                                 0.8185                              849.5870
+  sa      700.0                    0.7495  3610                               0.0002                              0.0003                              0.0007                                3609                                 0.2394                              680.3431
+  sa      850.0                    0.6843  3610                               0.0000                              0.0000                              0.0001                                   1                                 0.2787                              849.5870
+  sa     1000.0                    0.6843  3610                               0.5751                              0.6239                              0.6851                                3610                                 0.7093                              849.5870
+
+                                                                  quantity  value  ci_low  ci_high      p
+                   anomaly correlation, sp mask vs terrain mask (DJF days) 0.9983     NaN      NaN    NaN
+anomaly correlation, recomputed terrain-mask series vs published covariate 1.0000     NaN      NaN    NaN
+        mean valid area fraction with sp >= 1000 hPa (of the whole BD box) 0.7753     NaN      NaN    NaN
+                                                RMS anomaly difference (m) 2.0480     NaN      NaN    NaN
+   termination OR per SD of BD thickness anomaly, published (terrain mask) 0.9314  0.5826   1.3551 0.6689
+      termination OR per SD of BD thickness anomaly, surface-pressure mask 0.9222  0.5739   1.3564 0.6453

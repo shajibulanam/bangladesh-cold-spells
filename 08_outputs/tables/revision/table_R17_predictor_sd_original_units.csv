@@ -1,0 +1,7 @@
+predictor,label,sd,unit,n_rows,note
+mech_nigp_adv850_k_day_anom,"NW IGP 850-hPa advection anomaly, previous day",1.1826,K day-1,260,
+era5_bd_wspd10_anom,BD 10-m wind speed anomaly,0.3638,m s-1,260,
+era5_bd_stab_t2m_minus_t850_tend,day-to-day change in BD T2m - T850,1.2542,K day-1,260,
+era5_sa_z500_tend,day-to-day change in SA Z500,15.7847,m day-1,260,
+nat_tmax_anom,national Tmax anomaly,1.4739,degC,260,
+nigp_adv850_k_day,"NW IGP 850-hPa total advection, all DJF days",1.3603,K day-1,3610,for context

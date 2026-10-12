@@ -1,0 +1,98 @@
+STEP 9G: ERA5 BOOTSTRAP SIGNIFICANCE AND ROBUSTNESS
+======================================================================
+Primary bootstrap unit: winter
+Map bootstrap repetitions: 10000
+Box bootstrap repetitions: 10000
+Selected lags: [-10, -5, 0, 5]
+Bootstrap grid: approximately 1 degree
+
+
+======================================================================
+DIAGNOSTIC: t2m — T2m anomaly
+======================================================================
+
+Processing t2m, lag -10
+
+Processing t2m, lag -5
+
+Processing t2m, lag +0
+
+Processing t2m, lag +5
+Written: /media/shajibul/Porag/Bangladesh_ColdWave_Analysis/ColdWave_Project/Bangladesh_Cold_Wave/03_intermediate/era5_significance/netcdf/ERA5_SIG_t2m_selected_lags.nc
+
+======================================================================
+DIAGNOSTIC: mslp — MSLP anomaly
+======================================================================
+
+Processing mslp, lag -10
+
+Processing mslp, lag -5
+
+Processing mslp, lag +0
+
+Processing mslp, lag +5
+Written: /media/shajibul/Porag/Bangladesh_ColdWave_Analysis/ColdWave_Project/Bangladesh_Cold_Wave/03_intermediate/era5_significance/netcdf/ERA5_SIG_mslp_selected_lags.nc
+
+======================================================================
+DIAGNOSTIC: z500 — 500 hPa geopotential-height anomaly
+======================================================================
+
+Processing z500, lag -10
+
+Processing z500, lag -5
+
+Processing z500, lag +0
+
+Processing z500, lag +5
+Written: /media/shajibul/Porag/Bangladesh_ColdWave_Analysis/ColdWave_Project/Bangladesh_Cold_Wave/03_intermediate/era5_significance/netcdf/ERA5_SIG_z500_selected_lags.nc
+
+======================================================================
+DIAGNOSTIC: t850 — 850 hPa air-temperature anomaly
+======================================================================
+
+Processing t850, lag -10
+
+Processing t850, lag -5
+
+Processing t850, lag +0
+
+Processing t850, lag +5
+Written: /media/shajibul/Porag/Bangladesh_ColdWave_Analysis/ColdWave_Project/Bangladesh_Cold_Wave/03_intermediate/era5_significance/netcdf/ERA5_SIG_t850_selected_lags.nc
+
+======================================================================
+DIAGNOSTIC: u200 — 200 hPa zonal-wind anomaly
+======================================================================
+
+Processing u200, lag -10
+
+Processing u200, lag -5
+
+Processing u200, lag +0
+
+Processing u200, lag +5
+Written: /media/shajibul/Porag/Bangladesh_ColdWave_Analysis/ColdWave_Project/Bangladesh_Cold_Wave/03_intermediate/era5_significance/netcdf/ERA5_SIG_u200_selected_lags.nc
+
+STEP 9G: ERA5 BOOTSTRAP SIGNIFICANCE AND ROBUSTNESS
+======================================================================
+Status: completed
+Primary bootstrap unit: winter
+Event count: 85
+Selected lags: [-10, -5, 0, 5]
+Diagnostics: t2m, mslp, z500, t850, u200
+Map bootstrap repetitions: 10000
+Box bootstrap repetitions: 10000
+Bootstrap grid: approximately 1 degree
+Multiple-testing control: Benjamini-Hochberg FDR
+
+Box-level tests: 40
+Primary robust box results: 24
+
+NetCDF folder: /media/shajibul/Porag/Bangladesh_ColdWave_Analysis/ColdWave_Project/Bangladesh_Cold_Wave/03_intermediate/era5_significance/netcdf
+Box robustness table: /media/shajibul/Porag/Bangladesh_ColdWave_Analysis/ColdWave_Project/Bangladesh_Cold_Wave/08_outputs/tables/era5/table_13_era5_box_bootstrap_robustness.csv
+Significant-area table: /media/shajibul/Porag/Bangladesh_ColdWave_Analysis/ColdWave_Project/Bangladesh_Cold_Wave/08_outputs/tables/era5/table_14_era5_gridpoint_significant_area_fraction.csv
+Agreement table: /media/shajibul/Porag/Bangladesh_ColdWave_Analysis/ColdWave_Project/Bangladesh_Cold_Wave/08_outputs/tables/era5/table_15_era5_event_agreement_summary.csv
+Event-level box anomalies: /media/shajibul/Porag/Bangladesh_ColdWave_Analysis/ColdWave_Project/Bangladesh_Cold_Wave/03_intermediate/era5_significance/step9g_event_level_box_anomalies.csv
+Log CSV: /media/shajibul/Porag/Bangladesh_ColdWave_Analysis/ColdWave_Project/Bangladesh_Cold_Wave/05_qc_reports/era5/step9g_era5_bootstrap_significance_log.csv
+Summary JSON: /media/shajibul/Porag/Bangladesh_ColdWave_Analysis/ColdWave_Project/Bangladesh_Cold_Wave/05_qc_reports/era5/step9g_era5_bootstrap_significance_summary.json
+
+STEP 9G-1 PASSED. ERA5 BOOTSTRAP SIGNIFICANCE AND ROBUSTNESS OUTPUTS CREATED.

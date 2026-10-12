@@ -53,14 +53,14 @@ EXTRA_LABELS = {
     "cld_blh_06utc_anom": "Boundary layer, 12 LT", "cld_strd_wm2_tend": "ΔDownward longwave",
     "cld_tcc_mean_tend": "ΔTotal cloud", "cld_lowcloud1000_frac_00utc_tend": "ΔCloud base <1 km, 06 LT",
     "cld_td2m_mean_tend": "Δ2-m dewpoint", "cld_dpd_00utc_tend": "ΔDewpoint depression, 06 LT",
-    "win_strd_day_anom": "Downward longwave, 06–17 LT", "win_ssrd_day_anom": "Downward solar, 06–17 LT",
+    "win_strd_day_anom": "Downward longwave, 05–17 LT", "win_ssrd_day_anom": "Downward solar, 05–17 LT",
     "win_tcc_day_anom": "Total cloud, 06–17 LT", "win_td2m_day_anom": "2-m dewpoint, 06–17 LT",
     "win_low1000_day_anom": "Cloud base <1 km, 06–17 LT", "win_fog300_day_anom": "Cloud base <300 m, 06–17 LT",
     "win_blh_day_anom": "Boundary layer, 06–17 LT", "dly_tcc_00utc_anom": "Total cloud, 06 LT",
     "dly_lowcloud1000_frac_00utc_anom": "Cloud base <1 km, 06 LT", "dly_fog300_frac_00utc_anom": "Cloud base <300 m, 06 LT",
-    "dly_dpd_00utc_anom": "Dewpoint depression, 06 LT", "win_strd_day_tend": "ΔDownward longwave, 06–17 LT",
+    "dly_dpd_00utc_anom": "Dewpoint depression, 06 LT", "win_strd_day_tend": "ΔDownward longwave, 05–17 LT",
     "win_td2m_day_tend": "Δ2-m dewpoint, 06–17 LT", "win_tcc_day_tend": "ΔTotal cloud, 06–17 LT",
-    "win_strd_night_anom": "Downward longwave, 18–05 LT", "win_tcc_night_anom": "Total cloud, 18–05 LT",
+    "win_strd_night_anom": "Downward longwave, 17–05 LT", "win_tcc_night_anom": "Total cloud, 18–05 LT",
     "win_td2m_night_anom": "2-m dewpoint, 18–05 LT", "win_low1000_night_anom": "Cloud base <1 km, 18–05 LT",
     "win_fog300_night_anom": "Cloud base <300 m, 18–05 LT",
 }
@@ -133,7 +133,7 @@ def fig6() -> list[Path]:
     ax = fig.add_subplot(gs[:, 0])
     forest(ax, a.rename(columns={"q_fdr_causal": "q"}).assign(q=lambda d: d["q"].fillna(1.0)), "q",
            noncausal=(a["family"] == "noncausal_diagnostic"))
-    ax.set_title("(a) Primary family (39 causal + 4 diagnostic)", loc="left")
+    ax.set_title("(a) Primary family: 39 pre-outcome\npredictors + 4 non-causal diagnostics", loc="left")
     ax.set_xlabel("Odds ratio of termination per SD")
     ax = fig.add_subplot(gs[0, 1])
     forest(ax, b, "q_fdr_family")

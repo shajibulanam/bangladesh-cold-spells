@@ -37,9 +37,9 @@ REV = C.PROJECT_ROOT / "08_outputs" / "tables" / "revision"
 MM = 1 / 25.4
 NW = "mech_nigp_adv850_k_day_anom"
 ROWS = [  # (analysis, predictor, label)
-    ("lead 1 day(s)", NW, "k − 1"),
-    ("lead 2 day(s)", NW, "k − 2"),
-    ("lead 1, season-end spells not censored", NW, "k − 1, not censored"),
+    ("lead 1 day(s)", NW, "k − 1, primary"),
+    ("lead 2 day(s)", NW, "k − 2, primary"),
+    ("lead 1, season-end spells not censored", NW, "k − 1, uncensored"),
     ("lead 1, stable 25-station catalogue", NW, "k − 1, 25 stations"),
     ("lead 1 + same-day NW IGP and BD advection", "nigp_adv_lead1", "k − 1, + adv. day k"),
     ("lead 1 + same-day core predictors", "nigp_adv_lead1", "k − 1, + core day k"),
@@ -50,7 +50,7 @@ def main() -> None:
     comp = pd.read_csv(REV / "table_R11b_aligned_advection_composites.csv")
     rob = pd.read_csv(REV / "table_R11_lead_advection_robustness.csv")
     fig = plt.figure(figsize=(174 * MM, 62 * MM))
-    gs = fig.add_gridspec(1, 3, width_ratios=[1, 1, 0.95], wspace=0.55)
+    gs = fig.add_gridspec(1, 3, width_ratios=[1, 1, 0.95], wspace=0.95)
     ax_a = fig.add_subplot(gs[0])
     ax_b = fig.add_subplot(gs[1], sharey=ax_a)
     style = {"NW IGP": (G.OK["blue"], "NW IGP"), "Bangladesh": (G.OK["red"], "Bangladesh")}
@@ -84,6 +84,7 @@ def main() -> None:
     ax.set_xscale("log")
     ax.set_xticks([0.7, 1, 1.5, 2])
     ax.set_xticklabels(["0.7", "1", "1.5", "2"])
+    ax.xaxis.set_minor_formatter(plt.NullFormatter())
     ax.set_yticks(y)
     ax.set_yticklabels([lab for _, _, lab in ROWS], fontsize=6.5)
     ax.set_xlabel("Odds ratio of termination per SD")

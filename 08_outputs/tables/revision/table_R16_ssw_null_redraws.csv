@@ -1,0 +1,4 @@
+null,replicates,ssw_dates,control_dates_drawn,limit_reached,max_attempts,mean_attempts,share_needing_redraw,same_winter_ssws_moved
+calendar-matched,10000,25,250000,0,15,1.6674,0.3930,independently (each SSW draws its own control winter)
+decade-matched (+/-5 winters),10000,25,250000,0,36,1.9813,0.4167,independently (each SSW draws its own control winter)
+ENSO-phase-matched,10000,25,250000,0,34,1.9448,0.4280,independently (each SSW draws its own control winter)
