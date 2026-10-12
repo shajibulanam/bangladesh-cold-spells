@@ -4,7 +4,7 @@ title: "Code and derived data for: Onset and termination of Bangladesh winter co
 version: 1.4.0
 date-released: "2026-10-12"
 license: MIT
-
+doi: 10.5281/zenodo.23321486
 repository-code: "https://github.com/shajibulanam/bangladesh-cold-spells"
 authors:
   - family-names: Anam

@@ -10,7 +10,7 @@ VERSION="1.4.0"
 # Zenodo DOI of THIS version. Zenodo assigns it only when the GitHub release is archived, so leave it empty for the
 # release itself; afterwards set it here (or pass DOI=10.5281/zenodo.NNNN on the command line) and rerun to update
 # README.md and CITATION.cff in a follow-up commit.
-DOI="${DOI:-}"
+DOI="${DOI:-10.5281/zenodo.23321486}"
 PREV_DOI="10.5281/zenodo.23282635"   # version 1.3.0
 TITLE="Onset and termination of Bangladesh winter cold spells and their association with polar vortex variability: evidence from 40 winters"
 PROJECT="$(pwd)"
