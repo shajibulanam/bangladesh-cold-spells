@@ -752,7 +752,7 @@ TABLES = [
              "shortest spell of each catalogue. Adv850 anomalies are relative to the calendar-day "
              "climatology; a positive anomaly means more warm or less cold advection than normal. "
              "Intervals are 95% winter-block bootstrap intervals (10,000 resamples). The NW IGP rows of "
-             "panels (a) and (b) are plotted in Fig. 11c; panel (c) is not.")
+             "panels (a) and (b) are plotted in Fig. 7c; panel (c) is not.")
              + sd_sentence(D, [("mech_nigp_adv850_k_day_anom", "Adv850, NW IGP")])),
     dict(id="S13",
          title="Robustness of the deficit of cold-spell onsets after major sudden stratospheric warmings",
@@ -793,7 +793,7 @@ TABLES = [
          files=["table_R6b_enso_controlled_pathway.csv", "table_R6_pathway_box_indices.csv"],
          build=t_s15,
          caption=(
-             "(a) Box means of the gridded fields of Fig. 8d–g: the regression of winter-mean "
+             "(a) Box means of the gridded fields of Fig. S4: the regression of winter-mean "
              "(DJF) anomalies on winter-mean NAM at 100 hPa (40 winters), alone and with DJF ONI "
              "as a second predictor, and the mean over the 45 days after an SSW minus the mean "
              "over the rest of the same winter (19 winters with DJF days after an SSW). Boxes: "

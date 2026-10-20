@@ -1,18 +1,20 @@
 #!/usr/bin/env bash
-# 100_make_paper_repository.sh  (version 1.4.0 of the paper repository)
+# 100_make_paper_repository.sh  (version 1.5.0 of the paper repository)
 # Build a LEAN repository containing only what reproduces the manuscript and its supplement.
 # It COPIES an explicit whitelist; nothing in the working project is changed. BMD station data are excluded.
 #
 # Run from the project root:   bash 07_scripts/100_make_paper_repository.sh [output-folder]
-# Default output: ~/bangladesh-cold-spells_v1.4.0  (a fresh folder; sync it into your git clone afterwards)
+# Default output: ~/bangladesh-cold-spells_v1.5.0  (a fresh folder; sync it into your git clone afterwards)
 set -euo pipefail
-VERSION="1.4.0"
+VERSION="1.5.0"
 # Zenodo DOI of THIS version. Zenodo assigns it only when the GitHub release is archived, so leave it empty for the
 # release itself; afterwards set it here (or pass DOI=10.5281/zenodo.NNNN on the command line) and rerun to update
 # README.md and CITATION.cff in a follow-up commit.
-DOI="${DOI:-10.5281/zenodo.23321486}"
-PREV_DOI="10.5281/zenodo.23282635"   # version 1.3.0
-TITLE="Onset and termination of Bangladesh winter cold spells and their association with polar vortex variability: evidence from 40 winters"
+DOI="${DOI:-}"
+PREV_DOI="10.5281/zenodo.23321486"   # version 1.4.0
+DOI_130="10.5281/zenodo.23282635"    # version 1.3.0
+TITLE="Onset, maintenance and termination of Bangladesh winter cold spells: a subtropical trough pathway and the return of upstream warm advection"
+PREV_TITLE="Onset and termination of Bangladesh winter cold spells and their association with polar vortex variability: evidence from 40 winters"
 PROJECT="$(pwd)"
 RELEASE="${1:-${HOME}/bangladesh-cold-spells_v${VERSION}}"
 MAX_MB=50            # GitHub refuses files over 100 MB; anything above this is reported, not copied
@@ -60,7 +62,7 @@ SCRIPTS=(
  15x_validation_power_globalfdr.py
  16a_revision_hazard_validation.py 16b_revision_stable_network_catalogue.py 16c_revision_stratosphere.py
  16d_revision_humidity_gridded_lead.py 16e_revision_skin_soil.py 16f_final_stratosphere_figure.py
- 16g_final_advection_pulse_figure.py 16h_build_online_resource_tables.py
+ 16g_final_advection_pulse_figure.py 16h_build_online_resource_tables.py 16i_plot_lifecycle_schematic.py
  17a_check_step18_patches.py 17b_step19_checks.py 17c_step20_checks.py
  100_make_paper_repository.sh
 )
@@ -106,11 +108,12 @@ for f in stratosphere/table_59_daily_stratospheric_indices.csv stratosphere/tabl
   copy "08_outputs/tables/${f}"; done
 
 # ---------------------------------------------------------------- manuscript and Online Resource figures only
-# Fig. 1-11 in manuscript order, then Fig. S2 (Fig. S1 is written by 16h to 08_outputs/online_resource_1)
+# Fig. 1-11 in manuscript order (version 1.5.0 numbering), then Figs. S2-S4 (Fig. S1 is written by 16h to
+# 08_outputs/online_resource_1)
 FIGS=(fig_final_01_domain_network fig_m2_spell_climatology fig_m8_cold_day_vs_cold_night fig_m3_onset_pathway_maps
-      fig_m3b_onset_timeline fig_m4_leakage_free_composites fig_final_06_hazard_forest_three_families
-      fig_final_R_stratosphere_pathway fig_final_08_termination_sequence fig_final_07_termination_maps
-      fig_final_R_advection_pulse fig_R7_gridded_leakage_free)
+      fig_m3b_onset_timeline fig_final_08_termination_sequence fig_final_R_advection_pulse fig_final_07_termination_maps
+      fig_final_06_hazard_forest_three_families fig_final_R_stratosphere_occurrence fig_lifecycle_schematic
+      fig_R7_gridded_leakage_free fig_m4_leakage_free_composites FigS4_stratosphere_pathway_maps)
 for n in "${FIGS[@]}"; do
   for ext in png pdf; do
     f=$(cd "${PROJECT}" && find 08_outputs/figures -type f -name "${n}.${ext}" | sort | head -n 1)
@@ -127,7 +130,7 @@ copy 05_qc_reports/step6b_homogeneity_report.txt
 copy_find 05_qc_reports/revision -name "*.txt" -o -name "*.json"
 (cd "${PROJECT}" && find 05_qc_reports/era5 05_qc_reports/stratosphere 05_qc_reports/rrwp 05_qc_reports/tropospheric_indices 05_qc_reports/tn_waf \
    -type f -name "*summary.json" ! -path "*corrupted*" -print 2>/dev/null || true) | while read -r f; do copy "${f}"; done || true
-(cd "${PROJECT}" && find 09_logs -maxdepth 1 -type f \( -name "step16*.log" -o -name "step17*.log" -o -name "step18*.log" -o -name "step19*.log" -o -name "step20*.log" \) -print) | while read -r f; do copy "${f}"; done || true
+(cd "${PROJECT}" && find 09_logs -maxdepth 1 -type f \( -name "step16*.log" -o -name "step17*.log" -o -name "step18*.log" -o -name "step19*.log" -o -name "step20*.log" -o -name "step24*.log" -o -name "step25*.log" \) -print) | while read -r f; do copy "${f}"; done || true
 rm -f "${RELEASE}/00_admin/step16k_download_cloud_radiation_policy.json" "${RELEASE}/09_logs/step16k_download_cloud_radiation.log"
 
 # ---------------------------------------------------------------- repository files
@@ -187,14 +190,14 @@ cat > "${RELEASE}/.zenodo.json" <<EOF
   "title": "Code and derived data for: ${TITLE}",
   "version": "${VERSION}",
   "upload_type": "software",
-  "description": "Analysis code, frozen analysis policies, cold-night and cold-day spell catalogues (including the 25-station sensitivity catalogue), ERA5-derived daily series and gridded fields, and all result tables and figures of the article and its Online Resource 1. Version 1.4.0 (Steps 19-20, after the second and third pre-submission reviews) adds the hazard model without the final rows of the two season-end spells (table R18), checksums of the fixed external inputs, a check of pressure-level validity against ERA5 surface pressure, the upstream advection predictor in the six alternative event catalogues, SSW null redraw counts, predictor standard deviations in physical units (tables R14-R17), 10,000 resamples for the Fig. 4 stippling and the station table S18. Version 1.3.0 (Step 18): ERA5 box means exclude grid points above 1000 m (ETOPO1), where 1000/850 hPa and MSLP are extrapolated below ground (1500 m as sensitivity; unmasked series kept); resampling p-values are plus-one and every test uses at least 10,000 resamples; exact sign-flip tests for the post-SSW maps; season-end spells are right-censored in the primary hazard model; new article title. Version 1.2.0 added the Step 17 revision analyses (nested cross-validation, censoring and station-network sensitivity, lead predictors, stratospheric robustness and pathway, humidity and skin temperature, gridded field significance). BMD station observations are not included; they were obtained from the Bangladesh Meteorological Department on request and may not be redistributed.",
+  "description": "Analysis code, frozen analysis policies, cold-night and cold-day spell catalogues (including the 25-station sensitivity catalogue), ERA5-derived daily series and gridded fields, and all result tables and figures of the article and its Online Resource 1. Version 1.5.0 (Steps 24-25) follows the restructuring of the article around the cold-spell life cycle (new title): it adds the life-cycle schematic (script 16i, Fig. 11), splits the stratosphere figure into the occurrence panels (Fig. 10) and the circulation maps (Online Resource 1, Fig. S4) in script 16f, and renumbers the figures; no analysis or number changed. Earlier title of versions 1.3.0 and 1.4.0: Onset and termination of Bangladesh winter cold spells and their association with polar vortex variability: evidence from 40 winters. Version 1.4.0 (Steps 19-20, after the second and third pre-submission reviews) adds the hazard model without the final rows of the two season-end spells (table R18), checksums of the fixed external inputs, a check of pressure-level validity against ERA5 surface pressure, the upstream advection predictor in the six alternative event catalogues, SSW null redraw counts, predictor standard deviations in physical units (tables R14-R17), 10,000 resamples for the Fig. 4 stippling and the station table S18. Version 1.3.0 (Step 18): ERA5 box means exclude grid points above 1000 m (ETOPO1), where 1000/850 hPa and MSLP are extrapolated below ground (1500 m as sensitivity; unmasked series kept); resampling p-values are plus-one and every test uses at least 10,000 resamples; exact sign-flip tests for the post-SSW maps; season-end spells are right-censored in the primary hazard model; new article title. Version 1.2.0 added the Step 17 revision analyses (nested cross-validation, censoring and station-network sensitivity, lead predictors, stratospheric robustness and pathway, humidity and skin temperature, gridded field significance). BMD station observations are not included; they were obtained from the Bangladesh Meteorological Department on request and may not be redistributed.",
   "creators": [
     {"name": "Anam, Shajibul", "affiliation": "Department of Meteorology, University of Dhaka", "orcid": "0009-0009-9681-9339"},
     {"name": "Yildiz, Shabista", "affiliation": "Department of Meteorology, University of Dhaka", "orcid": "0009-0007-4131-5542"},
     {"name": "Singha, Shipa Rani", "affiliation": "Department of Meteorology, University of Dhaka", "orcid": "0009-0001-0209-1490"}
   ],
   "license": "mit",
-  "keywords": ["cold spell", "Bangladesh", "temperature advection", "discrete-time hazard model",
+  "keywords": ["cold spell", "Bangladesh", "subtropical jet", "temperature advection", "discrete-time hazard model",
                "sudden stratospheric warming", "Indo-Gangetic Plain", "ERA5"]
 }
 EOF
@@ -206,7 +209,7 @@ EOF
   || echo "WARNING: some fixed inputs missing for the checksum file"
 
 cat > "${RELEASE}/README.md" <<EOF
-# Bangladesh winter cold spells: onset, termination and polar vortex variability (1985/86-2024/25)
+# Bangladesh winter cold spells: onset, maintenance and termination (1985/86-2024/25)
 
 $( [ -n "${DOI}" ] && echo "[![DOI](https://zenodo.org/badge/DOI/${DOI}.svg)](https://doi.org/${DOI})" )
 
@@ -243,12 +246,12 @@ SHA-256 checksums of the external files used are in \`00_admin/fixed_inputs_sha2
 | Fig. 3 | \`fig_m8_cold_day_vs_cold_night\` | \`15g\` (tables 101, 113, 115) |
 | Fig. 4 | \`fig_m3_onset_pathway_maps\` | \`15i\` (inputs from \`08l\`, \`09n\`) |
 | Fig. 5 | \`fig_m3b_onset_timeline\` | \`15l\` (table 103) |
-| Fig. 6 | \`fig_m4_leakage_free_composites\` | \`15g\` (table 90) |
-| Fig. 7 | \`fig_final_06_hazard_forest_three_families\` | \`15u\` (tables 91, 106, 114) |
-| Fig. 8 | \`fig_final_R_stratosphere_pathway\` | \`16f\` (tables 107-110, R4, R6b) |
-| Fig. 9 | \`fig_final_08_termination_sequence\` | \`15u\` (tables 102, 112) |
-| Fig. 10 | \`fig_final_07_termination_maps\` | \`15s\` |
-| Fig. 11 | \`fig_final_R_advection_pulse\` | \`16g\` (tables R11, R11b) |
+| Fig. 6 | \`fig_final_08_termination_sequence\` | \`15u\` (tables 102, 112) |
+| Fig. 7 | \`fig_final_R_advection_pulse\` | \`16g\` (tables R11, R11b) |
+| Fig. 8 | \`fig_final_07_termination_maps\` | \`15s\` |
+| Fig. 9 | \`fig_final_06_hazard_forest_three_families\` | \`15u\` (tables 91, 106, 114) |
+| Fig. 10 | \`fig_final_R_stratosphere_occurrence\` | \`16f\` (tables 107-110, R4) |
+| Fig. 11 | \`fig_lifecycle_schematic\` | \`16i\` (conceptual drawing; values quoted from the Results, no input files) |
 | Terrain-mask checks | tables R12, R13 | \`17a\` |
 | Step 19 checks; Table S12c, Text S3 | tables R14-R17 | \`17b\` |
 | Step 20 check: final rows of the season-end spells omitted | table R18 | \`17c\` |
@@ -257,6 +260,8 @@ SHA-256 checksums of the external files used are in \`00_admin/fixed_inputs_sha2
 | Table 2 | tables 107-109, R4 | \`15n\`, \`15o\`, \`16c\` |
 | Fig. S1 | \`FigS1_hazard_robustness\` | \`16h\` (tables 95, R1, R2, R10b) |
 | Fig. S2 | \`fig_R7_gridded_leakage_free\` | \`16d\` (table R7) |
+| Fig. S3 | \`fig_m4_leakage_free_composites\` | \`15g\` (table 90) |
+| Fig. S4 | \`FigS4_stratosphere_pathway_maps\` | \`16f\` (table R6b) |
 | Tables S1-S9 | tables 60/60b, 91, 106, 114, 111, 95, 117, 89 + 118, 105 + 119 | \`11c\`, \`15d\`, \`15m\`, \`15w\`, \`15q\`, \`15e\`, \`15x\`, \`15c\`, \`15m\` |
 | Table S10 | tables R1, R1b | \`16a\` |
 | Table S11 | tables R10, R10b, R2, R18 | \`16b\`, \`16a\`, \`17c\` |
@@ -282,14 +287,24 @@ every step are in \`00_admin/*policy*\`; output checksums in \`00_admin/*_sha256
 4. Revision analyses (Step 17): \`16a\` nested cross-validation, censoring at season boundaries and one-day leads of all
    predictors; \`16b\` catalogue rebuilt on 25 stations; \`16c\` robustness of the SSW tests, stratosphere and duration,
    pathway indices; \`16d\` absolute humidity, gridded field significance and lead advection; \`16e\` skin temperature;
-   figures \`16f\` (Fig. 8) and \`16g\` (Fig. 11); Online Resource tables and Fig. S1 \`16h\`.
+   figures \`16f\` (Fig. 10 and Fig. S4) and \`16g\` (Fig. 7); Online Resource tables and Fig. S1 \`16h\`.
 5. Step 18 (pre-submission review): terrain mask and plus-one p-values in the shared helpers and in \`15a\`, \`15b\`,
    \`15d\`, \`15e\`, \`15j\`, \`15m\`, \`15n\`, \`15o\`, \`15s\`, \`16a\`, \`16c\`, \`16d\`, \`16f\`, \`16g\`, \`08l\`; checks
    \`17a\` (fitter and terrain fractions, then masked versus unmasked odds ratios, tables R12-R13). Order of the rerun:
    \`00_admin/STEP18_RUNBOOK.md\`. The switch \`CENSOR_SEASON_END\` in \`15_termination_common.py\` selects the
    primary (censored) or the version 1.2.0 (not censored) risk set.
+6. Steps 24-25 (article restructured around the life cycle): \`16i\` draws the schematic Fig. 11; \`16f\` writes Fig. 10 and
+   Fig. S4 (and still the earlier seven-panel figure); \`16h\` table notes follow the new figure numbers.
 
 ## Changes in version ${VERSION}
+The article was restructured around the cold-spell life cycle (onset, maintenance, termination) and has a new title;
+the archive of versions 1.3.0 and 1.4.0 carries the earlier title "${PREV_TITLE}". New: \`16i\` (life-cycle schematic,
+Fig. 11). \`16f\` also writes the occurrence panels as Fig. 10 and the circulation maps as Online Resource 1, Fig. S4, from
+the same statistics and seeds; \`16h\` table notes refer to Figs. 7c and S4. Figures are renumbered (table above); former
+Fig. 6 is Fig. S3. No analysis, table or number changed.
+
+## Changes in version 1.4.0
+Version 1.4.0: https://doi.org/${PREV_DOI}. Figure numbers in this section follow version 1.4.0.
 Step 19 (second pre-submission review): \`17b\` checks pressure-level validity against ERA5 surface pressure (table R14,
 R14b), refits the upstream advection predictor in the six alternative event catalogues (R15), counts SSW null redraws
 (R16) and gives predictor standard deviations in physical units (R17); \`08l\` uses 10,000 map resamples (Fig. 4);
@@ -307,11 +322,11 @@ thickness and T2m - T850 are differenced point by point. The previous series are
 with B >= 10,000 for hypothesis tests (logistic refits are batched); the post-SSW maps use an exact sign-flip test over
 19 winters. The two spells that end on the last day of February are right-censored in the primary hazard model.
 Added \`17a\`, tables R12-R13 and Online Resource Tables S1-S9 as Markdown. All results were regenerated.
-Version 1.3.0: https://doi.org/${PREV_DOI}.
+Version 1.3.0: https://doi.org/${DOI_130}.
 
 ## Development note
 Analysis code and parts of the text were drafted with the assistance of AI language models (ChatGPT, OpenAI, for the
-earlier pipeline steps; Claude, Anthropic, for Steps 16 to 19). The authors specified the analyses, reviewed and ran all
+earlier pipeline steps; Claude, Anthropic, for Steps 16 to 25). The authors specified the analyses, reviewed and ran all
 code, reproduced every reported number on their own computer with fixed random seeds, and are responsible for the results.
 
 ## Environment and licence

@@ -1,5 +1,11 @@
 """
-16f_final_stratosphere_figure.py - final figure: stratospheric modulation of cold-spell occurrence and its pathway.
+16f_final_stratosphere_figure.py - final figures: stratospheric association with cold-spell occurrence and its pathway.
+
+Step 25 (October 2026): besides the seven-panel figure below (fig_final_R_stratosphere_pathway, unchanged), the
+script now also writes the two figures used after the restructuring of the article:
+  fig_final_R_stratosphere_occurrence  main-text Fig. 10 = panels (a)-(c) below
+  FigS4_stratosphere_pathway_maps      Online Resource 1, Fig. S4 = panels (d)-(g) below, relabelled (a)-(d)
+The statistics, seeds and Monte Carlo replicates are computed once and shared by all three figures.
 
 Panels
   (a) cold-spell onsets within 45 days after the 25 major SSWs: calendar-matched null (grey histogram, as
@@ -9,7 +15,8 @@ Panels
   (d, e) Z500 and U200 regressed on winter-mean NAM100 with DJF ONI as a second predictor (ENSO removed);
          per SD of NAM100; dots: BH q < 0.05 (t-test, 37 degrees of freedom)
   (f, g) Z500 and U200 in the 0-45 days after SSWs minus the rest of the same winter (19 winters with DJF
-         follow-up); dots: BH q < 0.05 (bootstrap over winters). A within-winter contrast needs no ENSO control.
+         follow-up); dots: BH q < 0.05 (exact sign-flip test over the 19 winters, Step 18). A within-winter contrast
+         needs no ENSO control.
 Dashed boxes: Bangladesh (BD) and the northwestern Indo-Gangetic Plain (NW IGP).
 
 Step 1 (first run only, ~1 h): DJF anomaly fields (2-degree means) are aggregated into winter means and
@@ -180,7 +187,8 @@ def statistics(cache: dict, nam: np.ndarray, oni: np.ndarray | None) -> tuple[di
 
 
 # ----------------------------------------------------------------------------- figure
-def occurrence_panels(axes, ev, cov, wdf, r4):
+def occurrence_data(ev, cov) -> dict:
+    """SSW onset counts with their calendar- and decade-matched nulls, and onset-day NAM100 against matched dates."""
     ssw = pd.read_csv(N.SSW_TABLE, parse_dates=["central_date"])["central_date"]
     ssw = ssw[ssw.apply(N.winter_of).between(1985, 2024)].reset_index(drop=True)
     onsets = ev["start_date"].to_numpy(dtype="datetime64[ns]")
@@ -189,6 +197,19 @@ def occurrence_panels(axes, ev, cov, wdf, r4):
     for name, decade in (("calendar", False), ("decade", True)):
         rng = np.random.default_rng(M.SEED)  # same seed and procedure as table_R4
         nulls[name] = np.array([M.onsets_in(onsets, M.null_dates(ssw, rng, decade), 0, 45) for _ in range(N_MC)])
+    nam = cov["nam_proxy_100"]
+    cd = pd.Series(cov.index.strftime("%m-%d"), index=cov.index)
+    by_cd = {k: v.index.to_numpy() for k, v in cd.groupby(cd)}
+    keys = ev["start_date"].dt.strftime("%m-%d").to_numpy()
+    rng = np.random.default_rng(N.SEED)
+    sims = np.array([nam.loc[[rng.choice(by_cd[k]) for k in keys]].mean() for _ in range(N_MC)])
+    obs_nam = nam.loc[ev["start_date"]].mean()
+    return {"obs": obs, "nulls": nulls, "sims": sims, "obs_nam": obs_nam}
+
+
+def occurrence_panels(axes, ev, cov, wdf, r4, data: dict | None = None):
+    data = data if data is not None else occurrence_data(ev, cov)
+    obs, nulls, sims, obs_nam = data["obs"], data["nulls"], data["sims"], data["obs_nam"]
     ax = axes[0]
     bins = np.arange(min(nulls["calendar"].min(), obs) - 0.5, nulls["calendar"].max() + 1.5, 1)
     ax.hist(nulls["calendar"], bins=bins, color=G.OK["grey"], edgecolor="white", lw=0.3, label="calendar-matched")
@@ -205,13 +226,6 @@ def occurrence_panels(axes, ev, cov, wdf, r4):
             f"expected {rd['null_mean']:.1f} (decade), ratio {rd['rate_ratio_vs_null']:.2f}",
             transform=ax.transAxes, ha="right", va="top", fontsize=5.5)
     ax.legend(frameon=False, fontsize=5.5, loc="upper right", bbox_to_anchor=(1.0, 0.80), handlelength=1.2)
-    nam = cov["nam_proxy_100"]
-    cd = pd.Series(cov.index.strftime("%m-%d"), index=cov.index)
-    by_cd = {k: v.index.to_numpy() for k, v in cd.groupby(cd)}
-    keys = ev["start_date"].dt.strftime("%m-%d").to_numpy()
-    rng = np.random.default_rng(N.SEED)
-    sims = np.array([nam.loc[[rng.choice(by_cd[k]) for k in keys]].mean() for _ in range(N_MC)])
-    obs_nam = nam.loc[ev["start_date"]].mean()
     ax = axes[1]
     ax.hist(sims, bins=40, color=G.OK["grey"], edgecolor="white", lw=0.3)
     ax.axvline(obs_nam, color=G.OK["red"], lw=1.6)
@@ -237,7 +251,7 @@ def occurrence_panels(axes, ev, cov, wdf, r4):
     return obs, nulls, obs_nam - sims.mean()
 
 
-def map_panel(ax, field, sig, lat, lon, title, unit, ccrs, cfeature):
+def map_panel(ax, field, sig, lat, lon, title, unit, ccrs, cfeature, unit_on_side: bool = False):
     kw = {"transform": ccrs.PlateCarree()} if ccrs else {}
     v = float(np.nanpercentile(np.abs(field), 98)) or 1.0
     m = ax.pcolormesh(lon, lat, field, cmap="RdBu_r", vmin=-v, vmax=v, shading="auto", **kw)
@@ -253,30 +267,57 @@ def map_panel(ax, field, sig, lat, lon, title, unit, ccrs, cfeature):
         gl.xlabel_style = gl.ylabel_style = {"size": 5.5}
     ax.set_title(title, loc="left", fontsize=7)
     cb = plt.colorbar(m, ax=ax, shrink=0.85, pad=0.02)
-    cb.ax.set_title(unit, fontsize=6, pad=3)
+    if unit_on_side:  # Step 25c: unit beside the colour bar, so it cannot collide with a long panel title
+        cb.set_label(unit, fontsize=6, labelpad=2)
+    else:
+        cb.ax.set_title(unit, fontsize=6, pad=3)
     cb.ax.tick_params(labelsize=5.5)
 
 
-def make_figure(ev, cov, wdf, r4, stats, lat, lon, enso_ok: bool) -> None:
+def _cartopy():
     try:
         import cartopy.crs as ccrs
         import cartopy.feature as cfeature
     except ImportError:
         ccrs = cfeature = None
+    return ccrs, cfeature
+
+
+def map_specs(enso_ok: bool, letters: str = "defg") -> list:
+    tag = "nam_enso_removed" if enso_ok else "nam_no_enso_control"
+    note = "ENSO removed" if enso_ok else "no ENSO control"
+    a, b, c, d = letters
+    return [((1, 0), f"z500_{tag}", f"({a}) Z500 per SD of winter NAM100 ({note})", "m"),
+            ((1, 1), f"u200_{tag}", f"({b}) U200 per SD of winter NAM100 ({note})", "m s$^{-1}$"),
+            ((2, 0), "z500_post", f"({c}) Z500, 0–45 d after SSWs minus rest of winter", "m"),
+            ((2, 1), "u200_post", f"({d}) U200, 0–45 d after SSWs minus rest of winter", "m s$^{-1}$")]
+
+
+def make_figure(ev, cov, wdf, r4, stats, lat, lon, enso_ok: bool, data: dict | None = None) -> None:
+    ccrs, cfeature = _cartopy()
     fig = plt.figure(figsize=(174 * MM, 182 * MM))
     gs = fig.add_gridspec(3, 6, height_ratios=[1.0, 1.2, 1.2], hspace=0.48, wspace=0.75)
     top = [fig.add_subplot(gs[0, 2 * i:2 * i + 2]) for i in range(3)]
-    occurrence_panels(top, ev, cov, wdf, r4)
-    tag = "nam_enso_removed" if enso_ok else "nam_no_enso_control"
-    note = "ENSO removed" if enso_ok else "no ENSO control"
-    specs = [((1, 0), f"z500_{tag}", f"(d) Z500 per SD of winter NAM100 ({note})", "m"),
-             ((1, 1), f"u200_{tag}", f"(e) U200 per SD of winter NAM100 ({note})", "m s$^{-1}$"),
-             ((2, 0), "z500_post", "(f) Z500, 0–45 d after SSWs minus rest of winter", "m"),
-             ((2, 1), "u200_post", "(g) U200, 0–45 d after SSWs minus rest of winter", "m s$^{-1}$")]
-    for (r, c), key, title, unit in specs:
+    occurrence_panels(top, ev, cov, wdf, r4, data)
+    for (r, c), key, title, unit in map_specs(enso_ok):
         ax = fig.add_subplot(gs[r, 3 * c:3 * c + 3], **({"projection": ccrs.PlateCarree()} if ccrs else {}))
         map_panel(ax, stats[key], stats[f"{key}_sig"], lat, lon, title, unit, ccrs, cfeature)
     G.save(fig, "fig_final_R_stratosphere_pathway")
+
+
+def make_split_figures(ev, cov, wdf, r4, stats, lat, lon, enso_ok: bool, data: dict) -> None:
+    """Step 25: main-text Fig. 10 (occurrence, panels a-c) and Online Resource 1 Fig. S4 (pathway maps)."""
+    ccrs, cfeature = _cartopy()
+    fig = plt.figure(figsize=(174 * MM, 60 * MM))
+    gs = fig.add_gridspec(1, 3, wspace=0.42)
+    occurrence_panels([fig.add_subplot(gs[0, i]) for i in range(3)], ev, cov, wdf, r4, data)
+    G.save(fig, "fig_final_R_stratosphere_occurrence")
+    fig = plt.figure(figsize=(174 * MM, 100 * MM))
+    gs = fig.add_gridspec(2, 2, hspace=0.32, wspace=0.18)
+    for (r, c), key, title, unit in map_specs(enso_ok, "abcd"):
+        ax = fig.add_subplot(gs[r - 1, c], **({"projection": ccrs.PlateCarree()} if ccrs else {}))
+        map_panel(ax, stats[key], stats[f"{key}_sig"], lat, lon, title, unit, ccrs, cfeature, unit_on_side=True)
+    G.save(fig, "FigS4_stratosphere_pathway_maps")
 
 
 def main() -> None:
@@ -296,7 +337,9 @@ def main() -> None:
     tab.to_csv(REV / "table_R6b_enso_controlled_pathway.csv", index=False, float_format="%.3f")
     print(tab.round(3).to_string(index=False), flush=True)
     r4 = pd.read_csv(REV / "table_R4_ssw_robustness.csv")
-    make_figure(ev, cov, wdf.reset_index(), r4, stats, cache["lat"], cache["lon"], enso_ok)
+    data = occurrence_data(ev, cov)
+    make_figure(ev, cov, wdf.reset_index(), r4, stats, cache["lat"], cache["lon"], enso_ok, data)
+    make_split_figures(ev, cov, wdf.reset_index(), r4, stats, cache["lat"], cache["lon"], enso_ok, data)
 
 
 if __name__ == "__main__":

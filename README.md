@@ -1,9 +1,9 @@
-# Bangladesh winter cold spells: onset, termination and polar vortex variability (1985/86-2024/25)
+# Bangladesh winter cold spells: onset, maintenance and termination (1985/86-2024/25)
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23321486.svg)](https://doi.org/10.5281/zenodo.23321486)
 
-Version 1.4.0 (https://doi.org/10.5281/zenodo.23321486). Code and derived data reproducing the figures and tables of the article
-"Onset and termination of Bangladesh winter cold spells and their association with polar vortex variability: evidence from 40 winters" (S. Anam, S. Yildiz, S. R. Singha; Department of Meteorology, University of Dhaka),
+
+Version 1.5.0. Code and derived data reproducing the figures and tables of the article
+"Onset, maintenance and termination of Bangladesh winter cold spells: a subtropical trough pathway and the return of upstream warm advection" (S. Anam, S. Yildiz, S. R. Singha; Department of Meteorology, University of Dhaka),
 submitted to *Climate Dynamics*, and of its Online Resource 1. Corresponding author: S. Yildiz, shabistayildiz@du.ac.bd.
 
 ## Data availability
@@ -35,12 +35,12 @@ SHA-256 checksums of the external files used are in `00_admin/fixed_inputs_sha25
 | Fig. 3 | `fig_m8_cold_day_vs_cold_night` | `15g` (tables 101, 113, 115) |
 | Fig. 4 | `fig_m3_onset_pathway_maps` | `15i` (inputs from `08l`, `09n`) |
 | Fig. 5 | `fig_m3b_onset_timeline` | `15l` (table 103) |
-| Fig. 6 | `fig_m4_leakage_free_composites` | `15g` (table 90) |
-| Fig. 7 | `fig_final_06_hazard_forest_three_families` | `15u` (tables 91, 106, 114) |
-| Fig. 8 | `fig_final_R_stratosphere_pathway` | `16f` (tables 107-110, R4, R6b) |
-| Fig. 9 | `fig_final_08_termination_sequence` | `15u` (tables 102, 112) |
-| Fig. 10 | `fig_final_07_termination_maps` | `15s` |
-| Fig. 11 | `fig_final_R_advection_pulse` | `16g` (tables R11, R11b) |
+| Fig. 6 | `fig_final_08_termination_sequence` | `15u` (tables 102, 112) |
+| Fig. 7 | `fig_final_R_advection_pulse` | `16g` (tables R11, R11b) |
+| Fig. 8 | `fig_final_07_termination_maps` | `15s` |
+| Fig. 9 | `fig_final_06_hazard_forest_three_families` | `15u` (tables 91, 106, 114) |
+| Fig. 10 | `fig_final_R_stratosphere_occurrence` | `16f` (tables 107-110, R4) |
+| Fig. 11 | `fig_lifecycle_schematic` | `16i` (conceptual drawing; values quoted from the Results, no input files) |
 | Terrain-mask checks | tables R12, R13 | `17a` |
 | Step 19 checks; Table S12c, Text S3 | tables R14-R17 | `17b` |
 | Step 20 check: final rows of the season-end spells omitted | table R18 | `17c` |
@@ -49,6 +49,8 @@ SHA-256 checksums of the external files used are in `00_admin/fixed_inputs_sha25
 | Table 2 | tables 107-109, R4 | `15n`, `15o`, `16c` |
 | Fig. S1 | `FigS1_hazard_robustness` | `16h` (tables 95, R1, R2, R10b) |
 | Fig. S2 | `fig_R7_gridded_leakage_free` | `16d` (table R7) |
+| Fig. S3 | `fig_m4_leakage_free_composites` | `15g` (table 90) |
+| Fig. S4 | `FigS4_stratosphere_pathway_maps` | `16f` (table R6b) |
 | Tables S1-S9 | tables 60/60b, 91, 106, 114, 111, 95, 117, 89 + 118, 105 + 119 | `11c`, `15d`, `15m`, `15w`, `15q`, `15e`, `15x`, `15c`, `15m` |
 | Table S10 | tables R1, R1b | `16a` |
 | Table S11 | tables R10, R10b, R2, R18 | `16b`, `16a`, `17c` |
@@ -74,14 +76,24 @@ every step are in `00_admin/*policy*`; output checksums in `00_admin/*_sha256.tx
 4. Revision analyses (Step 17): `16a` nested cross-validation, censoring at season boundaries and one-day leads of all
    predictors; `16b` catalogue rebuilt on 25 stations; `16c` robustness of the SSW tests, stratosphere and duration,
    pathway indices; `16d` absolute humidity, gridded field significance and lead advection; `16e` skin temperature;
-   figures `16f` (Fig. 8) and `16g` (Fig. 11); Online Resource tables and Fig. S1 `16h`.
+   figures `16f` (Fig. 10 and Fig. S4) and `16g` (Fig. 7); Online Resource tables and Fig. S1 `16h`.
 5. Step 18 (pre-submission review): terrain mask and plus-one p-values in the shared helpers and in `15a`, `15b`,
    `15d`, `15e`, `15j`, `15m`, `15n`, `15o`, `15s`, `16a`, `16c`, `16d`, `16f`, `16g`, `08l`; checks
    `17a` (fitter and terrain fractions, then masked versus unmasked odds ratios, tables R12-R13). Order of the rerun:
    `00_admin/STEP18_RUNBOOK.md`. The switch `CENSOR_SEASON_END` in `15_termination_common.py` selects the
    primary (censored) or the version 1.2.0 (not censored) risk set.
+6. Steps 24-25 (article restructured around the life cycle): `16i` draws the schematic Fig. 11; `16f` writes Fig. 10 and
+   Fig. S4 (and still the earlier seven-panel figure); `16h` table notes follow the new figure numbers.
+
+## Changes in version 1.5.0
+The article was restructured around the cold-spell life cycle (onset, maintenance, termination) and has a new title;
+the archive of versions 1.3.0 and 1.4.0 carries the earlier title "Onset and termination of Bangladesh winter cold spells and their association with polar vortex variability: evidence from 40 winters". New: `16i` (life-cycle schematic,
+Fig. 11). `16f` also writes the occurrence panels as Fig. 10 and the circulation maps as Online Resource 1, Fig. S4, from
+the same statistics and seeds; `16h` table notes refer to Figs. 7c and S4. Figures are renumbered (table above); former
+Fig. 6 is Fig. S3. No analysis, table or number changed.
 
 ## Changes in version 1.4.0
+Version 1.4.0: https://doi.org/10.5281/zenodo.23321486. Figure numbers in this section follow version 1.4.0.
 Step 19 (second pre-submission review): `17b` checks pressure-level validity against ERA5 surface pressure (table R14,
 R14b), refits the upstream advection predictor in the six alternative event catalogues (R15), counts SSW null redraws
 (R16) and gives predictor standard deviations in physical units (R17); `08l` uses 10,000 map resamples (Fig. 4);
@@ -103,7 +115,7 @@ Version 1.3.0: https://doi.org/10.5281/zenodo.23282635.
 
 ## Development note
 Analysis code and parts of the text were drafted with the assistance of AI language models (ChatGPT, OpenAI, for the
-earlier pipeline steps; Claude, Anthropic, for Steps 16 to 19). The authors specified the analyses, reviewed and ran all
+earlier pipeline steps; Claude, Anthropic, for Steps 16 to 25). The authors specified the analyses, reviewed and ran all
 code, reproduced every reported number on their own computer with fixed random seeds, and are responsible for the results.
 
 ## Environment and licence
