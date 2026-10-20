@@ -1,8 +1,8 @@
 # Bangladesh winter cold spells: onset, maintenance and termination (1985/86-2024/25)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23495779.svg)](https://doi.org/10.5281/zenodo.23495779)
 
-
-Version 1.5.0. Code and derived data reproducing the figures and tables of the article
+Version 1.5.0 (https://doi.org/10.5281/zenodo.23495779). Code and derived data reproducing the figures and tables of the article
 "Onset, maintenance and termination of Bangladesh winter cold spells: a subtropical trough pathway and the return of upstream warm advection" (S. Anam, S. Yildiz, S. R. Singha; Department of Meteorology, University of Dhaka),
 submitted to *Climate Dynamics*, and of its Online Resource 1. Corresponding author: S. Yildiz, shabistayildiz@du.ac.bd.
 
